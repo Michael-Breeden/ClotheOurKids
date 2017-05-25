@@ -1,0 +1,40 @@
+﻿/* TEMPLATE STYLES */
+        
+        html,
+        body,
+        .view {
+            height: 100%;
+        }
+        /* Navigation*/
+       
+
+        .navbar {
+            background-color: transparent;
+        }
+        
+        .top-nav-collapse {
+            background-color: #F44336;
+        }
+        
+        
+        @media only screen and (max-width: 768px) {
+            .navbar {
+                background-color: #1C2331;
+            }
+        }
+
+        .full-bg-img {
+            color: #fff;
+        }
+
+        .view {
+            background: url("../../Content/img/bg/child-girl-happy.jpg")no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        
+        footer.page-footer {
+            background-color: #7E929C;
+        }

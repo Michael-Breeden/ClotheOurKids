@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="731a27286c9b4008a9cd98ae8a3ee55f" Name="Diagram1">
+        <EntityTypeShape EntityType="ClotheOurKidsModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.AspNetUser" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.Grade" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.Office" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.OfficeType" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.Position" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.PositionOfficeType" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.SchoolSystem" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.SchoolType" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_OfficeType_DescribesOrganizationalTypeOf_Reference_Office" ManuallyRouted="false" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_SchoolSystem_IdentifiesSchoolSystemOf_Reference_Office" ManuallyRouted="false" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_OfficeType_DescribesTypeOfOfficeAssociatedWith_Reference_PositionOfficeType" ManuallyRouted="false" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_PositionOfficeType_SpecifiesOfficeTypeOf_Reference_Position" ManuallyRouted="false" />
+        <AssociationConnector Association="ClotheOurKidsModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

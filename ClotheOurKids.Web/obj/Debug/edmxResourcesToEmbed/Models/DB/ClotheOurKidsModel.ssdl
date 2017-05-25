@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ClotheOurKidsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AgeGroup">
+    <Key>
+      <PropertyRef Name="AgeGroupId" />
+    </Key>
+    <Property Name="AgeGroupId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="ClothesType">
+    <Key>
+      <PropertyRef Name="ClothesTypeId" />
+    </Key>
+    <Property Name="ClothesTypeId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Grade">
+    <Key>
+      <PropertyRef Name="GradeId" />
+    </Key>
+    <Property Name="GradeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Office">
+    <Key>
+      <PropertyRef Name="OfficeId" />
+    </Key>
+    <Property Name="OfficeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="OfficeTypeId" Type="tinyint" Nullable="false" />
+    <Property Name="SchoolSystemId" Type="tinyint" />
+    <Property Name="SchoolType" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="OfficeType">
+    <Key>
+      <PropertyRef Name="OfficeTypeId" />
+    </Key>
+    <Property Name="OfficeTypeId" Type="tinyint" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="PositionId" />
+    </Key>
+    <Property Name="PositionId" Type="tinyint" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="PositionOfficeType">
+    <Key>
+      <PropertyRef Name="PositionOfficeTypeId" />
+    </Key>
+    <Property Name="PositionOfficeTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PositionId" Type="tinyint" Nullable="false" />
+    <Property Name="OfficeTypeId" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SchoolSystem">
+    <Key>
+      <PropertyRef Name="SchoolSystemId" />
+    </Key>
+    <Property Name="SchoolSystemId" Type="tinyint" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="SchoolType">
+    <Key>
+      <PropertyRef Name="SchoolTypeId" />
+    </Key>
+    <Property Name="SchoolTypeId" Type="tinyint" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Size">
+    <Key>
+      <PropertyRef Name="SizeId" />
+    </Key>
+    <Property Name="SizeId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="SizeChart">
+    <Key>
+      <PropertyRef Name="SizeChartId" />
+    </Key>
+    <Property Name="SizeChartId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SizeId" Type="int" Nullable="false" />
+    <Property Name="AgeGroupId" Type="int" Nullable="false" />
+    <Property Name="Gender" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="ClothesTypeId" Type="int" Nullable="false" />
+    <Property Name="SortOrder" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ClotheOurKids.Reference.SizeChartData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="SizeChartData">
+    <Key>
+      <PropertyRef Name="SizeChartId" />
+      <PropertyRef Name="Gender" />
+      <PropertyRef Name="Size" />
+      <PropertyRef Name="AgeGroup" />
+      <PropertyRef Name="ClothesType" />
+    </Key>
+    <Property Name="SizeChartId" Type="int" Nullable="false" />
+    <Property Name="Gender" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Size" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AgeGroup" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClothesType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SortOrder" Type="int" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_AgeGroup$ProvidesAgeGroupDetailsFor$Reference_SizeChart">
+    <End Role="AgeGroup" Type="Self.AgeGroup" Multiplicity="1" />
+    <End Role="SizeChart" Type="Self.SizeChart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AgeGroup">
+        <PropertyRef Name="AgeGroupId" />
+      </Principal>
+      <Dependent Role="SizeChart">
+        <PropertyRef Name="AgeGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_ClothesType$ProvidesDetailsAboutTypeOfClothingFor$Reference_SizeChart">
+    <End Role="ClothesType" Type="Self.ClothesType" Multiplicity="1" />
+    <End Role="SizeChart" Type="Self.SizeChart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClothesType">
+        <PropertyRef Name="ClothesTypeId" />
+      </Principal>
+      <Dependent Role="SizeChart">
+        <PropertyRef Name="ClothesTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_OfficeType$DescribesOrganizationalTypeOf$Reference_Office">
+    <End Role="OfficeType" Type="Self.OfficeType" Multiplicity="1" />
+    <End Role="Office" Type="Self.Office" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OfficeType">
+        <PropertyRef Name="OfficeTypeId" />
+      </Principal>
+      <Dependent Role="Office">
+        <PropertyRef Name="OfficeTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_OfficeType$DescribesTypeOfOfficeAssociatedWith$Reference_PositionOfficeType">
+    <End Role="OfficeType" Type="Self.OfficeType" Multiplicity="1" />
+    <End Role="PositionOfficeType" Type="Self.PositionOfficeType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OfficeType">
+        <PropertyRef Name="OfficeTypeId" />
+      </Principal>
+      <Dependent Role="PositionOfficeType">
+        <PropertyRef Name="OfficeTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_PositionOfficeType$SpecifiesOfficeTypeOf$Reference_Position">
+    <End Role="Position" Type="Self.Position" Multiplicity="1" />
+    <End Role="PositionOfficeType" Type="Self.PositionOfficeType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="PositionId" />
+      </Principal>
+      <Dependent Role="PositionOfficeType">
+        <PropertyRef Name="PositionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_SchoolSystem$IdentifiesSchoolSystemOf$Reference_Office">
+    <End Role="SchoolSystem" Type="Self.SchoolSystem" Multiplicity="0..1" />
+    <End Role="Office" Type="Self.Office" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SchoolSystem">
+        <PropertyRef Name="SchoolSystemId" />
+      </Principal>
+      <Dependent Role="Office">
+        <PropertyRef Name="SchoolSystemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_Size$ProvidesClothingSizeDetailsFor$Reference_SizeChart">
+    <End Role="Size" Type="Self.Size" Multiplicity="1" />
+    <End Role="SizeChart" Type="Self.SizeChart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Size">
+        <PropertyRef Name="SizeId" />
+      </Principal>
+      <Dependent Role="SizeChart">
+        <PropertyRef Name="SizeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ClotheOurKidsModelStoreContainer">
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AgeGroup" EntityType="Self.AgeGroup" Schema="Reference" store:Type="Tables" />
+    <EntitySet Name="ClothesType" EntityType="Self.ClothesType" Schema="Reference" store:Type="Tables" />
+    <EntitySet Name="Grade" EntityType="Self.Grade" Schema="Reference" store:Type="Tables" />
+    <EntitySet Name="Office" EntityType="Self.Office" Schema="Reference" store:Type="Tables" />
+    <EntitySet Name="OfficeType" EntityType="Self.OfficeType" Schema="Reference" store:Type="Tables" />
+    <EntitySet Name="Position" EntityType="Self.Position" Schema="Reference" store:Type="Tables" />
+    <EntitySet Name="PositionOfficeType" EntityType="Self.PositionOfficeType" Schema="Reference" store:Type="Tables" />
+    <EntitySet Name="SchoolSystem" EntityType="Self.SchoolSystem" Schema="Reference" store:Type="Tables" />
+    <EntitySet Name="SchoolType" EntityType="Self.SchoolType" Schema="Reference" store:Type="Tables" />
+    <EntitySet Name="Size" EntityType="Self.Size" Schema="Reference" store:Type="Tables" />
+    <EntitySet Name="SizeChart" EntityType="Self.SizeChart" Schema="Reference" store:Type="Tables" />
+    <EntitySet Name="SizeChartData" EntityType="Self.SizeChartData" store:Type="Views" store:Schema="Reference">
+      <DefiningQuery>SELECT 
+    [SizeChartData].[SizeChartId] AS [SizeChartId], 
+    [SizeChartData].[Gender] AS [Gender], 
+    [SizeChartData].[Size] AS [Size], 
+    [SizeChartData].[AgeGroup] AS [AgeGroup], 
+    [SizeChartData].[ClothesType] AS [ClothesType], 
+    [SizeChartData].[SortOrder] AS [SortOrder]
+    FROM [Reference].[SizeChartData] AS [SizeChartData]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_AgeGroup$ProvidesAgeGroupDetailsFor$Reference_SizeChart" Association="Self.FK_Reference_AgeGroup$ProvidesAgeGroupDetailsFor$Reference_SizeChart">
+      <End Role="AgeGroup" EntitySet="AgeGroup" />
+      <End Role="SizeChart" EntitySet="SizeChart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_ClothesType$ProvidesDetailsAboutTypeOfClothingFor$Reference_SizeChart" Association="Self.FK_Reference_ClothesType$ProvidesDetailsAboutTypeOfClothingFor$Reference_SizeChart">
+      <End Role="ClothesType" EntitySet="ClothesType" />
+      <End Role="SizeChart" EntitySet="SizeChart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_OfficeType$DescribesOrganizationalTypeOf$Reference_Office" Association="Self.FK_Reference_OfficeType$DescribesOrganizationalTypeOf$Reference_Office">
+      <End Role="OfficeType" EntitySet="OfficeType" />
+      <End Role="Office" EntitySet="Office" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_OfficeType$DescribesTypeOfOfficeAssociatedWith$Reference_PositionOfficeType" Association="Self.FK_Reference_OfficeType$DescribesTypeOfOfficeAssociatedWith$Reference_PositionOfficeType">
+      <End Role="OfficeType" EntitySet="OfficeType" />
+      <End Role="PositionOfficeType" EntitySet="PositionOfficeType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_PositionOfficeType$SpecifiesOfficeTypeOf$Reference_Position" Association="Self.FK_Reference_PositionOfficeType$SpecifiesOfficeTypeOf$Reference_Position">
+      <End Role="Position" EntitySet="Position" />
+      <End Role="PositionOfficeType" EntitySet="PositionOfficeType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_SchoolSystem$IdentifiesSchoolSystemOf$Reference_Office" Association="Self.FK_Reference_SchoolSystem$IdentifiesSchoolSystemOf$Reference_Office">
+      <End Role="SchoolSystem" EntitySet="SchoolSystem" />
+      <End Role="Office" EntitySet="Office" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_Size$ProvidesClothingSizeDetailsFor$Reference_SizeChart" Association="Self.FK_Reference_Size$ProvidesClothingSizeDetailsFor$Reference_SizeChart">
+      <End Role="Size" EntitySet="Size" />
+      <End Role="SizeChart" EntitySet="SizeChart" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

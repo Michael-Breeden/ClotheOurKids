@@ -1,0 +1,443 @@
+﻿@*@model ClotheOurKids.Web.Models.ViewModel.RequestFormModel*@
+@section pageCSS
+{
+    <style type="text/css">
+        [type=checkbox]:checked.filled-in+label:after {
+            border: 2px solid #4285f4;
+            background-color: #4285f4;
+        }
+
+        h4, h5 {
+            color: #757575;
+        }
+
+        /*#Sizes div[class^="col-"], div[class*=" col-"] {
+            -webkit-transition: all .5s ease-in-out;
+            -moz-transition: all .5s ease-in-out;
+            -o-transition: all .5s ease-in-out;
+            transition: all .5s ease-in-out;
+        }*/
+    </style>    
+}
+
+<div class="container">
+
+    <section class="section section-blog-fw">
+
+        <div class="row">
+            <div class="col-md wow fadeIn" data-wow-delay="0.2s">
+
+                <!--Featured Image-->
+                <img src="~/Content/img/slide17.jpg" />
+
+                <!--Page Description-->
+                <div class="jumbotron wow fadeIn" data-wow-delay="0.4s">
+                    <h1 class="h1-responsive">Request Clothes For A Child</h1>
+                    <p><strong>Giving</strong> Clothes, <strong>Showing</strong> Love, <strong>Building</strong> Confidence</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="between-sections">
+
+    <!--Section Clothing Request-->
+    <div class="section wow fadeIn" data-wow-delay="0.6s">
+        <div class="card z-depth-3">
+            <div class="card-block">
+
+                <!--Header-->
+                <div class="form-header blue darken-4">
+                    <h1 class="h1-responsive"><i class="fa fa-lock"></i> Clothing Request</h1>
+                </div>
+                <!--/Header-->
+
+                <!--Body-->
+                <form>
+
+                    <!--First row-->
+                    <div class="row">
+                        <div class="col-md">
+                            <h2 class="h2-responsive text-center">School Administrator / F.A.C.T Resource Coordinator</h2>
+                            <br />
+                        </div>
+                    </div>
+                    <!--/First row-->
+
+                    <!--Second row-->
+                    <div class="row mt-2">
+                        <!--First column-->
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-user prefix"></i>
+                                <input type="text" id="firstName" name="firstName" class="form-control validate" />
+                                <label for="firstName" data-error="wrong" data-success="right">First name</label>
+                            </div>
+                        </div>
+                        <!--Second column-->
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-user prefix"></i>
+                                <input type="text" id="lastName" name="lastName" class="form-control validate" />
+                                <label for="lastName" data-error="wrong" data-success="right">Last name</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Second row-->
+
+                    <!--Third row-->
+                    <div class="row mt-2">
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-envelope-o prefix"></i>
+                                <input type="email" id="emailAddress" name="emailAddress" class="form-control validate" />
+                                <label for="emailAddress" data-error="wrong" data-success="right">E-mail</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-phone prefix"></i>
+                                <input type="tel" id="phone" name="phone" class="form-control validate" />
+                                <label for="phone" data-error="wrong" data-success="right">Phone</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Third row-->
+
+                    <!--Fourth row-->
+                    <div class="row mt-2">
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-bell prefix"></i>                               
+                                <select id="positionSelect" class="mdb-select"></select>
+                                <label for="positionSelect">Position</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-map-marker prefix"></i>
+                                <select id="locationSelect" class="mdb-select"></select>
+                                <label for="locationSelect">School / Office</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Fourth row-->
+
+                    <hr class="between-sections" />
+
+                    <!--/Fifth row-->
+                    <div class="row mt-3">
+                        <div class="col-md">
+                            <h2 class="h2-responsive text-center">Child Information</h2>
+                            <br />
+                        </div>
+                    </div>
+                    <!--/Fifth row-->
+
+                    <!--Sixth row-->
+                    <div class="row mt-2">
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-neuter prefix"></i>
+                                <select id="genderSelect" class="mdb-select"></select>
+                                <label for="genderSelect">Gender</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-graduation-cap prefix"></i>
+                                <select id="gradeSelect" class="mdb-select"></select>
+                                <label for="gradeSelect">Grade</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Sixth row-->
+
+                    <!--Seventh row-->
+                    <div class="row mt-2 justify-content-center">
+                        <div class="col-md-6">
+                            <div class="md-form">
+                                <i class="fa fa-clock-o prefix"></i>
+                                <select id="urgencySelect" class="mdb-select"></select>
+                                <label for="urgencySelect">Urgency</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Seventh row-->
+
+                    <!--Seventh row-->
+                    <div class="row mt-3">
+                        <!--First column-->
+                        <div id="divNeededItems" class="col-sm-12 text-center">
+                            <h3 class="h3-responsive">Needed Items</h3>
+                                                        
+                            <!--First row-->
+                            <div class="row mt-1 ">
+                                <!--First column-->
+                                <div class="col form-inline justify-content-center">
+                                    <fieldset class="form-group">
+                                        <input type="checkbox" class="filled-in" id="NeedShirt" data-details="divShirtSizes" checked />
+                                        <label for="NeedShirt">Shirt</label>
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <input type="checkbox" class="filled-in" id="NeedPant" data-details="divPantSizes" checked />
+                                        <label for="NeedPant">Pants</label>
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <input type="checkbox" class="filled-in" id="NeedUnderwear" data-details="divUnderwearSizes" checked />
+                                        <label for="NeedUnderwear">Underwear</label>
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <input type="checkbox" class="filled-in" id="NeedSocks" data-details="divSockSizes" checked />
+                                        <label for="NeedSocks">Socks</label>
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <input type="checkbox" class="filled-in" id="NeedShoes" data-details="divShoeSizes" checked />
+                                        <label for="NeedShoes">Shoes</label>
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <input type="checkbox" class="filled-in" id="NeedCoat" data-details="divCoatSizes" checked />
+                                        <label for="NeedCoat">Coat</label>
+                                    </fieldset>
+                                </div>
+                                <!--/First column-->
+                            </div>
+                            <!--/First row-->
+                        </div>
+                        <!--/First column-->
+                    </div>
+                    <!--/Seventh row-->
+
+                    <!--Eigth row-->
+                    <div class="row mt-4">
+                        
+                        <!--First column-->
+                        <div id="divShirtSizes" class="col-md">                            
+                            @*<h4 class="h4-responsive">Shirt Size</h4>*@
+                            <div class="row mt-1">
+                                <div class="col">
+                                    <div class="md-form">
+                                        <select id="shirtTypeSelect" class="mdb-select"></select>
+                                        <label for="shirtTypeSelect">Shirt Type</label>
+                                    </div>
+                                    @*<fieldset class="form-group">                                    
+                                        <input name="ShirtSize" type="radio" class="with-gap" id="ShirtSizeChild">
+                                        <label id="lblShirtSizeChild" for="ShirtSizeChild">Boys/Girls</label>
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <input name="ShirtSize" type="radio" class="with-gap" id="ShirtSizeJunior">
+                                        <label for="ShirtSizeJunior">Juniors</label>
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <input name="ShirtSize" type="radio" class="with-gap" id="ShirtSizeAdult">
+                                        <label id="lblShirtSizeAdult" for="ShirtSizeAdult">Men/Womens</label>
+                                    </fieldset>*@
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md">
+                                    <div class="md-form">
+                                        <select id="shirtSizeSelect" class="mdb-select"></select>
+                                        <label for="shirtSizeSelect">Shirt Size</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/First column-->
+
+                        <!--Second column-->
+                        <div id="divPantSizes" class="col-md">
+                            @*<h4 class="h4-responsive">Pant Size</h4>*@
+                            <div class="row mt-1">
+                                <div class="col-md">
+                                    <div class="md-form">
+                                        <select id="pantTypeSelect" class="mdb-select"></select>
+                                        <label for="pantTypeSelect">Pant Type</label>
+                                    </div>
+                                    @*<fieldset class="form-group">
+                                        <input name="PantSize" type="radio" class="with-gap" id="PantSizeChild">
+                                        <label id="lblPantSizeChild" for="PantSizeChild">Boys/Girls</label>
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <input name="PantSize" type="radio" class="with-gap" id="PantSizeJunior">
+                                        <label for="PantSizeJunior">Juniors</label>
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <input name="PantSize" type="radio" class="with-gap" id="PantSizeAdult">
+                                        <label id="lblPantSizeAdult" for="PantSizeAdult">Mens/Womens</label>
+                                    </fieldset>*@
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md">
+                                    <div class="md-form">
+                                        <select id="pantSizeSelect" class="mdb-select"></select>
+                                        <label for="pantSizeSelect">Pant Size</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/Second column-->
+                    </div>
+                    <!--/Eigth row-->
+
+                    <!--Ninth row-->
+                    <div class="row mt-1">
+                        <!--First column-->
+                        <div class="col-md">
+                            <div id="divUnderwearSizes" class="md-form">
+                                <input type="text" id="underwearSize" name="underwearSize" class="form-control" />
+                                <label for="underwearSize">Underwear Size</label>
+                            </div>
+                        </div>
+                        <!--/First column-->
+
+                        <!--Second column-->
+                        <div class="col-md">
+                            <div id="divShoeSizes" class="md-form">
+                                <input type="text" id="shoeSize" name="shoeSize" class="form-control" />
+                                <label for="shoeSize">Shoe Size</label>
+                            </div>
+                        </div>
+                        <!--/Second column-->
+
+                        <!--Third column-->
+                        <div class="col-md">
+                            <div id="divCoatSizes" class="md-form">
+                                <input type="text" id="coatSize" name="coatSize" class="form-control" />
+                                <label for="coatSize">Coat Size</label>
+                            </div>
+                        </div>
+                        <!--/Third column-->
+                    </div>
+                    <!--/Ninth row-->
+
+                    <!--Tenth row-->
+                    <div class="row mt-2">
+                        <div class="col">
+                            <div class="md-form">
+                                <i class="fa fa-comment prefix"></i>
+                                <textarea type="text" id="comments" name="comments" class="md-textarea"></textarea>
+                                <label for="comments">Comments</label>
+                            </div>                            
+                        </div>
+                    </div>
+                    <!--/Tenth row-->
+
+                    <!--Eleventh row-->
+                    <div class="row mt-2 text-center">
+                        <div class="col">
+                            <button class="btn btn-primary btn-rounded btn-lg">Submit</button>
+                        </div>
+                    </div>
+                    <!--/Eleventh row-->
+
+
+
+                </form>
+                <!--/Body-->
+            </div>
+        </div>
+    </div>
+    <!--/Section Clothing Request-->
+</div>
+
+@section customScript
+{
+    <script>
+        $(document).ready(function () {
+
+            var positions = { "1": "Principal", "2": "Teacher", "3": "Counselor", "4": "FACT Coordinator" };
+            var genders = { "1": "Boy", "2": "Girl" };
+
+            $('#positionSelect').append('<option value="0" disabled selected>Choose a Position</option>');
+            $('#locationSelect').append('<option value="0" disabled selected>Choose a School/Office</option>');
+            $('#genderSelect').append('<option value="0" disabled selected>Choose a Gender</option>');
+            $('#gradeSelect').append('<option value="0" disabled selected>Choose a Grade</option>');
+            $('#urgencySelect').append('<option value="1" selected>Normal (1 week)</option>');
+            $('#shirtTypeSelect').append('<option value="0" disabled selected>Choose a Shirt Type</option>');
+            $('#shirtSizeSelect').append('<option value="0" disabled selected>Choose a Shirt Size</option>');
+            $('#pantTypeSelect').append('<option value="0" disabled selected>Choose a Pant Type</option>');
+            $('#pantSizeSelect').append('<option value="0" disabled selected>Choose a Pant Size</option>');
+
+            $('#pantSizeSelect').append('<option value="1">Large</option>');
+
+            $.each(positions, function (key, value) {
+                $('#positionSelect')
+                    .append($('<option></option>')
+                        .attr("value", key)
+                        .text(value));
+            });
+
+            $.each(genders, function (key, value) {
+                $('#genderSelect')
+                    .append($('<option></option>')
+                        .attr("value", key)
+                        .text(value));
+            });
+
+            $('#genderSelect').on('change', function () {
+                var genderSelection = $(this).val();
+
+                if (genderSelection == 1) {
+                    $('#lblShirtSizeChild').text('Boys');
+                    $('#lblShirtSizeAdult').text('Mens');
+
+                    $('#lblPantSizeChild').text('Boys');
+                    $('#lblPantSizeAdult').text('Mens');
+                }
+                else {
+                    $('#lblShirtSizeChild').text('Girls');
+                    $('#lblShirtSizeAdult').text('Womens');
+
+                    $('#lblPantSizeChild').text('Girls');
+                    $('#lblPantSizeAdult').text('Womens');
+                }
+            });
+
+            $('#divNeededItems input[type="checkbox"]').on('change', function () {
+                if (!this.checked) {
+                    DisableInputs(this.dataset.details);
+                }
+                else {
+                    EnableInputs(this.dataset.details);
+                }                
+            });
+
+            $('.mdb-select').material_select();
+        });
+
+        function DisableInputs(id) {
+            //$('#' + id + ' .select-dropdown li:eq(1)').trigger('click');
+
+            resetSelect('#' + id + ' .mdb-select');
+
+            $('#' + id + ' :input')
+                .prop('disabled', true)
+                .prop('checked', false)
+                .prop('selected', false)
+                .not(':button, :submit, :reset, :hidden, :radio, :checkbox')
+                .not('.select-dropdown')
+                .val('');            
+            $('#' + id + " :header").addClass('disabled');
+            $('#' + id + " label").removeClass('active').addClass('disabled');
+            $('#' + id + " i").removeClass('active');
+
+
+        }
+
+        function EnableInputs(id) {
+            $('#' + id + " :input").prop('disabled', false);
+            $('#' + id + " :header").removeClass('disabled');
+            $('#' + id + " label").removeClass('disabled');
+        }
+
+        function resetSelect(id) {
+            $(id).material_select('destroy');
+            $(id).val('0').change();
+            $(id).material_select();
+        }
+
+    </script>   
+};
+

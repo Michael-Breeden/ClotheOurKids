@@ -1,0 +1,139 @@
+﻿@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+ <!--<![endif]-->
+<head>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Clothe Our Kids of Morgan County</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/favicon.ico">
+
+
+    <link href='https://fonts.googleapis.com/css?family=Bad+Script' rel='stylesheet' type='text/css'>
+    @Styles.Render("~/Content/css")
+    
+    @Scripts.Render("~/bundles/modernizr")
+     
+    <style>
+        .wow {
+            opacity: 0;
+        }
+
+        .dropdown-menu .dropdown-item:active {
+            background: #2196F3
+        }
+    </style>
+
+    @RenderSection("pageCSS", required: false)
+
+</head>
+<body id="bodyDiv" class="kids-skin">
+
+    @Html.Partial("_LoginForm")
+
+    <header>
+        <!--Navbar-->
+        <nav class="navbar fixed-top navbar-toggleable-sm navbar-dark red scrolling-navbar">
+            <div class="container">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!--Navbar Brand-->
+                <a class="navbar-brand" href="@Url.RouteUrl("Home")" target="_blank">
+                    <img src="~/Content/img/logo/LogoGraphic_Header.png" class="d-inline-block align-top img-responsive" alt="Clothe Our Kids" />
+                </a>
+
+                <!--Collapse content-->
+                <div class="collapse navbar-collapse" id="navbarNav">
+
+                    <!--Links-->
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Home")">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item btn-group">
+                            <a class="nav-link waves-effect waves-light dropdown-toggle" id="AboutMeMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About Us</a>
+                            <div class="dropdown-menu dropdown-primary" aria-labelledby="AboutMeMenu">
+                                <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("WhatWeDo")">What We Do</a>
+                                <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("WhoWeAre")">Who We Are</a>
+                                <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("WhatWeGive")">What We Give</a>
+                                <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("FAQ")">Frequently Asked Questions</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("RequestClothes")">Request Clothes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("GetInvolved")">Get Involved</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Donate")">Donate</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav nav-flex-icons">
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light"><i class="fa fa-facebook"></i></a>                            
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light"><i class="fa fa-envelope-o"></i></a>
+                        </li>
+                        @if (Request.IsAuthenticated)
+                        {                            
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle waves-effect waves-light" href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i></a>
+                                <div class="dropdown-menu dropdown-secondary dropdown-menu-right" aria-labelledby="userDropdown">
+                                    <a class="dropdown-item waves-effect waves-light" href="#">My Account</a>
+                                    <a class="dropdown-item waves-effect waves-light" href="@Url.Action("LogOff", "Account")">Logout</a>
+                                </div>
+                            </li>
+                        }                        
+                    </ul>
+                </div>
+                <!--/.Collapse content-->
+            </div>
+        </nav>
+        <!--/.Navbar-->
+
+        @RenderSection("headerMask", required:false)
+
+    </header>
+    
+    <main class="pt-6">
+        @RenderBody()
+    </main>
+
+    <footer>
+
+    </footer>
+    
+
+    @Scripts.Render("~/bundles/requiredJs")
+    @RenderSection("scripts", required: false)
+
+
+    <script type="text/javascript">
+        //new WOW().init();
+
+        function afterReveal(el) { el.addEventListener('animationend', function (event) { $('.wow').each(function () { $(this).css('opacity', 1); }); }); } new WOW({ callback: afterReveal }).init()
+    </script>
+
+    @RenderSection("customScript", required: false);
+
+    <!--[if lt IE 9]-->
+    @Scripts.Render("~/bundles/ie9")
+    <!--[endif]-->
+
+
+</body>
+
+</html>

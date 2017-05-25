@@ -1,0 +1,153 @@
+﻿@model ClotheOurKids.Web.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="container">
+
+    <div class="row mt-2">
+        <div class="col-md text-center">
+            <h1 class="h1-responsive">Why register?</h1>
+            <p class="section-description">You have to register to submit a clothing request so that we can make sure we are only giving clothes to kids who need them!</p>
+        </div>
+        <div class="col-md text-center">
+            <h1 class="h1-responsive">Don't Worry!</h1>
+            <p class="section-description">We won't give your information to anyone else!</p>
+        </div>
+    </div>
+
+    <hr class="between-sections" />
+
+    <div class="section wow fadeIn ">   
+        <div class="card z-depth-3">
+            <div class="card-block">
+                <!--Form Header-->
+                <div class="form-header blue darken-4">
+                    <h3 class="h1-responsive"><i class="fa fa-lock"></i> Register:</h3>
+                </div>
+                <!--/Form Header-->
+
+                <!--Form Body-->
+                <form>
+                    <!--First row-->
+                    <div class="row mt-2">
+                        <!--First column-->
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-user prefix"></i>
+                                <input id="firstName" class="form-control validate" type="text" />
+                                <label for="firstName" data-error="wrong" data-success="right">First name</label>
+                            </div>
+                        </div>
+                        <!--/First column-->
+
+                        <!--Second column-->
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-user prefix"></i>
+                                <input id="lastName" class="form-control validate" type="text" />
+                                <label for="lastName" data-error="wrong" data-success="right">Last name</label>
+                            </div>
+                        </div>
+                        <!--/Second column-->
+                    </div>                        
+                    <!--/First row-->
+
+                    <!--Second row-->
+                    <div class="row mt-2">
+                        <!--First column-->
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-envelope prefix"></i>
+                                <input id="email" class="form-control validate" type="email" />
+                                <label for="email" data-error="wrong" data-success="right">Work email</label>
+                            </div>
+                        </div>
+                        <!--/First column-->
+                        <!--Second column-->
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-phone prefix"></i>
+                                <input type="tel" id="phone" name="phone" class="form-control validate" />
+                                <label for="phone" data-error="wrong" data-success="right">Work Phone</label>
+                            </div>
+                        </div>
+                        <!--/Second column-->
+                    </div>
+                    <!--/Second row-->
+
+                    <!--Third row-->
+                    <div class="row mt-2">
+                        <!--First column-->
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-bell prefix"></i>
+                                <select id="positionSelect" class="mdb-select"></select>
+                                <label for="positionSelect">Position</label>
+                            </div>
+                        </div>
+                        <!--/First column-->
+                        <!--Second column-->
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-map-marker prefix"></i>
+                                <select id="locationSelect" class="mdb-select"></select>
+                                <label for="locationSelect">School / Office</label>
+                            </div>
+                        </div>
+                        <!--/Second column-->
+                    </div>
+                    <!--/Third row-->
+
+                    <!--Fourth row-->
+                    <div class="row mt-2">
+                        <!--First column-->
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-lock prefix"></i>
+                                <input id="password" class="form-control validate" type="password" />
+                                <label for="password" data-error="wrong" data-success="right">Your password</label>
+                            </div>
+                        </div>
+                        <!--/First column-->
+                    </div>
+                    <!--/Fourth row-->
+                    <!--Eleventh row-->
+                    <div class="row mt-2 text-center">
+                        <div class="col">
+                            <button class="btn btn-primary btn-rounded btn-lg waves-effect waves-light">Submit</button>
+                        </div>
+                    </div>
+                    <!--/Eleventh row-->
+                </form>
+                
+                <!--/Form Body-->
+            </div>
+        </div>    
+    </div>
+
+</div>
+
+@section customScript
+{
+    <script>
+        $(document).ready(function () {
+
+            var positions = { "1": "Principal", "2": "Teacher", "3": "Counselor", "4": "FACT Coordinator" };
+
+            $('#positionSelect').append('<option value="0" disabled selected>Choose Your Position</option>');
+            $('#locationSelect').append('<option value="0" disabled selected>Choose Your School/Office</option>');
+
+
+            $.each(positions, function (key, value) {
+                $('#positionSelect')
+                    .append($('<option></option>')
+                        .attr("value", key)
+                        .text(value));
+            });
+
+            $('.mdb-select').material_select();
+
+        });
+    </script>    
+}

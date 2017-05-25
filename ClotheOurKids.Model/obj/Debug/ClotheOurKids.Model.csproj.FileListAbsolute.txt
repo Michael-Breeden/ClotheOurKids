@@ -1,0 +1,9 @@
+C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKids.Model\bin\Debug\ClotheOurKids.Model.dll
+C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKids.Model\bin\Debug\ClotheOurKids.Model.pdb
+C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKids.Model\bin\Debug\EntityFramework.dll
+C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKids.Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKids.Model\bin\Debug\EntityFramework.xml
+C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKids.Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKids.Model\obj\Debug\ClotheOurKids.Model.csprojResolveAssemblyReference.cache
+C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKids.Model\obj\Debug\ClotheOurKids.Model.dll
+C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKids.Model\obj\Debug\ClotheOurKids.Model.pdb

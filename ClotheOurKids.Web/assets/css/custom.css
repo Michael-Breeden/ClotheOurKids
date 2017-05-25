@@ -1,0 +1,208 @@
+/* Add here all your css styles (customizations) */
+
+
+/*--------------------------------------------------
+    [1. Header - Topbar]
+----------------------------------------------------*/
+
+/*Top Bar (login, search etc.)
+------------------------------------*/
+.header-v6 .topbar {
+	z-index: 12;
+	padding: 8px 0;
+	position: relative;
+}
+
+@media (max-width: 991px) {
+	.header-v6 .topbar {
+		margin-bottom: 20px;
+	}
+}
+
+.header-v6 .topbar ul.loginbar {
+	margin: 0;
+}
+
+.header-v6 .topbar ul.loginbar > li {
+	display: inline;
+	list-style: none;
+	position: relative;
+	padding-bottom: 15px;
+}
+
+.header-v6 .topbar ul.loginbar > li > a,
+.header-v6 .topbar ul.loginbar > li > a:hover {
+	color: #7c8082;
+	font-size: 11px;
+	text-transform: uppercase;
+}
+
+.header-v6 .topbar ul.loginbar li i.fa {
+	color: #bbb;
+}
+
+.header-v6 .topbar ul.loginbar li.topbar-devider {
+	top: -1px;
+	padding: 0;
+	font-size: 8px;
+	position: relative;
+	margin: 0 9px 0 5px;
+	font-family: Tahoma;
+	border-right: solid 1px #bbb;
+}
+
+/*No Topbar*/
+.header-v6.no-topbar .navbar-toggle {
+	margin-top: 25px;
+}
+
+
+
+
+
+
+
+
+.breadcrumbs-v3 h1 {
+    font-size: 75px;
+    line-height: 90px;
+}
+
+.breadcrumbs-v3.img-cooperative {
+    background: url(../img/breadcrumbs/girl-cooperative.jpeg) no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.breadcrumbs-v3.img-cooperative:after {
+    background: rgba(0,0,0,.8);
+} 
+
+
+.parallax-counter-v4.img-bag {
+    background: url(../img/bg/clothes-pins.jpg) 50% 0 fixed;
+}
+
+
+
+.icon-vertical-center {
+    vertical-align: middle;
+    font-size: 30px;
+}
+
+
+
+/*Set bg colors to Clothe Our Kids standards*/
+.bg-color-orange { background-color: #f44708 !important;}
+.bg-color-red { background-color: #a10701 !important;}
+.bg-color-green { background-color: #688e26 !important;}
+.bg-color-purple { background-color: #550527 !important;}
+.bg-color-light-green { background-color: #c6e78e !important;}
+
+
+body {
+    font-size: 16px;
+}
+
+.service-box-v1 li {
+    font-size: 16px;
+}
+
+span {
+    color: #555;
+}
+
+.headline-center p {
+    font-size: 16px;
+}
+
+.text-white {
+    color: #fff !important;
+}
+
+
+
+/*Panels*/
+.acc-v1 .panel-heading {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.acc-v1 .panel-heading a {
+    font-size: 18px;
+    background: none;
+}
+
+
+
+
+
+/*Panel Orange*/
+.panel-orange {
+	border-color: #f44708;
+}
+
+.panel-orange > .panel-heading {
+	background: #f44708;
+}
+.panel-orange > .panel-heading a:hover, 
+.panel-orange > .panel-heading a:active,
+.panel-orange > .panel-heading a:focus {
+    color: #fff;
+}
+
+
+/*Panel Red*/
+.panel-red {
+	border-color: #a10701
+}
+
+.panel-red > .panel-heading {
+	background: #a10701
+}
+.panel-red > .panel-heading a:hover, 
+.panel-red > .panel-heading a:active,
+.panel-red > .panel-heading a:focus {
+    color: #fff;
+}
+
+
+/*Panel Green*/
+.panel-green {
+	border-color: #688e26
+}
+
+.panel-green > .panel-heading {
+	background: #688e26
+}
+.panel-green > .panel-heading a:hover, 
+.panel-green > .panel-heading a:active,
+.panel-green > .panel-heading a:focus {
+    color: #fff;
+}
+
+/*Panel Purple*/
+.panel-purple {
+	border-color: #550527
+}
+
+.panel-purple > .panel-heading {
+	background: #550527
+}
+.panel-purple > .panel-heading a:hover, 
+.panel-purple > .panel-heading a:active,
+.panel-purple > .panel-heading a:focus {
+    color: #fff;
+}
+
+
+
+.faq-page .new-title {
+    color: #688e26;
+    font-size: 20px;
+}
+
+.faq-page .tab-v1 .nav-tabs a {
+    font-size:22px;
+}
+
+
+

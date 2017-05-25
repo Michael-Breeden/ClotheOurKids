@@ -1,0 +1,24 @@
+.striped li {
+      border-bottom: 1px solid rgba(153, 153, 153, 0.298039);
+      margin-bottom: 1rem; }
+
+ .md-form .prefix ~ .select-wrapper {
+    margin-left: 3rem;
+    width: 92%;
+    width: calc(100% - 3rem); }
+  @media only screen and (max-width: 992px) {
+    .md-form .prefix ~ .select-wrapper {
+      width: 86%;
+      width: calc(100% - 3rem); } }
+  @media only screen and (max-width: 600px) {
+    .md-form .prefix ~ .select-wrapper {
+      width: 80%;
+      width: calc(100% - 3rem); } }
+
+
+  .dropdown-main .dropdown-content li.active {
+  background-color: #aa66cc; }
+
+.dropdown-main .dropdown-content li a:hover,
+.dropdown-main .dropdown-content li span:hover {
+  background-color: #aa66cc; }

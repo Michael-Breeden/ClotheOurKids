@@ -1,0 +1,118 @@
+﻿@using Microsoft.AspNet.Identity
+
+<div class="container">
+
+    <section class="section section-blog-fw">
+
+        <div class="row">
+            <div class="col-md-12 wow fadeIn" data-wow-delay="0.2s">
+
+                <!--Featured Image-->
+                <img src="~/Content/img/slide17.jpg" />
+
+                <!--Page Description-->
+                <div class="jumbotron wow fadeIn" data-wow-delay="0.4s">
+                    <h1 class="h1-responsive">How To Request Clothes</h1>
+                    <p>Learn how to request clothes for your child or a child that you know is in need</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="between-sections">
+
+    <!--Section: Parents-->
+    <div class="section feature-box">
+        <!--Section heading-->
+        <h1 class="section-heading wow fadeIn" data-wow-delay="0.2s">Parents</h1>
+        <!--Section description-->
+        <p class="section-description wow fadeIn" data-wow-delay="0.4s">If you need clothes for your child or a child in your care we would love to help! The process to request a bag of clothes for your child is simple and quick.</p>
+
+        <!--First row-->
+        <div class="row features-small wow fadeIn" data-wow-delay="0.4s">
+            <!--First column-->
+            <div class="col-md-5 mb-r center-on-small-only align-self-center">
+                <img src="~/Content/img/TennesseeCOK/take action.jpg" class="img-fluid" />
+            </div>
+            <!--/First column-->
+
+            <!--Second column-->
+            <div class="col-md-7 center-on-small-only">
+                <!--First row-->
+                <div class="row">
+                    <div class="col-1">
+                        <i class="fa fa-bank green-text"></i>
+                    </div>
+                    <div class="col-10">
+                        <h4 class="feature-title">Call your school</h4>
+                        <p class="grey-text">Start by calling your school to speak with your child's school counselor. We are already working with numerous schools across Morgan County. If your school is not already working with us they can contact us at 256-887-5437.</p>
+                    </div>
+                </div>
+                <!--/First row-->
+
+                <div style="height:50px"></div>
+
+                <!--Second row-->
+                <div class="row">
+                    <div class="col-1">
+                        <i class="fa fa-code green-text"></i>
+                    </div>
+                    <div class="col-10">
+                        <h4 class="feature-title">School Official Sends Request</h4>
+                        <p class="grey-text">Your school counselor or official will send us a request for clothes for your child.</p>
+                    </div>
+                </div>
+                <!--/Second row-->
+
+                <div style="height:50px"></div>
+
+                <!--Third row-->
+                <div class="row">
+                    <div class="col-1">
+                        <i class="fa fa-gift green-text"></i>
+                    </div>
+                    <div class="col-10">
+                        <h4 class="feature-title">Delivery</h4>
+                        <p class="grey-text">The clothes will be delivered to your child by the school counselor in a discrete bag. Our goal is to get the bag of clothes to your school counselor within one week from when we get the request, but let the school know if you have an immediate need and we can get the clothes delivered in as little as 48 hours.</p>
+                    </div>
+                </div>
+                <!--/Third row-->
+            </div>
+            <!--/Second column-->
+        </div>
+        <!--/First row-->
+    </div>
+    <!--/Section: Parents-->
+
+    <hr class="between-sections">
+
+    <!--Section: SchoolOfficials-->
+    <section id="SchoolOfficials"   class="section">
+        <h1 class="section-heading">School Officials</h1>
+        <p class="section-description">
+            To make sure that we keep track of every clothing request and to make the process as fast as possible we created a way for you to submit your clothing requests directly from our website.
+            <br /><br />                       
+        </p>
+        @if (!Request.IsAuthenticated)
+        {
+            <p class="section-description">Please log in to request clothes for a child.</p>
+        }
+        
+        <div class="d-flex justify-content-center">
+            
+            @if (Request.IsAuthenticated)
+            {
+                <button class="btn btn-outline-primary" type="button" onclick="location.href='@Url.Action("RequestClothesForm", "RequestClothes")'">Clothing Request Form</button>
+            }
+            else
+            {
+                <button class="btn btn-outline-primary" type="button" data-toggle="modal" data-target="#modal-login">Login</button>
+                <button class="btn btn-outline-success" type="button" onclick="location.href='@Url.Action("Register", "Account")'">Register</button>
+            }
+
+        </div>
+    </section>
+    <!--Section: SchoolOfficials-->
+</div>
+
+

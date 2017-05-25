@@ -1,0 +1,146 @@
+﻿<div class="container">
+
+    <section class="section section-blog-fw">
+        <div class="row">
+            <div class="col-md-12 wow fadeIn" data-wow-delay="0.2s">
+
+                <!--Featured Image-->
+                <img src="~/Content/img/slide17.jpg" />
+
+                <!--Page Description-->
+                <div class="jumbotron wow fadeIn smooth-scroll" data-wow-delay="0.4s">
+                    <h1 class="h1-responsive">Donate</h1>
+                    <p><strong>Giving</strong> Clothes, <strong>Showing</strong> Love, <strong>Building</strong> Confidence</p>
+
+
+                    <p class="mt-2">Learn how you can donate to kids receive the clothes they need!</p>
+                    <div class="row">
+                        <div class="col-md">
+                            <button type="button" class="btn btn-rounded btn-success" onclick="location.href='#giveClothes'">Give Clothes</button>
+                            <button type="button" class="btn btn-rounded btn-warning" onclick="location.href='#funds'">Donate Funds</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="between-sections">
+
+
+    <!--Section: Give Clothes-->
+    <section class="section" id="giveClothes">
+        <h1 class="section-heading wow fadeIn" data-wow-delay="0.2s">Give Clothes</h1>
+
+        <p class="section-description wow fadein" data-wow-delay="0.4s">
+            We give kids the clothes that we get as donatons from <strong>our community</strong>!
+            We always need a large supply of clothes because we want to give each child enough outfits to span the entire week.
+            <br />
+            To help in collecting these clothes, we have set up drop-off locations at many schools, churches, and businesses around Morgan County.
+            <br />
+            <br />
+            Take a look at the map below and find the drop-off location closest to you!
+        </p>
+
+        <div id="map" class="z-depth-1 wow fadeIn" data-wow-delay="0.4s" style="height:500px"></div>
+
+        <div class="table-responsive mt-1">
+            <!--Table-->
+            <table id="locationTable" class="table table-hover">
+                <!--Table Head-->
+                <thead>
+                    <tr class="primary-color white-text">
+                        <th>Place</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>Website</th>
+                    </tr>
+                </thead>
+                <!--/Table Head-->
+                <!--Table Body-->
+                <tbody>                    
+                </tbody>
+                <!--/Table Body-->
+            </table>
+            <!--/Table-->
+        </div>
+    </section>
+
+
+    <section class="section" id="funds">
+        <h1 class="section-heading wow fadeIn" data-wow-delay="0.2s">Donate Funds</h1>
+
+        <p class="section-description wow fadein" data-wow-delay="0.4s">
+            We use all the funds that we receive to help give clothes to children. 
+        </p>
+    </section>
+
+
+</div>
+
+
+@section scripts
+{
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2xc4rPas-4JZpu2txBdfWUtKXASh2O1k&callback=initMap">
+    </script>
+
+}
+
+@section customScript
+{
+    <script type="text/javascript">
+        function initMap() {
+
+            var center_location = new google.maps.LatLng(34.528204, -86.898599);
+
+            var locations = [
+                ['Brewer High School', 34.415315, -86.705246, '59 Eva Rd, Somerville, AL 35670', '256-778-8634', 'http://www.apbrewer.com'],
+                ['Westmeade Baptist Church', 34.579505, -87.017720, '2030 Beltline Road SW, Decatur, Alabama 35603', '256-353-8239', 'https://www.westmeadebaptist.org']
+            ];
+
+            var map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 10,
+                center: center_location
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+
+
+            var marker, i;
+
+            for (i = 0; i < locations.length; i++) {
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    map: map,
+                    title: locations[i][0]
+                });
+
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                        var contentString = '<div id="content">' +
+                            '<h3 class="h3-responsive">' + locations[i][0] + '</h3>' +
+                            '<p>' + locations[i][3] +
+                            '<br>' + locations[i][4] +
+                            '<br> <a href="' + locations[i][5] + '">' + locations[i][5] +
+                            '</div>';
+                        infowindow.setContent(contentString);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+
+
+
+                $('#locationTable > tbody:last-child').append(
+                    '<tr>'
+                    + '<td>' + locations[i][0] + '</td>'
+                    + '<td>' + locations[i][3] + '</td>'
+                    + '<td>' + locations[i][4] + '</td>'
+                    + '<td><a href="' + locations[i][5] + '">' + locations[i][5] + '</td>'
+                    + '<td style="display: none;">' + i + '</td>'
+                    + '</tr>');
+
+            }
+        }
+    </script> 
+}
