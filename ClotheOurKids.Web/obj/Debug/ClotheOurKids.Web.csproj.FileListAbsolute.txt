@@ -377,3 +377,5 @@ C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKi
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKids.Web\obj\Debug\ClotheOurKids.Web.csproj.GenerateResource.Cache
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKids.Web\obj\Debug\ClotheOurKids.Web.dll
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKids.Web\obj\Debug\ClotheOurKids.Web.pdb
+C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKids.Web\bin\ClotheOurKids.Model.dll
+C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKids.Web\bin\ClotheOurKids.Model.pdb
