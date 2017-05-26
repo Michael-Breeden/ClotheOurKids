@@ -28,29 +28,31 @@
                 <!--/Form Header-->
 
                 <!--Form Body-->
-                <form>
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+
                     <!--First row-->
                     <div class="row mt-2">
                         <!--First column-->
                         <div class="col-md">
                             <div class="md-form">
                                 <i class="fa fa-user prefix"></i>
-                                <input id="firstName" class="form-control validate" type="text" />
-                                <label for="firstName" data-error="wrong" data-success="right">First name</label>
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control validate" })
+                                @Html.LabelFor(m => m.FirstName)
                             </div>
                         </div>
                         <!--/First column-->
-
                         <!--Second column-->
                         <div class="col-md">
                             <div class="md-form">
                                 <i class="fa fa-user prefix"></i>
-                                <input id="lastName" class="form-control validate" type="text" />
-                                <label for="lastName" data-error="wrong" data-success="right">Last name</label>
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control validate" })
+                                @Html.LabelFor(m => m.LastName)
                             </div>
                         </div>
                         <!--/Second column-->
-                    </div>                        
+                    </div>
                     <!--/First row-->
 
                     <!--Second row-->
@@ -59,8 +61,8 @@
                         <div class="col-md">
                             <div class="md-form">
                                 <i class="fa fa-envelope prefix"></i>
-                                <input id="email" class="form-control validate" type="email" />
-                                <label for="email" data-error="wrong" data-success="right">Work email</label>
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate" })
+                                @Html.LabelFor(m => m.Email)
                             </div>
                         </div>
                         <!--/First column-->
@@ -68,6 +70,8 @@
                         <div class="col-md">
                             <div class="md-form">
                                 <i class="fa fa-phone prefix"></i>
+                                @Html.TextBoxFor(m => m., new { @class = "form-control validate" })
+                                @Html.LabelFor(m => m.LastName)
                                 <input type="tel" id="phone" name="phone" class="form-control validate" />
                                 <label for="phone" data-error="wrong" data-success="right">Work Phone</label>
                             </div>
@@ -75,6 +79,10 @@
                         <!--/Second column-->
                     </div>
                     <!--/Second row-->
+                }
+                <form>
+
+                    
 
                     <!--Third row-->
                     <div class="row mt-2">
