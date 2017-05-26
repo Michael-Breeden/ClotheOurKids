@@ -9,8 +9,10 @@
         }
         /* Navigation*/
 
-        .navContainer {
-            background-color: transparent !important;
+        .navContainer
+        {
+            /*background-color: transparent !important;*/
+            position: absolute; /*This is the key line that causes the picture to overlay the heading*/
         }
 
         .full-bg-img {
@@ -56,7 +58,7 @@
 {
     <!--Mask-->
     <div class="view hm-black-strong">
-        <div class="full-bg-img d-flex align-items-center justify-content-md-start justify-content-sm-center" id="home">
+        <div class="full-bg-img flex-center align-items-center justify-content-md-start justify-content-sm-center" id="home">
             <ul class="text-center ml-5">
                 <li>
                     <h1 class="h1-responsive wow fadeInUp">Clothe Our Kids of Morgan County</h1>
@@ -240,6 +242,8 @@
 
 
         $(document).ready(function () {
+
+
             $('#WhatWeDo').click(function () {
                 var url = '@Url.RouteUrl("WhatWeDo")';
                 window.location = url

@@ -34,6 +34,10 @@
         
         header .logo {
             float: left;
+            position:fixed;
+        }
+
+        header .logo-container {
         }
 
         header .logo-container img {
@@ -50,9 +54,9 @@
 
     @Html.Partial("_LoginForm")
 
-    <header class="header navContainer">
+    <header>
 
-        <div class="container">
+        <div class="container navContainer">
             <div class="row align-items-center mt-1 mb-1">
                 <div class="col d-flex">
 
@@ -63,7 +67,7 @@
                     </a>
 
                     <!--Navbar-->
-                    <nav class="navbar navbar-toggleable-sm border-0 navbar-light z-depth-0 align-self-center">
+                    <nav id="navbar" class="navbar navbar-toggleable-sm border-0 navbar-light z-depth-0 align-self-center">
                         
                             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
@@ -148,8 +152,6 @@
 
 
     <script type="text/javascript">
-        //new WOW().init();
-
         function afterReveal(el) { el.addEventListener('animationend', function (event) { $('.wow').each(function () { $(this).css('opacity', 1); }); }); } new WOW({ callback: afterReveal }).init()
     </script>
 
