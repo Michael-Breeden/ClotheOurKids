@@ -32,17 +32,18 @@
             background: #2196F3
         }
         
-        header .logo {
-            float: left;
-            position:fixed;
+        
+
+        .navContainer .actionList {
+            list-style-type: none;
         }
 
-        header .logo-container {
+        .actionList li {
+            float:left;
         }
 
-        header .logo-container img {
-            width: 200px;
-            height: 86px;
+        .actionList li button {
+            display: block !important;
         }
 
     </style>
@@ -56,18 +57,18 @@
 
     <header>
 
-        <div class="container navContainer">
-            <div class="row align-items-center mt-1 mb-1">
-                <div class="col d-flex">
+        <div class="container-fluid navContainer mt-1 mb-1 d-flex justify-content-center">
+            <div class="row align-items-center headerPad">
+                <div class="column-one d-flex justify-content-center ">
 
-                    <a class="logo align-self-center" href="@Url.RouteUrl("Home")" target="_blank">
+                    <a class="logo align-self-center" href="@Url.RouteUrl("Home")">
                         <span class="logo-container">
                             <img src="~/Content/img/logo/ClotheOurKidsLogo_withMC_Scaled.png" alt="Clothe Our Kids" />
                         </span>
                     </a>
 
                     <!--Navbar-->
-                    <nav id="navbar" class="navbar navbar-toggleable-sm border-0 navbar-light z-depth-0 align-self-center">
+                    <nav id="navbar" class="navbar navbar-toggleable-sm border-0 navbar-light z-depth-0">
                         
                             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
@@ -96,22 +97,16 @@
                                         </div>
                                     </li>
                                     <li class="nav-item">
+                                        <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Home")">Who We Serve</a>
+                                    </li>                                    
+                                    <li class="nav-item">
+                                        <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Home")">Stories</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("RequestClothes")">Request Clothes</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("GetInvolved")">Get Involved</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Donate")">Donate</a>
                                     </li>
                                 </ul>
                                 <ul class="navbar-nav nav-flex-icons">
-                                    <li class="nav-item">
-                                        <a class="nav-link waves-effect waves-light"><i class="fa fa-facebook"></i></a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link waves-effect waves-light"><i class="fa fa-envelope-o"></i></a>
-                                    </li>
                                     @if (Request.IsAuthenticated)
                                     {
                                         <li class="nav-item dropdown">
@@ -129,8 +124,33 @@
                     </nav>
                     <!--/.Navbar-->
                 </div>
+                <div class="column-two d-flex justify-content-start">
+                    <ul class="default header-cta-buttons visible-lg">
+                        <li>
+                            <a class="btn btn-rounded btn-danger" href="@Url.RouteUrl("Donate")">Give</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-rounded btn-info" href="@Url.RouteUrl("GetInvolved")">Volunteer</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-rounded btn-light-green" data-toggle="modal" data-target="#modal-login">Log In</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
+        <ul class="default header-cta-buttons hidden-lg">
+            <li>
+                <a class=" btn btn-rounded btn-danger" href="@Url.RouteUrl("Donate")">Give</a>
+            </li>
+            <li>
+                <a class="btn btn-rounded btn-info" href="@Url.RouteUrl("GetInvolved")">Get Involved</a>
+            </li>
+            <li>
+                <a class="btn btn-rounded btn-light-green" data-toggle="modal" data-target="#modal-login">Log In</a>
+            </li>
+        </ul>
+        
 
         @RenderSection("headerMask", required: false)
 

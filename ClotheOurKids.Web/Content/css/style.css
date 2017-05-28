@@ -22,3 +22,199 @@
 .dropdown-main .dropdown-content li a:hover,
 .dropdown-main .dropdown-content li span:hover {
   background-color: #aa66cc; }
+
+
+/*Setup for Navbar*/
+header .logo {
+    display: block;
+    float: left;
+    z-index: 100;
+}
+
+header .logo-container {
+    display: block;
+}
+
+    header .logo-container img {
+        width: 200px;
+        height: 86px;
+    }
+
+header {
+    box-shadow: 0 4px 4px -4px #898989;
+}
+
+.headerSpace {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.headerPad {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+.nav .nav-item {
+    margin-left: 20px;
+}
+
+
+ul.default {
+    margin: 0;
+    padding: 0;
+}
+
+header .column-one {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: block;
+}
+
+header .column-two {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.header-cta-buttons {
+    float: left;
+    width: calc(100% + 15px);
+    margin: 0 -15px;
+    position: relative;
+}
+
+.header-cta-buttons a.btn-rounded {
+    display: block;
+    font-size: 16px;
+    padding: 0;
+    text-align: center;
+    width:100%;
+    margin-bottom: 0;
+}
+
+.header-cta-buttons > li {
+    float: left;
+    text-align: center;
+    margin: 0;
+    width: 33.333333%
+}
+
+.visible-lg {
+    display: none !important;
+}
+
+.hidden-lg {
+    display: block !important;
+    width: 100%;
+    margin-left: -10px;
+    top: 143px;
+    position: absolute;
+}
+
+.hidden-lg .btn {
+    margin:0;
+}
+
+
+
+@media(min-width: 768px) {
+    header .column-one {
+        float: left;
+        width: 100%;
+    }
+
+    header .column-two {
+        float: left;
+        width: 100%;
+    }
+}
+
+@media(min-width: 992px) {
+    header .column-one {
+        float: left;
+        width: 100%;
+    }
+
+    header .column-two {
+        float: left;
+        width: 100%;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    .navContainer {
+        background-color: #fff !important;
+        position: relative;
+    }
+    
+    header .column-two {
+        float: right;
+    }
+
+    .header-cta-buttons a.btn-rounded {
+        border-radius: 0;
+        height: 35px;
+        line-height: 35px;
+    }
+
+}
+
+@media (min-width: 1200px) {
+
+    header .column-one {
+        float: left;
+        width: 71%;
+    }
+
+    header .column-two {
+        padding-left: 0;
+        float: left;
+        width: 29%;
+    }
+
+    .header-cta-buttons {
+        float: right;
+        width: 95%;
+        margin: 0;
+    }
+
+    .visible-lg {
+        display: block !important;
+    }
+
+    .header-cta-buttons > li {
+        margin-left: 3px;
+        width: 30%;
+    }
+
+    .header-cta-buttons > li:nth-child(1) {
+        margin-left: 0;
+    }
+
+    .header-cta-buttons a.btn-rounded {
+        height: 32px;
+        line-height: 32px;
+        font-size: 13px;
+        border-radius: 3px;
+    }
+
+    .hidden-lg {
+        display: none !important;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+

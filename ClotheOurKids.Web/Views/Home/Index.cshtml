@@ -9,11 +9,13 @@
         }
         /* Navigation*/
 
-        .navContainer
-        {
-            /*background-color: transparent !important;*/
+        .navContainer {
+            background-color: transparent !important;
+            width: 100%;
             position: absolute; /*This is the key line that causes the picture to overlay the heading*/
         }
+
+               
 
         .full-bg-img {
             color: #fff;
@@ -50,12 +52,14 @@
             cursor: pointer;
             cursor: hand;
         }
+
 </style>
 }
 
 
 @section headerMask
 {
+
     <!--Mask-->
     <div class="view hm-black-strong">
         <div class="full-bg-img flex-center align-items-center justify-content-md-start justify-content-sm-center" id="home">
@@ -243,6 +247,7 @@
 
         $(document).ready(function () {
 
+            //$('#navbar').addClass('navbar-dark').removeClass('navbar-light');
 
             $('#WhatWeDo').click(function () {
                 var url = '@Url.RouteUrl("WhatWeDo")';
