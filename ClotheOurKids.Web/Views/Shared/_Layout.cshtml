@@ -32,20 +32,6 @@
             background: #2196F3
         }
         
-        
-
-        .navContainer .actionList {
-            list-style-type: none;
-        }
-
-        .actionList li {
-            float:left;
-        }
-
-        .actionList li button {
-            display: block !important;
-        }
-
     </style>
 
     @RenderSection("pageCSS", required: false)
@@ -57,9 +43,9 @@
 
     <header>
 
-        <div class="container-fluid navContainer mt-1 mb-1 d-flex justify-content-center">
+        <div class="container-fluid navContainer mt-1 mb-1 d-flex justify-content-lg-center">
             <div class="row align-items-center headerPad">
-                <div class="column-one d-flex justify-content-center ">
+                <div class="column-one d-lg-flex justify-content-lg-center ">
 
                     <a class="logo align-self-center" href="@Url.RouteUrl("Home")">
                         <span class="logo-container">
@@ -68,22 +54,17 @@
                     </a>
 
                     <!--Navbar-->
-                    <nav id="navbar" class="navbar navbar-toggleable-sm border-0 navbar-light z-depth-0">
+                    <nav id="navbar" class="navbar navbar-toggleable-md border-0 navbar-light z-depth-0">
                         
-                            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <button class="navbar-toggler navbar-toggler-right " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
-
-                            <!--Navbar Brand-->
-                            @*<a class="navbar-brand" href="@Url.RouteUrl("Home")" target="_blank">
-                                <img src="~/Content/img/logo/LogoGraphic_Header.png" class="align-top img-responsive" alt="Clothe Our Kids" />
-                            </a>*@
 
                             <!--Collapse content-->
                             <div class="collapse navbar-collapse" id="navbarNav">
 
                                 <!--Links-->
-                                <ul class="nav navbar-nav mr-auto">
+                                <ul class="nav navbar-nav">
                                     <li class="nav-item">
                                         <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Home")">Home <span class="sr-only">(current)</span></a>
                                     </li>

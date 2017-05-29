@@ -45,20 +45,13 @@ header {
 }
 
 .headerSpace {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.headerPad {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .nav .nav-item {
     margin-left: 20px;
 }
-
 
 ul.default {
     margin: 0;
@@ -83,7 +76,6 @@ header .column-two {
 .header-cta-buttons {
     float: left;
     width: calc(100% + 15px);
-    margin: 0 -15px;
     position: relative;
 }
 
@@ -111,7 +103,7 @@ header .column-two {
     display: block !important;
     width: 100%;
     margin-left: -10px;
-    top: 143px;
+    margin-right: -10px;
     position: absolute;
 }
 
@@ -120,8 +112,47 @@ header .column-two {
 }
 
 
+.navbar-toggler-icon {
+    position: absolute;
+    right: 20px;
+    top: 25px;
+}
 
-@media(min-width: 768px) {
+
+@media (max-width: 992px) and (min-width: 768px) {
+    .header-cta-buttons a.btn-rounded {
+        font-size: 24px;
+    }
+}
+
+@media(max-width:992px) and (min-width: 0) {
+    .header-cta-buttons a.btn-rounded {
+        border-radius: 0;
+        height: 75px;
+        line-height: 75px;
+    }
+
+    header .logo {
+        position: absolute;
+        margin-top: -29px;
+    }
+
+    .navbar-toggler {
+        position: absolute;
+        margin-top: -29px;
+    }
+
+    .headerPad {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        height: 65px;
+        width: 100%;
+    }
+
+    header {
+        box-shadow: none;
+    }
+
     header .column-one {
         float: left;
         width: 100%;
@@ -130,6 +161,15 @@ header .column-two {
     header .column-two {
         float: left;
         width: 100%;
+    }
+
+    .navbar-collapse {
+        min-height: 910px;
+        z-index: 1000;
+        background-color: #ffffff;
+        width: 100%;
+        margin-top: 132px;
+        margin-left: -30px;
     }
 }
 
@@ -142,14 +182,12 @@ header .column-two {
     header .column-two {
         float: left;
         width: 100%;
-    }
+    }   
+
 }
 
 @media (max-width: 1199px) and (min-width: 992px) {
-    .navContainer {
-        background-color: #fff !important;
-        position: relative;
-    }
+    
     
     header .column-two {
         float: right;
@@ -159,6 +197,16 @@ header .column-two {
         border-radius: 0;
         height: 35px;
         line-height: 35px;
+    }
+
+    .headerPad {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        width: 100%;
+    }
+
+    .hidden-lg {
+        top: 104px;
     }
 
 }
@@ -204,6 +252,12 @@ header .column-two {
 
     .hidden-lg {
         display: none !important;
+    }
+
+    .headerPad {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 100%;
     }
 }
 

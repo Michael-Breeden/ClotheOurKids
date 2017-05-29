@@ -7,15 +7,20 @@
         .view {
             height: 100%;
         }
-        /* Navigation*/
 
+        /* Navigation*/
         .navContainer {
             background-color: transparent !important;
             width: 100%;
             position: absolute; /*This is the key line that causes the picture to overlay the heading*/
         }
 
-               
+        @@media(max-width: 1199px) {
+            .navContainer {
+                position: relative;
+                border: 0;
+            }
+        }     
 
         .full-bg-img {
             color: #fff;
@@ -249,6 +254,12 @@
 
             //$('#navbar').addClass('navbar-dark').removeClass('navbar-light');
 
+            setNavbar();
+
+            $(window).on('resize', function () {
+                setNavbar();
+            });
+
             $('#WhatWeDo').click(function () {
                 var url = '@Url.RouteUrl("WhatWeDo")';
                 window.location = url
@@ -271,7 +282,14 @@
         });
 
 
-        
+        function setNavbar() {
+            if ($(window).width() >= 1200) {
+                $('#navbar').removeClass('navbar-light').removeClass('navbar-dark').addClass('navbar-dark');
+            }
+            else {            
+                $('#navbar').removeClass('navbar-light').removeClass('navbar-dark').addClass('navbar-light');
+            }
+        }       
 
     </script>   
 
