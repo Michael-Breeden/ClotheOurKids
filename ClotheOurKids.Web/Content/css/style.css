@@ -118,6 +118,14 @@ header .column-two {
     top: 25px;
 }
 
+#small-indicator {
+    display: none;
+}
+
+#large-indicator {
+    display: none;
+}
+
 
 @media (max-width: 992px) and (min-width: 768px) {
     .header-cta-buttons a.btn-rounded {
@@ -145,6 +153,8 @@ header .column-two {
     .headerPad {
         padding-top: 15px;
         padding-bottom: 15px;
+        padding-left: 0px;
+        padding-right: 0px;
         height: 65px;
         width: 100%;
     }
@@ -159,17 +169,20 @@ header .column-two {
     }
 
     header .column-two {
-        float: left;
-        width: 100%;
+        display: none;
     }
 
     .navbar-collapse {
         min-height: 910px;
         z-index: 1000;
         background-color: #ffffff;
-        width: 100%;
         margin-top: 132px;
         margin-left: -30px;
+        margin-right: -60px;
+    }
+
+    #small-indicator {
+        display: block;
     }
 }
 
@@ -207,6 +220,11 @@ header .column-two {
 
     .hidden-lg {
         top: 104px;
+    }
+
+    .nav-item.btn-group:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
     }
 
 }
@@ -258,6 +276,15 @@ header .column-two {
         padding-top: 10px;
         padding-bottom: 10px;
         width: 100%;
+    }
+
+    .nav-item.btn-group:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+
+    #large-indicator {
+        display: block;
     }
 }
 

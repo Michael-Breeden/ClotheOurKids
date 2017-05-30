@@ -283,7 +283,7 @@
 
 
         function setNavbar() {
-            if ($(window).width() >= 1200) {
+            if ($('#large-indicator').is(':visible')) {
                 $('#navbar').removeClass('navbar-light').removeClass('navbar-dark').addClass('navbar-dark');
             }
             else {            

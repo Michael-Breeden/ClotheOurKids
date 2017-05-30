@@ -68,8 +68,8 @@
                                     <li class="nav-item">
                                         <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Home")">Home <span class="sr-only">(current)</span></a>
                                     </li>
-                                    <li class="nav-item btn-group">
-                                        <a class="nav-link waves-effect waves-light dropdown-toggle" id="AboutMeMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About Us</a>
+                                    <li class="nav-item dropdown btn-group">
+                                        <a class="nav-link waves-effect waves-light" id="AboutMeMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About Us</a>
                                         <div class="dropdown-menu dropdown-primary" aria-labelledby="AboutMeMenu">
                                             <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("WhatWeDo")">What We Do</a>
                                             <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("WhoWeAre")">Who We Are</a>
@@ -87,7 +87,7 @@
                                         <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("RequestClothes")">Request Clothes</a>
                                     </li>
                                 </ul>
-                                <ul class="navbar-nav nav-flex-icons">
+                                @*<ul class="navbar-nav nav-flex-icons">
                                     @if (Request.IsAuthenticated)
                                     {
                                         <li class="nav-item dropdown">
@@ -98,7 +98,7 @@
                                             </div>
                                         </li>
                                     }
-                                </ul>
+                                </ul>*@
                             </div>
                             <!--/.Collapse content-->
                         
@@ -144,7 +144,8 @@
     </main>
 
     <footer>
-
+        <div id="small-indicator"></div>
+        <div id="large-indicator"></div>
     </footer>
     
 
@@ -153,7 +154,71 @@
 
 
     <script type="text/javascript">
+
+        var headerAnimationEvent;
+
         function afterReveal(el) { el.addEventListener('animationend', function (event) { $('.wow').each(function () { $(this).css('opacity', 1); }); }); } new WOW({ callback: afterReveal }).init()
+
+        function animate(element_ID, animation) {
+
+            $(element_ID).addClass('animated ' + animation).one(headerAnimationEvent, function () {                
+                $(this).removeClass('animated ' + animation);                
+            });
+        }
+
+        function whichAnimationEvent() {
+            var a,
+                el = document.createElement("fakeelement");
+
+            var animations = {
+                "animation": "animationend",
+                "OAnimation": "oanimationEnd",
+                "MozAnimation": "animationEnd",
+                "WebkitAnimation": "webkitAnimationEnd"
+            }
+
+            for (a in animations) {
+                if (el.style[a] !== undefined) {
+                    return animations[a];
+                }
+            }
+        }
+
+        function animateCollapse(element_ID, animation) {
+            $(element_ID).addClass('animated ' + animation);
+            var wait = window.setTimeout(function () {
+                $(element_ID).removeClass('animated ' + animation)
+            }, 1300
+            );
+        }
+
+        function isSmallWidth() {
+            return $('#small-indicator').is(':visible');
+        }
+
+        $(document).ready(function () {
+
+            headerAnimationEvent = whichAnimationEvent();
+
+            $('#navbarNav').on('show.bs.collapse hide.bs.collapse', function (e) {
+                if (e.type == 'show') {                    
+                    animateCollapse(this, 'fadeInRight');
+                }
+                else {
+                    animateCollapse(this, 'fadeOutRight');
+                }
+            });
+
+            $(window).on('resize', function () {
+                if (isSmallWidth()) {
+                    $('header .nav-item.btn-group .nav-link').addClass('dropdown-toggle');
+                }
+                else {
+                    $('header .nav-item.btn-group .nav-link').removeClass('dropdown-toggle');
+                }
+            });
+        });
+
     </script>
 
     @RenderSection("customScript", required: false);
