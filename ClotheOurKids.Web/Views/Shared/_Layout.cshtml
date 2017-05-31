@@ -44,7 +44,7 @@
 
         <header>
 
-            <div class="container-fluid navContainer d-flex justify-content-lg-center">
+            <div class="container-fluid navContainer mt-sm-1 mb-sm-1 d-flex justify-content-lg-center">
                 <div class="row align-items-center headerPad">
                     <div class="column-one d-lg-flex justify-content-lg-center ">
 
@@ -112,7 +112,7 @@
                         </nav>
                     </div>
                     <div class="column-two d-flex justify-content-start">
-                        <ul class="default header-cta-buttons hidden-lg-down">
+                        <ul id="desktopCta" class="default header-cta-buttons hidden-lg-down">
                             <li>
                                 <a class="btn btn-rounded btn-danger" href="@Url.RouteUrl("Donate")">Give</a>
                             </li>
@@ -151,8 +151,7 @@
         </main>
 
         <footer>
-            <div id="small-indicator"></div>
-            <div id="large-indicator"></div>
+            <div id="largeScreenIndicator"></div>
         </footer>
 
     </div>
@@ -200,10 +199,6 @@
             );
         }
 
-        function isSmallWidth() {
-            return $('#small-indicator').is(':visible');
-        }
-
         $(document).ready(function () {
 
             headerAnimationEvent = whichAnimationEvent();
@@ -235,21 +230,6 @@
             //    }
             //    else {
             //        animateCollapse(this, 'fadeOutRight');
-            //    }
-            //});
-
-
-            //if (isSmallWidth()) {
-            //    $('header .nav-item.btn-group .nav-link').addClass('dropdown-toggle');
-            //}
-
-
-            //$(window).on('resize', function () {
-            //    if (isSmallWidth()) {
-            //        $('header .nav-item.btn-group .nav-link').addClass('dropdown-toggle');
-            //    }
-            //    else {
-            //        $('header .nav-item.btn-group .nav-link').removeClass('dropdown-toggle');
             //    }
             //});
         });

@@ -6,22 +6,21 @@
         #page-wrapper,
         header,
         .view {
-            height: 100%;
+            height: 100vh;
         }
 
         /* Navigation*/
-        /*.navContainer {
-            background-color: transparent !important;
+        .navContainer {
             width: 100%;
             position: absolute;
         }
 
         @@media(max-width: 1199px) {
             .navContainer {
-                position: relative;
+                position: static;
                 border: 0;
             }
-        }*/     
+        }*    
 
         .full-bg-img {
             color: #fff;
@@ -284,11 +283,11 @@
 
 
         function setNavbar() {
-            if ($('#large-indicator').is(':visible')) {
-                //$('#navbar').removeClass('navbar-light').removeClass('navbar-dark').addClass('navbar-dark');
+            if ($('#largeScreenIndicator').is(':visible')) {
+                $('#navbar').removeClass('navbar-light').addClass('navbar-dark');
             }
             else {            
-                //$('#navbar').removeClass('navbar-light').removeClass('navbar-dark').addClass('navbar-light');
+                $('#navbar').removeClass('navbar-light').addClass('navbar-light');
             }
         }       
 

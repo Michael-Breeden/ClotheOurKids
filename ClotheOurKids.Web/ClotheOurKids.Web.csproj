@@ -245,6 +245,7 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\mdb.css" />
     <Content Include="Content\css\mdb.min.css" />
+    <Content Include="Content\css\myHeader.css" />
     <Content Include="Content\css\mySkin.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\ViewCSS\index.css" />
