@@ -53,6 +53,10 @@ header {
     margin-left: 20px;
 }
 
+.nav-item.dropdown span {
+    color: #212121 !important;
+}
+
 ul.default {
     margin: 0;
     padding: 0;
@@ -95,19 +99,7 @@ header .column-two {
     width: 33.333333%
 }
 
-.visible-lg {
-    display: none !important;
-}
-
-.hidden-lg {
-    display: block !important;
-    width: 100%;
-    margin-left: -10px;
-    margin-right: -10px;
-    position: absolute;
-}
-
-.hidden-lg .btn {
+.full-width-buttons .btn {
     margin:0;
 }
 
@@ -138,6 +130,14 @@ header .column-two {
     }
 
     .navbar-toggler {
+        margin-top: -29px;
+        position: absolute;
+        right: 20px;
+        top: 25px;
+        cursor: pointer;
+    }
+
+    .btn.btn-navbar {
         margin-top: -29px;
         position: absolute;
         right: 20px;
@@ -214,10 +214,6 @@ header .column-two {
         width: 100%;
     }
 
-    .hidden-lg {
-        top: 104px;
-    }
-
     .nav-item.btn-group:hover .dropdown-menu {
         display: block;
         margin-top: 0;
@@ -244,10 +240,6 @@ header .column-two {
         margin: 0;
     }
 
-    .visible-lg {
-        display: block !important;
-    }
-
     .header-cta-buttons > li {
         margin-left: 3px;
         width: 30%;
@@ -264,10 +256,6 @@ header .column-two {
         border-radius: 3px;
     }
 
-    .hidden-lg {
-        display: none !important;
-    }
-
     .headerPad {
         padding-top: 10px;
         padding-bottom: 10px;
@@ -282,6 +270,20 @@ header .column-two {
     #large-indicator {
         display: block;
     }
+}
+
+
+/*mMenu Styles*/
+#mobileMenu {
+    top:171px;
+    background-color: #ffffff;
+}
+
+@media(min-width:993px) {
+    #mm-mainSiteMenu {
+        display: none !important;
+    }
+
 }
 
 

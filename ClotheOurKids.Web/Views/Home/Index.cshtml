@@ -3,16 +3,17 @@
     <style>
         html,
         body,
+        #page-wrapper,
         header,
         .view {
             height: 100%;
         }
 
         /* Navigation*/
-        .navContainer {
+        /*.navContainer {
             background-color: transparent !important;
             width: 100%;
-            position: absolute; /*This is the key line that causes the picture to overlay the heading*/
+            position: absolute;
         }
 
         @@media(max-width: 1199px) {
@@ -20,7 +21,7 @@
                 position: relative;
                 border: 0;
             }
-        }     
+        }*/     
 
         .full-bg-img {
             color: #fff;
@@ -284,10 +285,10 @@
 
         function setNavbar() {
             if ($('#large-indicator').is(':visible')) {
-                $('#navbar').removeClass('navbar-light').removeClass('navbar-dark').addClass('navbar-dark');
+                //$('#navbar').removeClass('navbar-light').removeClass('navbar-dark').addClass('navbar-dark');
             }
             else {            
-                $('#navbar').removeClass('navbar-light').removeClass('navbar-dark').addClass('navbar-light');
+                //$('#navbar').removeClass('navbar-light').removeClass('navbar-dark').addClass('navbar-light');
             }
         }       
 
