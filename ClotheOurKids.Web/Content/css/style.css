@@ -119,10 +119,6 @@ header .column-two {
     display: none;
 }
 
-.navbar .collapse.show {
-    
-}
-
 @media (max-width: 992px) and (min-width: 768px) {
     .header-cta-buttons a.btn-rounded {
         font-size: 24px;
