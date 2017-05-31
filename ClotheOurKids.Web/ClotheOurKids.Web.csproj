@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.4\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.4\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -25,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -327,6 +329,73 @@
     <Content Include="Content\plugins\font-awesome\css\font-awesome.min.css" />
     <Content Include="Content\plugins\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\plugins\font-awesome\HELP-US-OUT.txt" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\autoheight\jquery.mmenu.autoheight.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\autoheight\jquery.mmenu.autoheight.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\backbutton\jquery.mmenu.backbutton.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\columns\jquery.mmenu.columns.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\columns\jquery.mmenu.columns.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\counters\jquery.mmenu.counters.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\counters\jquery.mmenu.counters.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\dividers\jquery.mmenu.dividers.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\dividers\jquery.mmenu.dividers.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\drag\jquery.mmenu.drag.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\drag\jquery.mmenu.drag.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\dropdown\jquery.mmenu.dropdown.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\dropdown\jquery.mmenu.dropdown.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\fixedelements\jquery.mmenu.fixedelements.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\iconpanels\jquery.mmenu.iconpanels.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\iconpanels\jquery.mmenu.iconpanels.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\keyboardnavigation\jquery.mmenu.keyboardnavigation.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\keyboardnavigation\jquery.mmenu.keyboardnavigation.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\lazysubmenus\jquery.mmenu.lazysubmenus.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\navbars\jquery.mmenu.navbars.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\navbars\jquery.mmenu.navbars.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\pagescroll\jquery.mmenu.pagescroll.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\rtl\jquery.mmenu.rtl.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\rtl\jquery.mmenu.rtl.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\searchfield\jquery.mmenu.searchfield.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\searchfield\jquery.mmenu.searchfield.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\sectionindexer\jquery.mmenu.sectionindexer.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\sectionindexer\jquery.mmenu.sectionindexer.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\setselected\jquery.mmenu.setselected.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\setselected\jquery.mmenu.setselected.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\toggles\jquery.mmenu.toggles.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\addons\toggles\jquery.mmenu.toggles.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\core\offcanvas\jquery.mmenu.offcanvas.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\core\offcanvas\jquery.mmenu.offcanvas.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\core\oncanvas\jquery.mmenu.oncanvas.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\core\oncanvas\jquery.mmenu.oncanvas.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\core\screenreader\jquery.mmenu.screenreader.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\core\screenreader\jquery.mmenu.screenreader.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\core\scrollbugfix\jquery.mmenu.scrollbugfix.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\extensions\borderstyle\jquery.mmenu.borderstyle.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\extensions\effects\jquery.mmenu.effects.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\extensions\fullscreen\jquery.mmenu.fullscreen.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\extensions\iconbar\jquery.mmenu.iconbar.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\extensions\listview\jquery.mmenu.listview.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\extensions\multiline\jquery.mmenu.multiline.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\extensions\pagedim\jquery.mmenu.pagedim.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\extensions\popup\jquery.mmenu.popup.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\extensions\positioning\jquery.mmenu.positioning.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\extensions\shadows\jquery.mmenu.shadows.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\extensions\themes\jquery.mmenu.themes.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\extensions\tileview\jquery.mmenu.tileview.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\extensions\widescreen\jquery.mmenu.widescreen.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\jquery.mmenu.all.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\jquery.mmenu.all.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\jquery.mmenu.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\jquery.mmenu.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\translations\de\jquery.mmenu.de.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\translations\nl\jquery.mmenu.nl.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\wrappers\angular\jquery.mmenu.angular.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\wrappers\bootstrap\jquery.mmenu.bootstrap.css" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\wrappers\bootstrap\jquery.mmenu.bootstrap.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\wrappers\jquerymobile\jquery.mmenu.jquerymobile.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\wrappers\magento\jquery.mmenu.magento.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\wrappers\olark\jquery.mmenu.olark.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\wrappers\turbolinks\jquery.mmenu.turbolinks.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\wrappers\turbolinks\jquery.mmenu.turbolinks.legacy.js" />
+    <Content Include="Content\plugins\mmenu-6.1\dist\wrappers\wordpress\jquery.mmenu.wordpress.js" />
     <Content Include="Content\sass\README.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -496,6 +565,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
@@ -509,6 +579,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

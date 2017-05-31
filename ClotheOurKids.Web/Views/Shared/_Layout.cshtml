@@ -38,24 +38,25 @@
 
 </head>
 <body id="bodyDiv" class="kids-skin">
+    <div id="my-page">
 
-    @Html.Partial("_LoginForm")
+        @Html.Partial("_LoginForm")
 
-    <header>
+        <header>
 
-        <div class="container-fluid navContainer mt-1 mb-1 d-flex justify-content-lg-center">
-            <div class="row align-items-center headerPad">
-                <div class="column-one d-lg-flex justify-content-lg-center ">
+            <div class="container-fluid navContainer mt-1 mb-1 d-flex justify-content-lg-center">
+                <div class="row align-items-center headerPad">
+                    <div class="column-one d-lg-flex justify-content-lg-center ">
 
-                    <a class="logo align-self-center" href="@Url.RouteUrl("Home")">
-                        <span class="logo-container">
-                            <img src="~/Content/img/logo/ClotheOurKidsLogo_withMC_Scaled.png" alt="Clothe Our Kids" />
-                        </span>
-                    </a>
+                        <a class="logo align-self-center" href="@Url.RouteUrl("Home")">
+                            <span class="logo-container">
+                                <img src="~/Content/img/logo/ClotheOurKidsLogo_withMC_Scaled.png" alt="Clothe Our Kids" />
+                            </span>
+                        </a>
 
-                    <!--Navbar-->
-                    <nav id="navbar" class="navbar navbar-toggleable-md border-0 navbar-light z-depth-0">
-                        
+                        <!--Navbar-->
+                        <nav id="navbar" class="navbar navbar-toggleable-md border-0 navbar-light z-depth-0">
+
                             <button class="navbar-toggler navbar-toggler-right " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
@@ -79,7 +80,7 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Home")">Who We Serve</a>
-                                    </li>                                    
+                                    </li>
                                     <li class="nav-item">
                                         <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Home")">Stories</a>
                                     </li>
@@ -88,66 +89,67 @@
                                     </li>
                                 </ul>
                                 @*<ul class="navbar-nav nav-flex-icons">
-                                    @if (Request.IsAuthenticated)
-                                    {
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle waves-effect waves-light" href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i></a>
-                                            <div class="dropdown-menu dropdown-secondary dropdown-menu-right" aria-labelledby="userDropdown">
-                                                <a class="dropdown-item waves-effect waves-light" href="#">My Account</a>
-                                                <a class="dropdown-item waves-effect waves-light" href="@Url.Action("LogOff", "Account")">Logout</a>
-                                            </div>
-                                        </li>
-                                    }
-                                </ul>*@
+                                        @if (Request.IsAuthenticated)
+                                        {
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle waves-effect waves-light" href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i></a>
+                                                <div class="dropdown-menu dropdown-secondary dropdown-menu-right" aria-labelledby="userDropdown">
+                                                    <a class="dropdown-item waves-effect waves-light" href="#">My Account</a>
+                                                    <a class="dropdown-item waves-effect waves-light" href="@Url.Action("LogOff", "Account")">Logout</a>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>*@
                             </div>
                             <!--/.Collapse content-->
-                        
-                    </nav>
-                    <!--/.Navbar-->
-                </div>
-                <div class="column-two d-flex justify-content-start">
-                    <ul class="default header-cta-buttons visible-lg">
-                        <li>
-                            <a class="btn btn-rounded btn-danger" href="@Url.RouteUrl("Donate")">Give</a>
-                        </li>
-                        <li>
-                            <a class="btn btn-rounded btn-info" href="@Url.RouteUrl("GetInvolved")">Volunteer</a>
-                        </li>
-                        <li>
-                            <a class="btn btn-rounded btn-light-green" data-toggle="modal" data-target="#modal-login">Log In</a>
-                        </li>
-                    </ul>
+
+                        </nav>
+                        <!--/.Navbar-->
+                    </div>
+                    <div class="column-two d-flex justify-content-start">
+                        <ul class="default header-cta-buttons visible-lg">
+                            <li>
+                                <a class="btn btn-rounded btn-danger" href="@Url.RouteUrl("Donate")">Give</a>
+                            </li>
+                            <li>
+                                <a class="btn btn-rounded btn-info" href="@Url.RouteUrl("GetInvolved")">Volunteer</a>
+                            </li>
+                            <li>
+                                <a class="btn btn-rounded btn-light-green" data-toggle="modal" data-target="#modal-login">Log In</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-        <ul class="default header-cta-buttons hidden-lg">
-            <li>
-                <a class=" btn btn-rounded btn-danger" href="@Url.RouteUrl("Donate")">Give</a>
-            </li>
-            <li>
-                <a class="btn btn-rounded btn-info" href="@Url.RouteUrl("GetInvolved")">Get Involved</a>
-            </li>
-            <li>
-                <a class="btn btn-rounded btn-light-green" data-toggle="modal" data-target="#modal-login">Log In</a>
-            </li>
-        </ul>
-        
+            <ul class="default header-cta-buttons hidden-lg">
+                <li>
+                    <a class=" btn btn-rounded btn-danger" href="@Url.RouteUrl("Donate")">Give</a>
+                </li>
+                <li>
+                    <a class="btn btn-rounded btn-info" href="@Url.RouteUrl("GetInvolved")">Get Involved</a>
+                </li>
+                <li>
+                    <a class="btn btn-rounded btn-light-green" data-toggle="modal" data-target="#modal-login">Log In</a>
+                </li>
+            </ul>
 
-        @RenderSection("headerMask", required: false)
 
-    </header>
+            @RenderSection("headerMask", required: false)
 
-    
-    
-    <main class="pt-6">
-        @RenderBody()
-    </main>
+        </header>
 
-    <footer>
-        <div id="small-indicator"></div>
-        <div id="large-indicator"></div>
-    </footer>
-    
+
+
+        <main class="pt-6">
+            @RenderBody()
+        </main>
+
+        <footer>
+            <div id="small-indicator"></div>
+            <div id="large-indicator"></div>
+        </footer>
+
+    </div>
 
     @Scripts.Render("~/bundles/requiredJs")
     @RenderSection("scripts", required: false)
