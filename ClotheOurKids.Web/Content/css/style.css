@@ -111,13 +111,6 @@ header .column-two {
     margin:0;
 }
 
-
-.navbar-toggler-icon {
-    position: absolute;
-    right: 20px;
-    top: 25px;
-}
-
 #small-indicator {
     display: none;
 }
@@ -126,6 +119,9 @@ header .column-two {
     display: none;
 }
 
+.navbar .collapse.show {
+    
+}
 
 @media (max-width: 992px) and (min-width: 768px) {
     .header-cta-buttons a.btn-rounded {
@@ -146,8 +142,11 @@ header .column-two {
     }
 
     .navbar-toggler {
-        position: absolute;
         margin-top: -29px;
+        position: absolute;
+        right: 20px;
+        top: 25px;
+        cursor: pointer;
     }
 
     .headerPad {
@@ -179,6 +178,7 @@ header .column-two {
         margin-top: 132px;
         margin-left: -30px;
         margin-right: -60px;
+        padding-top: 20px;
     }
 
     #small-indicator {

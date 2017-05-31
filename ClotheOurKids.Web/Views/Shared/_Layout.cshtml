@@ -209,6 +209,12 @@
                 }
             });
 
+
+            if (isSmallWidth()) {
+                $('header .nav-item.btn-group .nav-link').addClass('dropdown-toggle');
+            }
+
+
             $(window).on('resize', function () {
                 if (isSmallWidth()) {
                     $('header .nav-item.btn-group .nav-link').addClass('dropdown-toggle');
