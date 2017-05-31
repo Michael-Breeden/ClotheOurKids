@@ -45,8 +45,88 @@
         <header>
 
             <div class="container-fluid navContainer mt-sm-1 mb-sm-1 d-flex justify-content-lg-center">
-                <div class="row align-items-center headerPad">
-                    <div class="column-one d-lg-flex justify-content-lg-center ">
+                <div id="headerRow" class="row align-items-center no-gutters justify-content-lg-center">
+                    <div class="col col-xl-2 col-sm-3">
+                        <a class="logo align-self-center" href="@Url.RouteUrl("Home")">
+                            <span class="logo-container">
+                                <img src="~/Content/img/logo/ClotheOurKidsLogo_withMC_Scaled.png" alt="Clothe Our Kids" />
+                            </span>
+                        </a>
+                    </div>
+                    <div class="col col-xl-6 col-lg-9 col-md-3 justify-content-md-end">
+                        <div id="navbar" class="navbar navbar-toggleable-md navbar-light z-depth-0 hidden-md-down">
+                            <div>
+                                <!--Links-->
+                                <ul class="nav navbar-nav" id="mainSiteMenu">
+                                    <li class="nav-item">
+                                        <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Home")">Home <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="nav-item dropdown btn-group">
+                                        <span class="nav-link waves-effect waves-light" id="AboutMeMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About Us</span>
+                                        <div class="dropdown-menu dropdown-primary" aria-labelledby="AboutMeMenu">
+                                            <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("WhatWeDo")">What We Do</a>
+                                            <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("WhoWeAre")">Who We Are</a>
+                                            <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("WhatWeGive")">What We Give</a>
+                                            <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("FAQ")">Frequently Asked Questions</a>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Home")">Who We Serve</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Home")">Stories</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("RequestClothes")">Request Clothes</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div class="hidden-lg-up navbar-inner">
+                                <div class="container">
+                                    <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+                                    <a class="navbar-toggler" href="#mobileMenu">
+                                        <span class="navbar-toggler-icon"></span>
+                                        <p>Menu</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <nav id="mobileMenu" class="hidden-lg-up">
+                            <ul>
+                                <li>
+                                    <a href="@Url.RouteUrl("Home")">Home</a>
+                                </li>
+                                <li>
+                                    <span>About us</span>
+                                    <ul>
+                                        <li><a href="@Url.RouteUrl("WhatWeDo")">What We Do</a></li>
+                                        <li><a href="@Url.RouteUrl("WhoWeAre")">Who We Are</a></li>
+                                        <li><a href="@Url.RouteUrl("WhatWeGive")">What We Give</a></li>
+                                        <li><a href="@Url.RouteUrl("FAQ")">Frequently Asked Questions</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="@Url.RouteUrl("Home")">Who We Serve</a></li>
+                                <li><a href="@Url.RouteUrl("Home")">Stories</a></li>
+                                <li><a href="@Url.RouteUrl("RequestClothes")">Request Clothes</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col col-xl-4">
+                        <ul id="desktopCta" class="default header-cta-buttons hidden-lg-down">
+                            <li>
+                                <a class="btn btn-rounded btn-danger" href="@Url.RouteUrl("Donate")">Give</a>
+                            </li>
+                            <li>
+                                <a class="btn btn-rounded btn-info" href="@Url.RouteUrl("GetInvolved")">Volunteer</a>
+                            </li>
+                            <li>
+                                <a class="btn btn-rounded btn-light-green" data-toggle="modal" data-target="#modal-login">Log In</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    @*<div class="column-one d-lg-flex justify-content-lg-center ">
 
                         <a class="logo align-self-center" href="@Url.RouteUrl("Home")">
                             <span class="logo-container">
@@ -110,8 +190,8 @@
                                 <li><a href="@Url.RouteUrl("RequestClothes")">Request Clothes</a></li>
                             </ul>
                         </nav>
-                    </div>
-                    <div class="column-two d-flex justify-content-start">
+                    </div>*@
+                    @*<div class="column-two d-flex justify-content-start">
                         <ul id="desktopCta" class="default header-cta-buttons hidden-lg-down">
                             <li>
                                 <a class="btn btn-rounded btn-danger" href="@Url.RouteUrl("Donate")">Give</a>
@@ -123,10 +203,25 @@
                                 <a class="btn btn-rounded btn-light-green" data-toggle="modal" data-target="#modal-login">Log In</a>
                             </li>
                         </ul>
-                    </div>
+                    </div>*@
                 </div>
             </div>
-            <ul class="default header-cta-buttons hidden-xl-up full-width-buttons">
+            <div class="row">
+                <div class="col">
+                    <ul class="default header-cta-buttons hidden-xl-up full-width-buttons">
+                        <li>
+                            <a class="btn btn-rounded btn-danger" href="@Url.RouteUrl("Donate")">Give</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-rounded btn-info" href="@Url.RouteUrl("GetInvolved")">Get Involved</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-rounded btn-light-green" data-toggle="modal" data-target="#modal-login">Log In</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            @*<ul class="default header-cta-buttons hidden-xl-up full-width-buttons">
                 <li>
                     <a class="btn btn-rounded btn-danger" href="@Url.RouteUrl("Donate")">Give</a>
                 </li>
@@ -136,7 +231,7 @@
                 <li>
                     <a class="btn btn-rounded btn-light-green" data-toggle="modal" data-target="#modal-login">Log In</a>
                 </li>
-            </ul>
+            </ul>*@
 
             <div class="clearfix"></div>
 

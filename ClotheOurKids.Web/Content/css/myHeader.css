@@ -38,24 +38,11 @@ header {
 .navbar.navbar-dark .navbar-nav .nav-item span:hover {
       color: rgba(255, 255, 255, 0.75); }
 
+
+
 ul.default {
     margin: 0;
     padding: 0;
-}
-
-header .column-one {
-    position: relative;
-    min-height: 1px;
-    padding-left: 15px;
-    padding-right: 15px;
-    display: block;
-}
-
-header .column-two {
-    position: relative;
-    min-height: 1px;
-    padding-left: 15px;
-    padding-right: 15px;
 }
 
 .header-cta-buttons {
@@ -199,6 +186,10 @@ header .column-two {
 }
 
 @media (min-width: 1200px) {
+
+    /*#headerRow {
+        width: 100%;
+    }*/
 
     header .column-one {
         float: left;
