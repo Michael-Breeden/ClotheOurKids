@@ -60,7 +60,7 @@ header .column-two {
 
 .header-cta-buttons {
     float: left;
-    width: calc(100% + 15px);
+    width: 100%;
     position: relative;
 }
 
@@ -97,28 +97,19 @@ header .column-two {
 @media(max-width:992px) and (min-width: 0) {
     .header-cta-buttons a.btn-rounded {
         border-radius: 0;
-        height: 75px;
-        line-height: 75px;
+        height: 70px;
+        line-height: 70px;
     }
 
     header .logo {
         position: absolute;
-        margin-top: -29px;
+        margin-top: -25px;
     }
 
     .navbar-toggler {
-        margin-top: -29px;
+        margin-top: -11px;
         position: absolute;
-        right: 20px;
-        top: 25px;
-        cursor: pointer;
-    }
-
-    .btn.btn-navbar {
-        margin-top: -29px;
-        position: absolute;
-        right: 20px;
-        top: 25px;
+        right: -35px;
         cursor: pointer;
     }
 
@@ -127,7 +118,7 @@ header .column-two {
         padding-bottom: 15px;
         padding-left: 0px;
         padding-right: 0px;
-        height: 65px;
+        height: 85px;
         width: 100%;
     }
 
@@ -160,15 +151,7 @@ header .column-two {
 }
 
 @media(min-width: 992px) {
-    header .column-one {
-        float: left;
-        width: 100%;
-    }
-
-    header .column-two {
-        float: left;
-        width: 100%;
-    }   
+      
 
 }
 
@@ -202,31 +185,32 @@ header .column-two {
 
     header .column-one {
         float: left;
-        width: 71%;
+        /*width: 71%;*/
     }
 
     header .column-two {
         padding-left: 0;
         float: left;
-        width: 29%;
+        min-width: 330px;
+        /*width: 29%;*/
     }
 
-    .header-cta-buttons {
+    #desktopCta.header-cta-buttons {
         float: right;
         width: 95%;
         margin: 0;
     }
 
-    .header-cta-buttons > li {
+    #desktopCta.header-cta-buttons > li {
         margin-left: 3px;
-        width: 30%;
+        width: 32%;
     }
 
-    .header-cta-buttons > li:nth-child(1) {
+    #desktopCta.header-cta-buttons > li:nth-child(1) {
         margin-left: 0;
     }
 
-    .header-cta-buttons a.btn-rounded {
+    #desktopCta.header-cta-buttons a.btn-rounded {
         height: 32px;
         line-height: 32px;
         font-size: 13px;
@@ -252,7 +236,7 @@ header .column-two {
 
 /*mMenu Styles*/
 #mobileMenu {
-    top:171px;
+    top:163px;
     background-color: #ffffff;
 }
 

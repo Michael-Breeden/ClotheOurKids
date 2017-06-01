@@ -45,8 +45,8 @@
         <header>
 
             <div class="container-fluid navContainer mt-sm-1 mb-sm-1 d-flex justify-content-lg-center">
-                <div class="row align-items-center headerPad">
-                    <div class="column-one d-lg-flex justify-content-lg-center ">
+                <div class="row align-items-center headerPad justify-content-lg-center">
+                    <div class="column-one d-lg-flex justify-content-lg-center">
 
                         <a class="logo align-self-center" href="@Url.RouteUrl("Home")">
                             <span class="logo-container">
@@ -85,9 +85,9 @@
                             <div class="hidden-lg-up navbar-inner">
                                 <div class="container">
                                     <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-                                    <a class="navbar-toggler" href="#mobileMenu">
+                                    <a class="navbar-toggler" style="text-align:center;" href="#mobileMenu">
                                         <span class="navbar-toggler-icon"></span>
-                                        <p>Menu</p>
+                                        <h6 style="font-size: 12px;">MENU</h6>
                                     </a>
                                 </div>
                             </div>
@@ -126,7 +126,7 @@
                     </div>
                 </div>
             </div>
-            <ul class="default header-cta-buttons hidden-xl-up full-width-buttons">
+            <ul id="md-cta-buttons" class="default header-cta-buttons hidden-xl-up full-width-buttons">
                 <li>
                     <a class="btn btn-rounded btn-danger" href="@Url.RouteUrl("Donate")">Give</a>
                 </li>
@@ -143,8 +143,6 @@
             @RenderSection("headerMask", required: false)
 
         </header>
-
-
 
         <main class="pt-6">
             @RenderBody()
