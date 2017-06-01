@@ -84,11 +84,16 @@
                             </div>
                             <div class="hidden-lg-up navbar-inner">
                                 <div class="container">
-                                    <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-                                    <a class="navbar-toggler" style="text-align:center;" href="#mobileMenu">
+                                    <button id="mMenuToggle" class="hamburger" type="button">
+                                        <span class="hamburger-box">
+                                            <span class="hamburger-inner"></span>
+                                        </span>
+                                    </button>
+                                    <h6 style="font-size: 12px;">MENU</h6>
+                                    @*<a class="navbar-toggler" style="text-align:center;" href="#mobileMenu">
                                         <span class="navbar-toggler-icon"></span>
                                         <h6 style="font-size: 12px;">MENU</h6>
-                                    </a>
+                                    </a>*@
                                 </div>
                             </div>
                         </div>
@@ -160,62 +165,34 @@
 
     <script type="text/javascript">
 
-        var headerAnimationEvent;
+        function afterReveal(el) { el.addEventListener('animationend', function (event) { $('.wow').each(function () { $(this).css('opacity', 1); }); }); } new WOW({ callback: afterReveal }).init();
 
-        function afterReveal(el) { el.addEventListener('animationend', function (event) { $('.wow').each(function () { $(this).css('opacity', 1); }); }); } new WOW({ callback: afterReveal }).init()
-
-        function animate(element_ID, animation) {
-
-            $(element_ID).addClass('animated ' + animation).one(headerAnimationEvent, function () {                
-                $(this).removeClass('animated ' + animation);                
-            });
-        }
-
-        function whichAnimationEvent() {
-            var a,
-                el = document.createElement("fakeelement");
-
-            var animations = {
-                "animation": "animationend",
-                "OAnimation": "oanimationEnd",
-                "MozAnimation": "animationEnd",
-                "WebkitAnimation": "webkitAnimationEnd"
-            }
-
-            for (a in animations) {
-                if (el.style[a] !== undefined) {
-                    return animations[a];
-                }
-            }
-        }
-
-        function animateCollapse(element_ID, animation) {
-            $(element_ID).addClass('animated ' + animation);
-            var wait = window.setTimeout(function () {
-                $(element_ID).removeClass('animated ' + animation)
-            }, 1300
-            );
-        }
 
         $(document).ready(function () {
 
-            headerAnimationEvent = whichAnimationEvent();
-
             //$("#mobileMenu").append($("#mainSiteMenu").clone().attr("id", "mobileMenu").attr("class", ""));
-            $('#mobileMenu').mmenu({
+            var $menu = $('#mobileMenu').mmenu({
                 //options
                 offCanvas: {
                     "zposition": "front",
                     "position": "right"
                 },
+                navbar: {
+                    "add": "false"
+                },
+                navbars: [
+                    {
+                        "position": "top",
+                        "content": [
+                            "prev",
+                            "title"
+                        ]
+                    } 
+                ],
                 extensions: [
                     "fullscreen",
-                    "border-none"
-                ],
-                setSelected: {
-                    "hover": true
-                },
-                navbars: []
+                    "border-full"
+                ]
             }, {
                 //configuration
                 offCanvas: {
@@ -223,14 +200,24 @@
                 }
             });
 
-            //$('#navbarNav').on('show.bs.collapse hide.bs.collapse', function (e) {
-            //    if (e.type == 'show') {                    
-            //        animateCollapse(this, 'fadeInRight');
-            //    }
-            //    else {
-            //        animateCollapse(this, 'fadeOutRight');
-            //    }
-            //});
+            var $icon = $('#mMenuToggle');
+
+            var API = $menu.data("mmenu");
+
+            $icon.on('click', function () {
+                API.open();
+            });
+
+            API.bind("open:finish", function () {
+                setTimeout(function () {
+                    $icon.addClass("is-active");
+                }, 100);
+            });
+            API.bind("close:finish", function () {
+                setTimeout(function () {
+                    $icon.removeClass("is-active");
+                }, 100);
+            });
         });
 
     </script>

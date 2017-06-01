@@ -32,6 +32,7 @@ namespace ClotheOurKids.Web
                       "~/Content/css/mdb.css",
                       "~/Content/plugins/mMenu-6.1/dist/jquery.mmenu.all.css",
                       "~/Content/plugins/mMenu-6.1/dist/wrappers/bootstrap/jquery.mmenu.bootstrap.css",
+                      "~/Content/css/hamburgers-min.css",
                       "~/Content/css/mySkin.css",
                       "~/Content/css/myHeader.css",
                       "~/Content/css/style.css"

@@ -20,7 +20,7 @@
                 position: static;
                 border: 0;
             }
-        }*    
+        }*
 
         .full-bg-img {
             color: #fff;
@@ -58,6 +58,11 @@
             cursor: hand;
         }
 
+        @@media (max-width: 992px) {
+            .view {
+                height: calc(100vh - 163px);
+            }
+        }
 </style>
 }
 
@@ -87,7 +92,7 @@
 
 
 <!-- Main container-->
-<div class="container">
+<div class="container" style="z-index: 2000;">
 
     <!--Section: About Us-->
     <section class="section extra-margins" id="about">

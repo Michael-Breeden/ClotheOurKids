@@ -88,9 +88,30 @@ header .column-two {
     display: none;
 }
 
-.mm-menu.mm-hoverselected .mm-listview > li > a:hover:not(.mm-fullsubopen), .mm-menu.mm-hoverselected .mm-listview > li > a:hover {
-    background-color: #f44336;
-    color: rgba(255, 255, 255, 0.75);
+/*.mm-navbar {
+    display: none !important;
+}*/
+
+.mm-listview {
+    font-size: 24px;
+    line-height: 36px;
+}
+
+#mobileMenu .mm-highest .mm-navbar .mm-title {
+    display: none;
+}
+
+#mobileMenu .mm-hasnavbar .mm-listview > li > a {
+    margin-left: 20px;
+}
+
+#mobileMenu .mm-listview > li.top-level > a {
+    background: #ccc;
+    margin-left: 0;
+}
+
+.hideScroll {
+    overflow: hidden !important;
 }
 
 @media (max-width: 992px) and (min-width: 768px) {
@@ -108,7 +129,13 @@ header .column-two {
 
     header .logo {
         position: absolute;
-        margin-top: -25px;
+        margin-top: -20px;
+    }
+
+    #mMenuToggle {
+        margin-top: -11px;
+        position: absolute;
+        right: -35px;
     }
 
     .navbar-toggler {

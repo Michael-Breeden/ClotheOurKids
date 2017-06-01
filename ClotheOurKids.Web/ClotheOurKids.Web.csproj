@@ -243,6 +243,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\hamburgers-min.css" />
     <Content Include="Content\css\mdb.css" />
     <Content Include="Content\css\mdb.min.css" />
     <Content Include="Content\css\myHeader.css" />
