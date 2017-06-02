@@ -84,7 +84,7 @@
                             </div>
                             <div class="hidden-lg-up navbar-inner">
                                 <div class="container">
-                                    <button id="mMenuToggle" class="hamburger" type="button">
+                                    <button id="mMenuToggle" class="hamburger hamburger--collapse" type="button">
                                         <span class="hamburger-box">
                                             <span class="hamburger-inner"></span>
                                         </span>
@@ -102,8 +102,9 @@
                                 <li>
                                     <a href="@Url.RouteUrl("Home")">Home</a>
                                 </li>
-                                <li><span>About us</span>
+                                <li><span>About Us</span>
                                     <ul>
+                                        <li class="top-level"><a>About Us</a></li>
                                         <li><a href="@Url.RouteUrl("WhatWeDo")">What We Do</a></li>
                                         <li><a href="@Url.RouteUrl("WhoWeAre")">Who We Are</a></li>
                                         <li><a href="@Url.RouteUrl("WhatWeGive")">What We Give</a></li>
@@ -122,7 +123,7 @@
                                 <a class="btn btn-rounded btn-danger" href="@Url.RouteUrl("Donate")">Give</a>
                             </li>
                             <li>
-                                <a class="btn btn-rounded btn-info" href="@Url.RouteUrl("GetInvolved")">Volunteer</a>
+                                <a class="btn btn-rounded btn-info" href="@Url.RouteUrl("GetInvolved")">Get Involved</a>
                             </li>
                             <li>
                                 <a class="btn btn-rounded btn-light-green" data-toggle="modal" data-target="#modal-login">Log In</a>
@@ -178,14 +179,15 @@
                     "position": "right"
                 },
                 navbar: {
-                    "add": "false"
+                    "title": "",
+                    "titleLink": "parent"
                 },
                 navbars: [
                     {
                         "position": "top",
                         "content": [
                             "prev",
-                            "title"
+                            '<a id="mobile-navBack" href="#mm-0" aria-owns="mm-0"><span>Back</span></a>'
                         ]
                     } 
                 ],
@@ -208,21 +210,46 @@
                 API.open();
             });
 
+            API.bind("openPanel:start", function ($panel) {
+                var id = $panel.attr("id");
+
+                toggleMobileInnerNavbar(id);
+
+            });
+
+            API.bind("open:start", function () {
+                toggleMobileInnerNavbar();
+            });
+
             API.bind("open:finish", function () {
                 setTimeout(function () {
                     $icon.addClass("is-active");
-                }, 100);
+                }, 0);
             });
             API.bind("close:finish", function () {
                 setTimeout(function () {
                     $icon.removeClass("is-active");
-                }, 100);
+                }, 0);
             });
         });
 
+        function toggleMobileInnerNavbar(panelId) {
+            if (typeof panelId === 'undefined') {
+                panelId = 'mm-0';
+            }
+
+            if (panelId == 'mm-0') {
+                $('#mobileMenu .mm-navbar').addClass('hideNav');
+            }
+            else {
+                $('#mobileMenu .mm-navbar').removeClass('hideNav');
+            }
+
+        }
+
     </script>
 
-    @RenderSection("customScript", required: false);
+    @RenderSection("customScript", required: false)
 
     <!--[if lt IE 9]-->
     @Scripts.Render("~/bundles/ie9")

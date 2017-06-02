@@ -88,26 +88,36 @@ header .column-two {
     display: none;
 }
 
-/*.mm-navbar {
-    display: none !important;
-}*/
+#mobileMenu:not(.mm-menu){
+    display: none;
+}
 
 .mm-listview {
     font-size: 24px;
     line-height: 36px;
 }
 
-#mobileMenu .mm-highest .mm-navbar .mm-title {
+.hideNav {
     display: none;
 }
 
-#mobileMenu .mm-hasnavbar .mm-listview > li > a {
+#mm-1 .mm-listview li > a {
     margin-left: 20px;
 }
 
 #mobileMenu .mm-listview > li.top-level > a {
     background: #ccc;
     margin-left: 0;
+}
+
+#mobileMenu .mm-prev {
+    color: rgba(0,0,0,.60);
+}
+
+#mobile-navBack {
+    float: left;
+    color: rgba(0,0,0,.60);
+    font-size: 16px;
 }
 
 .hideScroll {
@@ -180,11 +190,6 @@ header .column-two {
     #small-indicator {
         display: block;
     }
-}
-
-@media(min-width: 992px) {
-      
-
 }
 
 @media (max-width: 1199px) and (min-width: 992px) {
