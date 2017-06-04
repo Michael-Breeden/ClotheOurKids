@@ -19,6 +19,7 @@
 
 
     <link href='https://fonts.googleapis.com/css?family=Bad+Script' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister" rel="stylesheet"> 
     @Styles.Render("~/Content/css")
     
     @Scripts.Render("~/bundles/modernizr")
@@ -50,7 +51,7 @@
 
                         <a class="logo align-self-center" href="@Url.RouteUrl("Home")">
                             <span class="logo-container">
-                                <img src="~/Content/img/logo/ClotheOurKidsLogo_withMC_Scaled.png" alt="Clothe Our Kids" />
+                                @*<img />*@
                             </span>
                         </a>
 
@@ -150,7 +151,7 @@
 
         </header>
 
-        <main class="pt-6">
+        <main class="pt-4">
             @RenderBody()
         </main>
 

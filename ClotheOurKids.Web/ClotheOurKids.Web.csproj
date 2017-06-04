@@ -286,6 +286,7 @@
     <Content Include="Content\img\lightbox\preloader.gif" />
     <Content Include="Content\img\logo\ClotheOurKidsLogo_withMC.png" />
     <Content Include="Content\img\logo\ClotheOurKidsLogo_withMC_Scaled.png" />
+    <Content Include="Content\img\logo\ClotheOurKidsLogo_withMC_Scaled_whiteText.png" />
     <Content Include="Content\img\logo\ClotheOurKidsLogo_withMC_WhiteBackground.jpg" />
     <Content Include="Content\img\logo\FacebookProfilePic.png" />
     <Content Include="Content\img\logo\LogoGraphic.png" />

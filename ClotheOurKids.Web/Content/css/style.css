@@ -16,12 +16,59 @@
       width: calc(100% - 3rem); } }
 
 
+
   .dropdown-main .dropdown-content li.active {
   background-color: #aa66cc; }
 
 .dropdown-main .dropdown-content li a:hover,
 .dropdown-main .dropdown-content li span:hover {
   background-color: #aa66cc; }
+
+
+.page-top-section .section-heading {
+    font-family: 'Love Ya Like A Sister', cursive;
+    margin: 0;
+}
+
+.page-top-section .section-description {
+    margin-bottom: 1rem;
+}
+
+.page-top-section .btn-floating {
+    margin:0;
+}
+
+.page-top-section span {
+    margin-right: 10px;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+@media only screen and (max-width: 768px) {
+    .page-top-section .section-heading {
+        font-size: 350%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .page-top-section .section-heading {
+        font-size: 400%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .page-top-section .section-heading {
+        font-size: 450%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .page-top-section .section-heading {
+        font-size: 500%;
+    }
+}
+
+
 
 
 
