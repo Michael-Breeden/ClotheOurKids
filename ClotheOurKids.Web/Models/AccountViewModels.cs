@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ClotheOurKids.Model.DAL;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ClotheOurKids.Web.Models
@@ -116,9 +117,13 @@ namespace ClotheOurKids.Web.Models
         [Display(Name = "Your Position")]
         public int PositionId { get; set; }
 
+        public IEnumerable<Position> Positions { get; set; }
+
         [Required]
         [Display(Name = "Your Employer")]
         public int OfficeId { get; set; }
+
+        public IEnumerable<Office> Offices { get; set; }
 
         [Required]
         [Display(Name = "Preferred Phone")]

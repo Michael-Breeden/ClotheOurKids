@@ -12,6 +12,7 @@ using ClotheOurKids.Web.Models;
 using System.Net.Http;
 using System.Collections.Generic;
 using System.Web.Helpers;
+using ClotheOurKids.Model.DAL;
 
 namespace ClotheOurKids.Web.Controllers
 {
@@ -145,6 +146,10 @@ namespace ClotheOurKids.Web.Controllers
         [Route("Register", Name = "RegisterPage")]
         public ActionResult Register()
         {
+            var model = new RegisterViewModel
+            {
+                Positions = GetPositions()
+            };
             return View();
         }
 
@@ -176,6 +181,19 @@ namespace ClotheOurKids.Web.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        private IEnumerable<Position> GetPositions()
+        {
+            IEnumerable<Position> positions;
+
+            using (var context = new ClotheOurKidsContext())
+            {
+                positions = context.Positions.Select });
+            }
+
+            return positions;
+           
         }
 
         //

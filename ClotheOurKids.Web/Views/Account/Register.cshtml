@@ -70,10 +70,8 @@
                         <div class="col-md">
                             <div class="md-form">
                                 <i class="fa fa-phone prefix"></i>
-                                @Html.TextBoxFor(m => m., new { @class = "form-control validate" })
-                                @Html.LabelFor(m => m.LastName)
-                                <input type="tel" id="phone" name="phone" class="form-control validate" />
-                                <label for="phone" data-error="wrong" data-success="right">Work Phone</label>
+                                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control validate" })
+                                @Html.LabelFor(m => m.PhoneNumber)
                             </div>
                         </div>
                         <!--/Second column-->
@@ -90,6 +88,8 @@
                         <div class="col-md">
                             <div class="md-form">
                                 <i class="fa fa-bell prefix"></i>
+                                @Html.DropDownListFor(m => m.PositionId, Model.Positions)
+                                @Html.LabelFor(m => m.PositionId)
                                 <select id="positionSelect" class="mdb-select"></select>
                                 <label for="positionSelect">Position</label>
                             </div>
