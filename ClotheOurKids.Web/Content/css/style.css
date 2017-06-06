@@ -44,9 +44,29 @@
     text-transform: uppercase;
 }
 
+
+.streak.streak-lg {
+    max-height: 500px;
+    margin-left: -15px;
+    margin-right: -20px;
+}
+
+.modal-backdrop {
+    z-index: 4001;
+}
+
+.modal {
+    z-index: 4050;
+}
+
+
 @media only screen and (max-width: 768px) {
     .page-top-section .section-heading {
         font-size: 350%;
+    }
+
+    .streak.streak-lg {
+        height: 250px;
     }
 }
 
@@ -54,11 +74,20 @@
     .page-top-section .section-heading {
         font-size: 400%;
     }
+
+    .streak.streak-lg {
+        height: 350px;
+    }
+
 }
 
 @media only screen and (min-width: 992px) {
     .page-top-section .section-heading {
         font-size: 450%;
+    }
+
+    .streak.streak-lg {
+        height: 400px;
     }
 }
 
@@ -66,9 +95,35 @@
     .page-top-section .section-heading {
         font-size: 500%;
     }
+
+    .streak.streak-lg {
+        height: 500px;
+    }
 }
 
 
+
+.section.full-img {
+    margin-right: -15px;
+    margin-left: -15px;
+    max-height: 500px;
+}
+
+.full-img .streak-img {
+    position: relative;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    object-fit: cover;
+    object-position: 50% 50%;
+    font-family: "object-fit: cover; object-position: 50% 50%";
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    background-attachment: fixed;
+}
 
 
 
