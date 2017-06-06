@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClotheOurKids.Web", "ClotheOurKids.Web\ClotheOurKids.Web.csproj", "{833B1FFD-A259-407F-B8B0-9F899E0C85FE}"
 EndProject
@@ -11,16 +11,21 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Work|Any CPU = Work|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{833B1FFD-A259-407F-B8B0-9F899E0C85FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{833B1FFD-A259-407F-B8B0-9F899E0C85FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{833B1FFD-A259-407F-B8B0-9F899E0C85FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{833B1FFD-A259-407F-B8B0-9F899E0C85FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{833B1FFD-A259-407F-B8B0-9F899E0C85FE}.Work|Any CPU.ActiveCfg = Work|Any CPU
+		{833B1FFD-A259-407F-B8B0-9F899E0C85FE}.Work|Any CPU.Build.0 = Work|Any CPU
 		{6544F5AB-C784-49CF-8E89-1E4FBA42B151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6544F5AB-C784-49CF-8E89-1E4FBA42B151}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6544F5AB-C784-49CF-8E89-1E4FBA42B151}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6544F5AB-C784-49CF-8E89-1E4FBA42B151}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6544F5AB-C784-49CF-8E89-1E4FBA42B151}.Work|Any CPU.ActiveCfg = Work|Any CPU
+		{6544F5AB-C784-49CF-8E89-1E4FBA42B151}.Work|Any CPU.Build.0 = Work|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
