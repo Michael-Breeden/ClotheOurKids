@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.ComponentModel.DataAnnotations;
 
 namespace ClotheOurKids.Web.Models
 {
@@ -13,6 +14,11 @@ namespace ClotheOurKids.Web.Models
         public string LastName { get; set; }
         public int PositionId { get; set; }
         public int OfficeId { get; set; }
+
+        [MaxLength(64)]
+        public override string PhoneNumber { get; set; }
+
+        public int ContactMethodId { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

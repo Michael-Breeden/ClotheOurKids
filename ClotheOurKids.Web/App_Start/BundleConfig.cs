@@ -11,7 +11,9 @@ namespace ClotheOurKids.Web
                         "~/Content/js/jquery-3.1.1.js",
                         "~/Content/js/tether.js",
                         "~/Content/js/bootstrap.js",
-                        "~/Content/js/mdb.js"
+                        "~/Content/js/mdb.js",
+                        "~/Content/plugins/mmenu-6.1/dist/jquery.mmenu.all.js",
+                        "~/Content/plugins/mmenu-6.1/dist/wrappers/bootstrap/jquery.mmenu.bootstrap.js"
                         ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
@@ -28,7 +30,11 @@ namespace ClotheOurKids.Web
                       "~/Content/plugins/font-awesome/css/font-awesome.css",
                       "~/Content/css/bootstrap.css",
                       "~/Content/css/mdb.css",
+                      "~/Content/plugins/mMenu-6.1/dist/jquery.mmenu.all.css",
+                      "~/Content/plugins/mMenu-6.1/dist/wrappers/bootstrap/jquery.mmenu.bootstrap.css",
+                      "~/Content/css/hamburgers-min.css",
                       "~/Content/css/mySkin.css",
+                      "~/Content/css/myHeader.css",
                       "~/Content/css/style.css"
                       ));
         }

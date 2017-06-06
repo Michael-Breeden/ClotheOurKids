@@ -109,6 +109,7 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <None Include="DAL\ClotheOurKidsModel.edmx.diagram">
       <DependentUpon>ClotheOurKidsModel.edmx</DependentUpon>
     </None>

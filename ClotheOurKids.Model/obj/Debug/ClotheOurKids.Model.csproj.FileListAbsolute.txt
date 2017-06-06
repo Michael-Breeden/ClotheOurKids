@@ -7,3 +7,12 @@ C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKi
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKids.Model\obj\Debug\ClotheOurKids.Model.csprojResolveAssemblyReference.cache
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKids.Model\obj\Debug\ClotheOurKids.Model.dll
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKids.Model\obj\Debug\ClotheOurKids.Model.pdb
+M:\Development Projects\Visual Studio 2015\Projects\ClotheOurKids\ClotheOurKids\ClotheOurKids.Model\bin\Debug\ClotheOurKids.Model.dll
+M:\Development Projects\Visual Studio 2015\Projects\ClotheOurKids\ClotheOurKids\ClotheOurKids.Model\bin\Debug\ClotheOurKids.Model.pdb
+M:\Development Projects\Visual Studio 2015\Projects\ClotheOurKids\ClotheOurKids\ClotheOurKids.Model\bin\Debug\EntityFramework.dll
+M:\Development Projects\Visual Studio 2015\Projects\ClotheOurKids\ClotheOurKids\ClotheOurKids.Model\bin\Debug\EntityFramework.SqlServer.dll
+M:\Development Projects\Visual Studio 2015\Projects\ClotheOurKids\ClotheOurKids\ClotheOurKids.Model\bin\Debug\EntityFramework.xml
+M:\Development Projects\Visual Studio 2015\Projects\ClotheOurKids\ClotheOurKids\ClotheOurKids.Model\bin\Debug\EntityFramework.SqlServer.xml
+M:\Development Projects\Visual Studio 2015\Projects\ClotheOurKids\ClotheOurKids\ClotheOurKids.Model\obj\Debug\ClotheOurKids.Model.csprojResolveAssemblyReference.cache
+M:\Development Projects\Visual Studio 2015\Projects\ClotheOurKids\ClotheOurKids\ClotheOurKids.Model\obj\Debug\ClotheOurKids.Model.dll
+M:\Development Projects\Visual Studio 2015\Projects\ClotheOurKids\ClotheOurKids\ClotheOurKids.Model\obj\Debug\ClotheOurKids.Model.pdb

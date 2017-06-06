@@ -3,19 +3,24 @@
     <style>
         html,
         body,
+        #page-wrapper,
         header,
         .view {
-            height: 100%;
+            height: 100vh;
         }
+
         /* Navigation*/
-
-        .navbar {
-            background-color: transparent !important;
+        .navContainer {
+            width: 100%;
+            position: absolute;
         }
 
-        .top-nav-collapse {
-            background-color: #F44336 !important;
-        }
+        @@media(max-width: 1199px) {
+            .navContainer {
+                position: static;
+                border: 0;
+            }
+        }*
 
         .full-bg-img {
             color: #fff;
@@ -52,15 +57,29 @@
             cursor: pointer;
             cursor: hand;
         }
+
+        @@media (max-width: 992px) {
+            .view {
+                height: calc(100vh - 163px);
+            }
+        }
+
+        @@media (min-width: 1200px) {
+            .logo-container {
+                background: url("../../Content/img/logo/ClotheOurKidsLogo_withMC_Scaled_whiteText.png") left top no-repeat !important;
+            }
+        }
+
 </style>
 }
 
 
 @section headerMask
 {
+
     <!--Mask-->
     <div class="view hm-black-strong">
-        <div class="full-bg-img d-flex align-items-center justify-content-md-start justify-content-sm-center" id="home">
+        <div class="full-bg-img flex-center align-items-center justify-content-md-start justify-content-sm-center" id="home">
             <ul class="text-center ml-5">
                 <li>
                     <h1 class="h1-responsive wow fadeInUp">Clothe Our Kids of Morgan County</h1>
@@ -80,7 +99,7 @@
 
 
 <!-- Main container-->
-<div class="container">
+<div class="container" style="z-index: 2000;">
 
     <!--Section: About Us-->
     <section class="section extra-margins" id="about">
@@ -244,6 +263,15 @@
 
 
         $(document).ready(function () {
+
+            //$('#navbar').addClass('navbar-dark').removeClass('navbar-light');
+
+            setNavbar();
+
+            $(window).on('resize', function () {
+                setNavbar();
+            });
+
             $('#WhatWeDo').click(function () {
                 var url = '@Url.RouteUrl("WhatWeDo")';
                 window.location = url
@@ -266,7 +294,14 @@
         });
 
 
-        
+        function setNavbar() {
+            if ($('#largeScreenIndicator').is(':visible')) {
+                $('#navbar').removeClass('navbar-light').addClass('navbar-dark');
+            }
+            else {            
+                $('#navbar').removeClass('navbar-dark').addClass('navbar-light');
+            }
+        }       
 
     </script>   
 

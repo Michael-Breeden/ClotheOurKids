@@ -19,6 +19,7 @@
 
 
     <link href='https://fonts.googleapis.com/css?family=Bad+Script' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister" rel="stylesheet"> 
     @Styles.Render("~/Content/css")
     
     @Scripts.Render("~/bundles/modernizr")
@@ -31,103 +32,223 @@
         .dropdown-menu .dropdown-item:active {
             background: #2196F3
         }
+        
     </style>
 
     @RenderSection("pageCSS", required: false)
 
 </head>
 <body id="bodyDiv" class="kids-skin">
-
     @Html.Partial("_LoginForm")
+    <div id="page-wrapper">       
 
-    <header>
-        <!--Navbar-->
-        <nav class="navbar fixed-top navbar-toggleable-sm navbar-dark red scrolling-navbar">
-            <div class="container">
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <header>
 
-                <!--Navbar Brand-->
-                <a class="navbar-brand" href="@Url.RouteUrl("Home")" target="_blank">
-                    <img src="~/Content/img/logo/LogoGraphic_Header.png" class="d-inline-block align-top img-responsive" alt="Clothe Our Kids" />
-                </a>
+            <div class="container-fluid navContainer mt-sm-1 mb-sm-1 d-flex justify-content-lg-center">
+                <div class="row align-items-center headerPad justify-content-lg-center">
+                    <div class="column-one d-lg-flex justify-content-lg-center">
 
-                <!--Collapse content-->
-                <div class="collapse navbar-collapse" id="navbarNav">
+                        <a class="logo align-self-center" href="@Url.RouteUrl("Home")">
+                            <span class="logo-container">
+                            </span>
+                        </a>
 
-                    <!--Links-->
-                    <ul class="nav navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Home")">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item btn-group">
-                            <a class="nav-link waves-effect waves-light dropdown-toggle" id="AboutMeMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About Us</a>
-                            <div class="dropdown-menu dropdown-primary" aria-labelledby="AboutMeMenu">
-                                <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("WhatWeDo")">What We Do</a>
-                                <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("WhoWeAre")">Who We Are</a>
-                                <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("WhatWeGive")">What We Give</a>
-                                <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("FAQ")">Frequently Asked Questions</a>
+                        <div id="navbar" class="navbar navbar-toggleable-md navbar-light z-depth-0">
+                            <div class="hidden-md-down">    
+                                    <!--Links-->
+                                    <ul class="nav navbar-nav" id="mainSiteMenu">
+                                        <li class="nav-item">
+                                            <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Home")">Home <span class="sr-only">(current)</span></a>
+                                        </li>
+                                        <li class="nav-item dropdown btn-group">
+                                            <span class="nav-link waves-effect waves-light" id="AboutMeMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About Us</span>
+                                            <div class="dropdown-menu dropdown-primary" aria-labelledby="AboutMeMenu">
+                                                <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("WhatWeDo")">What We Do</a>
+                                                <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("WhoWeAre")">Who We Are</a>
+                                                <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("WhatWeGive")">What We Give</a>
+                                                <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("FAQ")">Frequently Asked Questions</a>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Home")">Who We Serve</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Home")">Stories</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("RequestClothes")">Request Clothes</a>
+                                        </li>
+                                    </ul>
+                                
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("RequestClothes")">Request Clothes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("GetInvolved")">Get Involved</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Donate")">Donate</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav nav-flex-icons">
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light"><i class="fa fa-facebook"></i></a>                            
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light"><i class="fa fa-envelope-o"></i></a>
-                        </li>
-                        @if (Request.IsAuthenticated)
-                        {                            
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle waves-effect waves-light" href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i></a>
-                                <div class="dropdown-menu dropdown-secondary dropdown-menu-right" aria-labelledby="userDropdown">
-                                    <a class="dropdown-item waves-effect waves-light" href="#">My Account</a>
-                                    <a class="dropdown-item waves-effect waves-light" href="@Url.Action("LogOff", "Account")">Logout</a>
+                            <div class="hidden-lg-up navbar-inner">
+                                <div class="container">
+                                    <button id="mMenuToggle" class="hamburger hamburger--collapse" type="button">
+                                        <span class="hamburger-box">
+                                            <span class="hamburger-inner"></span>
+                                        </span>
+                                    </button>
+                                    <h6 style="font-size: 12px;">MENU</h6>
+                                    @*<a class="navbar-toggler" style="text-align:center;" href="#mobileMenu">
+                                        <span class="navbar-toggler-icon"></span>
+                                        <h6 style="font-size: 12px;">MENU</h6>
+                                    </a>*@
                                 </div>
+                            </div>
+                        </div>
+                        <nav id="mobileMenu" class="hidden-lg-up">
+                            <ul>
+                                <li>
+                                    <a href="@Url.RouteUrl("Home")">Home</a>
+                                </li>
+                                <li><span>About Us</span>
+                                    <ul>
+                                        <li class="top-level"><a>About Us</a></li>
+                                        <li><a href="@Url.RouteUrl("WhatWeDo")">What We Do</a></li>
+                                        <li><a href="@Url.RouteUrl("WhoWeAre")">Who We Are</a></li>
+                                        <li><a href="@Url.RouteUrl("WhatWeGive")">What We Give</a></li>
+                                        <li><a href="@Url.RouteUrl("FAQ")">Frequently Asked Questions</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="@Url.RouteUrl("Home")">Who We Serve</a></li>
+                                <li><a href="@Url.RouteUrl("Home")">Stories</a></li>
+                                <li><a href="@Url.RouteUrl("RequestClothes")">Request Clothes</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="column-two d-flex justify-content-start">
+                        <ul id="desktopCta" class="default header-cta-buttons hidden-lg-down">
+                            <li>
+                                <a class="btn btn-rounded btn-danger" href="@Url.RouteUrl("Donate")">Give</a>
                             </li>
-                        }                        
-                    </ul>
+                            <li>
+                                <a class="btn btn-rounded btn-info" href="@Url.RouteUrl("GetInvolved")">Get Involved</a>
+                            </li>
+                            <li>
+                                <a class="btn btn-rounded btn-light-green" data-toggle="modal" data-target="#modal-login">Log In</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <!--/.Collapse content-->
             </div>
-        </nav>
-        <!--/.Navbar-->
+            <ul id="md-cta-buttons" class="default header-cta-buttons hidden-xl-up full-width-buttons">
+                <li>
+                    <a class="btn btn-rounded btn-danger" href="@Url.RouteUrl("Donate")">Give</a>
+                </li>
+                <li>
+                    <a class="btn btn-rounded btn-info" href="@Url.RouteUrl("GetInvolved")">Get Involved</a>
+                </li>
+                <li>
+                    <a class="btn btn-rounded btn-light-green" data-toggle="modal" data-target="#modal-login">Log In</a>
+                </li>
+            </ul>
 
-        @RenderSection("headerMask", required:false)
+            <div class="clearfix"></div>
 
-    </header>
-    
-    <main class="pt-6">
-        @RenderBody()
-    </main>
+            @RenderSection("headerMask", required: false)
 
-    <footer>
+        </header>
 
-    </footer>
-    
+        <main class="pt-4">
+            @RenderBody()
+        </main>
+
+        <footer>
+            <div id="largeScreenIndicator"></div>
+        </footer>
+
+    </div>
 
     @Scripts.Render("~/bundles/requiredJs")
     @RenderSection("scripts", required: false)
 
 
     <script type="text/javascript">
-        //new WOW().init();
 
-        function afterReveal(el) { el.addEventListener('animationend', function (event) { $('.wow').each(function () { $(this).css('opacity', 1); }); }); } new WOW({ callback: afterReveal }).init()
+        function afterReveal(el) { el.addEventListener('animationend', function (event) { $('.wow').each(function () { $(this).css('opacity', 1); }); }); } new WOW({ callback: afterReveal }).init();
+
+
+        $(document).ready(function () {
+
+            //$("#mobileMenu").append($("#mainSiteMenu").clone().attr("id", "mobileMenu").attr("class", ""));
+            var $menu = $('#mobileMenu').mmenu({
+                //options
+                offCanvas: {
+                    "zposition": "front",
+                    "position": "right"
+                },
+                navbar: {
+                    "title": "",
+                    "titleLink": "parent"
+                },
+                navbars: [
+                    {
+                        "position": "top",
+                        "content": [
+                            "prev",
+                            '<a id="mobile-navBack" href="#mm-0" aria-owns="mm-0"><span>Back</span></a>'
+                        ]
+                    } 
+                ],
+                extensions: [
+                    "fullscreen",
+                    "border-full"
+                ]
+            }, {
+                //configuration
+                offCanvas: {
+                    pageSelector: '#page-wrapper'
+                }
+            });
+
+            var $icon = $('#mMenuToggle');
+
+            var API = $menu.data("mmenu");
+
+            $icon.on('click', function () {
+                API.open();
+            });
+
+            API.bind("openPanel:start", function ($panel) {
+                var id = $panel.attr("id");
+
+                toggleMobileInnerNavbar(id);
+
+            });
+
+            API.bind("open:start", function () {
+                toggleMobileInnerNavbar();
+            });
+
+            API.bind("open:finish", function () {
+                setTimeout(function () {
+                    $icon.addClass("is-active");
+                }, 0);
+            });
+            API.bind("close:finish", function () {
+                setTimeout(function () {
+                    $icon.removeClass("is-active");
+                }, 0);
+            });
+        });
+
+        function toggleMobileInnerNavbar(panelId) {
+            if (typeof panelId === 'undefined') {
+                panelId = 'mm-0';
+            }
+
+            if (panelId == 'mm-0') {
+                $('#mobileMenu .mm-navbar').addClass('hideNav');
+            }
+            else {
+                $('#mobileMenu .mm-navbar').removeClass('hideNav');
+            }
+
+        }
+
     </script>
 
-    @RenderSection("customScript", required: false);
+    @RenderSection("customScript", required: false)
 
     <!--[if lt IE 9]-->
     @Scripts.Render("~/bundles/ie9")

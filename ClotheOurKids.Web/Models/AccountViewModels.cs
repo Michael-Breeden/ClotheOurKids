@@ -9,10 +9,29 @@ namespace ClotheOurKids.Web.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
 
+        [Required]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Your Position")]
         public int PositionId { get; set; }
+
+        [Required]
+        [Display(Name = "Your Employer")]
         public int OfficeId { get; set; }
+
+        [Required]
+        [Display(Name = "Preferred Phone")]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        [Display(Name = "Best Way to Contact You")]
+        public int ContactMethodId { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -85,10 +104,29 @@ namespace ClotheOurKids.Web.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
+        [Required]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Your Position")]
         public int PositionId { get; set; }
+
+        [Required]
+        [Display(Name = "Your Employer")]
         public int OfficeId { get; set; }
+
+        [Required]
+        [Display(Name = "Preferred Phone")]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        [Display(Name = "Best Way to Contact You")]
+        public int ContactMethodId { get; set; }
     }
 
     public class ResetPasswordViewModel
