@@ -18,5 +18,5 @@ ALTER TABLE dbo.AspNetUsers
 ADD ContactMethodId smallInt not null;
 
 ALTER TABLE dbo.AspNetUsers
-ALTER COLUMN PhoneNumber nvarchar(64);
+ALTER COLUMN PhoneNumber varchar(50);
 GO

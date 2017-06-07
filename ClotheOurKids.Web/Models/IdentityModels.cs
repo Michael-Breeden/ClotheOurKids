@@ -15,7 +15,7 @@ namespace ClotheOurKids.Web.Models
         public int PositionId { get; set; }
         public int OfficeId { get; set; }
 
-        [MaxLength(64)]
+        [MaxLength(50)]
         public override string PhoneNumber { get; set; }
 
         public int ContactMethodId { get; set; }

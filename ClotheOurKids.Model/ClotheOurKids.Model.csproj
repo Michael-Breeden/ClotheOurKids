@@ -126,6 +126,14 @@
       <DependentUpon>ClotheOurKidsModel.edmx</DependentUpon>
       <LastGenOutput>ClotheOurKidsModel.cs</LastGenOutput>
     </Content>
+    <Content Include="SQL_Scripts\001_Create_dbo_MigrationHistory.sql" />
+    <Content Include="SQL_Scripts\002_Create_dbo_AspNetUsers.sql" />
+    <Content Include="SQL_Scripts\003_Create_dbo_AspNetRoles.sql" />
+    <Content Include="SQL_Scripts\004_Create_dbo_AspNetUserClaims.sql" />
+    <Content Include="SQL_Scripts\005_Create_dbo_AspNetUserLogins.sql" />
+    <Content Include="SQL_Scripts\006_Create_dbo_AspNetUserRoles.sql" />
+    <Content Include="SQL_Scripts\008_CustomizeUser.sql" />
+    <Content Include="SQL_Scripts\007_ClotheOurKids_Tables.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

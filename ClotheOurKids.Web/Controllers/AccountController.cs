@@ -187,10 +187,10 @@ namespace ClotheOurKids.Web.Controllers
         {
             IEnumerable<Position> positions;
 
-            using (var context = new ClotheOurKidsContext())
-            {
-                positions = context.Positions.Select });
-            }
+            //using (var context = new ClotheOurKidsContext())
+            //{
+            //    positions = context.Positions.Select });
+            //}
 
             return positions;
            
