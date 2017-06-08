@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ClotheOurKids.Model.DAL;
+using ClotheOurKids.Model;
 
 namespace ClotheOurKids.Web.Models.ViewModel
 {
     public class RequestFormRepository : IRequestFormRepository
     {
         
-        private ClotheOurKidsContext _dataContext;
+        private ClotheOurKidsEntities _dataContext;
 
         public RequestFormRepository()
         {
-            _dataContext = new ClotheOurKidsContext();
+            _dataContext = new ClotheOurKidsEntities();
         }
 
         public IList<Position> GetAllPositions()

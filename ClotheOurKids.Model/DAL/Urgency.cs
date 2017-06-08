@@ -12,19 +12,11 @@ namespace ClotheOurKids.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Position
+    public partial class Urgency
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Position()
-        {
-            this.PositionOfficeTypes = new HashSet<PositionOfficeType>();
-        }
-    
-        public short PositionId { get; set; }
+        public byte UrgencyId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PositionOfficeType> PositionOfficeTypes { get; set; }
+        public byte DaysForDelivery { get; set; }
     }
 }

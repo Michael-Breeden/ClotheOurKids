@@ -12,12 +12,16 @@ namespace ClotheOurKids.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetUserLogin
+    public partial class Size
     {
-        public string LoginProvider { get; set; }
-        public string ProviderKey { get; set; }
-        public string UserId { get; set; }
+        public int SizeId { get; set; }
+        public string Name { get; set; }
+        public byte AgeGroupId { get; set; }
+        public string Gender { get; set; }
+        public byte ClothesTypeId { get; set; }
+        public int SortOrder { get; set; }
     
-        public virtual AspNetUser AspNetUser { get; set; }
+        public virtual AgeGroup AgeGroup { get; set; }
+        public virtual ClothesType ClothesType { get; set; }
     }
 }

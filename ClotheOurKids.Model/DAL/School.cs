@@ -12,12 +12,15 @@ namespace ClotheOurKids.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetUserLogin
+    public partial class School
     {
-        public string LoginProvider { get; set; }
-        public string ProviderKey { get; set; }
-        public string UserId { get; set; }
+        public short SchoolId { get; set; }
+        public short OfficeId { get; set; }
+        public short SchoolDistrictId { get; set; }
+        public byte SchoolTypeId { get; set; }
     
-        public virtual AspNetUser AspNetUser { get; set; }
+        public virtual Office Office { get; set; }
+        public virtual SchoolDistrict SchoolDistrict { get; set; }
+        public virtual SchoolType SchoolType { get; set; }
     }
 }

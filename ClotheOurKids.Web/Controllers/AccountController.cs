@@ -12,7 +12,7 @@ using ClotheOurKids.Web.Models;
 using System.Net.Http;
 using System.Collections.Generic;
 using System.Web.Helpers;
-using ClotheOurKids.Model.DAL;
+using ClotheOurKids.Model;
 
 namespace ClotheOurKids.Web.Controllers
 {

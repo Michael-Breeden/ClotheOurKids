@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\AgeGroup.cs">
+      <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\AspNetRole.cs">
       <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
     </Compile>
@@ -76,6 +79,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ClotheOurKidsModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DAL\ClothesType.cs">
+      <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\ContactMethod.cs">
+      <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\County.cs">
+      <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\C__MigrationHistory.cs">
       <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
     </Compile>
@@ -94,22 +106,42 @@
     <Compile Include="DAL\PositionOfficeType.cs">
       <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAL\SchoolSystem.cs">
+    <Compile Include="DAL\Request.cs">
+      <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\RequestStatu.cs">
+      <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\School.cs">
+      <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SchoolDistrict.cs">
       <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\SchoolType.cs">
       <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Size.cs">
+      <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\State.cs">
+      <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Urgency.cs">
+      <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IRegisterFormRepository.cs" />
+    <Compile Include="Repository\IRequestFormRepository.cs" />
+    <Compile Include="Repository\RegisterFormRepository.cs" />
+    <Compile Include="Repository\RequestFormRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="DAL\ClotheOurKidsModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ClotheOurKidsModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="DAL\ClotheOurKidsModel.edmx.diagram">
       <DependentUpon>ClotheOurKidsModel.edmx</DependentUpon>
     </None>
@@ -118,13 +150,15 @@
   <ItemGroup>
     <Content Include="DAL\ClotheOurKidsModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ClotheOurKidsModel.Context.cs</LastGenOutput>
       <DependentUpon>ClotheOurKidsModel.edmx</DependentUpon>
+      <LastGenOutput>ClotheOurKidsModel.Context.cs</LastGenOutput>
+      <CustomToolNamespace>ClotheOurKids.Model</CustomToolNamespace>
     </Content>
     <Content Include="DAL\ClotheOurKidsModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ClotheOurKidsModel.edmx</DependentUpon>
       <LastGenOutput>ClotheOurKidsModel.cs</LastGenOutput>
+      <CustomToolNamespace>ClotheOurKids.Model</CustomToolNamespace>
     </Content>
     <Content Include="SQL_Scripts\001_Create_dbo_MigrationHistory.sql" />
     <Content Include="SQL_Scripts\002_Create_dbo_AspNetUsers.sql" />
@@ -138,6 +172,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

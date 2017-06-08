@@ -12,27 +12,19 @@ namespace ClotheOurKids.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Office
+    public partial class State
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Office()
+        public State()
         {
-            this.Schools = new HashSet<School>();
+            this.Offices = new HashSet<Office>();
         }
     
-        public short OfficeId { get; set; }
+        public short StateId { get; set; }
         public string Name { get; set; }
-        public byte OfficeTypeId { get; set; }
-        public string StreetAddress { get; set; }
-        public string City { get; set; }
-        public Nullable<short> StateId { get; set; }
-        public string PostalCode { get; set; }
-        public string PostalCodeExt { get; set; }
-        public string Phone { get; set; }
+        public string Code { get; set; }
     
-        public virtual OfficeType OfficeType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<School> Schools { get; set; }
-        public virtual State State { get; set; }
+        public virtual ICollection<Office> Offices { get; set; }
     }
 }

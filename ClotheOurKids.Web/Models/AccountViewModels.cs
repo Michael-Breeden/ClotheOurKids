@@ -1,6 +1,7 @@
-﻿using ClotheOurKids.Model.DAL;
+﻿using ClotheOurKids.Model;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace ClotheOurKids.Web.Models
 {
@@ -89,6 +90,13 @@ namespace ClotheOurKids.Web.Models
 
     public class RegisterViewModel
     {
+        public RegisterViewModel()
+        {
+            AvailablePositions = new List<SelectListItem>();
+            AvailableOffices = new List<SelectListItem>();
+            AvailableContactMethods = new List<SelectListItem>();
+        }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -102,7 +110,7 @@ namespace ClotheOurKids.Web.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         [Required]
@@ -116,14 +124,12 @@ namespace ClotheOurKids.Web.Models
         [Required]
         [Display(Name = "Your Position")]
         public int PositionId { get; set; }
-
-        public IEnumerable<Position> Positions { get; set; }
+        public IList<SelectListItem> AvailablePositions { get; set; }
 
         [Required]
         [Display(Name = "Your Employer")]
         public int OfficeId { get; set; }
-
-        public IEnumerable<Office> Offices { get; set; }
+        public IList<SelectListItem> AvailableOffices { get; set; }
 
         [Required]
         [Display(Name = "Preferred Phone")]
@@ -132,6 +138,8 @@ namespace ClotheOurKids.Web.Models
         [Required]
         [Display(Name = "Best Way to Contact You")]
         public int ContactMethodId { get; set; }
+        public IList<SelectListItem> AvailableContactMethods { get; set; }
+
     }
 
     public class ResetPasswordViewModel
@@ -149,7 +157,7 @@ namespace ClotheOurKids.Web.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

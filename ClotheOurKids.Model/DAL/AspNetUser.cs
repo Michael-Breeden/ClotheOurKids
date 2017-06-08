@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClotheOurKids.Model.DAL
+namespace ClotheOurKids.Model
 {
     using System;
     using System.Collections.Generic;
@@ -38,6 +38,7 @@ namespace ClotheOurKids.Model.DAL
         public string LastName { get; set; }
         public short PositionId { get; set; }
         public short OfficeId { get; set; }
+        public short ContactMethodId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
@@ -45,5 +46,6 @@ namespace ClotheOurKids.Model.DAL
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+        public virtual ContactMethod ContactMethod { get; set; }
     }
 }

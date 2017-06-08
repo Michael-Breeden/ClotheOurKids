@@ -12,27 +12,22 @@ namespace ClotheOurKids.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Office
+    public partial class County
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Office()
+        public County()
         {
-            this.Schools = new HashSet<School>();
+            this.SchoolDistricts = new HashSet<SchoolDistrict>();
         }
     
-        public short OfficeId { get; set; }
+        public short CountyId { get; set; }
         public string Name { get; set; }
-        public byte OfficeTypeId { get; set; }
-        public string StreetAddress { get; set; }
-        public string City { get; set; }
+        public string Description { get; set; }
+        public Nullable<System.DateTime> ServiceStartDate { get; set; }
+        public Nullable<System.DateTime> ServiceEndDate { get; set; }
         public Nullable<short> StateId { get; set; }
-        public string PostalCode { get; set; }
-        public string PostalCodeExt { get; set; }
-        public string Phone { get; set; }
     
-        public virtual OfficeType OfficeType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<School> Schools { get; set; }
-        public virtual State State { get; set; }
+        public virtual ICollection<SchoolDistrict> SchoolDistricts { get; set; }
     }
 }

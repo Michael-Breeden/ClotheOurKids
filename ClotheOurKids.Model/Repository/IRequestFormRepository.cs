@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ClotheOurKids.Model.DAL;
 
-namespace ClotheOurKids.Web.Models.ViewModel
+namespace ClotheOurKids.Model
 {
     public interface IRequestFormRepository
     {

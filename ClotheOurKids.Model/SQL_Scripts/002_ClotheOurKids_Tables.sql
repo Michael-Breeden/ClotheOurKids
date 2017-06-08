@@ -1,9 +1,7 @@
---USE ClotheOurKids
-USE [dbVelocity_ITL]
+USE ClotheOurKids
+--USE [dbVelocity_ITL]
 GO
 
-ALTER TABLE [Reference].[Size] DROP CONSTRAINT [FK_Reference_SizeNumber$ProvidesClothingSizeDetailsFor$Reference_Size]
-GO
 ALTER TABLE [Reference].[Size] DROP CONSTRAINT [FK_Reference_ClothesType$ProvidesDetailsAboutTypeOfClothingFor$Reference_Size]
 GO
 ALTER TABLE [Reference].[Size] DROP CONSTRAINT [FK_Reference_AgeGroup$ProvidesAgeGroupDetailsFor$Reference_Size]
@@ -24,53 +22,57 @@ ALTER TABLE [Reference].[Office] DROP CONSTRAINT [FK_Reference_State$DefinesStat
 GO
 ALTER TABLE [Reference].[Office] DROP CONSTRAINT [FK_Reference_OfficeType$DescribesOrganizationalTypeOf$Reference_Office]
 GO
-/****** Object:  Table [Reference].[States]    Script Date: 6/7/2017 11:18:20 AM ******/
+/****** Object:  Table [Requests].[Urgency]    Script Date: 6/7/2017 10:18:21 PM ******/
+DROP TABLE [Requests].[Urgency]
+GO
+/****** Object:  Table [Requests].[RequestStatus]    Script Date: 6/7/2017 10:18:21 PM ******/
+DROP TABLE [Requests].[RequestStatus]
+GO
+/****** Object:  Table [Reference].[States]    Script Date: 6/7/2017 10:18:21 PM ******/
 DROP TABLE [Reference].[States]
 GO
-/****** Object:  Table [Reference].[SizeNumber]    Script Date: 6/7/2017 11:18:20 AM ******/
-DROP TABLE [Reference].[SizeNumber]
-GO
-/****** Object:  Table [Reference].[Size]    Script Date: 6/7/2017 11:18:20 AM ******/
+/****** Object:  Table [Reference].[Size]    Script Date: 6/7/2017 10:18:21 PM ******/
 DROP TABLE [Reference].[Size]
 GO
-/****** Object:  Table [Reference].[SchoolType]    Script Date: 6/7/2017 11:18:20 AM ******/
+/****** Object:  Table [Reference].[SchoolType]    Script Date: 6/7/2017 10:18:21 PM ******/
 DROP TABLE [Reference].[SchoolType]
 GO
-/****** Object:  Table [Reference].[SchoolDistrict]    Script Date: 6/7/2017 11:18:20 AM ******/
+/****** Object:  Table [Reference].[SchoolDistrict]    Script Date: 6/7/2017 10:18:21 PM ******/
 DROP TABLE [Reference].[SchoolDistrict]
 GO
-/****** Object:  Table [Reference].[School]    Script Date: 6/7/2017 11:18:20 AM ******/
+/****** Object:  Table [Reference].[School]    Script Date: 6/7/2017 10:18:21 PM ******/
 DROP TABLE [Reference].[School]
 GO
-/****** Object:  Table [Reference].[PositionOfficeType]    Script Date: 6/7/2017 11:18:20 AM ******/
+/****** Object:  Table [Reference].[PositionOfficeType]    Script Date: 6/7/2017 10:18:21 PM ******/
 DROP TABLE [Reference].[PositionOfficeType]
 GO
-/****** Object:  Table [Reference].[Position]    Script Date: 6/7/2017 11:18:20 AM ******/
+/****** Object:  Table [Reference].[Position]    Script Date: 6/7/2017 10:18:21 PM ******/
 DROP TABLE [Reference].[Position]
 GO
-/****** Object:  Table [Reference].[OfficeType]    Script Date: 6/7/2017 11:18:20 AM ******/
+/****** Object:  Table [Reference].[OfficeType]    Script Date: 6/7/2017 10:18:21 PM ******/
 DROP TABLE [Reference].[OfficeType]
 GO
-/****** Object:  Table [Reference].[Office]    Script Date: 6/7/2017 11:18:20 AM ******/
+/****** Object:  Table [Reference].[Office]    Script Date: 6/7/2017 10:18:21 PM ******/
 DROP TABLE [Reference].[Office]
 GO
-/****** Object:  Table [Reference].[Grade]    Script Date: 6/7/2017 11:18:20 AM ******/
+/****** Object:  Table [Reference].[Grade]    Script Date: 6/7/2017 10:18:21 PM ******/
 DROP TABLE [Reference].[Grade]
 GO
-/****** Object:  Table [Reference].[County]    Script Date: 6/7/2017 11:18:20 AM ******/
+/****** Object:  Table [Reference].[County]    Script Date: 6/7/2017 10:18:21 PM ******/
 DROP TABLE [Reference].[County]
 GO
-/****** Object:  Table [Reference].[ClothesType]    Script Date: 6/7/2017 11:18:20 AM ******/
+/****** Object:  Table [Reference].[ClothesType]    Script Date: 6/7/2017 10:18:21 PM ******/
 DROP TABLE [Reference].[ClothesType]
 GO
-/****** Object:  Table [Reference].[AgeGroup]    Script Date: 6/7/2017 11:18:20 AM ******/
+/****** Object:  Table [Reference].[AgeGroup]    Script Date: 6/7/2017 10:18:21 PM ******/
 DROP TABLE [Reference].[AgeGroup]
 GO
-/****** Object:  Schema [Reference]    Script Date: 6/7/2017 11:18:20 AM ******/
+/****** Object:  Schema [Requests]    Script Date: 6/7/2017 10:18:21 PM ******/
+DROP SCHEMA [Requests]
+GO
+/****** Object:  Schema [Reference]    Script Date: 6/7/2017 10:18:21 PM ******/
 DROP SCHEMA [Reference]
 GO
-
-
 
 
 CREATE SCHEMA Reference;
@@ -588,7 +590,7 @@ GO
 
 CREATE TABLE Reference.AgeGroup
 (
-	AgeGroupId		int NOT NULL CONSTRAINT PK_Reference_AgeGroup_AgeGroupId PRIMARY KEY,
+	AgeGroupId		tinyint NOT NULL CONSTRAINT PK_Reference_AgeGroup_AgeGroupId PRIMARY KEY,
 	Name			varchar(50) NOT NULL,
 	Description		varchar(500) NULL
 )
@@ -599,13 +601,13 @@ GO
 
 
 INSERT INTO Reference.AgeGroup (AgeGroupId, Name)
-VALUES (1, 'Boys'), (2, 'Girls'), (3, 'Juniors'), (4, 'Mens'), (5, 'Womens');
+VALUES (0, 'None'), (1, 'Boys'), (2, 'Girls'), (3, 'Juniors'), (4, 'Mens'), (5, 'Womens');
 GO
 
 
 CREATE TABLE Reference.ClothesType
 (
-	ClothesTypeId	int NOT NULL CONSTRAINT PK_Reference_ClothesType_ClothesTypeId PRIMARY KEY,
+	ClothesTypeId	tinyint NOT NULL CONSTRAINT PK_Reference_ClothesType_ClothesTypeId PRIMARY KEY,
 	Name			varchar(50) NOT NULL
 )
 
@@ -622,18 +624,17 @@ CREATE TABLE Reference.Size
 (
 	SizeId			int NOT NULL IDENTITY(1,1) CONSTRAINT PK_Reference_Size_SizeId PRIMARY KEY,
 	Name			varchar(50) NOT NULL,
-	AgeGroupId		int NOT NULL,
+	AgeGroupId		tinyint NOT NULL,
 	Gender			varchar(10) NOT NULL,
-	ClothesTypeId	int NOT NULL,
-	SortOrder		int NULL
+	ClothesTypeId	tinyint NOT NULL,
+	SortOrder		int NOT NULL
 )
 
 ALTER TABLE Reference.Size
 	ADD CONSTRAINT AK_Reference_Size_Name_AgeGroupId_Gender_ClothesTypeId UNIQUE (Name, AgeGroupId, Gender, ClothesTypeId);
 GO
 
-CREATE UNIQUE INDEX UQ_Reference_SortOrder ON Reference.Size (SortOrder)
-WHERE SortOrder IS NOT NULL;
+CREATE UNIQUE INDEX UQ_Reference_SortOrder ON Reference.Size (SortOrder);
 GO
 
 ALTER TABLE Reference.Size
@@ -644,7 +645,7 @@ GO
 INSERT INTO Reference.Size (Name, AgeGroupId, Gender, ClothesTypeId, SortOrder)
 VALUES	
 		--Shirts--
-			--Boys
+			--Boys		
 		('Newborn', 1, 'Male', 1, 1010),
 		('0-3 Months', 1, 'Male', 1, 1020),
 		('3-6 Months', 1, 'Male', 1, 1030),
@@ -871,14 +872,30 @@ INSERT INTO Requests.Urgency (UrgencyId, Name, DaysForDelivery)
 VALUES	(1, 'Normal', 7),
 		(2, 'High', 4),
 		(3, 'Immediate', 1);
-GO 
+GO
+
+CREATE TABLE Requests.RequestStatus
+(
+	RequestStatusId		tinyint NOT NULL CONSTRAINT PK_Requests_RequestStatus_RequestStatusId PRIMARY KEY,
+	Name				varchar(20) NOT NULL
+);
+GO
+
+ALTER TABLE Requests.RequestStatus
+	ADD CONSTRAINT AK_Requests_RequestStatus_RequestStatusId UNIQUE (RequestStatusId);
+GO
+
+INSERT INTO Requests.RequestStatus (RequestStatusId, Name)
+VALUES (1, 'Requested'), (2, 'Delivered')
 
 CREATE TABLE Requests.Request 
 (
 	RequestId			int NOT NULL CONSTRAINT PK_Requests_Request_RequestId PRIMARY KEY,
 	DateRequested		date NOT NULL,
+	DateEstimatedDelivery date NOT NULL,
 	DateDelivered		date NOT NULL,
 	SubmittedByUserId	nvarchar(128) NOT NULL,
+	RequestStatusId		tinyint NOT NULL,
 	OfficeId			smallint NOT NULL,
 	Gender				varchar(10) NOT NULL,
 	GradeId				smallint NOT NULL,
@@ -886,9 +903,9 @@ CREATE TABLE Requests.Request
 	ShirtSizeId			int NULL,
 	PantSizeId			int NULL,
 	PantLengthSizeId	int NULL,
-	UnderwearSize		varchar(20) NULL,
-	ShoeSize			varchar(20) NULL,
-	Comments			varchar(2000) NULL,
+	UnderwearSize		varchar(20) NOT NULL,
+	ShoeSize			varchar(20) NOT NULL,
+	Comments			varchar(2000) NOT NULL,
 	RowCreatedTime		datetime2(0) NOT NULL,
 	RowCreatedByUserId	nvarchar(128) NOT NULL,
 	RowLastUpdatedTime	datetime2(0) NOT NULL,

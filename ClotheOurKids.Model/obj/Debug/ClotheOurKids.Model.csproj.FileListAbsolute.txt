@@ -16,3 +16,4 @@ M:\Development Projects\Visual Studio 2015\Projects\ClotheOurKids\ClotheOurKids\
 M:\Development Projects\Visual Studio 2015\Projects\ClotheOurKids\ClotheOurKids\ClotheOurKids.Model\obj\Debug\ClotheOurKids.Model.csprojResolveAssemblyReference.cache
 M:\Development Projects\Visual Studio 2015\Projects\ClotheOurKids\ClotheOurKids\ClotheOurKids.Model\obj\Debug\ClotheOurKids.Model.dll
 M:\Development Projects\Visual Studio 2015\Projects\ClotheOurKids\ClotheOurKids\ClotheOurKids.Model\obj\Debug\ClotheOurKids.Model.pdb
+C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKids.Model\bin\Debug\ClotheOurKids.Model.dll.config

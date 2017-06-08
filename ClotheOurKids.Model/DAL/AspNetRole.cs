@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClotheOurKids.Model.DAL
+namespace ClotheOurKids.Model
 {
     using System;
     using System.Collections.Generic;

@@ -38,7 +38,7 @@
     <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
     <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
     <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
     <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
@@ -49,9 +49,39 @@
     <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="PositionId" Type="Int16" Nullable="false" />
     <Property Name="OfficeId" Type="Int16" Nullable="false" />
+    <Property Name="ContactMethodId" Type="Int16" Nullable="false" />
     <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
     <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
     <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="AgeGroup">
+    <Key>
+      <PropertyRef Name="AgeGroupId" />
+    </Key>
+    <Property Name="AgeGroupId" Type="Byte" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Sizes" Relationship="Self.FK_Reference_AgeGroup_ProvidesAgeGroupDetailsFor_Reference_Size" FromRole="AgeGroup" ToRole="Size" />
+  </EntityType>
+  <EntityType Name="ClothesType">
+    <Key>
+      <PropertyRef Name="ClothesTypeId" />
+    </Key>
+    <Property Name="ClothesTypeId" Type="Byte" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Sizes" Relationship="Self.FK_Reference_ClothesType_ProvidesDetailsAboutTypeOfClothingFor_Reference_Size" FromRole="ClothesType" ToRole="Size" />
+  </EntityType>
+  <EntityType Name="County">
+    <Key>
+      <PropertyRef Name="CountyId" />
+    </Key>
+    <Property Name="CountyId" Type="Int16" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ServiceStartDate" Type="DateTime" Precision="0" />
+    <Property Name="ServiceEndDate" Type="DateTime" Precision="0" />
+    <Property Name="StateId" Type="Int16" />
+    <NavigationProperty Name="SchoolDistricts" Relationship="Self.FK_Reference_SchoolDistrict_IsPartOfTheCounty_Reference_County" FromRole="County" ToRole="SchoolDistrict" />
   </EntityType>
   <EntityType Name="Grade">
     <Key>
@@ -68,10 +98,15 @@
     <Property Name="OfficeId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="OfficeTypeId" Type="Byte" Nullable="false" />
-    <Property Name="SchoolSystemId" Type="Int16" />
-    <Property Name="SchoolType" Type="Byte" />
+    <Property Name="StreetAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="StateId" Type="Int16" />
+    <Property Name="PostalCode" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+    <Property Name="PostalCodeExt" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="OfficeType" Relationship="Self.FK_Reference_OfficeType_DescribesOrganizationalTypeOf_Reference_Office" FromRole="Office" ToRole="OfficeType" />
-    <NavigationProperty Name="SchoolSystem" Relationship="Self.FK_Reference_SchoolSystem_IdentifiesSchoolSystemOf_Reference_Office" FromRole="Office" ToRole="SchoolSystem" />
+    <NavigationProperty Name="Schools" Relationship="Self.FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office" FromRole="Office" ToRole="School" />
+    <NavigationProperty Name="State" Relationship="Self.FK_Reference_State_DefinesStateOfResidenceFor_Reference_Office" FromRole="Office" ToRole="States" />
   </EntityType>
   <EntityType Name="OfficeType">
     <Key>
@@ -102,14 +137,28 @@
     <NavigationProperty Name="OfficeType" Relationship="Self.FK_Reference_OfficeType_DescribesTypeOfOfficeAssociatedWith_Reference_PositionOfficeType" FromRole="PositionOfficeType" ToRole="OfficeType" />
     <NavigationProperty Name="Position" Relationship="Self.FK_Reference_PositionOfficeType_SpecifiesOfficeTypeOf_Reference_Position" FromRole="PositionOfficeType" ToRole="Position" />
   </EntityType>
-  <EntityType Name="SchoolSystem">
+  <EntityType Name="School">
     <Key>
-      <PropertyRef Name="SchoolSystemId" />
+      <PropertyRef Name="SchoolId" />
     </Key>
-    <Property Name="SchoolSystemId" Type="Int16" Nullable="false" />
+    <Property Name="SchoolId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OfficeId" Type="Int16" Nullable="false" />
+    <Property Name="SchoolDistrictId" Type="Int16" Nullable="false" />
+    <Property Name="SchoolTypeId" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="Office" Relationship="Self.FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office" FromRole="School" ToRole="Office" />
+    <NavigationProperty Name="SchoolDistrict" Relationship="Self.FK_Reference_SchoolDistrict_IdentifiesSchoolDistrictOf_Reference_School" FromRole="School" ToRole="SchoolDistrict" />
+    <NavigationProperty Name="SchoolType" Relationship="Self.FK_Reference_SchoolType_IdentifiesTypeOf_Reference_School" FromRole="School" ToRole="SchoolType" />
+  </EntityType>
+  <EntityType Name="SchoolDistrict">
+    <Key>
+      <PropertyRef Name="SchoolDistrictId" />
+    </Key>
+    <Property Name="SchoolDistrictId" Type="Int16" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Offices" Relationship="Self.FK_Reference_SchoolSystem_IdentifiesSchoolSystemOf_Reference_Office" FromRole="SchoolSystem" ToRole="Office" />
+    <Property Name="CountyId" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="County" Relationship="Self.FK_Reference_SchoolDistrict_IsPartOfTheCounty_Reference_County" FromRole="SchoolDistrict" ToRole="County" />
+    <NavigationProperty Name="Schools" Relationship="Self.FK_Reference_SchoolDistrict_IdentifiesSchoolDistrictOf_Reference_School" FromRole="SchoolDistrict" ToRole="School" />
   </EntityType>
   <EntityType Name="SchoolType">
     <Key>
@@ -118,6 +167,70 @@
     <Property Name="SchoolTypeId" Type="Byte" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Schools" Relationship="Self.FK_Reference_SchoolType_IdentifiesTypeOf_Reference_School" FromRole="SchoolType" ToRole="School" />
+  </EntityType>
+  <EntityType Name="Size">
+    <Key>
+      <PropertyRef Name="SizeId" />
+    </Key>
+    <Property Name="SizeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AgeGroupId" Type="Byte" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ClothesTypeId" Type="Byte" Nullable="false" />
+    <Property Name="SortOrder" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AgeGroup" Relationship="Self.FK_Reference_AgeGroup_ProvidesAgeGroupDetailsFor_Reference_Size" FromRole="Size" ToRole="AgeGroup" />
+    <NavigationProperty Name="ClothesType" Relationship="Self.FK_Reference_ClothesType_ProvidesDetailsAboutTypeOfClothingFor_Reference_Size" FromRole="Size" ToRole="ClothesType" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="Int16" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Code" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Offices" Relationship="Self.FK_Reference_State_DefinesStateOfResidenceFor_Reference_Office" FromRole="States" ToRole="Office" />
+  </EntityType>
+  <EntityType Name="Request">
+    <Key>
+      <PropertyRef Name="RequestId" />
+    </Key>
+    <Property Name="RequestId" Type="Int32" Nullable="false" />
+    <Property Name="DateRequested" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DateEstimatedDelivery" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DateDelivered" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="SubmittedByUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RequestStatusId" Type="Byte" Nullable="false" />
+    <Property Name="OfficeId" Type="Int16" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GradeId" Type="Int16" Nullable="false" />
+    <Property Name="UrgencyId" Type="Byte" Nullable="false" />
+    <Property Name="ShirtSizeId" Type="Int32" />
+    <Property Name="PantSizeId" Type="Int32" />
+    <Property Name="PantLengthSizeId" Type="Int32" />
+    <Property Name="UnderwearSize" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ShoeSize" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Comments" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RowCreatedTime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="RowCreatedByUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RowLastUpdatedTime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="RowLastUpdatedByUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RequestStatu">
+    <Key>
+      <PropertyRef Name="RequestStatusId" />
+    </Key>
+    <Property Name="RequestStatusId" Type="Byte" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Urgency">
+    <Key>
+      <PropertyRef Name="UrgencyId" />
+    </Key>
+    <Property Name="UrgencyId" Type="Byte" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="DaysForDelivery" Type="Byte" Nullable="false" />
   </EntityType>
   <EntityType Name="C__MigrationHistory">
     <Key>
@@ -159,6 +272,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Reference_AgeGroup_ProvidesAgeGroupDetailsFor_Reference_Size">
+    <End Role="AgeGroup" Type="Self.AgeGroup" Multiplicity="1" />
+    <End Role="Size" Type="Self.Size" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AgeGroup">
+        <PropertyRef Name="AgeGroupId" />
+      </Principal>
+      <Dependent Role="Size">
+        <PropertyRef Name="AgeGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_ClothesType_ProvidesDetailsAboutTypeOfClothingFor_Reference_Size">
+    <End Role="ClothesType" Type="Self.ClothesType" Multiplicity="1" />
+    <End Role="Size" Type="Self.Size" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClothesType">
+        <PropertyRef Name="ClothesTypeId" />
+      </Principal>
+      <Dependent Role="Size">
+        <PropertyRef Name="ClothesTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_SchoolDistrict_IsPartOfTheCounty_Reference_County">
+    <End Role="County" Type="Self.County" Multiplicity="1" />
+    <End Role="SchoolDistrict" Type="Self.SchoolDistrict" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="County">
+        <PropertyRef Name="CountyId" />
+      </Principal>
+      <Dependent Role="SchoolDistrict">
+        <PropertyRef Name="CountyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Reference_OfficeType_DescribesOrganizationalTypeOf_Reference_Office">
     <End Role="OfficeType" Type="Self.OfficeType" Multiplicity="1" />
     <End Role="Office" Type="Self.Office" Multiplicity="*" />
@@ -171,15 +320,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Reference_SchoolSystem_IdentifiesSchoolSystemOf_Reference_Office">
-    <End Role="SchoolSystem" Type="Self.SchoolSystem" Multiplicity="0..1" />
+  <Association Name="FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office">
+    <End Role="Office" Type="Self.Office" Multiplicity="1" />
+    <End Role="School" Type="Self.School" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Office">
+        <PropertyRef Name="OfficeId" />
+      </Principal>
+      <Dependent Role="School">
+        <PropertyRef Name="OfficeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_State_DefinesStateOfResidenceFor_Reference_Office">
+    <End Role="States" Type="Self.State" Multiplicity="0..1" />
     <End Role="Office" Type="Self.Office" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="SchoolSystem">
-        <PropertyRef Name="SchoolSystemId" />
+      <Principal Role="States">
+        <PropertyRef Name="StateId" />
       </Principal>
       <Dependent Role="Office">
-        <PropertyRef Name="SchoolSystemId" />
+        <PropertyRef Name="StateId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -207,22 +368,55 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Reference_SchoolDistrict_IdentifiesSchoolDistrictOf_Reference_School">
+    <End Role="SchoolDistrict" Type="Self.SchoolDistrict" Multiplicity="1" />
+    <End Role="School" Type="Self.School" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SchoolDistrict">
+        <PropertyRef Name="SchoolDistrictId" />
+      </Principal>
+      <Dependent Role="School">
+        <PropertyRef Name="SchoolDistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_SchoolType_IdentifiesTypeOf_Reference_School">
+    <End Role="SchoolType" Type="Self.SchoolType" Multiplicity="1" />
+    <End Role="School" Type="Self.School" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SchoolType">
+        <PropertyRef Name="SchoolTypeId" />
+      </Principal>
+      <Dependent Role="School">
+        <PropertyRef Name="SchoolTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="AspNetUserRoles">
     <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
   </Association>
-  <EntityContainer Name="ClotheOurKidsContext" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="ClotheOurKidsEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
     <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="AgeGroups" EntityType="Self.AgeGroup" />
+    <EntitySet Name="ClothesTypes" EntityType="Self.ClothesType" />
+    <EntitySet Name="Counties" EntityType="Self.County" />
     <EntitySet Name="Grades" EntityType="Self.Grade" />
     <EntitySet Name="Offices" EntityType="Self.Office" />
     <EntitySet Name="OfficeTypes" EntityType="Self.OfficeType" />
     <EntitySet Name="Positions" EntityType="Self.Position" />
     <EntitySet Name="PositionOfficeTypes" EntityType="Self.PositionOfficeType" />
-    <EntitySet Name="SchoolSystems" EntityType="Self.SchoolSystem" />
+    <EntitySet Name="Schools" EntityType="Self.School" />
+    <EntitySet Name="SchoolDistricts" EntityType="Self.SchoolDistrict" />
     <EntitySet Name="SchoolTypes" EntityType="Self.SchoolType" />
+    <EntitySet Name="Sizes" EntityType="Self.Size" />
+    <EntitySet Name="States" EntityType="Self.State" />
+    <EntitySet Name="Requests" EntityType="Self.Request" />
+    <EntitySet Name="RequestStatus" EntityType="Self.RequestStatu" />
+    <EntitySet Name="Urgencies" EntityType="Self.Urgency" />
     <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -232,12 +426,28 @@
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
     </AssociationSet>
+    <AssociationSet Name="FK_Reference_AgeGroup_ProvidesAgeGroupDetailsFor_Reference_Size" Association="Self.FK_Reference_AgeGroup_ProvidesAgeGroupDetailsFor_Reference_Size">
+      <End Role="AgeGroup" EntitySet="AgeGroups" />
+      <End Role="Size" EntitySet="Sizes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_ClothesType_ProvidesDetailsAboutTypeOfClothingFor_Reference_Size" Association="Self.FK_Reference_ClothesType_ProvidesDetailsAboutTypeOfClothingFor_Reference_Size">
+      <End Role="ClothesType" EntitySet="ClothesTypes" />
+      <End Role="Size" EntitySet="Sizes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_SchoolDistrict_IsPartOfTheCounty_Reference_County" Association="Self.FK_Reference_SchoolDistrict_IsPartOfTheCounty_Reference_County">
+      <End Role="County" EntitySet="Counties" />
+      <End Role="SchoolDistrict" EntitySet="SchoolDistricts" />
+    </AssociationSet>
     <AssociationSet Name="FK_Reference_OfficeType_DescribesOrganizationalTypeOf_Reference_Office" Association="Self.FK_Reference_OfficeType_DescribesOrganizationalTypeOf_Reference_Office">
       <End Role="OfficeType" EntitySet="OfficeTypes" />
       <End Role="Office" EntitySet="Offices" />
     </AssociationSet>
-    <AssociationSet Name="FK_Reference_SchoolSystem_IdentifiesSchoolSystemOf_Reference_Office" Association="Self.FK_Reference_SchoolSystem_IdentifiesSchoolSystemOf_Reference_Office">
-      <End Role="SchoolSystem" EntitySet="SchoolSystems" />
+    <AssociationSet Name="FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office" Association="Self.FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office">
+      <End Role="Office" EntitySet="Offices" />
+      <End Role="School" EntitySet="Schools" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_State_DefinesStateOfResidenceFor_Reference_Office" Association="Self.FK_Reference_State_DefinesStateOfResidenceFor_Reference_Office">
+      <End Role="States" EntitySet="States" />
       <End Role="Office" EntitySet="Offices" />
     </AssociationSet>
     <AssociationSet Name="FK_Reference_OfficeType_DescribesTypeOfOfficeAssociatedWith_Reference_PositionOfficeType" Association="Self.FK_Reference_OfficeType_DescribesTypeOfOfficeAssociatedWith_Reference_PositionOfficeType">
@@ -247,6 +457,14 @@
     <AssociationSet Name="FK_Reference_PositionOfficeType_SpecifiesOfficeTypeOf_Reference_Position" Association="Self.FK_Reference_PositionOfficeType_SpecifiesOfficeTypeOf_Reference_Position">
       <End Role="Position" EntitySet="Positions" />
       <End Role="PositionOfficeType" EntitySet="PositionOfficeTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_SchoolDistrict_IdentifiesSchoolDistrictOf_Reference_School" Association="Self.FK_Reference_SchoolDistrict_IdentifiesSchoolDistrictOf_Reference_School">
+      <End Role="SchoolDistrict" EntitySet="SchoolDistricts" />
+      <End Role="School" EntitySet="Schools" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_SchoolType_IdentifiesTypeOf_Reference_School" Association="Self.FK_Reference_SchoolType_IdentifiesTypeOf_Reference_School">
+      <End Role="SchoolType" EntitySet="SchoolTypes" />
+      <End Role="School" EntitySet="Schools" />
     </AssociationSet>
     <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
