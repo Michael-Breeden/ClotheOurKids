@@ -8,6 +8,7 @@ namespace ClotheOurKids.Model.Repository
 {
     public interface IRegisterFormRepository
     {
+        IList<Position> GetAllPositions();
         IList<Office> GetAllOffices();
         IList<Position> GetPositionsByOffice(int officeId);
         IList<ContactMethod> GetAllContactMethods();

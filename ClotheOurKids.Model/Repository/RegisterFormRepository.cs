@@ -23,6 +23,14 @@ namespace ClotheOurKids.Model.Repository
             return content;
         }
 
+        public IList<Position> GetAllPositions()
+        {
+            var query = from positions in context.Positions
+                        select positions;
+            var content = query.ToList<Position>();
+            return content;
+        }
+
         public IList<Position> GetPositionsByOffice(int officeId)
         {
             var officeTypeId = (from offices in context.Offices

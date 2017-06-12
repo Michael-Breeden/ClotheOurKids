@@ -243,5 +243,13 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="ContactMethods">
+      <EntityTypeMapping TypeName="ClotheOurKidsModel.ContactMethod">
+        <MappingFragment StoreEntitySet="ContactMethod">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ContactMethodId" ColumnName="ContactMethodId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

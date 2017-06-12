@@ -92,7 +92,7 @@ namespace ClotheOurKids.Web.Models
     {
         public RegisterViewModel()
         {
-            AvailablePositions = new List<SelectListItem>();
+            //AvailablePositions = new List<SelectListItem>();
             AvailableOffices = new List<SelectListItem>();
             AvailableContactMethods = new List<SelectListItem>();
         }
@@ -124,7 +124,7 @@ namespace ClotheOurKids.Web.Models
         [Required]
         [Display(Name = "Your Position")]
         public int PositionId { get; set; }
-        public IList<SelectListItem> AvailablePositions { get; set; }
+        public IList<Position> AvailablePositions { get; set; }
 
         [Required]
         [Display(Name = "Your Employer")]

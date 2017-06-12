@@ -85,6 +85,13 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <Property Name="ClothesTypeId" Type="tinyint" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <EntityType Name="ContactMethod">
+    <Key>
+      <PropertyRef Name="ContactMethodId" />
+    </Key>
+    <Property Name="ContactMethodId" Type="smallint" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
   <EntityType Name="County">
     <Key>
       <PropertyRef Name="CountyId" />
@@ -308,6 +315,18 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Reference_ContactMethod$IsPreferredMethodOfContactFor$dbo_AspNetUsers">
+    <End Role="ContactMethod" Type="Self.ContactMethod" Multiplicity="1" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContactMethod">
+        <PropertyRef Name="ContactMethodId" />
+      </Principal>
+      <Dependent Role="AspNetUsers">
+        <PropertyRef Name="ContactMethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Reference_OfficeType$DescribesOrganizationalTypeOf$Reference_Office">
     <End Role="OfficeType" Type="Self.OfficeType" Multiplicity="1" />
     <End Role="Office" Type="Self.Office" Multiplicity="*" />
@@ -412,6 +431,7 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AgeGroup" EntityType="Self.AgeGroup" Schema="Reference" store:Type="Tables" />
     <EntitySet Name="ClothesType" EntityType="Self.ClothesType" Schema="Reference" store:Type="Tables" />
+    <EntitySet Name="ContactMethod" EntityType="Self.ContactMethod" Schema="Reference" store:Type="Tables" />
     <EntitySet Name="County" EntityType="Self.County" Schema="Reference" store:Type="Tables" />
     <EntitySet Name="Grade" EntityType="Self.Grade" Schema="Reference" store:Type="Tables" />
     <EntitySet Name="Office" EntityType="Self.Office" Schema="Reference" store:Type="Tables" />
@@ -457,6 +477,10 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <AssociationSet Name="FK_Reference_ClothesType$ProvidesDetailsAboutTypeOfClothingFor$Reference_Size" Association="Self.FK_Reference_ClothesType$ProvidesDetailsAboutTypeOfClothingFor$Reference_Size">
       <End Role="ClothesType" EntitySet="ClothesType" />
       <End Role="Size" EntitySet="Size" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_ContactMethod$IsPreferredMethodOfContactFor$dbo_AspNetUsers" Association="Self.FK_Reference_ContactMethod$IsPreferredMethodOfContactFor$dbo_AspNetUsers">
+      <End Role="ContactMethod" EntitySet="ContactMethod" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
     <AssociationSet Name="FK_Reference_OfficeType$DescribesOrganizationalTypeOf$Reference_Office" Association="Self.FK_Reference_OfficeType$DescribesOrganizationalTypeOf$Reference_Office">
       <End Role="OfficeType" EntitySet="OfficeType" />

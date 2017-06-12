@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using ClotheOurKids.Web.Models.ViewModel;
+using ClotheOurKids.Model;
 
 namespace ClotheOurKids.Web.Controllers
 {

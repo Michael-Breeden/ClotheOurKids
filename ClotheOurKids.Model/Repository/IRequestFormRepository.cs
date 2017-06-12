@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ClotheOurKids.Model.DAL;
+using ClotheOurKids.Model;
 
 namespace ClotheOurKids.Model
 {
     public interface IRequestFormRepository
     {
-        IList<Position> GetAllPositions();
         IList<Position> GetPositionsByOfficeId(int officeTypeId);
         IList<Office> GetAllOffices();
         IList<Office> GetOfficesByPositionId(int positionId);

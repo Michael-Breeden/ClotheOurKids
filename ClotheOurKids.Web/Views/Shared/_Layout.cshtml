@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
+@using ClotheOurKids.Model
 
 <!DOCTYPE html>
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -39,7 +40,7 @@
 
 </head>
 <body id="bodyDiv" class="kids-skin">
-    @Html.Partial("_LoginForm")
+    @Html.Partial("_LoginForm", new ClotheOurKids.Web.Models.LoginViewModel())
     <div id="page-wrapper">       
 
         <header>

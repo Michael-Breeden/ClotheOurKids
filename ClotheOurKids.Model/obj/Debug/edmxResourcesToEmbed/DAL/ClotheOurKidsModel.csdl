@@ -53,6 +53,7 @@
     <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
     <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
     <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+    <NavigationProperty Name="ContactMethod" Relationship="ClotheOurKidsModel.FK_Reference_ContactMethod_IsPreferredMethodOfContactFor_dbo_AspNetUsers" FromRole="AspNetUser" ToRole="ContactMethod" />
   </EntityType>
   <EntityType Name="AgeGroup">
     <Key>
@@ -470,5 +471,30 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <EntitySet Name="ContactMethods" EntityType="ClotheOurKidsModel.ContactMethod" />
+    <AssociationSet Name="FK_Reference_ContactMethod_IsPreferredMethodOfContactFor_dbo_AspNetUsers" Association="ClotheOurKidsModel.FK_Reference_ContactMethod_IsPreferredMethodOfContactFor_dbo_AspNetUsers">
+      <End Role="ContactMethod" EntitySet="ContactMethods" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="ContactMethod">
+    <Key>
+      <PropertyRef Name="ContactMethodId" />
+    </Key>
+    <Property Name="ContactMethodId" Type="Int16" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="ClotheOurKidsModel.FK_Reference_ContactMethod_IsPreferredMethodOfContactFor_dbo_AspNetUsers" FromRole="ContactMethod" ToRole="AspNetUser" />
+  </EntityType>
+  <Association Name="FK_Reference_ContactMethod_IsPreferredMethodOfContactFor_dbo_AspNetUsers">
+    <End Type="ClotheOurKidsModel.ContactMethod" Role="ContactMethod" Multiplicity="1" />
+    <End Type="ClotheOurKidsModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContactMethod">
+        <PropertyRef Name="ContactMethodId" />
+      </Principal>
+      <Dependent Role="AspNetUser">
+        <PropertyRef Name="ContactMethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

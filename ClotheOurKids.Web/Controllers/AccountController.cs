@@ -13,6 +13,7 @@ using System.Net.Http;
 using System.Collections.Generic;
 using System.Web.Helpers;
 using ClotheOurKids.Model;
+using ClotheOurKids.Model.Repository;
 
 namespace ClotheOurKids.Web.Controllers
 {
@@ -146,11 +147,14 @@ namespace ClotheOurKids.Web.Controllers
         [Route("Register", Name = "RegisterPage")]
         public ActionResult Register()
         {
+            var repository = new RegisterFormRepository();
             var model = new RegisterViewModel
             {
-                Positions = GetPositions()
+                //AvailablePositions = repository.GetAllPositions().Select(x => new SelectListItem { Text = x.Name, Value = x.PositionId.ToString() }).ToList()
+                //AvailablePositions = new SelectList(repository.GetAllPositions(), "positionId")
+                AvailablePositions = repository.GetAllPositions()
             };
-            return View();
+            return View(model);
         }
 
         //
@@ -181,19 +185,6 @@ namespace ClotheOurKids.Web.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
-        }
-
-        private IEnumerable<Position> GetPositions()
-        {
-            IEnumerable<Position> positions;
-
-            //using (var context = new ClotheOurKidsContext())
-            //{
-            //    positions = context.Positions.Select });
-            //}
-
-            return positions;
-           
         }
 
         //
