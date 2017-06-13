@@ -12,6 +12,7 @@ namespace ClotheOurKids.Web
                         "~/Content/js/tether.js",
                         "~/Content/js/bootstrap.js",
                         "~/Content/js/mdb.js",
+                        "~/Content/plugins/select2-4.0.3/js/select2.full.min.js",
                         "~/Content/plugins/mmenu-6.1/dist/jquery.mmenu.all.js",
                         "~/Content/plugins/mmenu-6.1/dist/wrappers/bootstrap/jquery.mmenu.bootstrap.js"
                         ));
@@ -34,6 +35,7 @@ namespace ClotheOurKids.Web
                       "~/Content/plugins/mMenu-6.1/dist/wrappers/bootstrap/jquery.mmenu.bootstrap.css",
                       "~/Content/css/hamburgers-min.css",
                       "~/Content/css/mySkin.css",
+                      "~/Content/plugins/select2-4.0.3/css/select2.min.css",
                       "~/Content/css/myHeader.css",
                       "~/Content/css/style.css"
                       ));

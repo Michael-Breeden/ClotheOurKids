@@ -88,10 +88,8 @@
                         <div class="col-md">
                             <div class="md-form">
                                 <i class="fa fa-bell prefix"></i>
-                                @Html.DropDownListFor(m => m.PositionId, new SelectList(Model.AvailablePositions, "Name", "PositionId", Model.PositionId))
-                                @Html.LabelFor(m => m.PositionId)
-                                <select id="positionSelect" class="mdb-select"></select>
-                                <label for="positionSelect">Position</label>
+                                @Html.LabelFor(m => m.PositionId, new { @class = "select2-label" })
+                                @Html.DropDownListFor(m => m.PositionId, new SelectList(Model.AvailablePositions, "PositionId", "Name", Model.PositionId), new { @class= "mdb-select md-select2" } )                                
                             </div>
                         </div>
                         <!--/First column-->
@@ -143,7 +141,8 @@
 
             //var positions = { "1": "Principal", "2": "Teacher", "3": "Counselor", "4": "FACT Coordinator" };
 
-            $('#positionSelect').append('<option value="0" disabled selected>Choose Your Position</option>');
+            $('#PositionId').prepend('<option value="0" disabled selected>Choose Your Position</option>');
+            $('#PositionId').select2();
             $('#locationSelect').append('<option value="0" disabled selected>Choose Your School/Office</option>');
 
 
