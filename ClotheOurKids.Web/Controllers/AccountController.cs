@@ -148,13 +148,97 @@ namespace ClotheOurKids.Web.Controllers
         public ActionResult Register()
         {
             var repository = new RegisterFormRepository();
-            var model = new RegisterViewModel
+
+            var offices = repository.GetAllOffices();
+            var officeList = (from o in offices
+                              select new
+                              {
+                                  id = o.OfficeId,
+                                  name = o.Name
+                              }).ToList();
+
+            var positions = repository.GetAllPositions();
+            var positionList = (from p in positions
+                                select new
+                                {
+                                    id = p.PositionId,
+                                    name = p.Name
+                                }).ToList();
+
+            var model = new RegisterViewModel();
+            
+            
+            model.AvailableOfficeTypes = repository.GetAllOfficeTypes();
+
+            foreach(var office in officeList)
             {
-                //AvailablePositions = repository.GetAllPositions().Select(x => new SelectListItem { Text = x.Name, Value = x.PositionId.ToString() }).ToList()
-                //AvailablePositions = new SelectList(repository.GetAllPositions(), "positionId")
-                AvailablePositions = repository.GetAllPositions()
-            };
+                model.AvailableOffices.Add(new SelectListItem()
+                {
+                    Text = office.name,
+                    Value = office.id.ToString()
+                });
+            }
+
+            foreach (var position in positionList)
+            {
+                model.AvailablePositions.Add(new SelectListItem()
+                {
+                    Text = position.name,
+                    Value = position.id.ToString()
+                });
+            }
+
             return View(model);
+        }
+
+        [AllowAnonymous]
+        [AcceptVerbs(HttpVerbs.Get)]
+        [Route("Get-Offices", Name = "GetOffices")]
+        public ActionResult GetOfficesByOfficeTypeId (string officeTypeId)
+        {
+            if (String.IsNullOrEmpty(officeTypeId))
+            {
+                throw new ArgumentNullException("officeTypeId");
+            }
+
+            int id = 0;
+            var repository = new RegisterFormRepository();
+            bool isValid = Int32.TryParse(officeTypeId, out id);
+            var offices = repository.GetOfficesByOfficeType(id);
+
+            var result = (from o in offices
+                          select new
+                          {
+                              id = o.OfficeId,
+                              name = o.Name
+                          }).ToList();
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [AllowAnonymous]
+        [AcceptVerbs(HttpVerbs.Get)]
+        [Route("Get-Positions", Name = "GetPositions")]
+        public ActionResult GetPositionsByOfficeId (string officeTypeId)
+        {
+            if (String.IsNullOrEmpty(officeTypeId))
+            {
+                throw new ArgumentNullException("officeTypeId");
+            }
+
+            int id = 0;
+            var repository = new RegisterFormRepository();
+            bool isValid = Int32.TryParse(officeTypeId, out id);
+            var positions = repository.GetPositionsByOfficeType(id);
+
+            var result = (from p in positions
+                          select new
+                          {
+                              id = p.PositionId,
+                              name = p.Name
+                          }).ToList();
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         //

@@ -77,35 +77,50 @@
                         <!--/Second column-->
                     </div>
                     <!--/Second row-->
-                }
-                <form>
-
                     
-
                     <!--Third row-->
                     <div class="row mt-2">
                         <!--First column-->
-                        <div class="col-md">
-                            <div class="md-form">
-                                <i class="fa fa-bell prefix"></i>
-                                @Html.LabelFor(m => m.PositionId, new { @class = "select2-label" })
-                                @Html.DropDownListFor(m => m.PositionId, new SelectList(Model.AvailablePositions, "PositionId", "Name", Model.PositionId), new { @class= "mdb-select md-select2" } )                                
-                            </div>
+                        <div class="col-12 mb-1 d-flex justify-content-center">
+                            <h4 class="h4-responsive">Where You Work</h4>
                         </div>
                         <!--/First column-->
                         <!--Second column-->
-                        <div class="col-md">
-                            <div class="md-form">
-                                <i class="fa fa-map-marker prefix"></i>
-                                <select id="locationSelect" class="mdb-select"></select>
-                                <label for="locationSelect">School / Office</label>
-                            </div>
+                        <div class="col col-12 d-flex justify-content-center">
+                            @{
+                                foreach (var officeType in Model.AvailableOfficeTypes)
+                                {
+                                    <div class="form-group mr-4">
+                                        @Html.RadioButtonFor(m => m.OfficeTypeId, officeType.OfficeTypeId, new { id = "officeType" + officeType.OfficeTypeId, @class = "with-gap" })
+                                        @Html.Label("officeType" + officeType.OfficeTypeId, officeType.Name)
+                                    </div>
+                                }
+                            }
                         </div>
                         <!--/Second column-->
                     </div>
                     <!--/Third row-->
 
                     <!--Fourth row-->
+                    <div class="row mt-2">
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-map-marker prefix"></i>
+                                @Html.LabelFor(m => m.OfficeId, new { @class = "select2-label" })
+                                @Html.DropDownListFor(m => m.OfficeId, Model.AvailableOffices, new { @class = "mdb-select md-select2" })
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-bell prefix"></i>
+                                @Html.LabelFor(m => m.PositionId, new { @class = "select2-label" })
+                                @Html.DropDownListFor(m => m.PositionId, Model.AvailablePositions, new { @class="mdb-select md-select2" })
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Fourth row-->
+
+                    <!--Fifth row-->
                     <div class="row mt-2">
                         <!--First column-->
                         <div class="col-md">
@@ -117,7 +132,8 @@
                         </div>
                         <!--/First column-->
                     </div>
-                    <!--/Fourth row-->
+                    <!--/Fifth row-->
+
                     <!--Eleventh row-->
                     <div class="row mt-2 text-center">
                         <div class="col">
@@ -125,8 +141,7 @@
                         </div>
                     </div>
                     <!--/Eleventh row-->
-                </form>
-                
+                }                
                 <!--/Form Body-->
             </div>
         </div>    
@@ -142,8 +157,59 @@
             //var positions = { "1": "Principal", "2": "Teacher", "3": "Counselor", "4": "FACT Coordinator" };
 
             $('#PositionId').prepend('<option value="0" disabled selected>Choose Your Position</option>');
-            $('#PositionId').select2();
-            $('#locationSelect').append('<option value="0" disabled selected>Choose Your School/Office</option>');
+            $('#PositionId').select2().prop("disabled", true);
+
+            $('#OfficeId').prepend('<option value="0" disabled selected>Choose Your Office</option>')
+            $('#OfficeId').select2().prop("disabled", true);
+
+
+            $('input[type=radio][name=OfficeTypeId]').change(function () {
+                var selectedItem = this.value;
+                var ddlOffices = $('#OfficeId');
+                var ddlPositions = $('#PositionId');
+                
+
+
+                 $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "@(Url.RouteUrl("GetOffices"))",
+                    data: { "officeTypeId": selectedItem },
+                    success: function (data) {
+                        ddlOffices.html('');
+                        ddlOffices.prepend('<option value="0" disabled selected>Choose Your Office</option>');
+                        $.each(data, function (id, option) {
+                            ddlOffices.append($('<option></option>').val(option.id).html(option.name));
+                        });
+
+                        ddlOffices.prop("disabled", false);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert('Failed to retrieve offices.');
+                    }
+                });
+
+
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "@(Url.RouteUrl("GetPositions"))",
+                    data: { "officeTypeId": selectedItem },
+                    success: function (data) {
+                        ddlPositions.html('');
+                        ddlPositions.prepend('<option value="0" disabled selected>Choose Your Position</option>');
+                        $.each(data, function (id, option) {
+                            ddlPositions.append($('<option></option>').val(option.id).html(option.name));
+                        });
+
+                        ddlPositions.prop("disabled", false);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert('Failed to retrieve positions.');
+                    }
+                 });
+
+            });
 
 
             //$.each(positions, function (key, value) {

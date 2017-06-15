@@ -15,6 +15,14 @@ namespace ClotheOurKids.Model.Repository
             context = new ClotheOurKidsEntities();
         }
 
+        public IList<OfficeType> GetAllOfficeTypes()
+        {
+            var query = from officeTypes in context.OfficeTypes
+                        select officeTypes;
+            var content = query.ToList<OfficeType>();
+            return content;
+        }
+
         public IList<Office> GetAllOffices()
         {
             var query = from offices in context.Offices
@@ -28,6 +36,25 @@ namespace ClotheOurKids.Model.Repository
             var query = from positions in context.Positions
                         select positions;
             var content = query.ToList<Position>();
+            return content;
+        }
+
+        public IList<Position> GetPositionsByOfficeType(int officeTypeId)
+        {
+            var query = from positions in context.Positions
+                        where positions.PositionOfficeTypes.Any(p => p.OfficeTypeId == officeTypeId)
+                        select positions;
+            var content = query.ToList<Position>();
+            return content;
+        }
+
+        public IList<Office> GetOfficesByOfficeType(int officeTypeId)
+        {
+            var query = from offices in context.Offices
+                        where offices.OfficeTypeId == officeTypeId
+                        select offices;
+
+            var content = query.ToList<Office>();
             return content;
         }
 
