@@ -147,46 +147,7 @@ namespace ClotheOurKids.Web.Controllers
         [Route("Register", Name = "RegisterPage")]
         public ActionResult Register()
         {
-            var repository = new RegisterFormRepository();
-
-            var offices = repository.GetAllOffices();
-            var officeList = (from o in offices
-                              select new
-                              {
-                                  id = o.OfficeId,
-                                  name = o.Name
-                              }).ToList();
-
-            var positions = repository.GetAllPositions();
-            var positionList = (from p in positions
-                                select new
-                                {
-                                    id = p.PositionId,
-                                    name = p.Name
-                                }).ToList();
-
-            var model = new RegisterViewModel();
-            
-            
-            model.AvailableOfficeTypes = repository.GetAllOfficeTypes();
-
-            foreach(var office in officeList)
-            {
-                model.AvailableOffices.Add(new SelectListItem()
-                {
-                    Text = office.name,
-                    Value = office.id.ToString()
-                });
-            }
-
-            foreach (var position in positionList)
-            {
-                model.AvailablePositions.Add(new SelectListItem()
-                {
-                    Text = position.name,
-                    Value = position.id.ToString()
-                });
-            }
+            var model = PopulateModel();
 
             return View(model);
         }
@@ -241,16 +202,63 @@ namespace ClotheOurKids.Web.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        private RegisterViewModel PopulateModel ()
+        {
+            var repository = new RegisterFormRepository();
+
+            var offices = repository.GetAllOffices();
+            var officeList = (from o in offices
+                              select new
+                              {
+                                  id = o.OfficeId,
+                                  name = o.Name
+                              }).ToList();
+
+            var positions = repository.GetAllPositions();
+            var positionList = (from p in positions
+                                select new
+                                {
+                                    id = p.PositionId,
+                                    name = p.Name
+                                }).ToList();
+
+            var model = new RegisterViewModel();
+
+            model.AvailableOfficeTypes = repository.GetAllOfficeTypes();
+            model.AvailableContactMethods = repository.GetAllContactMethods();
+
+            foreach (var office in officeList)
+            {
+                model.AvailableOffices.Add(new SelectListItem()
+                {
+                    Text = office.name,
+                    Value = office.id.ToString()
+                });
+            }
+
+            foreach (var position in positionList)
+            {
+                model.AvailablePositions.Add(new SelectListItem()
+                {
+                    Text = position.name,
+                    Value = position.id.ToString()
+                });
+            }
+
+            return model;
+        }
+
         //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Route("Register", Name = "RegisterPost")]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, PositionId = model.PositionId, OfficeId = model.OfficeId };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, PositionId = model.PositionId, OfficeId = model.OfficeId, PhoneNumber = model.PhoneNumber, ContactMethodId = model.ContactMethodId };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -267,8 +275,10 @@ namespace ClotheOurKids.Web.Controllers
                 AddErrors(result);
             }
 
+            var populatedModel = PopulateModel();
+
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View(populatedModel);
         }
 
         //

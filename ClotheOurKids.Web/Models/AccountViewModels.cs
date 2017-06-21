@@ -94,7 +94,6 @@ namespace ClotheOurKids.Web.Models
         {
             AvailableOffices = new List<SelectListItem>();
             AvailablePositions = new List<SelectListItem>();
-            AvailableContactMethods = new List<SelectListItem>();
         }
 
         [Required]
@@ -143,7 +142,7 @@ namespace ClotheOurKids.Web.Models
         [Required]
         [Display(Name = "Best Way to Contact You")]
         public int ContactMethodId { get; set; }
-        public IList<SelectListItem> AvailableContactMethods { get; set; }
+        public IList<ContactMethod> AvailableContactMethods { get; set; }
 
     }
 

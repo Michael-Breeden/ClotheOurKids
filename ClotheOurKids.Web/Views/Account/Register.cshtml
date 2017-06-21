@@ -14,6 +14,10 @@
             <h1 class="h1-responsive">Don't Worry!</h1>
             <p class="section-description">We won't give your information to anyone else!</p>
         </div>
+        <div class="col-md text-center">
+            <h1 class="h1-responsive">Contact Us...</h1>
+            <p class="section-description">If you can't find your organization or place of work listed below please contact us at 256-887-5437 so we can set up your group!</p>
+        </div>
     </div>
 
     <hr class="between-sections" />
@@ -56,7 +60,8 @@
                     <!--/First row-->
 
                     <!--Second row-->
-                    <div class="row mt-2">
+                    <div class="mt-2 hidden-sm-down"></div>
+                    <div class="row">
                         <!--First column-->
                         <div class="col-md">
                             <div class="md-form">
@@ -77,16 +82,54 @@
                         <!--/Second column-->
                     </div>
                     <!--/Second row-->
-                    
+
                     <!--Third row-->
-                    <div class="row mt-2">
+                    <div class="mt-2 hidden-sm-down"></div>
+                    <div class="row">
                         <!--First column-->
-                        <div class="col-12 mb-1 d-flex justify-content-center">
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-lock prefix"></i>
+                                <input id="password" class="form-control validate" type="password" />
+                                <label for="password" data-error="wrong" data-success="right">Your password</label>
+                            </div>
+                        </div>
+                        <!--/First column-->
+                        <!--Second column-->
+                        <div class="col-md">
+                            <div class="clearfix mt-1 hidden-md-up"></div>
+                            <div class="row">
+                                <div class="col d-flex justify-content-sm-start justify-content-md-center">
+                                    <h5 class="h5-responsive">Best Way to Contact You</h5>
+                                </div>
+                                <div class="col-12 d-flex flex-row justify-content-md-center">
+                                    @{
+                                        foreach (var contactMethod in Model.AvailableContactMethods)
+                                        {
+                                            <div class="form-group mr-4">
+                                                @Html.RadioButtonFor(m => m.ContactMethodId, contactMethod.ContactMethodId, new { id = "contactMethod" + contactMethod.ContactMethodId, @class = "with-gap" })
+                                                @Html.Label("contactMethod" + contactMethod.ContactMethodId, contactMethod.Name)
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <!--/Second column-->
+                    </div>
+                    <!--/Third row-->
+
+                    <!--Fourth row-->
+                    <div class="mt-1 mb-3" style="border: 0; border-top: 1px solid rgba(0, 0, 0, 0.1);" ></div>
+                    <div class="row">
+                        <!--First column-->
+                        <div class="col  mb-1 d-flex justify-content-md-center justify-content-sm-start">
                             <h4 class="h4-responsive">Where You Work</h4>
                         </div>
                         <!--/First column-->
                         <!--Second column-->
-                        <div class="col col-12 d-flex justify-content-center">
+                        <div class="col col-12 d-flex flex-column flex-md-row justify-content-md-center">
                             @{
                                 foreach (var officeType in Model.AvailableOfficeTypes)
                                 {
@@ -99,9 +142,9 @@
                         </div>
                         <!--/Second column-->
                     </div>
-                    <!--/Third row-->
+                    <!--/Fourth row-->
 
-                    <!--Fourth row-->
+                    <!--Fifth row-->
                     <div class="row mt-2">
                         <div class="col-md">
                             <div class="md-form">
@@ -118,21 +161,9 @@
                             </div>
                         </div>
                     </div>
-                    <!--/Fourth row-->
-
-                    <!--Fifth row-->
-                    <div class="row mt-2">
-                        <!--First column-->
-                        <div class="col-md">
-                            <div class="md-form">
-                                <i class="fa fa-lock prefix"></i>
-                                <input id="password" class="form-control validate" type="password" />
-                                <label for="password" data-error="wrong" data-success="right">Your password</label>
-                            </div>
-                        </div>
-                        <!--/First column-->
-                    </div>
                     <!--/Fifth row-->
+
+                    
 
                     <!--Eleventh row-->
                     <div class="row mt-2 text-center">
