@@ -23,6 +23,8 @@ namespace ClotheOurKids.Model.Repository
             return content;
         }
 
+        
+
         public IList<Office> GetAllOffices()
         {
             var query = from offices in context.Offices

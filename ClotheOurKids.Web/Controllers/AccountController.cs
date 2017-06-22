@@ -147,7 +147,9 @@ namespace ClotheOurKids.Web.Controllers
         [Route("Register", Name = "RegisterPage")]
         public ActionResult Register()
         {
-            var model = PopulateModel();
+            var model = new RegisterViewModel();
+                
+            PopulateRegisterModel(model);
 
             return View(model);
         }
@@ -202,49 +204,103 @@ namespace ClotheOurKids.Web.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        private RegisterViewModel PopulateModel ()
+        private RegisterViewModel PopulateRegisterModel (RegisterViewModel model)
         {
             var repository = new RegisterFormRepository();
+            
+            //Populate Office Types
+            var officeTypes = repository.GetAllOfficeTypes();
+            var officeTypeList = (from ot in officeTypes
+                                  select new
+                                  {
+                                      id = ot.OfficeTypeId,
+                                      name = ot.Name
+                                  }).ToList();
 
-            var offices = repository.GetAllOffices();
-            var officeList = (from o in offices
-                              select new
-                              {
-                                  id = o.OfficeId,
-                                  name = o.Name
-                              }).ToList();
-
-            var positions = repository.GetAllPositions();
-            var positionList = (from p in positions
-                                select new
-                                {
-                                    id = p.PositionId,
-                                    name = p.Name
-                                }).ToList();
-
-            var model = new RegisterViewModel();
-
-            model.AvailableOfficeTypes = repository.GetAllOfficeTypes();
-            model.AvailableContactMethods = repository.GetAllContactMethods();
-
-            foreach (var office in officeList)
+            foreach (var officeType in officeTypeList)
             {
-                model.AvailableOffices.Add(new SelectListItem()
+                model.AvailableOfficeTypes.Add(new SelectListItem()
                 {
-                    Text = office.name,
-                    Value = office.id.ToString()
+                    Text = officeType.name,
+                    Value = officeType.id.ToString()
                 });
+
             }
 
-            foreach (var position in positionList)
+
+            //Populate Contact Methods
+            var contactMethods = repository.GetAllContactMethods();
+            var contactMethodList = (from c in contactMethods
+                                     select new
+                                     {
+                                         id = c.ContactMethodId,
+                                         name = c.Name
+                                     }).ToList();
+
+            foreach (var contactMethod in contactMethodList)
             {
-                model.AvailablePositions.Add(new SelectListItem()
+                model.AvailableContactMethods.Add(new SelectListItem()
                 {
-                    Text = position.name,
-                    Value = position.id.ToString()
+                    Text = contactMethod.name,
+                    Value = contactMethod.id.ToString()
                 });
+
             }
 
+            //Seed Position and Office Dropdowns with placeholder
+            model.AvailablePositions.Add(new SelectListItem()
+            {
+                Text = "Choose Your Position",
+                Value = "0"
+            });
+
+            model.AvailableOffices.Add(new SelectListItem()
+            {
+                Text = "Choose Your Office",
+                Value = "0"
+            });
+
+
+            //Populate Office and Position dropdowns based on OfficeTypeId
+            if (model.OfficeTypeId.HasValue)
+            {
+                var offices = repository.GetOfficesByOfficeType((int)model.OfficeTypeId);
+                var officeList = (from o in offices
+                                  select new
+                                  {
+                                      id = o.OfficeId,
+                                      name = o.Name
+                                  }).ToList();
+
+                foreach (var office in officeList)
+                {
+                    model.AvailableOffices.Add(new SelectListItem()
+                    {
+                        Text = office.name,
+                        Value = office.id.ToString()
+                    });
+                }
+
+
+                var positions = repository.GetPositionsByOfficeType((int)model.OfficeTypeId);
+                var positionList = (from p in positions
+                                    select new
+                                    {
+                                        id = p.PositionId,
+                                        name = p.Name
+                                    }).ToList();
+
+                foreach (var position in positionList)
+                {
+                    model.AvailablePositions.Add(new SelectListItem()
+                    {
+                        Text = position.name,
+                        Value = position.id.ToString()
+                    });
+                }
+
+            }
+            
             return model;
         }
 
@@ -258,7 +314,7 @@ namespace ClotheOurKids.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, PositionId = model.PositionId, OfficeId = model.OfficeId, PhoneNumber = model.PhoneNumber, ContactMethodId = model.ContactMethodId };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, PositionId = (int)model.PositionId, OfficeId = (int)model.OfficeId, PhoneNumber = model.PhoneNumber, ContactMethodId = (int)model.ContactMethodId };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -275,10 +331,10 @@ namespace ClotheOurKids.Web.Controllers
                 AddErrors(result);
             }
 
-            var populatedModel = PopulateModel();
+            PopulateRegisterModel(model);
 
             // If we got this far, something failed, redisplay form
-            return View(populatedModel);
+            return View(model);
         }
 
         //

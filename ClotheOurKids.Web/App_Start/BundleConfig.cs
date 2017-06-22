@@ -10,6 +10,8 @@ namespace ClotheOurKids.Web
             bundles.Add(new ScriptBundle("~/bundles/requiredJs").Include(
                         "~/Content/js/jquery-3.1.1.js",
                         "~/Content/js/tether.js",
+                        "~/Content/js/jquery.validate.min.js",
+                        "~/Content/js/jquery.validate.unobtrusive.min.js",
                         "~/Content/js/bootstrap.js",
                         "~/Content/js/mdb.js",
                         "~/Content/plugins/select2-4.0.3/js/select2.full.min.js",
@@ -20,7 +22,7 @@ namespace ClotheOurKids.Web
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-2.6.2.js"));
+                        "~/Content/js/modernizr-3.5.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/ie9").Include(
                       "~/assets/plugins/respond.js",

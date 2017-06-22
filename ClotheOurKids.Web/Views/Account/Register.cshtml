@@ -44,6 +44,7 @@
                                 <i class="fa fa-user prefix"></i>
                                 @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control validate" })
                                 @Html.LabelFor(m => m.FirstName)
+                                @Html.ValidationMessageFor(m => m.FirstName)
                             </div>
                         </div>
                         <!--/First column-->
@@ -53,6 +54,7 @@
                                 <i class="fa fa-user prefix"></i>
                                 @Html.TextBoxFor(m => m.LastName, new { @class = "form-control validate" })
                                 @Html.LabelFor(m => m.LastName)
+                                @Html.ValidationMessageFor(m => m.LastName)
                             </div>
                         </div>
                         <!--/Second column-->
@@ -68,15 +70,17 @@
                                 <i class="fa fa-envelope prefix"></i>
                                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate" })
                                 @Html.LabelFor(m => m.Email)
+                                @Html.ValidationMessageFor(m => m.Email)
                             </div>
                         </div>
                         <!--/First column-->
                         <!--Second column-->
                         <div class="col-md">
                             <div class="md-form">
-                                <i class="fa fa-phone prefix"></i>
+                                <i class="fa fa-phone prefix"></i>                                
                                 @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control validate" })
                                 @Html.LabelFor(m => m.PhoneNumber)
+                                @Html.ValidationMessageFor(m => m.PhoneNumber)
                             </div>
                         </div>
                         <!--/Second column-->
@@ -90,8 +94,9 @@
                         <div class="col-md">
                             <div class="md-form">
                                 <i class="fa fa-lock prefix"></i>
-                                <input id="password" class="form-control validate" type="password" />
-                                <label for="password" data-error="wrong" data-success="right">Your password</label>
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control validate" })
+                                @Html.LabelFor(m => m.Password)
+                                @Html.ValidationMessageFor(m => m.Password)
                             </div>
                         </div>
                         <!--/First column-->
@@ -107,10 +112,11 @@
                                         foreach (var contactMethod in Model.AvailableContactMethods)
                                         {
                                             <div class="form-group mr-4">
-                                                @Html.RadioButtonFor(m => m.ContactMethodId, contactMethod.ContactMethodId, new { id = "contactMethod" + contactMethod.ContactMethodId, @class = "with-gap" })
-                                                @Html.Label("contactMethod" + contactMethod.ContactMethodId, contactMethod.Name)
+                                                @Html.RadioButtonFor(m => m.ContactMethodId, contactMethod.Value, new { id = "contactMethod" + contactMethod.Value, @class = "with-gap" })
+                                                @Html.Label("contactMethod" + contactMethod.Value, contactMethod.Text)                                                
                                             </div>
                                         }
+                                        @Html.ValidationMessageFor(m => m.ContactMethodId)
                                     }
                                 </div>
                             </div>
@@ -134,10 +140,11 @@
                                 foreach (var officeType in Model.AvailableOfficeTypes)
                                 {
                                     <div class="form-group mr-4">
-                                        @Html.RadioButtonFor(m => m.OfficeTypeId, officeType.OfficeTypeId, new { id = "officeType" + officeType.OfficeTypeId, @class = "with-gap" })
-                                        @Html.Label("officeType" + officeType.OfficeTypeId, officeType.Name)
+                                        @Html.RadioButtonFor(m => m.OfficeTypeId, officeType.Value, new { id = "officeType" + officeType.Value, @class = "with-gap" })
+                                        @Html.Label("officeType" + officeType.Value, officeType.Text)
                                     </div>
                                 }
+                                @Html.ValidationMessageFor(m => m.OfficeTypeId)
                             }
                         </div>
                         <!--/Second column-->
@@ -151,6 +158,7 @@
                                 <i class="fa fa-map-marker prefix"></i>
                                 @Html.LabelFor(m => m.OfficeId, new { @class = "select2-label" })
                                 @Html.DropDownListFor(m => m.OfficeId, Model.AvailableOffices, new { @class = "mdb-select md-select2" })
+                                @Html.ValidationMessageFor(m => m.OfficeId)
                             </div>
                         </div>
                         <div class="col-md">
@@ -158,6 +166,7 @@
                                 <i class="fa fa-bell prefix"></i>
                                 @Html.LabelFor(m => m.PositionId, new { @class = "select2-label" })
                                 @Html.DropDownListFor(m => m.PositionId, Model.AvailablePositions, new { @class="mdb-select md-select2" })
+                                @Html.ValidationMessageFor(m => m.PositionId)
                             </div>
                         </div>
                     </div>
@@ -168,7 +177,7 @@
                     <!--Eleventh row-->
                     <div class="row mt-2 text-center">
                         <div class="col">
-                            <button class="btn btn-primary btn-rounded btn-lg waves-effect waves-light">Submit</button>
+                            <button type="submit" class="btn btn-primary btn-rounded btn-lg waves-effect waves-light">Submit</button>
                         </div>
                     </div>
                     <!--/Eleventh row-->
@@ -187,12 +196,14 @@
 
             //var positions = { "1": "Principal", "2": "Teacher", "3": "Counselor", "4": "FACT Coordinator" };
 
-            $('#PositionId').prepend('<option value="0" disabled selected>Choose Your Position</option>');
-            $('#PositionId').select2().prop("disabled", true);
+            $('.md-select2 option[value = "0"]').attr('disabled', true);
 
-            $('#OfficeId').prepend('<option value="0" disabled selected>Choose Your Office</option>')
-            $('#OfficeId').select2().prop("disabled", true);
+            
 
+            if (!$('input[type=radio][name=OfficeTypeId]').is(':checked')) {
+                $('#PositionId').select2().prop("disabled", true);
+                $('#OfficeId').select2().prop("disabled", true);
+            }
 
             $('input[type=radio][name=OfficeTypeId]').change(function () {
                 var selectedItem = this.value;
