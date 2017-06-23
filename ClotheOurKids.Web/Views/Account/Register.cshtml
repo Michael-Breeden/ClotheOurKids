@@ -42,7 +42,7 @@
                         <div class="col-md">
                             <div class="md-form">
                                 <i class="fa fa-user prefix"></i>
-                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control validate" })
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control validate"})
                                 @Html.LabelFor(m => m.FirstName)
                                 @Html.ValidationMessageFor(m => m.FirstName)
                             </div>
@@ -90,17 +90,6 @@
                     <!--Third row-->
                     <div class="mt-2 hidden-sm-down"></div>
                     <div class="row">
-                        <!--First column-->
-                        <div class="col-md">
-                            <div class="md-form">
-                                <i class="fa fa-lock prefix"></i>
-                                @Html.PasswordFor(m => m.Password, new { @class = "form-control validate" })
-                                @Html.LabelFor(m => m.Password)
-                                @Html.ValidationMessageFor(m => m.Password)
-                            </div>
-                        </div>
-                        <!--/First column-->
-                        <!--Second column-->
                         <div class="col-md">
                             <div class="clearfix mt-1 hidden-md-up"></div>
                             <div class="row">
@@ -113,20 +102,46 @@
                                         {
                                             <div class="form-group mr-4">
                                                 @Html.RadioButtonFor(m => m.ContactMethodId, contactMethod.Value, new { id = "contactMethod" + contactMethod.Value, @class = "with-gap" })
-                                                @Html.Label("contactMethod" + contactMethod.Value, contactMethod.Text)                                                
+                                                @Html.Label("contactMethod" + contactMethod.Value, contactMethod.Text)
                                             </div>
                                         }
                                         @Html.ValidationMessageFor(m => m.ContactMethodId)
                                     }
                                 </div>
                             </div>
-                           
+
+                        </div>
+                    </div>
+                    <!--/Third row-->
+                    
+
+                    <!--Fourth row-->
+                    <div class="mt-2 hidden-sm-down"></div>
+                    <div class="row">
+                        <!--First column-->
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-lock prefix"></i>
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control validate" })
+                                @Html.LabelFor(m => m.Password)
+                                @Html.ValidationMessageFor(m => m.Password)
+                            </div>
+                        </div>
+                        <!--/First column-->
+                        <!--Second column-->
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-lock prefix"></i>
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control validate" })
+                                @Html.LabelFor(m => m.ConfirmPassword)
+                                @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                            </div>
                         </div>
                         <!--/Second column-->
                     </div>
-                    <!--/Third row-->
+                    <!--/Fourth row-->
 
-                    <!--Fourth row-->
+                    <!--Fifth row-->
                     <div class="mt-1 mb-3" style="border: 0; border-top: 1px solid rgba(0, 0, 0, 0.1);" ></div>
                     <div class="row">
                         <!--First column-->
@@ -149,9 +164,9 @@
                         </div>
                         <!--/Second column-->
                     </div>
-                    <!--/Fourth row-->
+                    <!--/Fifth row-->
 
-                    <!--Fifth row-->
+                    <!--Sixth row-->
                     <div class="row mt-2">
                         <div class="col-md">
                             <div class="md-form">
@@ -170,12 +185,15 @@
                             </div>
                         </div>
                     </div>
-                    <!--/Fifth row-->
+                    <!--/Sixth row-->
 
-                    
+
 
                     <!--Eleventh row-->
                     <div class="row mt-2 text-center">
+                        <div class="col-12">
+                            @Html.ValidationSummary()
+                        </div>
                         <div class="col">
                             <button type="submit" class="btn btn-primary btn-rounded btn-lg waves-effect waves-light">Submit</button>
                         </div>
