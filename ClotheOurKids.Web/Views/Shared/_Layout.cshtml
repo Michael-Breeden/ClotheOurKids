@@ -47,7 +47,7 @@
 
             <div class="container-fluid navContainer mt-sm-1 mb-sm-1 d-flex justify-content-lg-center">
                 <div class="row align-items-center headerPad justify-content-lg-center">
-                    <div class="column-one d-lg-flex justify-content-lg-center">
+                    <div class="column-one d-lg-flex">
 
                         <a class="logo align-self-center" href="@Url.RouteUrl("Home")">
                             <span class="logo-container">
@@ -79,6 +79,21 @@
                                         <li class="nav-item">
                                             <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("RequestClothes")">Request Clothes</a>
                                         </li>
+                                        @if (Request.IsAuthenticated)
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("ManageAccount")">Account</a>
+                                            </li>
+
+                                            @*<li class="nav-item dropdown">
+                                                <span class="nav-link waves-effect waves-light" id="AccountMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</span>
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="AccountMenu">
+                                                    <a class="dropdown-item waves-effect waves-light" href="#">Logout</a>
+                                                    <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("ManageAccount")">Manage Account</a>
+                                                </div>
+                                            </li>*@
+                                        }
+
                                     </ul>
                                 
                             </div>
@@ -114,6 +129,7 @@
                                 <li><a href="@Url.RouteUrl("Home")">Who We Serve</a></li>
                                 <li><a href="@Url.RouteUrl("Home")">Stories</a></li>
                                 <li><a href="@Url.RouteUrl("RequestClothes")">Request Clothes</a></li>
+                                <li><a href="@Url.RouteUrl("ManageAccount")">Account</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -126,7 +142,20 @@
                                 <a class="btn btn-rounded btn-info" href="@Url.RouteUrl("GetInvolved")">Get Involved</a>
                             </li>
                             <li>
-                                <a class="btn btn-rounded btn-light-green" data-toggle="modal" data-target="#modal-login">Log In</a>
+                                @if (Request.IsAuthenticated)
+                                {
+                                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <a class="btn btn-rounded btn-light-green" href="javascript:document.getElementById('logoutForm').submit()">Log Out</a>
+                                    }
+
+                                }
+                                else
+                                {
+                                    <a class="btn btn-rounded btn-light-green" data-toggle="modal" data-target="#modal-login">Log In</a>
+                                }
+                                
                             </li>
                         </ul>
                     </div>
@@ -140,7 +169,19 @@
                     <a class="btn btn-rounded btn-info" href="@Url.RouteUrl("GetInvolved")">Get Involved</a>
                 </li>
                 <li>
-                    <a class="btn btn-rounded btn-light-green" data-toggle="modal" data-target="#modal-login">Log In</a>
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <a class="btn btn-rounded btn-light-green" href="javascript:document.getElementById('logoutForm').submit()">Log Out</a>
+                        }
+
+                    }
+                    else
+                    {
+                        <a class="btn btn-rounded btn-light-green" data-toggle="modal" data-target="#modal-login">Log In</a>
+                    }
                 </li>
             </ul>
 

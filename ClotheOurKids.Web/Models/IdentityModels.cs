@@ -12,13 +12,13 @@ namespace ClotheOurKids.Web.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int PositionId { get; set; }
-        public int OfficeId { get; set; }
+        public short PositionId { get; set; }
+        public short OfficeId { get; set; }
 
         [MaxLength(50)]
         public override string PhoneNumber { get; set; }
 
-        public int ContactMethodId { get; set; }
+        public short ContactMethodId { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

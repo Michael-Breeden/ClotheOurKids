@@ -314,7 +314,7 @@ namespace ClotheOurKids.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, PositionId = (int)model.PositionId, OfficeId = (int)model.OfficeId, PhoneNumber = model.PhoneNumber, ContactMethodId = (int)model.ContactMethodId };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, PositionId = (short)model.PositionId, OfficeId = (short)model.OfficeId, PhoneNumber = model.PhoneNumber, ContactMethodId = (short)model.ContactMethodId };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -561,7 +561,6 @@ namespace ClotheOurKids.Web.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("LogOff", Name = "LogOffPage")]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);

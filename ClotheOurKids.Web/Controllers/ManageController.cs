@@ -52,6 +52,7 @@ namespace ClotheOurKids.Web.Controllers
 
         //
         // GET: /Manage/Index
+        [Route("Account", Name = "ManageAccount")]
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =

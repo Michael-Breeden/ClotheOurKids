@@ -228,6 +228,7 @@
     color: #ff4444;
     font-size: 0.75rem;
     margin-left: 3rem;
+    display: inline-block;
 }
 
 .validation-summary-errors {
