@@ -222,6 +222,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RequestClothesController.cs" />
+    <Compile Include="CustomClasses\GmailEmailService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -608,6 +609,7 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Shared\_LoginForm.cshtml" />
+    <Content Include="Views\Account\Confirm.cshtml" />
     <None Include="Web.Work.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -272,6 +272,47 @@
                     $icon.removeClass("is-active");
                 }, 0);
             });
+
+            $('#loginError').hide();
+
+            $("#btnLogIn").click(function () {
+                var data = {};
+                data.Email = $('#Email').val();
+                data.Password = $('#Password').val();
+                data.RememberMe = $('#RememberMe').is(':checked');
+
+                var token = $('input[name = "__RequestVerificationToken"]').val();
+
+                $.ajax({
+                    url: "/Account/Login",
+                    method: "POST",
+                    data: {
+                        model: data,
+                        __RequestVerificationToken: token,
+                        returnUrl: ""
+                    },
+                    success: function (result) {
+                        if (result.Success == "1") {
+                            $('#loginError').hide();
+                            window.location.href = result.Url;
+                        }
+                        else {
+                            $("#loginError").html(result.errorMsg);
+                            $('#loginError').show();
+                        }
+                        
+                    },
+                    error: function () {
+                        $("#loginError").html("Error with login. Please try again");
+                        $('#loginError').show();
+
+                        return false;
+                    }
+                })
+
+                return false;
+            });
+
         });
 
         function toggleMobileInnerNavbar(panelId) {

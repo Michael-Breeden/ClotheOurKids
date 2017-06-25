@@ -11,15 +11,29 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using ClotheOurKids.Web.Models;
+using System.Net.Mail;
 
 namespace ClotheOurKids.Web
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            MailMessage email = new MailMessage(new MailAddress("No-Reply@givekidsclothes.com", "(do not reply)"),
+                new MailAddress(message.Destination));
+
+            email.Subject = message.Subject;
+            email.Body = message.Body;
+
+            email.IsBodyHtml = true;
+
+            using (var mailClient = new ClotheOurKids.Web.CustomClasses.GmailEmailService())
+            {
+                //In order to use the original from email address, uncomment this line:
+                //email.From = new MailAddress(mailClient.UserName, "(do not reply)");
+
+                await mailClient.SendMailAsync(email);
+            }
         }
     }
 

@@ -72,30 +72,80 @@ namespace ClotheOurKids.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        [Route("Login")]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            string totalError;
+
             if (!ModelState.IsValid)
             {
-                return PartialView("_LoginForm", model); //View(model);
+                //return PartialView("_LoginForm", model); 
+                totalError = CompileErrorMsg(ModelState);
+
+                return Json(new { Success = 0, errorMsg = new Exception(totalError).Message.ToString() });
             }
+
+            var user = await UserManager.FindAsync(model.Email, model.Password);
+            if (user != null)
+            {
+                if (user.EmailConfirmed == true)
+                {
+                    await SignInManager.SignInAsync(user, model.RememberMe, model.RememberMe);
+
+                    return Json(new { Success = 1, errorMsg = "" });
+                }
+                else
+                {
+                    ModelState.AddModelError("", "You must confirm your email address before you can log in.");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Invalid username or password.");
+            }
+
+
+            totalError = CompileErrorMsg(ModelState);
+
+            ////If we got this far, something failed, redisplay form
+            return Json(new { Success = 0, errorMsg = new Exception(totalError).Message.ToString() });
+
+
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+            //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            //switch (result)
+            //{
+            //    case SignInStatus.Success:
+            //        return RedirectToLocal(returnUrl);
+            //    case SignInStatus.LockedOut:
+            //        return View("Lockout");
+            //    case SignInStatus.RequiresVerification:
+            //        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+            //    case SignInStatus.Failure:
+            //    default:
+            //        ModelState.AddModelError("", "Invalid login attempt.");
+            //        //return PartialView("_LoginForm", model); //
+            //        return View(model);
+            //}
+        }
+
+
+        private string CompileErrorMsg (ModelStateDictionary ModelState)
+        {
+            string totalError = "";
+            foreach (var obj in ModelState.Values)
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return PartialView("_LoginForm", model); //View(model);
+                foreach (var error in obj.Errors)
+                {
+                    if (!string.IsNullOrEmpty(error.ErrorMessage))
+                    {
+                        totalError = totalError + error.ErrorMessage + Environment.NewLine;
+                    }
+                }
             }
+
+            return totalError;
         }
 
         //
@@ -318,15 +368,18 @@ namespace ClotheOurKids.Web.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    //Commented to prevent login until user confirms email address
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
-                    return RedirectToAction("Index", "Home");
+
+                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Account confirmation");
+
+
+                    // Uncomment to debug locally 
+                    // TempData["ViewBagLink"] = callbackUrl;
+
+                  
+                    return RedirectToAction("Confirm", "Account", new { Email = user.Email });
                 }
                 AddErrors(result);
             }
@@ -335,6 +388,13 @@ namespace ClotheOurKids.Web.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        [AllowAnonymous]
+        public ActionResult Confirm (string Email)
+        {
+            ViewBag.Email = Email;
+            return View();
         }
 
         //
@@ -348,6 +408,18 @@ namespace ClotheOurKids.Web.Controllers
             }
             var result = await UserManager.ConfirmEmailAsync(userId, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
+        }
+
+        private async Task<string> SendEmailConfirmationTokenAsync(string userID, string subject)
+        {
+            // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+            // Send an email with this link:
+            string code = await UserManager.GenerateEmailConfirmationTokenAsync(userID);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = userID, code = code }, protocol: Request.Url.Scheme);
+            await UserManager.SendEmailAsync(userID, subject, "Please confirm your account by <a href=\"" + callbackUrl + "\">clicking here</a>");
+
+
+            return callbackUrl;
         }
 
         //

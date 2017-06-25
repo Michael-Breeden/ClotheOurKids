@@ -36,6 +36,12 @@
                 {
                     @Html.AntiForgeryToken()
 
+                    <div class="row">
+                        <div class="col-12">
+                            @Html.ValidationSummary()
+                        </div>
+                    </div>
+
                     <!--First row-->
                     <div class="row mt-2">
                         <!--First column-->
@@ -191,9 +197,6 @@
 
                     <!--Eleventh row-->
                     <div class="row mt-2 text-center">
-                        <div class="col-12">
-                            @Html.ValidationSummary()
-                        </div>
                         <div class="col">
                             <button type="submit" class="btn btn-primary btn-rounded btn-lg waves-effect waves-light">Submit</button>
                         </div>
