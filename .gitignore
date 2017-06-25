@@ -288,6 +288,11 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 <<<<<<< HEAD
+<<<<<<< HEAD
 .vs/ClotheOurKids/v14/.suo
 =======
 >>>>>>> Razor-Register-View
+=======
+.vs/ClotheOurKids/v14/.suo
+>>>>>>> af294756bd2e9b98543a52dbd747fc7ee26a3546
+*.cache
