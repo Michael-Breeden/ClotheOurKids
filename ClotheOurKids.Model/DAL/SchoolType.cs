@@ -7,15 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClotheOurKids.Model.DAL
+namespace ClotheOurKids.Model
 {
     using System;
     using System.Collections.Generic;
     
     public partial class SchoolType
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SchoolType()
+        {
+            this.Schools = new HashSet<School>();
+        }
+    
         public byte SchoolTypeId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<School> Schools { get; set; }
     }
 }

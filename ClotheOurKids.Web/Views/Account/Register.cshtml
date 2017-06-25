@@ -14,6 +14,10 @@
             <h1 class="h1-responsive">Don't Worry!</h1>
             <p class="section-description">We won't give your information to anyone else!</p>
         </div>
+        <div class="col-md text-center">
+            <h1 class="h1-responsive">Contact Us...</h1>
+            <p class="section-description">If you can't find your organization or place of work listed below please contact us at 256-887-5437 so we can set up your group!</p>
+        </div>
     </div>
 
     <hr class="between-sections" />
@@ -28,48 +32,55 @@
                 <!--/Form Header-->
 
                 <!--Form Body-->
-                <form>
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+
                     <!--First row-->
                     <div class="row mt-2">
                         <!--First column-->
                         <div class="col-md">
                             <div class="md-form">
                                 <i class="fa fa-user prefix"></i>
-                                <input id="firstName" class="form-control validate" type="text" />
-                                <label for="firstName" data-error="wrong" data-success="right">First name</label>
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control validate"})
+                                @Html.LabelFor(m => m.FirstName)
+                                @Html.ValidationMessageFor(m => m.FirstName)
                             </div>
                         </div>
                         <!--/First column-->
-
                         <!--Second column-->
                         <div class="col-md">
                             <div class="md-form">
                                 <i class="fa fa-user prefix"></i>
-                                <input id="lastName" class="form-control validate" type="text" />
-                                <label for="lastName" data-error="wrong" data-success="right">Last name</label>
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control validate" })
+                                @Html.LabelFor(m => m.LastName)
+                                @Html.ValidationMessageFor(m => m.LastName)
                             </div>
                         </div>
                         <!--/Second column-->
-                    </div>                        
+                    </div>
                     <!--/First row-->
 
                     <!--Second row-->
-                    <div class="row mt-2">
+                    <div class="mt-2 hidden-sm-down"></div>
+                    <div class="row">
                         <!--First column-->
                         <div class="col-md">
                             <div class="md-form">
                                 <i class="fa fa-envelope prefix"></i>
-                                <input id="email" class="form-control validate" type="email" />
-                                <label for="email" data-error="wrong" data-success="right">Work email</label>
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate" })
+                                @Html.LabelFor(m => m.Email)
+                                @Html.ValidationMessageFor(m => m.Email)
                             </div>
                         </div>
                         <!--/First column-->
                         <!--Second column-->
                         <div class="col-md">
                             <div class="md-form">
-                                <i class="fa fa-phone prefix"></i>
-                                <input type="tel" id="phone" name="phone" class="form-control validate" />
-                                <label for="phone" data-error="wrong" data-success="right">Work Phone</label>
+                                <i class="fa fa-phone prefix"></i>                                
+                                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control validate" })
+                                @Html.LabelFor(m => m.PhoneNumber)
+                                @Html.ValidationMessageFor(m => m.PhoneNumber)
                             </div>
                         </div>
                         <!--/Second column-->
@@ -77,50 +88,118 @@
                     <!--/Second row-->
 
                     <!--Third row-->
-                    <div class="row mt-2">
+                    <div class="mt-2 hidden-sm-down"></div>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="clearfix mt-1 hidden-md-up"></div>
+                            <div class="row">
+                                <div class="col d-flex justify-content-sm-start justify-content-md-center">
+                                    <h5 class="h5-responsive">Best Way to Contact You</h5>
+                                </div>
+                                <div class="col-12 d-flex flex-row justify-content-md-center">
+                                    @{
+                                        foreach (var contactMethod in Model.AvailableContactMethods)
+                                        {
+                                            <div class="form-group mr-4">
+                                                @Html.RadioButtonFor(m => m.ContactMethodId, contactMethod.Value, new { id = "contactMethod" + contactMethod.Value, @class = "with-gap" })
+                                                @Html.Label("contactMethod" + contactMethod.Value, contactMethod.Text)
+                                            </div>
+                                        }
+                                        @Html.ValidationMessageFor(m => m.ContactMethodId)
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--/Third row-->
+                    
+
+                    <!--Fourth row-->
+                    <div class="mt-2 hidden-sm-down"></div>
+                    <div class="row">
                         <!--First column-->
                         <div class="col-md">
                             <div class="md-form">
-                                <i class="fa fa-bell prefix"></i>
-                                <select id="positionSelect" class="mdb-select"></select>
-                                <label for="positionSelect">Position</label>
+                                <i class="fa fa-lock prefix"></i>
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control validate" })
+                                @Html.LabelFor(m => m.Password)
+                                @Html.ValidationMessageFor(m => m.Password)
                             </div>
                         </div>
                         <!--/First column-->
                         <!--Second column-->
                         <div class="col-md">
                             <div class="md-form">
-                                <i class="fa fa-map-marker prefix"></i>
-                                <select id="locationSelect" class="mdb-select"></select>
-                                <label for="locationSelect">School / Office</label>
+                                <i class="fa fa-lock prefix"></i>
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control validate" })
+                                @Html.LabelFor(m => m.ConfirmPassword)
+                                @Html.ValidationMessageFor(m => m.ConfirmPassword)
                             </div>
                         </div>
                         <!--/Second column-->
                     </div>
-                    <!--/Third row-->
+                    <!--/Fourth row-->
 
-                    <!--Fourth row-->
-                    <div class="row mt-2">
+                    <!--Fifth row-->
+                    <div class="mt-1 mb-3" style="border: 0; border-top: 1px solid rgba(0, 0, 0, 0.1);" ></div>
+                    <div class="row">
                         <!--First column-->
-                        <div class="col-md">
-                            <div class="md-form">
-                                <i class="fa fa-lock prefix"></i>
-                                <input id="password" class="form-control validate" type="password" />
-                                <label for="password" data-error="wrong" data-success="right">Your password</label>
-                            </div>
+                        <div class="col  mb-1 d-flex justify-content-md-center justify-content-sm-start">
+                            <h4 class="h4-responsive">Where You Work</h4>
                         </div>
                         <!--/First column-->
+                        <!--Second column-->
+                        <div class="col col-12 d-flex flex-column flex-md-row justify-content-md-center">
+                            @{
+                                foreach (var officeType in Model.AvailableOfficeTypes)
+                                {
+                                    <div class="form-group mr-4">
+                                        @Html.RadioButtonFor(m => m.OfficeTypeId, officeType.Value, new { id = "officeType" + officeType.Value, @class = "with-gap" })
+                                        @Html.Label("officeType" + officeType.Value, officeType.Text)
+                                    </div>
+                                }
+                                @Html.ValidationMessageFor(m => m.OfficeTypeId)
+                            }
+                        </div>
+                        <!--/Second column-->
                     </div>
-                    <!--/Fourth row-->
+                    <!--/Fifth row-->
+
+                    <!--Sixth row-->
+                    <div class="row mt-2">
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-map-marker prefix"></i>
+                                @Html.LabelFor(m => m.OfficeId, new { @class = "select2-label" })
+                                @Html.DropDownListFor(m => m.OfficeId, Model.AvailableOffices, new { @class = "mdb-select md-select2" })
+                                @Html.ValidationMessageFor(m => m.OfficeId)
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-bell prefix"></i>
+                                @Html.LabelFor(m => m.PositionId, new { @class = "select2-label" })
+                                @Html.DropDownListFor(m => m.PositionId, Model.AvailablePositions, new { @class="mdb-select md-select2" })
+                                @Html.ValidationMessageFor(m => m.PositionId)
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Sixth row-->
+
+
+
                     <!--Eleventh row-->
                     <div class="row mt-2 text-center">
+                        <div class="col-12">
+                            @Html.ValidationSummary()
+                        </div>
                         <div class="col">
-                            <button class="btn btn-primary btn-rounded btn-lg waves-effect waves-light">Submit</button>
+                            <button type="submit" class="btn btn-primary btn-rounded btn-lg waves-effect waves-light">Submit</button>
                         </div>
                     </div>
                     <!--/Eleventh row-->
-                </form>
-                
+                }                
                 <!--/Form Body-->
             </div>
         </div>    
@@ -133,18 +212,72 @@
     <script>
         $(document).ready(function () {
 
-            var positions = { "1": "Principal", "2": "Teacher", "3": "Counselor", "4": "FACT Coordinator" };
+            //var positions = { "1": "Principal", "2": "Teacher", "3": "Counselor", "4": "FACT Coordinator" };
 
-            $('#positionSelect').append('<option value="0" disabled selected>Choose Your Position</option>');
-            $('#locationSelect').append('<option value="0" disabled selected>Choose Your School/Office</option>');
+            $('.md-select2 option[value = "0"]').attr('disabled', true);
+
+            
+
+            if (!$('input[type=radio][name=OfficeTypeId]').is(':checked')) {
+                $('#PositionId').select2().prop("disabled", true);
+                $('#OfficeId').select2().prop("disabled", true);
+            }
+
+            $('input[type=radio][name=OfficeTypeId]').change(function () {
+                var selectedItem = this.value;
+                var ddlOffices = $('#OfficeId');
+                var ddlPositions = $('#PositionId');
+                
 
 
-            $.each(positions, function (key, value) {
-                $('#positionSelect')
-                    .append($('<option></option>')
-                        .attr("value", key)
-                        .text(value));
+                 $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "@(Url.RouteUrl("GetOffices"))",
+                    data: { "officeTypeId": selectedItem },
+                    success: function (data) {
+                        ddlOffices.html('');
+                        ddlOffices.prepend('<option value="0" disabled selected>Choose Your Office</option>');
+                        $.each(data, function (id, option) {
+                            ddlOffices.append($('<option></option>').val(option.id).html(option.name));
+                        });
+
+                        ddlOffices.prop("disabled", false);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert('Failed to retrieve offices.');
+                    }
+                });
+
+
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "@(Url.RouteUrl("GetPositions"))",
+                    data: { "officeTypeId": selectedItem },
+                    success: function (data) {
+                        ddlPositions.html('');
+                        ddlPositions.prepend('<option value="0" disabled selected>Choose Your Position</option>');
+                        $.each(data, function (id, option) {
+                            ddlPositions.append($('<option></option>').val(option.id).html(option.name));
+                        });
+
+                        ddlPositions.prop("disabled", false);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert('Failed to retrieve positions.');
+                    }
+                 });
+
             });
+
+
+            //$.each(positions, function (key, value) {
+            //    $('#positionSelect')
+            //        .append($('<option></option>')
+            //            .attr("value", key)
+            //            .text(value));
+            //});
 
             $('.mdb-select').material_select();
 

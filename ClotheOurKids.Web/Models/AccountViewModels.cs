@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using ClotheOurKids.Model;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace ClotheOurKids.Web.Models
 {
@@ -19,11 +21,11 @@ namespace ClotheOurKids.Web.Models
 
         [Required]
         [Display(Name = "Your Position")]
-        public int PositionId { get; set; }
+        public short PositionId { get; set; }
 
         [Required]
         [Display(Name = "Your Employer")]
-        public int OfficeId { get; set; }
+        public short OfficeId { get; set; }
 
         [Required]
         [Display(Name = "Preferred Phone")]
@@ -31,7 +33,7 @@ namespace ClotheOurKids.Web.Models
 
         [Required]
         [Display(Name = "Best Way to Contact You")]
-        public int ContactMethodId { get; set; }
+        public short ContactMethodId { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -88,20 +90,29 @@ namespace ClotheOurKids.Web.Models
 
     public class RegisterViewModel
     {
+        public RegisterViewModel()
+        {
+            AvailableOfficeTypes = new List<SelectListItem>();
+            AvailableOffices = new List<SelectListItem>();
+            AvailablePositions = new List<SelectListItem>();
+            AvailableContactMethods = new List<SelectListItem>();
+        }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 8)]
+        [RegularExpression(@"^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$", ErrorMessage = "Your password must have: <br/>- 8 or more characters <br/>- 1 number <br/>- 1 uppercase letter <br/>- 1 lowercase letter")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         [Required]
@@ -113,12 +124,19 @@ namespace ClotheOurKids.Web.Models
         public string LastName { get; set; }
 
         [Required]
-        [Display(Name = "Your Position")]
-        public int PositionId { get; set; }
+        [Display(Name = "Your Office Type")]
+        public int? OfficeTypeId { get; set; }
+        public IList<SelectListItem> AvailableOfficeTypes { get; set; }
 
         [Required]
-        [Display(Name = "Your Employer")]
-        public int OfficeId { get; set; }
+        [Display(Name = "Your Position")]
+        public short? PositionId { get; set; }
+        public IList<SelectListItem> AvailablePositions { get; set; }
+
+        [Required]
+        [Display(Name = "Your Office")]
+        public short? OfficeId { get; set; }
+        public IList<SelectListItem> AvailableOffices { get; set; }
 
         [Required]
         [Display(Name = "Preferred Phone")]
@@ -126,8 +144,22 @@ namespace ClotheOurKids.Web.Models
 
         [Required]
         [Display(Name = "Best Way to Contact You")]
-        public int ContactMethodId { get; set; }
+        public short? ContactMethodId { get; set; }
+        public IList<SelectListItem> AvailableContactMethods { get; set; }
+
     }
+
+    //public class CustomPasswordAttribute : ValidationAttribute
+    //{
+    //    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    //    {
+    //        string password = (string)value;
+
+
+
+    //        return base.IsValid(value, validationContext);
+    //    }
+    //}
 
     public class ResetPasswordViewModel
     {
@@ -144,7 +176,7 @@ namespace ClotheOurKids.Web.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

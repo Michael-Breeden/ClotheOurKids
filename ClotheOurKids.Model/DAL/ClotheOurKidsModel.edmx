@@ -62,7 +62,7 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
           <Property Name="PasswordHash" Type="nvarchar(max)" />
           <Property Name="SecurityStamp" Type="nvarchar(max)" />
-          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="64" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
           <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
           <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
           <Property Name="LockoutEndDateUtc" Type="datetime" />
@@ -73,6 +73,40 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PositionId" Type="smallint" Nullable="false" />
           <Property Name="OfficeId" Type="smallint" Nullable="false" />
+          <Property Name="ContactMethodId" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AgeGroup">
+          <Key>
+            <PropertyRef Name="AgeGroupId" />
+          </Key>
+          <Property Name="AgeGroupId" Type="tinyint" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="ClothesType">
+          <Key>
+            <PropertyRef Name="ClothesTypeId" />
+          </Key>
+          <Property Name="ClothesTypeId" Type="tinyint" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContactMethod">
+          <Key>
+            <PropertyRef Name="ContactMethodId" />
+          </Key>
+          <Property Name="ContactMethodId" Type="smallint" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="County">
+          <Key>
+            <PropertyRef Name="CountyId" />
+          </Key>
+          <Property Name="CountyId" Type="smallint" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="ServiceStartDate" Type="date" />
+          <Property Name="ServiceEndDate" Type="date" />
+          <Property Name="StateId" Type="smallint" />
         </EntityType>
         <EntityType Name="Grade">
           <Key>
@@ -89,8 +123,12 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <Property Name="OfficeId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="OfficeTypeId" Type="tinyint" Nullable="false" />
-          <Property Name="SchoolSystemId" Type="smallint" />
-          <Property Name="SchoolType" Type="tinyint" />
+          <Property Name="StreetAddress" Type="varchar" MaxLength="250" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="StateId" Type="smallint" />
+          <Property Name="PostalCode" Type="char" MaxLength="6" />
+          <Property Name="PostalCodeExt" Type="char" MaxLength="4" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="OfficeType">
           <Key>
@@ -116,13 +154,23 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <Property Name="PositionId" Type="smallint" Nullable="false" />
           <Property Name="OfficeTypeId" Type="tinyint" Nullable="false" />
         </EntityType>
-        <EntityType Name="SchoolSystem">
+        <EntityType Name="School">
           <Key>
-            <PropertyRef Name="SchoolSystemId" />
+            <PropertyRef Name="SchoolId" />
           </Key>
-          <Property Name="SchoolSystemId" Type="smallint" Nullable="false" />
+          <Property Name="SchoolId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OfficeId" Type="smallint" Nullable="false" />
+          <Property Name="SchoolDistrictId" Type="smallint" Nullable="false" />
+          <Property Name="SchoolTypeId" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SchoolDistrict">
+          <Key>
+            <PropertyRef Name="SchoolDistrictId" />
+          </Key>
+          <Property Name="SchoolDistrictId" Type="smallint" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="CountyId" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="SchoolType">
           <Key>
@@ -131,6 +179,66 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <Property Name="SchoolTypeId" Type="tinyint" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="SizeId" />
+          </Key>
+          <Property Name="SizeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AgeGroupId" Type="tinyint" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ClothesTypeId" Type="tinyint" Nullable="false" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="smallint" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Code" Type="varchar" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="RequestId" />
+          </Key>
+          <Property Name="RequestId" Type="int" Nullable="false" />
+          <Property Name="DateRequested" Type="date" Nullable="false" />
+          <Property Name="DateEstimatedDelivery" Type="date" Nullable="false" />
+          <Property Name="DateDelivered" Type="date" Nullable="false" />
+          <Property Name="SubmittedByUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RequestStatusId" Type="tinyint" Nullable="false" />
+          <Property Name="OfficeId" Type="smallint" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="GradeId" Type="smallint" Nullable="false" />
+          <Property Name="UrgencyId" Type="tinyint" Nullable="false" />
+          <Property Name="ShirtSizeId" Type="int" />
+          <Property Name="PantSizeId" Type="int" />
+          <Property Name="PantLengthSizeId" Type="int" />
+          <Property Name="UnderwearSize" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ShoeSize" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Comments" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="RowCreatedTime" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="RowCreatedByUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RowLastUpdatedTime" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="RowLastUpdatedByUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RequestStatus">
+          <Key>
+            <PropertyRef Name="RequestStatusId" />
+          </Key>
+          <Property Name="RequestStatusId" Type="tinyint" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Urgency">
+          <Key>
+            <PropertyRef Name="UrgencyId" />
+          </Key>
+          <Property Name="UrgencyId" Type="tinyint" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="250" />
+          <Property Name="DaysForDelivery" Type="tinyint" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -188,6 +296,42 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Reference_AgeGroup$ProvidesAgeGroupDetailsFor$Reference_Size">
+          <End Role="AgeGroup" Type="Self.AgeGroup" Multiplicity="1" />
+          <End Role="Size" Type="Self.Size" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AgeGroup">
+              <PropertyRef Name="AgeGroupId" />
+            </Principal>
+            <Dependent Role="Size">
+              <PropertyRef Name="AgeGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_ClothesType$ProvidesDetailsAboutTypeOfClothingFor$Reference_Size">
+          <End Role="ClothesType" Type="Self.ClothesType" Multiplicity="1" />
+          <End Role="Size" Type="Self.Size" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClothesType">
+              <PropertyRef Name="ClothesTypeId" />
+            </Principal>
+            <Dependent Role="Size">
+              <PropertyRef Name="ClothesTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_ContactMethod$IsPreferredMethodOfContactFor$dbo_AspNetUsers">
+          <End Role="ContactMethod" Type="Self.ContactMethod" Multiplicity="1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactMethod">
+              <PropertyRef Name="ContactMethodId" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="ContactMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Reference_OfficeType$DescribesOrganizationalTypeOf$Reference_Office">
           <End Role="OfficeType" Type="Self.OfficeType" Multiplicity="1" />
           <End Role="Office" Type="Self.Office" Multiplicity="*" />
@@ -224,15 +368,63 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Reference_SchoolSystem$IdentifiesSchoolSystemOf$Reference_Office">
-          <End Role="SchoolSystem" Type="Self.SchoolSystem" Multiplicity="0..1" />
+        <Association Name="FK_Reference_School$DescribesSchoolDetailsFor$Reference_Office">
+          <End Role="Office" Type="Self.Office" Multiplicity="1" />
+          <End Role="School" Type="Self.School" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Office">
+              <PropertyRef Name="OfficeId" />
+            </Principal>
+            <Dependent Role="School">
+              <PropertyRef Name="OfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_SchoolDistrict$IdentifiesSchoolDistrictOf$Reference_School">
+          <End Role="SchoolDistrict" Type="Self.SchoolDistrict" Multiplicity="1" />
+          <End Role="School" Type="Self.School" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolDistrict">
+              <PropertyRef Name="SchoolDistrictId" />
+            </Principal>
+            <Dependent Role="School">
+              <PropertyRef Name="SchoolDistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_SchoolDistrict$IsPartOfTheCounty$Reference_County">
+          <End Role="County" Type="Self.County" Multiplicity="1" />
+          <End Role="SchoolDistrict" Type="Self.SchoolDistrict" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="County">
+              <PropertyRef Name="CountyId" />
+            </Principal>
+            <Dependent Role="SchoolDistrict">
+              <PropertyRef Name="CountyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_SchoolType$IdentifiesTypeOf$Reference_School">
+          <End Role="SchoolType" Type="Self.SchoolType" Multiplicity="1" />
+          <End Role="School" Type="Self.School" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolType">
+              <PropertyRef Name="SchoolTypeId" />
+            </Principal>
+            <Dependent Role="School">
+              <PropertyRef Name="SchoolTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_State$DefinesStateOfResidenceFor$Reference_Office">
+          <End Role="States" Type="Self.States" Multiplicity="0..1" />
           <End Role="Office" Type="Self.Office" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="SchoolSystem">
-              <PropertyRef Name="SchoolSystemId" />
+            <Principal Role="States">
+              <PropertyRef Name="StateId" />
             </Principal>
             <Dependent Role="Office">
-              <PropertyRef Name="SchoolSystemId" />
+              <PropertyRef Name="StateId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -242,13 +434,23 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AgeGroup" EntityType="Self.AgeGroup" Schema="Reference" store:Type="Tables" />
+          <EntitySet Name="ClothesType" EntityType="Self.ClothesType" Schema="Reference" store:Type="Tables" />
+          <EntitySet Name="ContactMethod" EntityType="Self.ContactMethod" Schema="Reference" store:Type="Tables" />
+          <EntitySet Name="County" EntityType="Self.County" Schema="Reference" store:Type="Tables" />
           <EntitySet Name="Grade" EntityType="Self.Grade" Schema="Reference" store:Type="Tables" />
           <EntitySet Name="Office" EntityType="Self.Office" Schema="Reference" store:Type="Tables" />
           <EntitySet Name="OfficeType" EntityType="Self.OfficeType" Schema="Reference" store:Type="Tables" />
           <EntitySet Name="Position" EntityType="Self.Position" Schema="Reference" store:Type="Tables" />
           <EntitySet Name="PositionOfficeType" EntityType="Self.PositionOfficeType" Schema="Reference" store:Type="Tables" />
-          <EntitySet Name="SchoolSystem" EntityType="Self.SchoolSystem" Schema="Reference" store:Type="Tables" />
+          <EntitySet Name="School" EntityType="Self.School" Schema="Reference" store:Type="Tables" />
+          <EntitySet Name="SchoolDistrict" EntityType="Self.SchoolDistrict" Schema="Reference" store:Type="Tables" />
           <EntitySet Name="SchoolType" EntityType="Self.SchoolType" Schema="Reference" store:Type="Tables" />
+          <EntitySet Name="Size" EntityType="Self.Size" Schema="Reference" store:Type="Tables" />
+          <EntitySet Name="States" EntityType="Self.States" Schema="Reference" store:Type="Tables" />
+          <EntitySet Name="Request" EntityType="Self.Request" Schema="Requests" store:Type="Tables" />
+          <EntitySet Name="RequestStatus" EntityType="Self.RequestStatus" Schema="Requests" store:Type="Tables" />
+          <EntitySet Name="Urgency" EntityType="Self.Urgency" Schema="Requests" store:Type="Tables" />
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [__MigrationHistory].[MigrationId] AS [MigrationId], 
@@ -273,6 +475,18 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_Reference_AgeGroup$ProvidesAgeGroupDetailsFor$Reference_Size" Association="Self.FK_Reference_AgeGroup$ProvidesAgeGroupDetailsFor$Reference_Size">
+            <End Role="AgeGroup" EntitySet="AgeGroup" />
+            <End Role="Size" EntitySet="Size" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_ClothesType$ProvidesDetailsAboutTypeOfClothingFor$Reference_Size" Association="Self.FK_Reference_ClothesType$ProvidesDetailsAboutTypeOfClothingFor$Reference_Size">
+            <End Role="ClothesType" EntitySet="ClothesType" />
+            <End Role="Size" EntitySet="Size" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_ContactMethod$IsPreferredMethodOfContactFor$dbo_AspNetUsers" Association="Self.FK_Reference_ContactMethod$IsPreferredMethodOfContactFor$dbo_AspNetUsers">
+            <End Role="ContactMethod" EntitySet="ContactMethod" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
           <AssociationSet Name="FK_Reference_OfficeType$DescribesOrganizationalTypeOf$Reference_Office" Association="Self.FK_Reference_OfficeType$DescribesOrganizationalTypeOf$Reference_Office">
             <End Role="OfficeType" EntitySet="OfficeType" />
             <End Role="Office" EntitySet="Office" />
@@ -285,8 +499,24 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
             <End Role="Position" EntitySet="Position" />
             <End Role="PositionOfficeType" EntitySet="PositionOfficeType" />
           </AssociationSet>
-          <AssociationSet Name="FK_Reference_SchoolSystem$IdentifiesSchoolSystemOf$Reference_Office" Association="Self.FK_Reference_SchoolSystem$IdentifiesSchoolSystemOf$Reference_Office">
-            <End Role="SchoolSystem" EntitySet="SchoolSystem" />
+          <AssociationSet Name="FK_Reference_School$DescribesSchoolDetailsFor$Reference_Office" Association="Self.FK_Reference_School$DescribesSchoolDetailsFor$Reference_Office">
+            <End Role="Office" EntitySet="Office" />
+            <End Role="School" EntitySet="School" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_SchoolDistrict$IdentifiesSchoolDistrictOf$Reference_School" Association="Self.FK_Reference_SchoolDistrict$IdentifiesSchoolDistrictOf$Reference_School">
+            <End Role="SchoolDistrict" EntitySet="SchoolDistrict" />
+            <End Role="School" EntitySet="School" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_SchoolDistrict$IsPartOfTheCounty$Reference_County" Association="Self.FK_Reference_SchoolDistrict$IsPartOfTheCounty$Reference_County">
+            <End Role="County" EntitySet="County" />
+            <End Role="SchoolDistrict" EntitySet="SchoolDistrict" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_SchoolType$IdentifiesTypeOf$Reference_School" Association="Self.FK_Reference_SchoolType$IdentifiesTypeOf$Reference_School">
+            <End Role="SchoolType" EntitySet="SchoolType" />
+            <End Role="School" EntitySet="School" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_State$DefinesStateOfResidenceFor$Reference_Office" Association="Self.FK_Reference_State$DefinesStateOfResidenceFor$Reference_Office">
+            <End Role="States" EntitySet="States" />
             <End Role="Office" EntitySet="Office" />
           </AssociationSet>
         </EntityContainer>
@@ -332,7 +562,7 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
           <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
           <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
           <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
@@ -343,9 +573,40 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PositionId" Type="Int16" Nullable="false" />
           <Property Name="OfficeId" Type="Int16" Nullable="false" />
+          <Property Name="ContactMethodId" Type="Int16" Nullable="false" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="ContactMethod" Relationship="ClotheOurKidsModel.FK_Reference_ContactMethod_IsPreferredMethodOfContactFor_dbo_AspNetUsers" FromRole="AspNetUser" ToRole="ContactMethod" />
+        </EntityType>
+        <EntityType Name="AgeGroup">
+          <Key>
+            <PropertyRef Name="AgeGroupId" />
+          </Key>
+          <Property Name="AgeGroupId" Type="Byte" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Sizes" Relationship="Self.FK_Reference_AgeGroup_ProvidesAgeGroupDetailsFor_Reference_Size" FromRole="AgeGroup" ToRole="Size" />
+        </EntityType>
+        <EntityType Name="ClothesType">
+          <Key>
+            <PropertyRef Name="ClothesTypeId" />
+          </Key>
+          <Property Name="ClothesTypeId" Type="Byte" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Sizes" Relationship="Self.FK_Reference_ClothesType_ProvidesDetailsAboutTypeOfClothingFor_Reference_Size" FromRole="ClothesType" ToRole="Size" />
+        </EntityType>
+        <EntityType Name="County">
+          <Key>
+            <PropertyRef Name="CountyId" />
+          </Key>
+          <Property Name="CountyId" Type="Int16" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ServiceStartDate" Type="DateTime" Precision="0" />
+          <Property Name="ServiceEndDate" Type="DateTime" Precision="0" />
+          <Property Name="StateId" Type="Int16" />
+          <NavigationProperty Name="SchoolDistricts" Relationship="Self.FK_Reference_SchoolDistrict_IsPartOfTheCounty_Reference_County" FromRole="County" ToRole="SchoolDistrict" />
         </EntityType>
         <EntityType Name="Grade">
           <Key>
@@ -362,10 +623,15 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <Property Name="OfficeId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="OfficeTypeId" Type="Byte" Nullable="false" />
-          <Property Name="SchoolSystemId" Type="Int16" />
-          <Property Name="SchoolType" Type="Byte" />
+          <Property Name="StreetAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StateId" Type="Int16" />
+          <Property Name="PostalCode" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="PostalCodeExt" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="OfficeType" Relationship="Self.FK_Reference_OfficeType_DescribesOrganizationalTypeOf_Reference_Office" FromRole="Office" ToRole="OfficeType" />
-          <NavigationProperty Name="SchoolSystem" Relationship="Self.FK_Reference_SchoolSystem_IdentifiesSchoolSystemOf_Reference_Office" FromRole="Office" ToRole="SchoolSystem" />
+          <NavigationProperty Name="Schools" Relationship="Self.FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office" FromRole="Office" ToRole="School" />
+          <NavigationProperty Name="State" Relationship="Self.FK_Reference_State_DefinesStateOfResidenceFor_Reference_Office" FromRole="Office" ToRole="States" />
         </EntityType>
         <EntityType Name="OfficeType">
           <Key>
@@ -396,14 +662,28 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <NavigationProperty Name="OfficeType" Relationship="Self.FK_Reference_OfficeType_DescribesTypeOfOfficeAssociatedWith_Reference_PositionOfficeType" FromRole="PositionOfficeType" ToRole="OfficeType" />
           <NavigationProperty Name="Position" Relationship="Self.FK_Reference_PositionOfficeType_SpecifiesOfficeTypeOf_Reference_Position" FromRole="PositionOfficeType" ToRole="Position" />
         </EntityType>
-        <EntityType Name="SchoolSystem">
+        <EntityType Name="School">
           <Key>
-            <PropertyRef Name="SchoolSystemId" />
+            <PropertyRef Name="SchoolId" />
           </Key>
-          <Property Name="SchoolSystemId" Type="Int16" Nullable="false" />
+          <Property Name="SchoolId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OfficeId" Type="Int16" Nullable="false" />
+          <Property Name="SchoolDistrictId" Type="Int16" Nullable="false" />
+          <Property Name="SchoolTypeId" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Office" Relationship="Self.FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office" FromRole="School" ToRole="Office" />
+          <NavigationProperty Name="SchoolDistrict" Relationship="Self.FK_Reference_SchoolDistrict_IdentifiesSchoolDistrictOf_Reference_School" FromRole="School" ToRole="SchoolDistrict" />
+          <NavigationProperty Name="SchoolType" Relationship="Self.FK_Reference_SchoolType_IdentifiesTypeOf_Reference_School" FromRole="School" ToRole="SchoolType" />
+        </EntityType>
+        <EntityType Name="SchoolDistrict">
+          <Key>
+            <PropertyRef Name="SchoolDistrictId" />
+          </Key>
+          <Property Name="SchoolDistrictId" Type="Int16" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Offices" Relationship="Self.FK_Reference_SchoolSystem_IdentifiesSchoolSystemOf_Reference_Office" FromRole="SchoolSystem" ToRole="Office" />
+          <Property Name="CountyId" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="County" Relationship="Self.FK_Reference_SchoolDistrict_IsPartOfTheCounty_Reference_County" FromRole="SchoolDistrict" ToRole="County" />
+          <NavigationProperty Name="Schools" Relationship="Self.FK_Reference_SchoolDistrict_IdentifiesSchoolDistrictOf_Reference_School" FromRole="SchoolDistrict" ToRole="School" />
         </EntityType>
         <EntityType Name="SchoolType">
           <Key>
@@ -412,6 +692,70 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <Property Name="SchoolTypeId" Type="Byte" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Schools" Relationship="Self.FK_Reference_SchoolType_IdentifiesTypeOf_Reference_School" FromRole="SchoolType" ToRole="School" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="SizeId" />
+          </Key>
+          <Property Name="SizeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AgeGroupId" Type="Byte" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ClothesTypeId" Type="Byte" Nullable="false" />
+          <Property Name="SortOrder" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AgeGroup" Relationship="Self.FK_Reference_AgeGroup_ProvidesAgeGroupDetailsFor_Reference_Size" FromRole="Size" ToRole="AgeGroup" />
+          <NavigationProperty Name="ClothesType" Relationship="Self.FK_Reference_ClothesType_ProvidesDetailsAboutTypeOfClothingFor_Reference_Size" FromRole="Size" ToRole="ClothesType" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="Int16" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Code" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Offices" Relationship="Self.FK_Reference_State_DefinesStateOfResidenceFor_Reference_Office" FromRole="States" ToRole="Office" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="RequestId" />
+          </Key>
+          <Property Name="RequestId" Type="Int32" Nullable="false" />
+          <Property Name="DateRequested" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateEstimatedDelivery" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateDelivered" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SubmittedByUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RequestStatusId" Type="Byte" Nullable="false" />
+          <Property Name="OfficeId" Type="Int16" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GradeId" Type="Int16" Nullable="false" />
+          <Property Name="UrgencyId" Type="Byte" Nullable="false" />
+          <Property Name="ShirtSizeId" Type="Int32" />
+          <Property Name="PantSizeId" Type="Int32" />
+          <Property Name="PantLengthSizeId" Type="Int32" />
+          <Property Name="UnderwearSize" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ShoeSize" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowCreatedTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RowCreatedByUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RowLastUpdatedTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RowLastUpdatedByUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RequestStatu">
+          <Key>
+            <PropertyRef Name="RequestStatusId" />
+          </Key>
+          <Property Name="RequestStatusId" Type="Byte" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Urgency">
+          <Key>
+            <PropertyRef Name="UrgencyId" />
+          </Key>
+          <Property Name="UrgencyId" Type="Byte" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DaysForDelivery" Type="Byte" Nullable="false" />
         </EntityType>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -453,6 +797,42 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Reference_AgeGroup_ProvidesAgeGroupDetailsFor_Reference_Size">
+          <End Role="AgeGroup" Type="Self.AgeGroup" Multiplicity="1" />
+          <End Role="Size" Type="Self.Size" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AgeGroup">
+              <PropertyRef Name="AgeGroupId" />
+            </Principal>
+            <Dependent Role="Size">
+              <PropertyRef Name="AgeGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_ClothesType_ProvidesDetailsAboutTypeOfClothingFor_Reference_Size">
+          <End Role="ClothesType" Type="Self.ClothesType" Multiplicity="1" />
+          <End Role="Size" Type="Self.Size" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClothesType">
+              <PropertyRef Name="ClothesTypeId" />
+            </Principal>
+            <Dependent Role="Size">
+              <PropertyRef Name="ClothesTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_SchoolDistrict_IsPartOfTheCounty_Reference_County">
+          <End Role="County" Type="Self.County" Multiplicity="1" />
+          <End Role="SchoolDistrict" Type="Self.SchoolDistrict" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="County">
+              <PropertyRef Name="CountyId" />
+            </Principal>
+            <Dependent Role="SchoolDistrict">
+              <PropertyRef Name="CountyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Reference_OfficeType_DescribesOrganizationalTypeOf_Reference_Office">
           <End Role="OfficeType" Type="Self.OfficeType" Multiplicity="1" />
           <End Role="Office" Type="Self.Office" Multiplicity="*" />
@@ -465,15 +845,27 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Reference_SchoolSystem_IdentifiesSchoolSystemOf_Reference_Office">
-          <End Role="SchoolSystem" Type="Self.SchoolSystem" Multiplicity="0..1" />
+        <Association Name="FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office">
+          <End Role="Office" Type="Self.Office" Multiplicity="1" />
+          <End Role="School" Type="Self.School" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Office">
+              <PropertyRef Name="OfficeId" />
+            </Principal>
+            <Dependent Role="School">
+              <PropertyRef Name="OfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_State_DefinesStateOfResidenceFor_Reference_Office">
+          <End Role="States" Type="Self.State" Multiplicity="0..1" />
           <End Role="Office" Type="Self.Office" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="SchoolSystem">
-              <PropertyRef Name="SchoolSystemId" />
+            <Principal Role="States">
+              <PropertyRef Name="StateId" />
             </Principal>
             <Dependent Role="Office">
-              <PropertyRef Name="SchoolSystemId" />
+              <PropertyRef Name="StateId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -501,22 +893,55 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Reference_SchoolDistrict_IdentifiesSchoolDistrictOf_Reference_School">
+          <End Role="SchoolDistrict" Type="Self.SchoolDistrict" Multiplicity="1" />
+          <End Role="School" Type="Self.School" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolDistrict">
+              <PropertyRef Name="SchoolDistrictId" />
+            </Principal>
+            <Dependent Role="School">
+              <PropertyRef Name="SchoolDistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_SchoolType_IdentifiesTypeOf_Reference_School">
+          <End Role="SchoolType" Type="Self.SchoolType" Multiplicity="1" />
+          <End Role="School" Type="Self.School" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolType">
+              <PropertyRef Name="SchoolTypeId" />
+            </Principal>
+            <Dependent Role="School">
+              <PropertyRef Name="SchoolTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="AspNetUserRoles">
           <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="ClotheOurKidsContext" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ClotheOurKidsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="AgeGroups" EntityType="Self.AgeGroup" />
+          <EntitySet Name="ClothesTypes" EntityType="Self.ClothesType" />
+          <EntitySet Name="Counties" EntityType="Self.County" />
           <EntitySet Name="Grades" EntityType="Self.Grade" />
           <EntitySet Name="Offices" EntityType="Self.Office" />
           <EntitySet Name="OfficeTypes" EntityType="Self.OfficeType" />
           <EntitySet Name="Positions" EntityType="Self.Position" />
           <EntitySet Name="PositionOfficeTypes" EntityType="Self.PositionOfficeType" />
-          <EntitySet Name="SchoolSystems" EntityType="Self.SchoolSystem" />
+          <EntitySet Name="Schools" EntityType="Self.School" />
+          <EntitySet Name="SchoolDistricts" EntityType="Self.SchoolDistrict" />
           <EntitySet Name="SchoolTypes" EntityType="Self.SchoolType" />
+          <EntitySet Name="Sizes" EntityType="Self.Size" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <EntitySet Name="Requests" EntityType="Self.Request" />
+          <EntitySet Name="RequestStatus" EntityType="Self.RequestStatu" />
+          <EntitySet Name="Urgencies" EntityType="Self.Urgency" />
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -526,12 +951,28 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
+          <AssociationSet Name="FK_Reference_AgeGroup_ProvidesAgeGroupDetailsFor_Reference_Size" Association="Self.FK_Reference_AgeGroup_ProvidesAgeGroupDetailsFor_Reference_Size">
+            <End Role="AgeGroup" EntitySet="AgeGroups" />
+            <End Role="Size" EntitySet="Sizes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_ClothesType_ProvidesDetailsAboutTypeOfClothingFor_Reference_Size" Association="Self.FK_Reference_ClothesType_ProvidesDetailsAboutTypeOfClothingFor_Reference_Size">
+            <End Role="ClothesType" EntitySet="ClothesTypes" />
+            <End Role="Size" EntitySet="Sizes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_SchoolDistrict_IsPartOfTheCounty_Reference_County" Association="Self.FK_Reference_SchoolDistrict_IsPartOfTheCounty_Reference_County">
+            <End Role="County" EntitySet="Counties" />
+            <End Role="SchoolDistrict" EntitySet="SchoolDistricts" />
+          </AssociationSet>
           <AssociationSet Name="FK_Reference_OfficeType_DescribesOrganizationalTypeOf_Reference_Office" Association="Self.FK_Reference_OfficeType_DescribesOrganizationalTypeOf_Reference_Office">
             <End Role="OfficeType" EntitySet="OfficeTypes" />
             <End Role="Office" EntitySet="Offices" />
           </AssociationSet>
-          <AssociationSet Name="FK_Reference_SchoolSystem_IdentifiesSchoolSystemOf_Reference_Office" Association="Self.FK_Reference_SchoolSystem_IdentifiesSchoolSystemOf_Reference_Office">
-            <End Role="SchoolSystem" EntitySet="SchoolSystems" />
+          <AssociationSet Name="FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office" Association="Self.FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office">
+            <End Role="Office" EntitySet="Offices" />
+            <End Role="School" EntitySet="Schools" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_State_DefinesStateOfResidenceFor_Reference_Office" Association="Self.FK_Reference_State_DefinesStateOfResidenceFor_Reference_Office">
+            <End Role="States" EntitySet="States" />
             <End Role="Office" EntitySet="Offices" />
           </AssociationSet>
           <AssociationSet Name="FK_Reference_OfficeType_DescribesTypeOfOfficeAssociatedWith_Reference_PositionOfficeType" Association="Self.FK_Reference_OfficeType_DescribesTypeOfOfficeAssociatedWith_Reference_PositionOfficeType">
@@ -542,17 +983,50 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
             <End Role="Position" EntitySet="Positions" />
             <End Role="PositionOfficeType" EntitySet="PositionOfficeTypes" />
           </AssociationSet>
+          <AssociationSet Name="FK_Reference_SchoolDistrict_IdentifiesSchoolDistrictOf_Reference_School" Association="Self.FK_Reference_SchoolDistrict_IdentifiesSchoolDistrictOf_Reference_School">
+            <End Role="SchoolDistrict" EntitySet="SchoolDistricts" />
+            <End Role="School" EntitySet="Schools" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_SchoolType_IdentifiesTypeOf_Reference_School" Association="Self.FK_Reference_SchoolType_IdentifiesTypeOf_Reference_School">
+            <End Role="SchoolType" EntitySet="SchoolTypes" />
+            <End Role="School" EntitySet="Schools" />
+          </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="ContactMethods" EntityType="ClotheOurKidsModel.ContactMethod" />
+          <AssociationSet Name="FK_Reference_ContactMethod_IsPreferredMethodOfContactFor_dbo_AspNetUsers" Association="ClotheOurKidsModel.FK_Reference_ContactMethod_IsPreferredMethodOfContactFor_dbo_AspNetUsers">
+            <End Role="ContactMethod" EntitySet="ContactMethods" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ContactMethod">
+          <Key>
+            <PropertyRef Name="ContactMethodId" />
+          </Key>
+          <Property Name="ContactMethodId" Type="Int16" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="ClotheOurKidsModel.FK_Reference_ContactMethod_IsPreferredMethodOfContactFor_dbo_AspNetUsers" FromRole="ContactMethod" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK_Reference_ContactMethod_IsPreferredMethodOfContactFor_dbo_AspNetUsers">
+          <End Type="ClotheOurKidsModel.ContactMethod" Role="ContactMethod" Multiplicity="1" />
+          <End Type="ClotheOurKidsModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactMethod">
+              <PropertyRef Name="ContactMethodId" />
+            </Principal>
+            <Dependent Role="AspNetUser">
+              <PropertyRef Name="ContactMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ClotheOurKidsModelStoreContainer" CdmEntityContainer="ClotheOurKidsContext">
+        <EntityContainerMapping StorageEntityContainer="ClotheOurKidsModelStoreContainer" CdmEntityContainer="ClotheOurKidsEntities">
           <EntitySetMapping Name="AspNetRoles">
             <EntityTypeMapping TypeName="ClotheOurKidsModel.AspNetRole">
               <MappingFragment StoreEntitySet="AspNetRoles">
@@ -599,6 +1073,36 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="PositionId" ColumnName="PositionId" />
                 <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+                <ScalarProperty Name="ContactMethodId" ColumnName="ContactMethodId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AgeGroups">
+            <EntityTypeMapping TypeName="ClotheOurKidsModel.AgeGroup">
+              <MappingFragment StoreEntitySet="AgeGroup">
+                <ScalarProperty Name="AgeGroupId" ColumnName="AgeGroupId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClothesTypes">
+            <EntityTypeMapping TypeName="ClotheOurKidsModel.ClothesType">
+              <MappingFragment StoreEntitySet="ClothesType">
+                <ScalarProperty Name="ClothesTypeId" ColumnName="ClothesTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Counties">
+            <EntityTypeMapping TypeName="ClotheOurKidsModel.County">
+              <MappingFragment StoreEntitySet="County">
+                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ServiceStartDate" ColumnName="ServiceStartDate" />
+                <ScalarProperty Name="ServiceEndDate" ColumnName="ServiceEndDate" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -617,8 +1121,12 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
                 <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="OfficeTypeId" ColumnName="OfficeTypeId" />
-                <ScalarProperty Name="SchoolSystemId" ColumnName="SchoolSystemId" />
-                <ScalarProperty Name="SchoolType" ColumnName="SchoolType" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="PostalCodeExt" ColumnName="PostalCodeExt" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -649,12 +1157,23 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SchoolSystems">
-            <EntityTypeMapping TypeName="ClotheOurKidsModel.SchoolSystem">
-              <MappingFragment StoreEntitySet="SchoolSystem">
-                <ScalarProperty Name="SchoolSystemId" ColumnName="SchoolSystemId" />
+          <EntitySetMapping Name="Schools">
+            <EntityTypeMapping TypeName="ClotheOurKidsModel.School">
+              <MappingFragment StoreEntitySet="School">
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+                <ScalarProperty Name="SchoolDistrictId" ColumnName="SchoolDistrictId" />
+                <ScalarProperty Name="SchoolTypeId" ColumnName="SchoolTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SchoolDistricts">
+            <EntityTypeMapping TypeName="ClotheOurKidsModel.SchoolDistrict">
+              <MappingFragment StoreEntitySet="SchoolDistrict">
+                <ScalarProperty Name="SchoolDistrictId" ColumnName="SchoolDistrictId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -664,6 +1183,71 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
                 <ScalarProperty Name="SchoolTypeId" ColumnName="SchoolTypeId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sizes">
+            <EntityTypeMapping TypeName="ClotheOurKidsModel.Size">
+              <MappingFragment StoreEntitySet="Size">
+                <ScalarProperty Name="SizeId" ColumnName="SizeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AgeGroupId" ColumnName="AgeGroupId" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="ClothesTypeId" ColumnName="ClothesTypeId" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="ClotheOurKidsModel.State">
+              <MappingFragment StoreEntitySet="States">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="ClotheOurKidsModel.Request">
+              <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="DateRequested" ColumnName="DateRequested" />
+                <ScalarProperty Name="DateEstimatedDelivery" ColumnName="DateEstimatedDelivery" />
+                <ScalarProperty Name="DateDelivered" ColumnName="DateDelivered" />
+                <ScalarProperty Name="SubmittedByUserId" ColumnName="SubmittedByUserId" />
+                <ScalarProperty Name="RequestStatusId" ColumnName="RequestStatusId" />
+                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="GradeId" ColumnName="GradeId" />
+                <ScalarProperty Name="UrgencyId" ColumnName="UrgencyId" />
+                <ScalarProperty Name="ShirtSizeId" ColumnName="ShirtSizeId" />
+                <ScalarProperty Name="PantSizeId" ColumnName="PantSizeId" />
+                <ScalarProperty Name="PantLengthSizeId" ColumnName="PantLengthSizeId" />
+                <ScalarProperty Name="UnderwearSize" ColumnName="UnderwearSize" />
+                <ScalarProperty Name="ShoeSize" ColumnName="ShoeSize" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="RowCreatedTime" ColumnName="RowCreatedTime" />
+                <ScalarProperty Name="RowCreatedByUserId" ColumnName="RowCreatedByUserId" />
+                <ScalarProperty Name="RowLastUpdatedTime" ColumnName="RowLastUpdatedTime" />
+                <ScalarProperty Name="RowLastUpdatedByUserId" ColumnName="RowLastUpdatedByUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestStatus">
+            <EntityTypeMapping TypeName="ClotheOurKidsModel.RequestStatu">
+              <MappingFragment StoreEntitySet="RequestStatus">
+                <ScalarProperty Name="RequestStatusId" ColumnName="RequestStatusId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Urgencies">
+            <EntityTypeMapping TypeName="ClotheOurKidsModel.Urgency">
+              <MappingFragment StoreEntitySet="Urgency">
+                <ScalarProperty Name="UrgencyId" ColumnName="UrgencyId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DaysForDelivery" ColumnName="DaysForDelivery" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -685,6 +1269,14 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="ContactMethods">
+            <EntityTypeMapping TypeName="ClotheOurKidsModel.ContactMethod">
+              <MappingFragment StoreEntitySet="ContactMethod">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContactMethodId" ColumnName="ContactMethodId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

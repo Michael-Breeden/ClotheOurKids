@@ -7,20 +7,32 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClotheOurKids.Model.DAL
+namespace ClotheOurKids.Model
 {
     using System;
     using System.Collections.Generic;
     
     public partial class Office
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Office()
+        {
+            this.Schools = new HashSet<School>();
+        }
+    
         public short OfficeId { get; set; }
         public string Name { get; set; }
         public byte OfficeTypeId { get; set; }
-        public Nullable<short> SchoolSystemId { get; set; }
-        public Nullable<byte> SchoolType { get; set; }
+        public string StreetAddress { get; set; }
+        public string City { get; set; }
+        public Nullable<short> StateId { get; set; }
+        public string PostalCode { get; set; }
+        public string PostalCodeExt { get; set; }
+        public string Phone { get; set; }
     
         public virtual OfficeType OfficeType { get; set; }
-        public virtual SchoolSystem SchoolSystem { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<School> Schools { get; set; }
+        public virtual State State { get; set; }
     }
 }

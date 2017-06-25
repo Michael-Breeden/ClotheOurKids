@@ -12,6 +12,8 @@ using ClotheOurKids.Web.Models;
 using System.Net.Http;
 using System.Collections.Generic;
 using System.Web.Helpers;
+using ClotheOurKids.Model;
+using ClotheOurKids.Model.Repository;
 
 namespace ClotheOurKids.Web.Controllers
 {
@@ -145,7 +147,161 @@ namespace ClotheOurKids.Web.Controllers
         [Route("Register", Name = "RegisterPage")]
         public ActionResult Register()
         {
-            return View();
+            var model = new RegisterViewModel();
+                
+            PopulateRegisterModel(model);
+
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        [AcceptVerbs(HttpVerbs.Get)]
+        [Route("Get-Offices", Name = "GetOffices")]
+        public ActionResult GetOfficesByOfficeTypeId (string officeTypeId)
+        {
+            if (String.IsNullOrEmpty(officeTypeId))
+            {
+                throw new ArgumentNullException("officeTypeId");
+            }
+
+            int id = 0;
+            var repository = new RegisterFormRepository();
+            bool isValid = Int32.TryParse(officeTypeId, out id);
+            var offices = repository.GetOfficesByOfficeType(id);
+
+            var result = (from o in offices
+                          select new
+                          {
+                              id = o.OfficeId,
+                              name = o.Name
+                          }).ToList();
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [AllowAnonymous]
+        [AcceptVerbs(HttpVerbs.Get)]
+        [Route("Get-Positions", Name = "GetPositions")]
+        public ActionResult GetPositionsByOfficeId (string officeTypeId)
+        {
+            if (String.IsNullOrEmpty(officeTypeId))
+            {
+                throw new ArgumentNullException("officeTypeId");
+            }
+
+            int id = 0;
+            var repository = new RegisterFormRepository();
+            bool isValid = Int32.TryParse(officeTypeId, out id);
+            var positions = repository.GetPositionsByOfficeType(id);
+
+            var result = (from p in positions
+                          select new
+                          {
+                              id = p.PositionId,
+                              name = p.Name
+                          }).ToList();
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        private RegisterViewModel PopulateRegisterModel (RegisterViewModel model)
+        {
+            var repository = new RegisterFormRepository();
+            
+            //Populate Office Types
+            var officeTypes = repository.GetAllOfficeTypes();
+            var officeTypeList = (from ot in officeTypes
+                                  select new
+                                  {
+                                      id = ot.OfficeTypeId,
+                                      name = ot.Name
+                                  }).ToList();
+
+            foreach (var officeType in officeTypeList)
+            {
+                model.AvailableOfficeTypes.Add(new SelectListItem()
+                {
+                    Text = officeType.name,
+                    Value = officeType.id.ToString()
+                });
+
+            }
+
+
+            //Populate Contact Methods
+            var contactMethods = repository.GetAllContactMethods();
+            var contactMethodList = (from c in contactMethods
+                                     select new
+                                     {
+                                         id = c.ContactMethodId,
+                                         name = c.Name
+                                     }).ToList();
+
+            foreach (var contactMethod in contactMethodList)
+            {
+                model.AvailableContactMethods.Add(new SelectListItem()
+                {
+                    Text = contactMethod.name,
+                    Value = contactMethod.id.ToString()
+                });
+
+            }
+
+            //Seed Position and Office Dropdowns with placeholder
+            model.AvailablePositions.Add(new SelectListItem()
+            {
+                Text = "Choose Your Position",
+                Value = "0"
+            });
+
+            model.AvailableOffices.Add(new SelectListItem()
+            {
+                Text = "Choose Your Office",
+                Value = "0"
+            });
+
+
+            //Populate Office and Position dropdowns based on OfficeTypeId
+            if (model.OfficeTypeId.HasValue)
+            {
+                var offices = repository.GetOfficesByOfficeType((int)model.OfficeTypeId);
+                var officeList = (from o in offices
+                                  select new
+                                  {
+                                      id = o.OfficeId,
+                                      name = o.Name
+                                  }).ToList();
+
+                foreach (var office in officeList)
+                {
+                    model.AvailableOffices.Add(new SelectListItem()
+                    {
+                        Text = office.name,
+                        Value = office.id.ToString()
+                    });
+                }
+
+
+                var positions = repository.GetPositionsByOfficeType((int)model.OfficeTypeId);
+                var positionList = (from p in positions
+                                    select new
+                                    {
+                                        id = p.PositionId,
+                                        name = p.Name
+                                    }).ToList();
+
+                foreach (var position in positionList)
+                {
+                    model.AvailablePositions.Add(new SelectListItem()
+                    {
+                        Text = position.name,
+                        Value = position.id.ToString()
+                    });
+                }
+
+            }
+            
+            return model;
         }
 
         //
@@ -153,11 +309,12 @@ namespace ClotheOurKids.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Route("Register", Name = "RegisterPost")]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, PositionId = model.PositionId, OfficeId = model.OfficeId };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, PositionId = (short)model.PositionId, OfficeId = (short)model.OfficeId, PhoneNumber = model.PhoneNumber, ContactMethodId = (short)model.ContactMethodId };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -173,6 +330,8 @@ namespace ClotheOurKids.Web.Controllers
                 }
                 AddErrors(result);
             }
+
+            PopulateRegisterModel(model);
 
             // If we got this far, something failed, redisplay form
             return View(model);
@@ -402,7 +561,6 @@ namespace ClotheOurKids.Web.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("LogOff", Name = "LogOffPage")]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
