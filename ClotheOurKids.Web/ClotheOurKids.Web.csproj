@@ -561,6 +561,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Scripts\ViewScripts\Layout.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

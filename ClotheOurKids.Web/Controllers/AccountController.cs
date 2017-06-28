@@ -95,7 +95,8 @@ namespace ClotheOurKids.Web.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "You must confirm your email address before you can log in.");
+                    var callbackUrl = Url.Action("Confirm", "Account", new { Email = user.Email}, protocol: Request.Url.Scheme);
+                    return Json(new { Success = 0, errorMsg = "", confirmEmail = callbackUrl});
                 }
             }
             else
@@ -107,7 +108,7 @@ namespace ClotheOurKids.Web.Controllers
             totalError = CompileErrorMsg(ModelState);
 
             ////If we got this far, something failed, redisplay form
-            return Json(new { Success = 0, errorMsg = new Exception(totalError).Message.ToString() });
+            return Json(new { Success = 0, errorMsg = new Exception(totalError).Message.ToString(), confirmEmail = "" });
 
 
 
