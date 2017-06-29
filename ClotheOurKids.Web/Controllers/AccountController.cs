@@ -87,7 +87,7 @@ namespace ClotheOurKids.Web.Controllers
             var user = await UserManager.FindAsync(model.Email, model.Password);
             if (user != null)
             {
-                if (user.EmailConfirmed == true)
+                if (await UserManager.IsEmailConfirmedAsync(user.Id))
                 {
                     await SignInManager.SignInAsync(user, model.RememberMe, model.RememberMe);
 
@@ -95,8 +95,9 @@ namespace ClotheOurKids.Web.Controllers
                 }
                 else
                 {
-                    var callbackUrl = Url.Action("Confirm", "Account", new { Email = user.Email}, protocol: Request.Url.Scheme);
-                    return Json(new { Success = 0, errorMsg = "", confirmEmail = callbackUrl});
+                    //var callbackUrl = Url.Action("Confirm", "Account", new { Email = user.Email}, protocol: Request.Url.Scheme);
+                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Account confirmation");
+                    return Json(new { Success = 0, errorMsg = "You must have a confirmed email to log on. <br/> The confirmation token has been resent to your email address."});
                 }
             }
             else
@@ -398,6 +399,7 @@ namespace ClotheOurKids.Web.Controllers
             return View();
         }
 
+
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
@@ -417,7 +419,7 @@ namespace ClotheOurKids.Web.Controllers
             // Send an email with this link:
             string code = await UserManager.GenerateEmailConfirmationTokenAsync(userID);
             var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = userID, code = code }, protocol: Request.Url.Scheme);
-            await UserManager.SendEmailAsync(userID, subject, "Please confirm your account by <a href=\"" + callbackUrl + "\">clicking here</a>");
+            await UserManager.SendEmailAsync(userID, subject, "Please confirm your account by clicking <a href=\"" + callbackUrl + "\"> here</a>");
 
 
             return callbackUrl;

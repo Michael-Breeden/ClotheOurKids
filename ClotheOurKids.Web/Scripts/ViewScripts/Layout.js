@@ -89,9 +89,6 @@ $(document).ready(function () {
                     $('#loginError').hide();
                     location.reload();
                 }
-                else if (result.Success == "0" && result.confirmEmail) {
-                    window.location.href = result.confirmEmail;
-                }
                 else {
                     $("#loginError").html(result.errorMsg);
                     $('#loginError').show();

@@ -31,8 +31,15 @@ namespace ClotheOurKids.Web
             {
                 //In order to use the original from email address, uncomment this line:
                 //email.From = new MailAddress(mailClient.UserName, "(do not reply)");
-
-                await mailClient.SendMailAsync(email);
+                try
+                {
+                    await mailClient.SendMailAsync(email);
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex);
+                }
+                
             }
         }
     }

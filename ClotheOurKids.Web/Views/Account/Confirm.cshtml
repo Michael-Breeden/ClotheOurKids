@@ -7,4 +7,11 @@
     <div class="col-12">
         Please check your Email Inbox. We sent a confirmation Email to @ViewBag.Email. <br/> You must confirm your email before you can log in.
     </div>
+    <div class="col-12">
+        @using (Html.BeginForm("Confirm", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-primary btn-rounded btn-lg waves-effect waves-light">Resend Confirmation Email</button>
+        }
+    </div>
 </div>
