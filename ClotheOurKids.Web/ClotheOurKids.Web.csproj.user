@@ -12,6 +12,7 @@
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort>44320</IISExpressSSLPort>
     <ToolsVersionPromptShown>2.2</ToolsVersionPromptShown>
+    <NameOfLastUsedPublishProfile>ClotheOurKids - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

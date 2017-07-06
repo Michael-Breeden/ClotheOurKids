@@ -455,7 +455,6 @@
     <Content Include="Content\plugins\select2-4.0.3\js\select2.full.min.js" />
     <Content Include="Content\plugins\select2-4.0.3\js\select2.js" />
     <Content Include="Content\plugins\select2-4.0.3\js\select2.min.js" />
-    <Content Include="Content\sass\README.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -481,25 +480,6 @@
     <Content Include="Content\font\roboto\Roboto-Thin.woff2" />
     <Content Include="Content\img\lightbox\Thumbs.db" />
     <Content Include="Content\img\overlays\Thumbs.db" />
-    <Content Include="Content\sass\mdb.scss" />
-    <Content Include="Content\sass\mdb\free\data\_colors.scss" />
-    <Content Include="Content\sass\mdb\free\data\_mixins.scss" />
-    <Content Include="Content\sass\mdb\free\data\_prefixer.scss" />
-    <Content Include="Content\sass\mdb\free\data\_variables-b4.scss" />
-    <Content Include="Content\sass\mdb\free\data\_variables.scss" />
-    <Content Include="Content\sass\mdb\free\_animations.scss" />
-    <Content Include="Content\sass\mdb\free\_buttons.scss" />
-    <Content Include="Content\sass\mdb\free\_cards-basic.scss" />
-    <Content Include="Content\sass\mdb\free\_carousels-basic.scss" />
-    <Content Include="Content\sass\mdb\free\_footer.scss" />
-    <Content Include="Content\sass\mdb\free\_forms-basic.scss" />
-    <Content Include="Content\sass\mdb\free\_global.scss" />
-    <Content Include="Content\sass\mdb\free\_helpers.scss" />
-    <Content Include="Content\sass\mdb\free\_hover-effects.scss" />
-    <Content Include="Content\sass\mdb\free\_navbars.scss" />
-    <Content Include="Content\sass\mdb\free\_roboto.scss" />
-    <Content Include="Content\sass\mdb\free\_typography.scss" />
-    <Content Include="Content\sass\mdb\free\_waves.scss" />
     <Content Include="Content\plugins\font-awesome\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\plugins\font-awesome\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\plugins\font-awesome\fonts\fontawesome-webfont.woff" />
@@ -618,6 +598,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\EntityManager\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

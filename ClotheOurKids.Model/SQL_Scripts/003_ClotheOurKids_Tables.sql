@@ -22,61 +22,95 @@ ALTER TABLE [Reference].[Office] DROP CONSTRAINT [FK_Reference_State$DefinesStat
 GO
 ALTER TABLE [Reference].[Office] DROP CONSTRAINT [FK_Reference_OfficeType$DescribesOrganizationalTypeOf$Reference_Office]
 GO
-/****** Object:  Table [Requests].[Urgency]    Script Date: 6/7/2017 10:18:21 PM ******/
+ALTER TABLE [dbo].[AspNetUsers] DROP CONSTRAINT [FK_Reference_ContactMethod$IsPreferredMethodOfContactFor$dbo_AspNetUsers]
+GO
+ALTER TABLE [dbo].[AspNetUsers] DROP CONSTRAINT [FK_Reference_Office$IsOfficeOf$dbo_AspNetUsers]
+GO
+ALTER TABLE [dbo].[AspNetUsers] DROP CONSTRAINT [FK_Reference_Position$IsPositionOf$dbo_AspNetUsers]
+GO
+
+
 DROP TABLE [Requests].[Urgency]
 GO
-/****** Object:  Table [Requests].[RequestStatus]    Script Date: 6/7/2017 10:18:21 PM ******/
+
 DROP TABLE [Requests].[RequestStatus]
 GO
-/****** Object:  Table [Reference].[States]    Script Date: 6/7/2017 10:18:21 PM ******/
+
+DROP TABLE [Requests].[Request]
+GO
+
+DROP TABLE [Reference].[ContactMethod]
+GO
+
 DROP TABLE [Reference].[States]
 GO
-/****** Object:  Table [Reference].[Size]    Script Date: 6/7/2017 10:18:21 PM ******/
-DROP TABLE [Reference].[Size]
-GO
-/****** Object:  Table [Reference].[SchoolType]    Script Date: 6/7/2017 10:18:21 PM ******/
+
+--DROP TABLE [Reference].[Size]
+--GO
+
 DROP TABLE [Reference].[SchoolType]
 GO
-/****** Object:  Table [Reference].[SchoolDistrict]    Script Date: 6/7/2017 10:18:21 PM ******/
+
 DROP TABLE [Reference].[SchoolDistrict]
 GO
-/****** Object:  Table [Reference].[School]    Script Date: 6/7/2017 10:18:21 PM ******/
+
 DROP TABLE [Reference].[School]
 GO
-/****** Object:  Table [Reference].[PositionOfficeType]    Script Date: 6/7/2017 10:18:21 PM ******/
+
 DROP TABLE [Reference].[PositionOfficeType]
 GO
-/****** Object:  Table [Reference].[Position]    Script Date: 6/7/2017 10:18:21 PM ******/
+
 DROP TABLE [Reference].[Position]
 GO
-/****** Object:  Table [Reference].[OfficeType]    Script Date: 6/7/2017 10:18:21 PM ******/
+
 DROP TABLE [Reference].[OfficeType]
 GO
-/****** Object:  Table [Reference].[Office]    Script Date: 6/7/2017 10:18:21 PM ******/
+
 DROP TABLE [Reference].[Office]
 GO
-/****** Object:  Table [Reference].[Grade]    Script Date: 6/7/2017 10:18:21 PM ******/
+
 DROP TABLE [Reference].[Grade]
 GO
-/****** Object:  Table [Reference].[County]    Script Date: 6/7/2017 10:18:21 PM ******/
+
 DROP TABLE [Reference].[County]
 GO
-/****** Object:  Table [Reference].[ClothesType]    Script Date: 6/7/2017 10:18:21 PM ******/
-DROP TABLE [Reference].[ClothesType]
+
+DROP TABLE [Reference].[PantSize]
 GO
-/****** Object:  Table [Reference].[AgeGroup]    Script Date: 6/7/2017 10:18:21 PM ******/
+
+DROP TABLE [Reference].[ShirtSize]
+GO
+
+DROP TABLE [Reference].[Gender]
+GO
+
+--DROP TABLE [Reference].[ClothesType]
+--GO
+
 DROP TABLE [Reference].[AgeGroup]
 GO
-/****** Object:  Schema [Requests]    Script Date: 6/7/2017 10:18:21 PM ******/
+
 DROP SCHEMA [Requests]
 GO
-/****** Object:  Schema [Reference]    Script Date: 6/7/2017 10:18:21 PM ******/
+
 DROP SCHEMA [Reference]
 GO
 
 
 CREATE SCHEMA Reference;
 GO
+
+CREATE TABLE Reference.ContactMethod
+(
+	ContactMethodId		smallint NOT NULL CONSTRAINT PK_Reference_ContactMethod_ContactMethodId PRIMARY KEY,
+	Name				varchar(20) NOT NULL
+);
+GO
+
+INSERT INTO Reference.ContactMethod
+VALUES (1, 'Phone'), (2, 'Email'), (3, 'Text');
+GO
+
 
 CREATE TABLE Reference.OfficeType
 (
@@ -189,7 +223,7 @@ GO
 
 CREATE TABLE Reference.SchoolDistrict
 (
-	SchoolDistrictId			smallint NOT NULL CONSTRAINT PK_Reference_SchoolDistrict_SchoolDistrictId PRIMARY KEY,
+	SchoolDistrictId	    smallint NOT NULL CONSTRAINT PK_Reference_SchoolDistrict_SchoolDistrictId PRIMARY KEY,
 	Name					varchar(20) NOT NULL,
 	Description				varchar(500) NULL,
 	CountyId				smallInt NOT NULL
@@ -517,77 +551,6 @@ VALUES	('Under Pre-K'),
 GO
 
 
---CREATE TABLE Reference.SizeNumber
---(
---	SizeNumberId		int NOT NULL CONSTRAINT PK_Reference_SizeNumber_SizeNumberId PRIMARY KEY,
---	Name				varchar(50) NOT NULL,
---	Description			varchar(500) NULL
---);
-
---ALTER TABLE Reference.SizeNumber
---	ADD CONSTRAINT AK_Reference_SizeNumber_Name UNIQUE (NAME);
---GO
-
---INSERT INTO Reference.SizeNumber (SizeNumberId, Name)
---VALUES	(1, 'Newborn'),
---		(2, '0-3 Months'),
---		(3, '3-6 Months'),
---		(4, '6-9 Months'),
---		(5, '9-12 Months'),
---		(6, '12-18 Months'),
---		(7, '2T'),
---		(8, '3T'),
---		(9, '4T'),
---		(1, '00'),
---		(2, '0'),
---		(3, '1'),
---		(4, '3'),		
---		(5, '4T'),
---		(6, '5'),
---		(7, '6'),
---		(8, '7'),
---		(9, '8'),
---		(6, '10'),
---		(7, '12'),
---		(8, '14'),
---		(9, '16'),
---		(10, 'XS'),
---		(11, 'Small'),
---		(12, 'Medium'),
---		(13, 'Large'),
---		(14, 'XL'),
---		(15, '2XL'),
---		(16, '3XL'),
---		(17, '26'),
---		(18, '27'),
---		(19, '28'),
---		(20, '29'),
---		(21, '30-31'),
---		(22, '32-33'),
---		(23, '34-35'),
---		(25, '36-37'),
---		(26, '38-39'),
---		(27, '40-41'),
---		(28, '42-43'),
---		(29, '44-46'),
---		(30, '46-47'),
---		(31, '48-49'),
---		(32, '00'),
---		(33, '0'),
---		(34, '1'),
---		(35, '3'),
---		(38, '9'),
---		(39, '11'),
---		(40, '13'),
---		(41, '15'),
---		(42, '17'),
---		(43, '2'),
---		(44, '4'),
---		(45, '18'),
---		(46, '20');
---GO
-
-
 CREATE TABLE Reference.AgeGroup
 (
 	AgeGroupId		tinyint NOT NULL CONSTRAINT PK_Reference_AgeGroup_AgeGroupId PRIMARY KEY,
@@ -605,249 +568,391 @@ VALUES (0, 'None'), (1, 'Boys'), (2, 'Girls'), (3, 'Juniors'), (4, 'Mens'), (5, 
 GO
 
 
-CREATE TABLE Reference.ClothesType
-(
-	ClothesTypeId	tinyint NOT NULL CONSTRAINT PK_Reference_ClothesType_ClothesTypeId PRIMARY KEY,
-	Name			varchar(50) NOT NULL
-)
+--CREATE TABLE Reference.ClothesType
+--(
+--	ClothesTypeId	tinyint NOT NULL CONSTRAINT PK_Reference_ClothesType_ClothesTypeId PRIMARY KEY,
+--	Name			varchar(50) NOT NULL
+--)
 
-ALTER TABLE Reference.ClothesType
-	ADD CONSTRAINT AK_Reference_ClothesType_Name UNIQUE (NAME)
+--ALTER TABLE Reference.ClothesType
+--	ADD CONSTRAINT AK_Reference_ClothesType_Name UNIQUE (NAME)
+--GO
+
+--INSERT INTO Reference.ClothesType (ClothesTypeId, Name)
+--VALUES (1, 'Shirt'), (2, 'Pant');
+--GO
+
+CREATE TABLE Reference.Gender
+(
+	GenderId		varchar(10) NOT NULL CONSTRAINT PK_Reference_Gender_GenderId PRIMARY KEY,
+	Abbreviation	char(1) NOT NULL
+);
 GO
 
-INSERT INTO Reference.ClothesType (ClothesTypeId, Name)
-VALUES (1, 'Shirt'), (2, 'Pant');
+ALTER TABLE Reference.Gender
+	ADD CONSTRAINT AK_Reference_Gender_Abbreviation UNIQUE (Abbreviation);
+GO
+
+INSERT INTO Reference.Gender (GenderId, Abbreviation)
+VALUES ('Male', 'M'), ('Female', 'F');
 GO
 
 
-CREATE TABLE Reference.Size
+CREATE TABLE Reference.ShirtSize
 (
-	SizeId			int NOT NULL IDENTITY(1,1) CONSTRAINT PK_Reference_Size_SizeId PRIMARY KEY,
+	ShirtSizeId		int NOT NULL IDENTITY(1,1) CONSTRAINT PK_Reference_ShirtSize_ShirtSizeId PRIMARY KEY,
 	Name			varchar(50) NOT NULL,
 	AgeGroupId		tinyint NOT NULL,
-	Gender			varchar(10) NOT NULL,
-	ClothesTypeId	tinyint NOT NULL,
+	GenderId		varchar(10) NOT NULL,
 	SortOrder		int NOT NULL
-)
-
-ALTER TABLE Reference.Size
-	ADD CONSTRAINT AK_Reference_Size_Name_AgeGroupId_Gender_ClothesTypeId UNIQUE (Name, AgeGroupId, Gender, ClothesTypeId);
+);
 GO
 
-CREATE UNIQUE INDEX UQ_Reference_SortOrder ON Reference.Size (SortOrder);
+ALTER TABLE Reference.ShirtSize
+	ADD CONSTRAINT AK_Reference_ShirtSize_Name_AgeGroupId_GenderId UNIQUE (Name, AgeGroupId, GenderId);
 GO
 
-ALTER TABLE Reference.Size
-	ADD CONSTRAINT CHK_Reference_Size_Gender
-		CHECK (Gender IN ('Male', 'Female'));
+CREATE UNIQUE INDEX UQ_Reference_ShirtSize_SortOrder ON Reference.ShirtSize (SortOrder);
 GO
 
-INSERT INTO Reference.Size (Name, AgeGroupId, Gender, ClothesTypeId, SortOrder)
-VALUES	
-		--Shirts--
-			--Boys		
-		('Newborn', 1, 'Male', 1, 1010),
-		('0-3 Months', 1, 'Male', 1, 1020),
-		('3-6 Months', 1, 'Male', 1, 1030),
-		('6-9 Months', 1, 'Male', 1, 1040),
-		('9-12 Months', 1, 'Male', 1, 1050),
-		('12-18 Months', 1, 'Male', 1, 1060),
-		('2T', 1, 'Male', 1, 1070),
-		('3T', 1, 'Male', 1, 1080),
-		('4T', 1, 'Male', 1, 1090),
-		('5', 1, 'Male', 1, 1100),
-		('6', 1, 'Male', 1, 1110),
-		('7', 1, 'Male', 1, 1120),
-		('8', 1, 'Male', 1, 1130),
-		('10', 1, 'Male', 1, 1140),
-		('12', 1, 'Male', 1, 1150),
-		('14', 1, 'Male', 1, 1160),
-		('16', 1, 'Male', 1, 1170),
+INSERT INTO Reference.ShirtSize (Name, AgeGroupId, GenderId, SortOrder)
+VALUES ('Newborn', 1, 'Male', 1010),
+		('0-3 Months', 1, 'Male', 1020),
+		('3-6 Months', 1, 'Male', 1030),
+		('6-9 Months', 1, 'Male', 1040),
+		('9-12 Months', 1, 'Male', 1050),
+		('12-18 Months', 1, 'Male', 1060),
+		('2T', 1, 'Male', 1070),
+		('3T', 1, 'Male', 1080),
+		('4T', 1, 'Male', 1090),
+		('5', 1, 'Male', 1100),
+		('6', 1, 'Male', 1110),
+		('7', 1, 'Male', 1120),
+		('8', 1, 'Male', 1130),
+		('10', 1, 'Male', 1140),
+		('12', 1, 'Male', 1150),
+		('14', 1, 'Male', 1160),
+		('16', 1, 'Male', 1170),
 			--Girls
-		('Newborn', 2, 'Female', 1, 2010),
-		('0-3 Months', 2, 'Female', 1, 2020),
-		('3-6 Months', 2, 'Female', 1, 2030),
-		('6-9 Months', 2, 'Female', 1, 2040),
-		('9-12 Months', 2, 'Female', 1, 2050),
-		('12-18 Months', 2, 'Female', 1, 2060),
-		('2T', 2, 'Female', 1, 2070),
-		('3T', 2, 'Female', 1, 2080),
-		('4T', 2, 'Female', 1, 2090),
-		('5', 2, 'Female', 1, 2100),
-		('6', 2, 'Female', 1, 2110),
-		('7', 2, 'Female', 1, 2120),
-		('8', 2, 'Female', 1, 2130),
-		('10', 2, 'Female', 1, 2140),
-		('12', 2, 'Female', 1, 2150),
-		('14', 2, 'Female', 1, 2160),
-		('16', 2, 'Female', 1, 2170),
+		('Newborn', 2, 'Female', 2010),
+		('0-3 Months', 2, 'Female', 2020),
+		('3-6 Months', 2, 'Female', 2030),
+		('6-9 Months', 2, 'Female', 2040),
+		('9-12 Months', 2, 'Female', 2050),
+		('12-18 Months', 2, 'Female', 2060),
+		('2T', 2, 'Female', 2070),
+		('3T', 2, 'Female', 2080),
+		('4T', 2, 'Female', 2090),
+		('5', 2, 'Female', 2100),
+		('6', 2, 'Female', 2110),
+		('7', 2, 'Female', 2120),
+		('8', 2, 'Female', 2130),
+		('10', 2, 'Female', 2140),
+		('12', 2, 'Female', 2150),
+		('14', 2, 'Female', 2160),
+		('16', 2, 'Female', 2170),
 			--Juniors
-		('XS', 3, 'Female', 1, 3010),
-		('Small', 3, 'Female', 1, 3020),
-		('Medium', 3, 'Female', 1, 3030),
-		('Large', 3, 'Female', 1, 3040),
-		('XL', 3, 'Female', 1, 3050),
+		('XS', 3, 'Female', 3010),
+		('Small', 3, 'Female', 3020),
+		('Medium', 3, 'Female', 3030),
+		('Large', 3, 'Female', 3040),
+		('XL', 3, 'Female', 3050),
 			--Mens
-		('XS', 4, 'Male', 1, 4010),
-		('Small', 4, 'Male', 1, 4020),
-		('Medium', 4, 'Male', 1, 4030),
-		('Large', 4, 'Male', 1, 4040),
-		('XL', 4, 'Male', 1, 4050),
-		('2XL', 4, 'Male', 1, 4060),
-		('3XL', 4, 'Male', 1, 4070),
-		('4XL', 4, 'Male', 1, 4080),
+		('XS', 4, 'Male', 4010),
+		('Small', 4, 'Male', 4020),
+		('Medium', 4, 'Male', 4030),
+		('Large', 4, 'Male', 4040),
+		('XL', 4, 'Male', 4050),
+		('2XL', 4, 'Male', 4060),
+		('3XL', 4, 'Male', 4070),
+		('4XL', 4, 'Male', 4080),
 			--Womens
-		('XS', 5, 'Female', 1, 5010),
-		('Small', 5, 'Female', 1, 5020),
-		('Medium', 5, 'Female', 1,  54030),
-		('Large', 5, 'Female', 1, 5040),
-		('XL', 5, 'Female', 1, 5050),
-		('2XL', 5, 'Female', 1, 5060),
-		('3XL', 5, 'Female', 1, 5070),
-		('4XL', 5, 'Female', 1, 5080),
+		('XS', 5, 'Female', 5010),
+		('Small', 5, 'Female', 5020),
+		('Medium', 5, 'Female', 5030),
+		('Large', 5, 'Female', 5040),
+		('XL', 5, 'Female', 5050),
+		('2XL', 5, 'Female', 5060),
+		('3XL', 5, 'Female', 5070),
+		('4XL', 5, 'Female', 5080);
+GO
 
-		--Pants--
-			--Boys
-		('Newborn', 1, 'Male', 2, 6010),
-		('0-3 Months', 1, 'Male', 2, 6020),
-		('3-6 Months', 1, 'Male', 2, 6030),
-		('6-9 Months', 1, 'Male', 2, 6040),
-		('9-12 Months', 1, 'Male', 2, 6050),
-		('12-18 Months', 1, 'Male', 2, 6060),
-		('2T', 1, 'Male', 2, 6070),
-		('3T', 1, 'Male', 2, 6080),
-		('4T', 1, 'Male', 2, 6090),
-		('5', 1, 'Male', 2, 6100),
-		('6', 1, 'Male', 2, 6110),
-		('7', 1, 'Male', 2, 6120),
-		('8', 1, 'Male', 2, 6130),
-		('10', 1, 'Male', 2, 6140),
-		('12', 1, 'Male', 2, 6150),
-		('14', 1, 'Male', 2, 6160),
-		('16', 1, 'Male', 2, 6170),
-		('18', 1, 'Male', 2, 6180),
+
+CREATE TABLE Reference.PantSize
+(
+	PantSizeId		int NOT NULL IDENTITY(1,1) CONSTRAINT PK_Reference_PantSize_PantSizeId PRIMARY KEY,
+	Name			varchar(50) NOT NULL,
+	AgeGroupId		tinyint NOT NULL,
+	GenderId		varchar(10) NOT NULL,
+	SortOrder		int NOT NULL
+);
+GO
+
+ALTER TABLE Reference.PantSize
+	ADD CONSTRAINT AK_Reference_PantSize_Name_AgeGroupId_GenderId UNIQUE (Name, AgeGroupId, GenderId);
+GO
+
+CREATE UNIQUE INDEX UQ_Reference_PantSize_SortOrder ON Reference.PantSize (SortOrder);
+GO
+
+INSERT INTO Reference.PantSize (Name, AgeGroupId, GenderId, SortOrder)
+VALUES  ('Newborn', 1, 'Male', 1010),
+		('0-3 Months', 1, 'Male', 1020),
+		('3-6 Months', 1, 'Male', 1030),
+		('6-9 Months', 1, 'Male', 1040),
+		('9-12 Months', 1, 'Male', 1050),
+		('12-18 Months', 1, 'Male', 1060),
+		('2T', 1, 'Male', 1070),
+		('3T', 1, 'Male', 1080),
+		('4T', 1, 'Male', 1090),
+		('5', 1, 'Male', 1100),
+		('6', 1, 'Male', 1110),
+		('7', 1, 'Male', 1120),
+		('8', 1, 'Male', 1130),
+		('10', 1, 'Male', 1140),
+		('12', 1, 'Male', 1150),
+		('14', 1, 'Male', 1160),
+		('16', 1, 'Male', 1170),
+		('18', 1, 'Male', 1180),
 			--Girls
-		('Newborn', 2, 'Female', 2, 7010),
-		('0-3 Months', 2, 'Female', 2,7020),
-		('3-6 Months', 2, 'Female', 2, 7030),
-		('6-9 Months', 2, 'Female', 2, 7040),
-		('9-12 Months', 2, 'Female', 2, 7050),
-		('12-18 Months', 2, 'Female', 2, 7060),
-		('2T', 2, 'Female', 2, 7070),
-		('3T', 2, 'Female', 2, 7080),
-		('4T', 2, 'Female', 2, 7090),
-		('5', 2, 'Female', 2, 7100),
-		('6', 2, 'Female', 2, 7110),
-		('7', 2, 'Female', 2, 7120),
-		('8', 2, 'Female', 2, 7130),
-		('10', 2, 'Female', 2, 7140),
-		('12', 2, 'Female', 2, 7150),
-		('14', 2, 'Female', 2, 7160),
-		('16', 2, 'Female', 2, 7170),
-		('18', 2, 'Female', 2, 7180),
+		('Newborn', 2, 'Female', 2010),
+		('0-3 Months', 2, 'Female', 2020),
+		('3-6 Months', 2, 'Female', 2030),
+		('6-9 Months', 2, 'Female', 2040),
+		('9-12 Months', 2, 'Female', 2050),
+		('12-18 Months', 2, 'Female', 2060),
+		('2T', 2, 'Female', 2070),
+		('3T', 2, 'Female', 2080),
+		('4T', 2, 'Female', 2090),
+		('5', 2, 'Female', 2100),
+		('6', 2, 'Female', 2110),
+		('7', 2, 'Female', 2120),
+		('8', 2, 'Female', 2130),
+		('10', 2, 'Female', 2140),
+		('12', 2, 'Female', 2150),
+		('14', 2, 'Female', 2160),
+		('16', 2, 'Female', 2170),
+		('18', 2, 'Female', 2180),
 			--Juniors
-		('00', 3, 'Female', 2, 8010),
-		('0', 3, 'Female', 2, 8020),
-		('1', 3, 'Female', 2, 8030),
-		('3', 3, 'Female', 2, 8040),
-		('5', 3, 'Female', 2, 8050),
-		('7', 3, 'Female', 2, 8060),
-		('9', 3, 'Female', 2, 8070),
-		('11', 3, 'Female', 2, 8080),
-		('13', 3, 'Female', 2, 8090),
-		('15', 3, 'Female', 2, 8110),
-		('17', 3, 'Female', 2, 8120),
+		('00', 3, 'Female', 3010),
+		('0', 3, 'Female', 3020),
+		('1', 3, 'Female', 3030),
+		('3', 3, 'Female', 3040),
+		('5', 3, 'Female', 3050),
+		('7', 3, 'Female', 3060),
+		('9', 3, 'Female', 3070),
+		('11', 3, 'Female', 3080),
+		('13', 3, 'Female', 3090),
+		('15', 3, 'Female', 3110),
+		('17', 3, 'Female', 3120),
 			--Mens
-		('26', 4, 'Male', 2, 9010),
-		('27', 4, 'Male', 2, 9020),
-		('28', 4, 'Male', 2, 9030),
-		('29', 4, 'Male', 2, 9040),
-		('30-31', 4, 'Male', 2, 9050),
-		('32-33', 4, 'Male', 2, 9060),
-		('34-35', 4, 'Male', 2, 9070),
-		('36-37', 4, 'Male', 2, 9080),
-		('38-39', 4, 'Male', 2, 9090),
-		('40-41', 4, 'Male', 2, 9100),
-		('42-43', 4, 'Male', 2, 9110),
-		('44-45', 4, 'Male', 2, 9120),
-		('46-47', 4, 'Male', 2, 9130),
-		('48-49', 4, 'Male', 2, 9140),
+		('26', 4, 'Male', 4010),
+		('27', 4, 'Male', 4020),
+		('28', 4, 'Male', 4030),
+		('29', 4, 'Male', 4040),
+		('30-31', 4, 'Male', 4050),
+		('32-33', 4, 'Male', 4060),
+		('34-35', 4, 'Male', 4070),
+		('36-37', 4, 'Male', 4080),
+		('38-39', 4, 'Male', 4090),
+		('40-41', 4, 'Male', 4100),
+		('42-43', 4, 'Male', 4110),
+		('44-45', 4, 'Male', 4120),
+		('46-47', 4, 'Male', 4130),
+		('48-49', 4, 'Male', 4140),
 			--Womens
-		('0', 5, 'Female', 2, 10010),
-		('2', 5, 'Female', 2, 10020),
-		('4', 5, 'Female', 2, 10030),
-		('6', 5, 'Female', 2, 10040),
-		('8', 5, 'Female', 2, 10050),
-		('10', 5, 'Female', 2, 10060),
-		('12', 5, 'Female', 2, 10070),
-		('14', 5, 'Female', 2, 10080),
-		('16', 5, 'Female', 2, 10090),
-		('18', 5, 'Female', 2, 10100),
-		('20', 5, 'Female', 2, 10110);
+		('0', 5, 'Female', 5010),
+		('2', 5, 'Female', 5020),
+		('4', 5, 'Female', 5030),
+		('6', 5, 'Female', 5040),
+		('8', 5, 'Female', 5050),
+		('10', 5, 'Female', 5060),
+		('12', 5, 'Female', 5070),
+		('14', 5, 'Female', 5080),
+		('16', 5, 'Female', 5090),
+		('18', 5, 'Female', 5100),
+		('20', 5, 'Female', 5110);
+GO
 
+--CREATE TABLE Reference.Size
+--(
+--	SizeId			int NOT NULL IDENTITY(1,1) CONSTRAINT PK_Reference_Size_SizeId PRIMARY KEY,
+--	Name			varchar(50) NOT NULL,
+--	AgeGroupId		tinyint NOT NULL,
+--	Gender			varchar(10) NOT NULL,
+--	ClothesTypeId	tinyint NOT NULL,
+--	SortOrder		int NOT NULL
+--)
 
---INSERT INTO Reference.Size (SizeNumberId, AgeGroupId, Gender, ClothesTypeId)
---SELECT s.SizeNumberId, 1, 'Male', 1
---FROM Reference.SizeNumber s
---WHERE s.Name IN ('4T', '5', '6', '7', '8', '10', '12', '14', '16') 
---UNION ALL
---SELECT s.SizeNumberId, 1, 'Female', 1
---FROM Reference.SizeNumber s
---WHERE s.Name IN ('4T', '5', '6', '7', '8', '10', '12', '14', '16') 
---UNION ALL
---SELECT s.SizeNumberId, 2, 'Female', 1
---FROM Reference.SizeNumber s
---WHERE s.Name IN ('XS', 'Small', 'Medium', 'Large', 'XL', '2XL', '3XL')
---UNION ALL
---SELECT s.SizeNumberId, 3, 'Male', 1
---FROM Reference.SizeNumber s
---WHERE s.Name IN ('XS', 'Small', 'Medium', 'Large', 'XL', '2XL', '3XL')
---UNION ALL
---SELECT s.SizeNumberId, 3, 'Female', 1
---FROM Reference.SizeNumber s
---WHERE s.Name IN ('XS', 'Small', 'Medium', 'Large', 'XL', '2XL', '3XL')
---UNION ALL
---SELECT s.SizeNumberId, 1, 'Male', 2
---FROM Reference.SizeNumber s
---WHERE s.Name IN ('4T', '5', '6', '7', '8', '10', '12', '14', '16')
---UNION ALL
---SELECT s.SizeNumberId, 1, 'Female', 2
---FROM Reference.SizeNumber s
---WHERE s.Name IN ('4T', '5', '6', '7', '8', '10', '12', '14', '16')
---UNION ALL
---SELECT s.SizeNumberId, 2, 'Female', 2
---FROM Reference.SizeNumber s
---WHERE s.Name IN ('00', '0', '1', '3', '5', '7', '9', '11', '13', '15', '17')
---UNION ALL
---SELECT s.SizeNumberId, 3, 'Male', 2
---FROM Reference.SizeNumber s
---WHERE s.Name IN ('26', '27', '28', '29', '30-31', '32-33', '34-35', '36-37', '38-39', '40-41', '42-43', '44-45', '46-47', '48-49')
---UNION ALL
---SELECT s.SizeNumberId, 3, 'Female', 2
---FROM Reference.SizeNumber s
---WHERE s.Name IN ('0', '2', '4', '6', '8', '10', '12', '14', '16', '18', '20');
+--ALTER TABLE Reference.Size
+--	ADD CONSTRAINT AK_Reference_Size_Name_AgeGroupId_Gender_ClothesTypeId UNIQUE (Name, AgeGroupId, Gender, ClothesTypeId);
+--GO
+
+--CREATE UNIQUE INDEX UQ_Reference_SortOrder ON Reference.Size (SortOrder);
 --GO
 
 --ALTER TABLE Reference.Size
---	ADD CONSTRAINT FK_Reference_SizeNumber$ProvidesClothingSizeDetailsFor$Reference_Size
---	FOREIGN KEY (SizeNumberId) REFERENCES Reference.SizeNumber (SizeNumberId)
+--	ADD CONSTRAINT CHK_Reference_Size_Gender
+--		CHECK (Gender IN ('Male', 'Female'));
+--GO
+
+--INSERT INTO Reference.Size (Name, AgeGroupId, Gender, ClothesTypeId, SortOrder)
+--VALUES	
+--		--Shirts--
+--			--Boys		
+--		('Newborn', 1, 'Male', 1, 1010),
+--		('0-3 Months', 1, 'Male', 1, 1020),
+--		('3-6 Months', 1, 'Male', 1, 1030),
+--		('6-9 Months', 1, 'Male', 1, 1040),
+--		('9-12 Months', 1, 'Male', 1, 1050),
+--		('12-18 Months', 1, 'Male', 1, 1060),
+--		('2T', 1, 'Male', 1, 1070),
+--		('3T', 1, 'Male', 1, 1080),
+--		('4T', 1, 'Male', 1, 1090),
+--		('5', 1, 'Male', 1, 1100),
+--		('6', 1, 'Male', 1, 1110),
+--		('7', 1, 'Male', 1, 1120),
+--		('8', 1, 'Male', 1, 1130),
+--		('10', 1, 'Male', 1, 1140),
+--		('12', 1, 'Male', 1, 1150),
+--		('14', 1, 'Male', 1, 1160),
+--		('16', 1, 'Male', 1, 1170),
+--			--Girls
+--		('Newborn', 2, 'Female', 1, 2010),
+--		('0-3 Months', 2, 'Female', 1, 2020),
+--		('3-6 Months', 2, 'Female', 1, 2030),
+--		('6-9 Months', 2, 'Female', 1, 2040),
+--		('9-12 Months', 2, 'Female', 1, 2050),
+--		('12-18 Months', 2, 'Female', 1, 2060),
+--		('2T', 2, 'Female', 1, 2070),
+--		('3T', 2, 'Female', 1, 2080),
+--		('4T', 2, 'Female', 1, 2090),
+--		('5', 2, 'Female', 1, 2100),
+--		('6', 2, 'Female', 1, 2110),
+--		('7', 2, 'Female', 1, 2120),
+--		('8', 2, 'Female', 1, 2130),
+--		('10', 2, 'Female', 1, 2140),
+--		('12', 2, 'Female', 1, 2150),
+--		('14', 2, 'Female', 1, 2160),
+--		('16', 2, 'Female', 1, 2170),
+--			--Juniors
+--		('XS', 3, 'Female', 1, 3010),
+--		('Small', 3, 'Female', 1, 3020),
+--		('Medium', 3, 'Female', 1, 3030),
+--		('Large', 3, 'Female', 1, 3040),
+--		('XL', 3, 'Female', 1, 3050),
+--			--Mens
+--		('XS', 4, 'Male', 1, 4010),
+--		('Small', 4, 'Male', 1, 4020),
+--		('Medium', 4, 'Male', 1, 4030),
+--		('Large', 4, 'Male', 1, 4040),
+--		('XL', 4, 'Male', 1, 4050),
+--		('2XL', 4, 'Male', 1, 4060),
+--		('3XL', 4, 'Male', 1, 4070),
+--		('4XL', 4, 'Male', 1, 4080),
+--			--Womens
+--		('XS', 5, 'Female', 1, 5010),
+--		('Small', 5, 'Female', 1, 5020),
+--		('Medium', 5, 'Female', 1,  54030),
+--		('Large', 5, 'Female', 1, 5040),
+--		('XL', 5, 'Female', 1, 5050),
+--		('2XL', 5, 'Female', 1, 5060),
+--		('3XL', 5, 'Female', 1, 5070),
+--		('4XL', 5, 'Female', 1, 5080),
+
+--		--Pants--
+--			--Boys
+--		('Newborn', 1, 'Male', 2, 6010),
+--		('0-3 Months', 1, 'Male', 2, 6020),
+--		('3-6 Months', 1, 'Male', 2, 6030),
+--		('6-9 Months', 1, 'Male', 2, 6040),
+--		('9-12 Months', 1, 'Male', 2, 6050),
+--		('12-18 Months', 1, 'Male', 2, 6060),
+--		('2T', 1, 'Male', 2, 6070),
+--		('3T', 1, 'Male', 2, 6080),
+--		('4T', 1, 'Male', 2, 6090),
+--		('5', 1, 'Male', 2, 6100),
+--		('6', 1, 'Male', 2, 6110),
+--		('7', 1, 'Male', 2, 6120),
+--		('8', 1, 'Male', 2, 6130),
+--		('10', 1, 'Male', 2, 6140),
+--		('12', 1, 'Male', 2, 6150),
+--		('14', 1, 'Male', 2, 6160),
+--		('16', 1, 'Male', 2, 6170),
+--		('18', 1, 'Male', 2, 6180),
+--			--Girls
+--		('Newborn', 2, 'Female', 2, 7010),
+--		('0-3 Months', 2, 'Female', 2,7020),
+--		('3-6 Months', 2, 'Female', 2, 7030),
+--		('6-9 Months', 2, 'Female', 2, 7040),
+--		('9-12 Months', 2, 'Female', 2, 7050),
+--		('12-18 Months', 2, 'Female', 2, 7060),
+--		('2T', 2, 'Female', 2, 7070),
+--		('3T', 2, 'Female', 2, 7080),
+--		('4T', 2, 'Female', 2, 7090),
+--		('5', 2, 'Female', 2, 7100),
+--		('6', 2, 'Female', 2, 7110),
+--		('7', 2, 'Female', 2, 7120),
+--		('8', 2, 'Female', 2, 7130),
+--		('10', 2, 'Female', 2, 7140),
+--		('12', 2, 'Female', 2, 7150),
+--		('14', 2, 'Female', 2, 7160),
+--		('16', 2, 'Female', 2, 7170),
+--		('18', 2, 'Female', 2, 7180),
+--			--Juniors
+--		('00', 3, 'Female', 2, 8010),
+--		('0', 3, 'Female', 2, 8020),
+--		('1', 3, 'Female', 2, 8030),
+--		('3', 3, 'Female', 2, 8040),
+--		('5', 3, 'Female', 2, 8050),
+--		('7', 3, 'Female', 2, 8060),
+--		('9', 3, 'Female', 2, 8070),
+--		('11', 3, 'Female', 2, 8080),
+--		('13', 3, 'Female', 2, 8090),
+--		('15', 3, 'Female', 2, 8110),
+--		('17', 3, 'Female', 2, 8120),
+--			--Mens
+--		('26', 4, 'Male', 2, 9010),
+--		('27', 4, 'Male', 2, 9020),
+--		('28', 4, 'Male', 2, 9030),
+--		('29', 4, 'Male', 2, 9040),
+--		('30-31', 4, 'Male', 2, 9050),
+--		('32-33', 4, 'Male', 2, 9060),
+--		('34-35', 4, 'Male', 2, 9070),
+--		('36-37', 4, 'Male', 2, 9080),
+--		('38-39', 4, 'Male', 2, 9090),
+--		('40-41', 4, 'Male', 2, 9100),
+--		('42-43', 4, 'Male', 2, 9110),
+--		('44-45', 4, 'Male', 2, 9120),
+--		('46-47', 4, 'Male', 2, 9130),
+--		('48-49', 4, 'Male', 2, 9140),
+--			--Womens
+--		('0', 5, 'Female', 2, 10010),
+--		('2', 5, 'Female', 2, 10020),
+--		('4', 5, 'Female', 2, 10030),
+--		('6', 5, 'Female', 2, 10040),
+--		('8', 5, 'Female', 2, 10050),
+--		('10', 5, 'Female', 2, 10060),
+--		('12', 5, 'Female', 2, 10070),
+--		('14', 5, 'Female', 2, 10080),
+--		('16', 5, 'Female', 2, 10090),
+--		('18', 5, 'Female', 2, 10100),
+--		('20', 5, 'Female', 2, 10110);
+
+
+--ALTER TABLE Reference.Size
+--	ADD CONSTRAINT FK_Reference_AgeGroup$ProvidesAgeGroupDetailsFor$Reference_Size
+--	FOREIGN KEY (AgeGroupId) REFERENCES Reference.AgeGroup (AgeGroupId)
 --ON UPDATE NO ACTION
 --ON DELETE NO ACTION;
 --GO
 
-ALTER TABLE Reference.Size
-	ADD CONSTRAINT FK_Reference_AgeGroup$ProvidesAgeGroupDetailsFor$Reference_Size
-	FOREIGN KEY (AgeGroupId) REFERENCES Reference.AgeGroup (AgeGroupId)
-ON UPDATE NO ACTION
-ON DELETE NO ACTION;
-GO
-
-ALTER TABLE Reference.Size
-	ADD CONSTRAINT FK_Reference_ClothesType$ProvidesDetailsAboutTypeOfClothingFor$Reference_Size
-	FOREIGN KEY (ClothesTypeId) REFERENCES Reference.ClothesType (ClothesTypeId)
-ON UPDATE NO ACTION
-ON DELETE NO ACTION;
-GO
+--ALTER TABLE Reference.Size
+--	ADD CONSTRAINT FK_Reference_ClothesType$ProvidesDetailsAboutTypeOfClothingFor$Reference_Size
+--	FOREIGN KEY (ClothesTypeId) REFERENCES Reference.ClothesType (ClothesTypeId)
+--ON UPDATE NO ACTION
+--ON DELETE NO ACTION;
+--GO
 
 
 
@@ -896,8 +1001,8 @@ CREATE TABLE Requests.Request
 	DateDelivered		date NOT NULL,
 	SubmittedByUserId	nvarchar(128) NOT NULL,
 	RequestStatusId		tinyint NOT NULL,
-	OfficeId			smallint NOT NULL,
-	Gender				varchar(10) NOT NULL,
+	SchoolId			smallint NOT NULL,
+	GenderId			varchar(10) NOT NULL,
 	GradeId				smallint NOT NULL,
 	UrgencyId			tinyint NOT NULL,
 	ShirtSizeId			int NULL,
@@ -905,13 +1010,99 @@ CREATE TABLE Requests.Request
 	PantLengthSizeId	int NULL,
 	UnderwearSize		varchar(20) NOT NULL,
 	ShoeSize			varchar(20) NOT NULL,
-	Comments			varchar(2000) NOT NULL,
-	RowCreatedTime		datetime2(0) NOT NULL,
-	RowCreatedByUserId	nvarchar(128) NOT NULL,
-	RowLastUpdatedTime	datetime2(0) NOT NULL,
-	RowLastUpdatedByUserId	nvarchar(128) NOT NULL
+	HygieneKitFlag		bit NOT NULL DEFAULT(0),
+	Comments			varchar(2000) NOT NULL DEFAULT('')
 );
 GO
 
 
+ALTER TABLE Requests.Request
+	ADD CONSTRAINT FK_Requests_Request$WasSubmittedBy$dbo_AspNetUsers
+	FOREIGN KEY (SubmittedByUserId) REFERENCES dbo.AspNetUsers (Id)
+ON UPDATE NO ACTION
+ON DELETE NO ACTION;
+GO
 
+ALTER TABLE Requests.Request
+	ADD CONSTRAINT FK_Requests_RequestStatus$DescribesStatusOf$Requests_Request
+	FOREIGN KEY (RequestStatusId) REFERENCES Requests.RequestStatus (RequestStatusId)
+ON UPDATE NO ACTION
+ON DELETE NO ACTION;
+GO
+
+ALTER TABLE Requests.Request
+	ADD CONSTRAINT FK_Requests_Request$IsForChildAttending$Reference_School
+	FOREIGN KEY (SchoolId) REFERENCES Reference.School (SchoolId)
+ON UPDATE NO ACTION
+ON DELETE NO ACTION;
+GO
+
+ALTER TABLE Requests.Request
+	ADD CONSTRAINT FK_Reference_Gender$DescribesGenderOfChildFor$Requests_Request
+	FOREIGN KEY (GenderId) REFERENCES Reference.Gender (GenderId)
+ON UPDATE NO ACTION
+ON DELETE NO ACTION;
+GO
+
+ALTER TABLE Requests.Request
+	ADD CONSTRAINT FK_Requests_Request$IsForChildInGrade$Reference_Grade
+	FOREIGN KEY (GradeId) REFERENCES Reference.Grade (GradeId)
+ON UPDATE NO ACTION
+ON DELETE NO ACTION;
+GO
+
+ALTER TABLE Requests.Request
+	ADD CONSTRAINT FK_Requests_Request$HasAnUrgencyOf$Requests_Urgency
+	FOREIGN KEY (UrgencyId) REFERENCES Requests.Urgency (UrgencyId)
+ON UPDATE NO ACTION
+ON DELETE NO ACTION;
+GO
+
+ALTER TABLE Requests.Request
+	ADD CONSTRAINT FK_Requests_ShirtSize$DescribesShirtSizeFor$Requests_Request
+	FOREIGN KEY (ShirtSizeId) REFERENCES Reference.ShirtSize (ShirtSizeId)
+ON UPDATE NO ACTION
+ON DELETE NO ACTION;
+GO
+
+ALTER TABLE Requests.Request
+	ADD CONSTRAINT FK_Requests_PantSize$DescribesPantSizeFor$Requests_Request
+	FOREIGN KEY (PantSizeId) REFERENCES Reference.PantSize (PantSizeId)
+ON UPDATE NO ACTION
+ON DELETE NO ACTION;
+GO
+
+ALTER TABLE Requests.Request
+	ADD CONSTRAINT FK_Requests_PantSize$DescribesPantLengthSizeFor$Requests_Request
+	FOREIGN KEY (PantLengthSizeId) REFERENCES Reference.PantSize (PantSizeId)
+ON UPDATE NO ACTION
+ON DELETE NO ACTION;
+GO
+
+
+ALTER TABLE Requests.Request
+	ADD CONSTRAINT CHK_Requests_Request_DateEstimatedDelivery
+		CHECK (DateEstimatedDelivery >= DateRequested);
+GO
+
+ALTER TABLE Requests.Request
+	ADD CONSTRAINT CHK_Requests_Request_DateDelivered
+		CHECK (DateDelivered >= DateRequested);
+GO
+
+
+
+ALTER TABLE dbo.AspNetUsers
+	ADD CONSTRAINT FK_Reference_ContactMethod$IsPreferredMethodOfContactFor$dbo_AspNetUsers
+	FOREIGN KEY (ContactMethodId) REFERENCES Reference.ContactMethod (ContactMethodId);
+GO
+
+ALTER TABLE dbo.AspNetUsers
+	ADD CONSTRAINT FK_Reference_Position$IsPositionOf$dbo_AspNetUsers
+	FOREIGN KEY (PositionId) REFERENCES Reference.Position (PositionId);
+GO
+
+ALTER TABLE dbo.AspNetUsers
+	ADD CONSTRAINT FK_Reference_Office$IsOfficeOf$dbo_AspNetUsers
+	FOREIGN KEY (OfficeId) REFERENCES Reference.Office (OfficeId);
+GO
