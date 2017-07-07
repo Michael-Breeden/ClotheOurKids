@@ -20,8 +20,8 @@ namespace ClotheOurKids.Model
         public System.DateTime DateDelivered { get; set; }
         public string SubmittedByUserId { get; set; }
         public byte RequestStatusId { get; set; }
-        public short OfficeId { get; set; }
-        public string Gender { get; set; }
+        public Nullable<short> SchoolId { get; set; }
+        public string GenderId { get; set; }
         public short GradeId { get; set; }
         public byte UrgencyId { get; set; }
         public Nullable<int> ShirtSizeId { get; set; }
@@ -29,10 +29,17 @@ namespace ClotheOurKids.Model
         public Nullable<int> PantLengthSizeId { get; set; }
         public string UnderwearSize { get; set; }
         public string ShoeSize { get; set; }
+        public bool HygieneKitFlag { get; set; }
         public string Comments { get; set; }
-        public System.DateTime RowCreatedTime { get; set; }
-        public string RowCreatedByUserId { get; set; }
-        public System.DateTime RowLastUpdatedTime { get; set; }
-        public string RowLastUpdatedByUserId { get; set; }
+    
+        public virtual AspNetUser AspNetUser { get; set; }
+        public virtual Gender Gender { get; set; }
+        public virtual Grade Grade { get; set; }
+        public virtual PantSize PantSize { get; set; }
+        public virtual PantSize PantSize1 { get; set; }
+        public virtual School School { get; set; }
+        public virtual ShirtSize ShirtSize { get; set; }
+        public virtual Urgency Urgency { get; set; }
+        public virtual RequestStatus RequestStatus { get; set; }
     }
 }

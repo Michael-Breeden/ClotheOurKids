@@ -30,7 +30,6 @@ namespace ClotheOurKids.Model
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<AgeGroup> AgeGroups { get; set; }
-        public virtual DbSet<ClothesType> ClothesTypes { get; set; }
         public virtual DbSet<County> Counties { get; set; }
         public virtual DbSet<Grade> Grades { get; set; }
         public virtual DbSet<Office> Offices { get; set; }
@@ -40,12 +39,14 @@ namespace ClotheOurKids.Model
         public virtual DbSet<School> Schools { get; set; }
         public virtual DbSet<SchoolDistrict> SchoolDistricts { get; set; }
         public virtual DbSet<SchoolType> SchoolTypes { get; set; }
-        public virtual DbSet<Size> Sizes { get; set; }
         public virtual DbSet<State> States { get; set; }
-        public virtual DbSet<Request> Requests { get; set; }
-        public virtual DbSet<RequestStatu> RequestStatus { get; set; }
+        public virtual DbSet<RequestStatus> RequestStatus1 { get; set; }
         public virtual DbSet<Urgency> Urgencies { get; set; }
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<ContactMethod> ContactMethods { get; set; }
+        public virtual DbSet<Gender> Genders { get; set; }
+        public virtual DbSet<PantSize> PantSizes { get; set; }
+        public virtual DbSet<ShirtSize> ShirtSizes { get; set; }
+        public virtual DbSet<Request> Requests { get; set; }
     }
 }

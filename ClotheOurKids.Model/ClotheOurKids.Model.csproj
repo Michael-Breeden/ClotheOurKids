@@ -88,9 +88,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ClotheOurKidsModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DAL\ClothesType.cs">
-      <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DAL\ContactMethod.cs">
       <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
     </Compile>
@@ -98,6 +95,9 @@
       <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\C__MigrationHistory.cs">
+      <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Gender.cs">
       <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\Grade.cs">
@@ -109,6 +109,9 @@
     <Compile Include="DAL\OfficeType.cs">
       <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\PantSize.cs">
+      <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Position.cs">
       <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
     </Compile>
@@ -118,7 +121,7 @@
     <Compile Include="DAL\Request.cs">
       <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAL\RequestStatu.cs">
+    <Compile Include="DAL\RequestStatus.cs">
       <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\School.cs">
@@ -130,7 +133,7 @@
     <Compile Include="DAL\SchoolType.cs">
       <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAL\Size.cs">
+    <Compile Include="DAL\ShirtSize.cs">
       <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\State.cs">

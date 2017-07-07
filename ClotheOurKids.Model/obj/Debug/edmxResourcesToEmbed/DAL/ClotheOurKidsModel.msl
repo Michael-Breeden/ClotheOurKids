@@ -60,14 +60,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ClothesTypes">
-      <EntityTypeMapping TypeName="ClotheOurKidsModel.ClothesType">
-        <MappingFragment StoreEntitySet="ClothesType">
-          <ScalarProperty Name="ClothesTypeId" ColumnName="ClothesTypeId" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Counties">
       <EntityTypeMapping TypeName="ClotheOurKidsModel.County">
         <MappingFragment StoreEntitySet="County">
@@ -160,18 +152,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Sizes">
-      <EntityTypeMapping TypeName="ClotheOurKidsModel.Size">
-        <MappingFragment StoreEntitySet="Size">
-          <ScalarProperty Name="SizeId" ColumnName="SizeId" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="AgeGroupId" ColumnName="AgeGroupId" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="ClothesTypeId" ColumnName="ClothesTypeId" />
-          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="States">
       <EntityTypeMapping TypeName="ClotheOurKidsModel.State">
         <MappingFragment StoreEntitySet="States">
@@ -181,34 +161,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Requests">
-      <EntityTypeMapping TypeName="ClotheOurKidsModel.Request">
-        <MappingFragment StoreEntitySet="Request">
-          <ScalarProperty Name="RequestId" ColumnName="RequestId" />
-          <ScalarProperty Name="DateRequested" ColumnName="DateRequested" />
-          <ScalarProperty Name="DateEstimatedDelivery" ColumnName="DateEstimatedDelivery" />
-          <ScalarProperty Name="DateDelivered" ColumnName="DateDelivered" />
-          <ScalarProperty Name="SubmittedByUserId" ColumnName="SubmittedByUserId" />
-          <ScalarProperty Name="RequestStatusId" ColumnName="RequestStatusId" />
-          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="GradeId" ColumnName="GradeId" />
-          <ScalarProperty Name="UrgencyId" ColumnName="UrgencyId" />
-          <ScalarProperty Name="ShirtSizeId" ColumnName="ShirtSizeId" />
-          <ScalarProperty Name="PantSizeId" ColumnName="PantSizeId" />
-          <ScalarProperty Name="PantLengthSizeId" ColumnName="PantLengthSizeId" />
-          <ScalarProperty Name="UnderwearSize" ColumnName="UnderwearSize" />
-          <ScalarProperty Name="ShoeSize" ColumnName="ShoeSize" />
-          <ScalarProperty Name="Comments" ColumnName="Comments" />
-          <ScalarProperty Name="RowCreatedTime" ColumnName="RowCreatedTime" />
-          <ScalarProperty Name="RowCreatedByUserId" ColumnName="RowCreatedByUserId" />
-          <ScalarProperty Name="RowLastUpdatedTime" ColumnName="RowLastUpdatedTime" />
-          <ScalarProperty Name="RowLastUpdatedByUserId" ColumnName="RowLastUpdatedByUserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="RequestStatus">
-      <EntityTypeMapping TypeName="ClotheOurKidsModel.RequestStatu">
+    <EntitySetMapping Name="RequestStatus1">
+      <EntityTypeMapping TypeName="ClotheOurKidsModel.RequestStatus">
         <MappingFragment StoreEntitySet="RequestStatus">
           <ScalarProperty Name="RequestStatusId" ColumnName="RequestStatusId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -248,6 +202,59 @@
         <MappingFragment StoreEntitySet="ContactMethod">
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ContactMethodId" ColumnName="ContactMethodId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genders">
+      <EntityTypeMapping TypeName="ClotheOurKidsModel.Gender">
+        <MappingFragment StoreEntitySet="Gender">
+          <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
+          <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PantSizes">
+      <EntityTypeMapping TypeName="ClotheOurKidsModel.PantSize">
+        <MappingFragment StoreEntitySet="PantSize">
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+          <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+          <ScalarProperty Name="AgeGroupId" ColumnName="AgeGroupId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PantSizeId" ColumnName="PantSizeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShirtSizes">
+      <EntityTypeMapping TypeName="ClotheOurKidsModel.ShirtSize">
+        <MappingFragment StoreEntitySet="ShirtSize">
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+          <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+          <ScalarProperty Name="AgeGroupId" ColumnName="AgeGroupId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShirtSizeId" ColumnName="ShirtSizeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Requests">
+      <EntityTypeMapping TypeName="ClotheOurKidsModel.Request">
+        <MappingFragment StoreEntitySet="Request">
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="HygieneKitFlag" ColumnName="HygieneKitFlag" />
+          <ScalarProperty Name="ShoeSize" ColumnName="ShoeSize" />
+          <ScalarProperty Name="UnderwearSize" ColumnName="UnderwearSize" />
+          <ScalarProperty Name="PantLengthSizeId" ColumnName="PantLengthSizeId" />
+          <ScalarProperty Name="PantSizeId" ColumnName="PantSizeId" />
+          <ScalarProperty Name="ShirtSizeId" ColumnName="ShirtSizeId" />
+          <ScalarProperty Name="UrgencyId" ColumnName="UrgencyId" />
+          <ScalarProperty Name="GradeId" ColumnName="GradeId" />
+          <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+          <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+          <ScalarProperty Name="RequestStatusId" ColumnName="RequestStatusId" />
+          <ScalarProperty Name="SubmittedByUserId" ColumnName="SubmittedByUserId" />
+          <ScalarProperty Name="DateDelivered" ColumnName="DateDelivered" />
+          <ScalarProperty Name="DateEstimatedDelivery" ColumnName="DateEstimatedDelivery" />
+          <ScalarProperty Name="DateRequested" ColumnName="DateRequested" />
+          <ScalarProperty Name="RequestId" ColumnName="RequestId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

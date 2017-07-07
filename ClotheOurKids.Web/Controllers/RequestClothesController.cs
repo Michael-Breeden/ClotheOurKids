@@ -27,11 +27,20 @@ namespace ClotheOurKids.Web.Controllers
             return View();
         }
 
+        private RequestFormViewModel PopulateRequestFormModel (RequestFormViewModel model)
+        {
+            
 
+            return model;
+        }
 
         [Route("Request-Clothes/Form", Name = "RequestClothesForm")]
         public ActionResult RequestClothesForm()
         {
+            var model = new RequestFormViewModel();
+
+            PopulateRequestFormModel(model);
+
             return View();
             //RequestFormModel model = new RequestFormModel();
 

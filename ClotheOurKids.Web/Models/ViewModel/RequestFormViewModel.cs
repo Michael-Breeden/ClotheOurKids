@@ -7,54 +7,54 @@ using System.Web.Mvc;
 
 namespace ClotheOurKids.Web.Models.ViewModel
 {
-    public class RequestFormModel
+    public class RequestFormViewModel
     {
-        public RequestFormModel()
+        public RequestFormViewModel()
         {
             AvailableGenders = new List<SelectListItem>();
-            AvailablePositions = new List<SelectListItem>();
-            AvailableOffices = new List<SelectListItem>();
+            AvailableSchools = new List<SelectListItem>();
             AvailableGrades = new List<SelectListItem>();
+            AvailableUrgencies = new List<SelectListItem>();
             AvailableShirtSizes = new List<SelectListItem>();
             AvailablePantSizes = new List<SelectListItem>();
         }
 
-
-        [Display(Name = "FirstName")]
-        public string FirstName { get; set; }
-
-        [Display(Name = "LastName")]
-        public string LastName { get; set; }
-
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-
-        [Display(Name = "Phone")]
-        public string Phone { get; set; }
-
+        [Required]
         [Display(Name = "Gender")]
-        public string Gender { get; set; }
+        public string GenderId { get; set; }
         public IList<SelectListItem> AvailableGenders { get; set; }
 
-        [Display(Name = "Position")]
-        public int PositionId { get; set; }
-        public IList<SelectListItem> AvailablePositions { get; set; }
+        [Required]
+        [Display(Name = "School")]
+        public short SchoolId { get; set; }
+        public IList<SelectListItem> AvailableSchools { get; set; }
 
-        [Display(Name = "Office")]
-        public int OfficeId { get; set; }
-        public IList<SelectListItem> AvailableOffices { get; set; }
-
+        [Required]
         [Display(Name = "Grade")]
-        public int GradeId { get; set; }
+        public short GradeId { get; set; }
         public IList<SelectListItem> AvailableGrades { get; set; }
 
-        [Display(Name = "ShirtSize")]
-        public int ShirtSizeId { get; set; }
+        [Required]
+        [Display(Name = "Urgency")]
+        public byte UrgencyId { get; set; }
+        public IList<SelectListItem> AvailableUrgencies { get; set; }
+
+        [Display(Name = "Shirt Size")]
+        public Nullable<int> ShirtSizeId { get; set; }
         public IList<SelectListItem> AvailableShirtSizes { get; set; }
 
-        [Display(Name = "PantSize")]
-        public int PantSizeId { get; set; }
+        [Display(Name = "Pant Size")]
+        public Nullable<int> PantSizeId { get; set; }
         public IList<SelectListItem> AvailablePantSizes { get; set; }
+
+        [Display(Name = "Underwear Size")]
+        public string UnderwearSize { get; set; }
+
+        [Display(Name = "Shoe Size")]
+        public string ShoeSize { get; set; }
+
+        [Display(Name = "Additional Information")]
+        public string Comments { get; set; }
 
     }
 }

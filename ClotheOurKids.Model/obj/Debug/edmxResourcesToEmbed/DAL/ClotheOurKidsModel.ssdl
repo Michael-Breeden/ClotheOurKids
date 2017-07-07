@@ -78,13 +78,6 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Description" Type="varchar" MaxLength="500" />
   </EntityType>
-  <EntityType Name="ClothesType">
-    <Key>
-      <PropertyRef Name="ClothesTypeId" />
-    </Key>
-    <Property Name="ClothesTypeId" Type="tinyint" Nullable="false" />
-    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-  </EntityType>
   <EntityType Name="ContactMethod">
     <Key>
       <PropertyRef Name="ContactMethodId" />
@@ -102,6 +95,13 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <Property Name="ServiceStartDate" Type="date" />
     <Property Name="ServiceEndDate" Type="date" />
     <Property Name="StateId" Type="smallint" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="GenderId" />
+    </Key>
+    <Property Name="GenderId" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Abbreviation" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
   <EntityType Name="Grade">
     <Key>
@@ -132,6 +132,16 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <Property Name="OfficeTypeId" Type="tinyint" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="Description" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="PantSize">
+    <Key>
+      <PropertyRef Name="PantSizeId" />
+    </Key>
+    <Property Name="PantSizeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AgeGroupId" Type="tinyint" Nullable="false" />
+    <Property Name="GenderId" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="SortOrder" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Position">
     <Key>
@@ -175,15 +185,14 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="Description" Type="varchar" MaxLength="500" />
   </EntityType>
-  <EntityType Name="Size">
+  <EntityType Name="ShirtSize">
     <Key>
-      <PropertyRef Name="SizeId" />
+      <PropertyRef Name="ShirtSizeId" />
     </Key>
-    <Property Name="SizeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShirtSizeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="AgeGroupId" Type="tinyint" Nullable="false" />
-    <Property Name="Gender" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="ClothesTypeId" Type="tinyint" Nullable="false" />
+    <Property Name="GenderId" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="SortOrder" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="States">
@@ -204,8 +213,8 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <Property Name="DateDelivered" Type="date" Nullable="false" />
     <Property Name="SubmittedByUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="RequestStatusId" Type="tinyint" Nullable="false" />
-    <Property Name="OfficeId" Type="smallint" Nullable="false" />
-    <Property Name="Gender" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="SchoolId" Type="smallint" />
+    <Property Name="GenderId" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="GradeId" Type="smallint" Nullable="false" />
     <Property Name="UrgencyId" Type="tinyint" Nullable="false" />
     <Property Name="ShirtSizeId" Type="int" />
@@ -213,11 +222,8 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <Property Name="PantLengthSizeId" Type="int" />
     <Property Name="UnderwearSize" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="ShoeSize" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="HygieneKitFlag" Type="bit" Nullable="false" />
     <Property Name="Comments" Type="varchar" MaxLength="2000" Nullable="false" />
-    <Property Name="RowCreatedTime" Type="datetime2" Precision="0" Nullable="false" />
-    <Property Name="RowCreatedByUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="RowLastUpdatedTime" Type="datetime2" Precision="0" Nullable="false" />
-    <Property Name="RowLastUpdatedByUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
   </EntityType>
   <EntityType Name="RequestStatus">
     <Key>
@@ -291,27 +297,27 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Reference_AgeGroup$ProvidesAgeGroupDetailsFor$Reference_Size">
+  <Association Name="FK_Reference_AgeGroup$DescribesAgeGroupAssociatedWith$Reference_PantSize">
     <End Role="AgeGroup" Type="Self.AgeGroup" Multiplicity="1" />
-    <End Role="Size" Type="Self.Size" Multiplicity="*" />
+    <End Role="PantSize" Type="Self.PantSize" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AgeGroup">
         <PropertyRef Name="AgeGroupId" />
       </Principal>
-      <Dependent Role="Size">
+      <Dependent Role="PantSize">
         <PropertyRef Name="AgeGroupId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Reference_ClothesType$ProvidesDetailsAboutTypeOfClothingFor$Reference_Size">
-    <End Role="ClothesType" Type="Self.ClothesType" Multiplicity="1" />
-    <End Role="Size" Type="Self.Size" Multiplicity="*" />
+  <Association Name="FK_Reference_AgeGroup$DescribesAgeGroupAssociatedWith$Reference_ShirtSize">
+    <End Role="AgeGroup" Type="Self.AgeGroup" Multiplicity="1" />
+    <End Role="ShirtSize" Type="Self.ShirtSize" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="ClothesType">
-        <PropertyRef Name="ClothesTypeId" />
+      <Principal Role="AgeGroup">
+        <PropertyRef Name="AgeGroupId" />
       </Principal>
-      <Dependent Role="Size">
-        <PropertyRef Name="ClothesTypeId" />
+      <Dependent Role="ShirtSize">
+        <PropertyRef Name="AgeGroupId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -324,6 +330,30 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
       </Principal>
       <Dependent Role="AspNetUsers">
         <PropertyRef Name="ContactMethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_Gender$DescribesGenderOfChildFor$Requests_Request">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="GenderId" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="GenderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_Office$IsOfficeOf$dbo_AspNetUsers">
+    <End Role="Office" Type="Self.Office" Multiplicity="1" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Office">
+        <PropertyRef Name="OfficeId" />
+      </Principal>
+      <Dependent Role="AspNetUsers">
+        <PropertyRef Name="OfficeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -348,6 +378,18 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
       </Principal>
       <Dependent Role="PositionOfficeType">
         <PropertyRef Name="OfficeTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_Position$IsPositionOf$dbo_AspNetUsers">
+    <End Role="Position" Type="Self.Position" Multiplicity="1" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="PositionId" />
+      </Principal>
+      <Dependent Role="AspNetUsers">
+        <PropertyRef Name="PositionId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -423,6 +465,102 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Requests_PantSize$DescribesPantLengthSizeFor$Requests_Request">
+    <End Role="PantSize" Type="Self.PantSize" Multiplicity="0..1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PantSize">
+        <PropertyRef Name="PantSizeId" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="PantLengthSizeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_PantSize$DescribesPantSizeFor$Requests_Request">
+    <End Role="PantSize" Type="Self.PantSize" Multiplicity="0..1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PantSize">
+        <PropertyRef Name="PantSizeId" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="PantSizeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_Request$HasAnUrgencyOf$Requests_Urgency">
+    <End Role="Urgency" Type="Self.Urgency" Multiplicity="1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urgency">
+        <PropertyRef Name="UrgencyId" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="UrgencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_Request$IsForChildAttending$Reference_School">
+    <End Role="School" Type="Self.School" Multiplicity="0..1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="School">
+        <PropertyRef Name="SchoolId" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="SchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_Request$IsForChildInGrade$Reference_Grade">
+    <End Role="Grade" Type="Self.Grade" Multiplicity="1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grade">
+        <PropertyRef Name="GradeId" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="GradeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_Request$WasSubmittedBy$dbo_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="SubmittedByUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_RequestStatus$DescribesStatusOf$Requests_Request">
+    <End Role="RequestStatus" Type="Self.RequestStatus" Multiplicity="1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RequestStatus">
+        <PropertyRef Name="RequestStatusId" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="RequestStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_ShirtSize$DescribesShirtSizeFor$Requests_Request">
+    <End Role="ShirtSize" Type="Self.ShirtSize" Multiplicity="0..1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShirtSize">
+        <PropertyRef Name="ShirtSizeId" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="ShirtSizeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="ClotheOurKidsModelStoreContainer">
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -430,18 +568,19 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AgeGroup" EntityType="Self.AgeGroup" Schema="Reference" store:Type="Tables" />
-    <EntitySet Name="ClothesType" EntityType="Self.ClothesType" Schema="Reference" store:Type="Tables" />
     <EntitySet Name="ContactMethod" EntityType="Self.ContactMethod" Schema="Reference" store:Type="Tables" />
     <EntitySet Name="County" EntityType="Self.County" Schema="Reference" store:Type="Tables" />
+    <EntitySet Name="Gender" EntityType="Self.Gender" Schema="Reference" store:Type="Tables" />
     <EntitySet Name="Grade" EntityType="Self.Grade" Schema="Reference" store:Type="Tables" />
     <EntitySet Name="Office" EntityType="Self.Office" Schema="Reference" store:Type="Tables" />
     <EntitySet Name="OfficeType" EntityType="Self.OfficeType" Schema="Reference" store:Type="Tables" />
+    <EntitySet Name="PantSize" EntityType="Self.PantSize" Schema="Reference" store:Type="Tables" />
     <EntitySet Name="Position" EntityType="Self.Position" Schema="Reference" store:Type="Tables" />
     <EntitySet Name="PositionOfficeType" EntityType="Self.PositionOfficeType" Schema="Reference" store:Type="Tables" />
     <EntitySet Name="School" EntityType="Self.School" Schema="Reference" store:Type="Tables" />
     <EntitySet Name="SchoolDistrict" EntityType="Self.SchoolDistrict" Schema="Reference" store:Type="Tables" />
     <EntitySet Name="SchoolType" EntityType="Self.SchoolType" Schema="Reference" store:Type="Tables" />
-    <EntitySet Name="Size" EntityType="Self.Size" Schema="Reference" store:Type="Tables" />
+    <EntitySet Name="ShirtSize" EntityType="Self.ShirtSize" Schema="Reference" store:Type="Tables" />
     <EntitySet Name="States" EntityType="Self.States" Schema="Reference" store:Type="Tables" />
     <EntitySet Name="Request" EntityType="Self.Request" Schema="Requests" store:Type="Tables" />
     <EntitySet Name="RequestStatus" EntityType="Self.RequestStatus" Schema="Requests" store:Type="Tables" />
@@ -470,16 +609,24 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
     </AssociationSet>
-    <AssociationSet Name="FK_Reference_AgeGroup$ProvidesAgeGroupDetailsFor$Reference_Size" Association="Self.FK_Reference_AgeGroup$ProvidesAgeGroupDetailsFor$Reference_Size">
+    <AssociationSet Name="FK_Reference_AgeGroup$DescribesAgeGroupAssociatedWith$Reference_PantSize" Association="Self.FK_Reference_AgeGroup$DescribesAgeGroupAssociatedWith$Reference_PantSize">
       <End Role="AgeGroup" EntitySet="AgeGroup" />
-      <End Role="Size" EntitySet="Size" />
+      <End Role="PantSize" EntitySet="PantSize" />
     </AssociationSet>
-    <AssociationSet Name="FK_Reference_ClothesType$ProvidesDetailsAboutTypeOfClothingFor$Reference_Size" Association="Self.FK_Reference_ClothesType$ProvidesDetailsAboutTypeOfClothingFor$Reference_Size">
-      <End Role="ClothesType" EntitySet="ClothesType" />
-      <End Role="Size" EntitySet="Size" />
+    <AssociationSet Name="FK_Reference_AgeGroup$DescribesAgeGroupAssociatedWith$Reference_ShirtSize" Association="Self.FK_Reference_AgeGroup$DescribesAgeGroupAssociatedWith$Reference_ShirtSize">
+      <End Role="AgeGroup" EntitySet="AgeGroup" />
+      <End Role="ShirtSize" EntitySet="ShirtSize" />
     </AssociationSet>
     <AssociationSet Name="FK_Reference_ContactMethod$IsPreferredMethodOfContactFor$dbo_AspNetUsers" Association="Self.FK_Reference_ContactMethod$IsPreferredMethodOfContactFor$dbo_AspNetUsers">
       <End Role="ContactMethod" EntitySet="ContactMethod" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_Gender$DescribesGenderOfChildFor$Requests_Request" Association="Self.FK_Reference_Gender$DescribesGenderOfChildFor$Requests_Request">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_Office$IsOfficeOf$dbo_AspNetUsers" Association="Self.FK_Reference_Office$IsOfficeOf$dbo_AspNetUsers">
+      <End Role="Office" EntitySet="Office" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
     <AssociationSet Name="FK_Reference_OfficeType$DescribesOrganizationalTypeOf$Reference_Office" Association="Self.FK_Reference_OfficeType$DescribesOrganizationalTypeOf$Reference_Office">
@@ -489,6 +636,10 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <AssociationSet Name="FK_Reference_OfficeType$DescribesTypeOfOfficeAssociatedWith$Reference_PositionOfficeType" Association="Self.FK_Reference_OfficeType$DescribesTypeOfOfficeAssociatedWith$Reference_PositionOfficeType">
       <End Role="OfficeType" EntitySet="OfficeType" />
       <End Role="PositionOfficeType" EntitySet="PositionOfficeType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_Position$IsPositionOf$dbo_AspNetUsers" Association="Self.FK_Reference_Position$IsPositionOf$dbo_AspNetUsers">
+      <End Role="Position" EntitySet="Position" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
     <AssociationSet Name="FK_Reference_PositionOfficeType$SpecifiesOfficeTypeOf$Reference_Position" Association="Self.FK_Reference_PositionOfficeType$SpecifiesOfficeTypeOf$Reference_Position">
       <End Role="Position" EntitySet="Position" />
@@ -513,6 +664,38 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <AssociationSet Name="FK_Reference_State$DefinesStateOfResidenceFor$Reference_Office" Association="Self.FK_Reference_State$DefinesStateOfResidenceFor$Reference_Office">
       <End Role="States" EntitySet="States" />
       <End Role="Office" EntitySet="Office" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_PantSize$DescribesPantLengthSizeFor$Requests_Request" Association="Self.FK_Requests_PantSize$DescribesPantLengthSizeFor$Requests_Request">
+      <End Role="PantSize" EntitySet="PantSize" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_PantSize$DescribesPantSizeFor$Requests_Request" Association="Self.FK_Requests_PantSize$DescribesPantSizeFor$Requests_Request">
+      <End Role="PantSize" EntitySet="PantSize" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_Request$HasAnUrgencyOf$Requests_Urgency" Association="Self.FK_Requests_Request$HasAnUrgencyOf$Requests_Urgency">
+      <End Role="Urgency" EntitySet="Urgency" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_Request$IsForChildAttending$Reference_School" Association="Self.FK_Requests_Request$IsForChildAttending$Reference_School">
+      <End Role="School" EntitySet="School" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_Request$IsForChildInGrade$Reference_Grade" Association="Self.FK_Requests_Request$IsForChildInGrade$Reference_Grade">
+      <End Role="Grade" EntitySet="Grade" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_Request$WasSubmittedBy$dbo_AspNetUsers" Association="Self.FK_Requests_Request$WasSubmittedBy$dbo_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_RequestStatus$DescribesStatusOf$Requests_Request" Association="Self.FK_Requests_RequestStatus$DescribesStatusOf$Requests_Request">
+      <End Role="RequestStatus" EntitySet="RequestStatus" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_ShirtSize$DescribesShirtSizeFor$Requests_Request" Association="Self.FK_Requests_ShirtSize$DescribesShirtSizeFor$Requests_Request">
+      <End Role="ShirtSize" EntitySet="ShirtSize" />
+      <End Role="Request" EntitySet="Request" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

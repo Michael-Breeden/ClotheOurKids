@@ -18,6 +18,7 @@ namespace ClotheOurKids.Model
         public Office()
         {
             this.Schools = new HashSet<School>();
+            this.AspNetUsers = new HashSet<AspNetUser>();
         }
     
         public short OfficeId { get; set; }
@@ -34,5 +35,7 @@ namespace ClotheOurKids.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<School> Schools { get; set; }
         public virtual State State { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }

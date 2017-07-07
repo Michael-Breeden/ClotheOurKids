@@ -615,6 +615,15 @@ GO
 CREATE UNIQUE INDEX UQ_Reference_ShirtSize_SortOrder ON Reference.ShirtSize (SortOrder);
 GO
 
+
+ALTER TABLE Reference.ShirtSize
+	ADD CONSTRAINT FK_Reference_AgeGroup$DescribesAgeGroupAssociatedWith$Reference_ShirtSize
+	FOREIGN KEY (AgeGroupId) REFERENCES Reference.AgeGroup (AgeGroupId)
+ON UPDATE NO ACTION
+ON DELETE NO ACTION;
+GO
+
+
 INSERT INTO Reference.ShirtSize (Name, AgeGroupId, GenderId, SortOrder)
 VALUES ('Newborn', 1, 'Male', 1010),
 		('0-3 Months', 1, 'Male', 1020),
@@ -694,6 +703,14 @@ GO
 
 CREATE UNIQUE INDEX UQ_Reference_PantSize_SortOrder ON Reference.PantSize (SortOrder);
 GO
+
+ALTER TABLE Reference.PantSize
+	ADD CONSTRAINT FK_Reference_AgeGroup$DescribesAgeGroupAssociatedWith$Reference_PantSize
+	FOREIGN KEY (AgeGroupId) REFERENCES Reference.AgeGroup (AgeGroupId)
+ON UPDATE NO ACTION
+ON DELETE NO ACTION;
+GO
+
 
 INSERT INTO Reference.PantSize (Name, AgeGroupId, GenderId, SortOrder)
 VALUES  ('Newborn', 1, 'Male', 1010),
@@ -1001,7 +1018,7 @@ CREATE TABLE Requests.Request
 	DateDelivered		date NOT NULL,
 	SubmittedByUserId	nvarchar(128) NOT NULL,
 	RequestStatusId		tinyint NOT NULL,
-	SchoolId			smallint NOT NULL,
+	SchoolId			smallint NULL,
 	GenderId			varchar(10) NOT NULL,
 	GradeId				smallint NOT NULL,
 	UrgencyId			tinyint NOT NULL,
@@ -1014,7 +1031,6 @@ CREATE TABLE Requests.Request
 	Comments			varchar(2000) NOT NULL DEFAULT('')
 );
 GO
-
 
 ALTER TABLE Requests.Request
 	ADD CONSTRAINT FK_Requests_Request$WasSubmittedBy$dbo_AspNetUsers

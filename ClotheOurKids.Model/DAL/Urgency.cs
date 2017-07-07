@@ -14,9 +14,18 @@ namespace ClotheOurKids.Model
     
     public partial class Urgency
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Urgency()
+        {
+            this.Requests = new HashSet<Request>();
+        }
+    
         public byte UrgencyId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public byte DaysForDelivery { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Request> Requests { get; set; }
     }
 }

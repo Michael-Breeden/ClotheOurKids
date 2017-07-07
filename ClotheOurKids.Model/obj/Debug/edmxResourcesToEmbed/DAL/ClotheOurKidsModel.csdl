@@ -54,6 +54,9 @@
     <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
     <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
     <NavigationProperty Name="ContactMethod" Relationship="ClotheOurKidsModel.FK_Reference_ContactMethod_IsPreferredMethodOfContactFor_dbo_AspNetUsers" FromRole="AspNetUser" ToRole="ContactMethod" />
+    <NavigationProperty Name="Office" Relationship="ClotheOurKidsModel.FK_Reference_Office_IsOfficeOf_dbo_AspNetUsers" FromRole="AspNetUser" ToRole="Office" />
+    <NavigationProperty Name="Position" Relationship="ClotheOurKidsModel.FK_Reference_Position_IsPositionOf_dbo_AspNetUsers" FromRole="AspNetUser" ToRole="Position" />
+    <NavigationProperty Name="Requests" Relationship="ClotheOurKidsModel.FK_Requests_Request_WasSubmittedBy_dbo_AspNetUsers" FromRole="AspNetUser" ToRole="Request" />
   </EntityType>
   <EntityType Name="AgeGroup">
     <Key>
@@ -62,15 +65,8 @@
     <Property Name="AgeGroupId" Type="Byte" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Sizes" Relationship="Self.FK_Reference_AgeGroup_ProvidesAgeGroupDetailsFor_Reference_Size" FromRole="AgeGroup" ToRole="Size" />
-  </EntityType>
-  <EntityType Name="ClothesType">
-    <Key>
-      <PropertyRef Name="ClothesTypeId" />
-    </Key>
-    <Property Name="ClothesTypeId" Type="Byte" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Sizes" Relationship="Self.FK_Reference_ClothesType_ProvidesDetailsAboutTypeOfClothingFor_Reference_Size" FromRole="ClothesType" ToRole="Size" />
+    <NavigationProperty Name="PantSizes" Relationship="ClotheOurKidsModel.FK_Reference_AgeGroup_DescribesAgeGroupAssociatedWith_Reference_PantSize" FromRole="AgeGroup" ToRole="PantSize" />
+    <NavigationProperty Name="ShirtSizes" Relationship="ClotheOurKidsModel.FK_Reference_AgeGroup_DescribesAgeGroupAssociatedWith_Reference_ShirtSize" FromRole="AgeGroup" ToRole="ShirtSize" />
   </EntityType>
   <EntityType Name="County">
     <Key>
@@ -91,6 +87,7 @@
     <Property Name="GradeId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Requests" Relationship="ClotheOurKidsModel.FK_Requests_Request_IsForChildInGrade_Reference_Grade" FromRole="Grade" ToRole="Request" />
   </EntityType>
   <EntityType Name="Office">
     <Key>
@@ -108,6 +105,7 @@
     <NavigationProperty Name="OfficeType" Relationship="Self.FK_Reference_OfficeType_DescribesOrganizationalTypeOf_Reference_Office" FromRole="Office" ToRole="OfficeType" />
     <NavigationProperty Name="Schools" Relationship="Self.FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office" FromRole="Office" ToRole="School" />
     <NavigationProperty Name="State" Relationship="Self.FK_Reference_State_DefinesStateOfResidenceFor_Reference_Office" FromRole="Office" ToRole="States" />
+    <NavigationProperty Name="AspNetUsers" Relationship="ClotheOurKidsModel.FK_Reference_Office_IsOfficeOf_dbo_AspNetUsers" FromRole="Office" ToRole="AspNetUser" />
   </EntityType>
   <EntityType Name="OfficeType">
     <Key>
@@ -127,6 +125,7 @@
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="PositionOfficeTypes" Relationship="Self.FK_Reference_PositionOfficeType_SpecifiesOfficeTypeOf_Reference_Position" FromRole="Position" ToRole="PositionOfficeType" />
+    <NavigationProperty Name="AspNetUsers" Relationship="ClotheOurKidsModel.FK_Reference_Position_IsPositionOf_dbo_AspNetUsers" FromRole="Position" ToRole="AspNetUser" />
   </EntityType>
   <EntityType Name="PositionOfficeType">
     <Key>
@@ -149,6 +148,7 @@
     <NavigationProperty Name="Office" Relationship="Self.FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office" FromRole="School" ToRole="Office" />
     <NavigationProperty Name="SchoolDistrict" Relationship="Self.FK_Reference_SchoolDistrict_IdentifiesSchoolDistrictOf_Reference_School" FromRole="School" ToRole="SchoolDistrict" />
     <NavigationProperty Name="SchoolType" Relationship="Self.FK_Reference_SchoolType_IdentifiesTypeOf_Reference_School" FromRole="School" ToRole="SchoolType" />
+    <NavigationProperty Name="Requests" Relationship="ClotheOurKidsModel.FK_Requests_Request_IsForChildAttending_Reference_School" FromRole="School" ToRole="Request" />
   </EntityType>
   <EntityType Name="SchoolDistrict">
     <Key>
@@ -170,19 +170,6 @@
     <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Schools" Relationship="Self.FK_Reference_SchoolType_IdentifiesTypeOf_Reference_School" FromRole="SchoolType" ToRole="School" />
   </EntityType>
-  <EntityType Name="Size">
-    <Key>
-      <PropertyRef Name="SizeId" />
-    </Key>
-    <Property Name="SizeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="AgeGroupId" Type="Byte" Nullable="false" />
-    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="ClothesTypeId" Type="Byte" Nullable="false" />
-    <Property Name="SortOrder" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="AgeGroup" Relationship="Self.FK_Reference_AgeGroup_ProvidesAgeGroupDetailsFor_Reference_Size" FromRole="Size" ToRole="AgeGroup" />
-    <NavigationProperty Name="ClothesType" Relationship="Self.FK_Reference_ClothesType_ProvidesDetailsAboutTypeOfClothingFor_Reference_Size" FromRole="Size" ToRole="ClothesType" />
-  </EntityType>
   <EntityType Name="State">
     <Key>
       <PropertyRef Name="StateId" />
@@ -192,37 +179,13 @@
     <Property Name="Code" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Offices" Relationship="Self.FK_Reference_State_DefinesStateOfResidenceFor_Reference_Office" FromRole="States" ToRole="Office" />
   </EntityType>
-  <EntityType Name="Request">
-    <Key>
-      <PropertyRef Name="RequestId" />
-    </Key>
-    <Property Name="RequestId" Type="Int32" Nullable="false" />
-    <Property Name="DateRequested" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="DateEstimatedDelivery" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="DateDelivered" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="SubmittedByUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="RequestStatusId" Type="Byte" Nullable="false" />
-    <Property Name="OfficeId" Type="Int16" Nullable="false" />
-    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="GradeId" Type="Int16" Nullable="false" />
-    <Property Name="UrgencyId" Type="Byte" Nullable="false" />
-    <Property Name="ShirtSizeId" Type="Int32" />
-    <Property Name="PantSizeId" Type="Int32" />
-    <Property Name="PantLengthSizeId" Type="Int32" />
-    <Property Name="UnderwearSize" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="ShoeSize" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Comments" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="RowCreatedTime" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="RowCreatedByUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="RowLastUpdatedTime" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="RowLastUpdatedByUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-  </EntityType>
-  <EntityType Name="RequestStatu">
+  <EntityType Name="RequestStatus">
     <Key>
       <PropertyRef Name="RequestStatusId" />
     </Key>
     <Property Name="RequestStatusId" Type="Byte" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Requests" Relationship="ClotheOurKidsModel.FK_Requests_RequestStatus_DescribesStatusOf_Requests_Request" FromRole="RequestStatus" ToRole="Request" />
   </EntityType>
   <EntityType Name="Urgency">
     <Key>
@@ -232,6 +195,7 @@
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <Property Name="DaysForDelivery" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="Requests" Relationship="ClotheOurKidsModel.FK_Requests_Request_HasAnUrgencyOf_Requests_Urgency" FromRole="Urgency" ToRole="Request" />
   </EntityType>
   <EntityType Name="C__MigrationHistory">
     <Key>
@@ -270,30 +234,6 @@
       </Principal>
       <Dependent Role="AspNetUserLogins">
         <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Reference_AgeGroup_ProvidesAgeGroupDetailsFor_Reference_Size">
-    <End Role="AgeGroup" Type="Self.AgeGroup" Multiplicity="1" />
-    <End Role="Size" Type="Self.Size" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AgeGroup">
-        <PropertyRef Name="AgeGroupId" />
-      </Principal>
-      <Dependent Role="Size">
-        <PropertyRef Name="AgeGroupId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Reference_ClothesType_ProvidesDetailsAboutTypeOfClothingFor_Reference_Size">
-    <End Role="ClothesType" Type="Self.ClothesType" Multiplicity="1" />
-    <End Role="Size" Type="Self.Size" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ClothesType">
-        <PropertyRef Name="ClothesTypeId" />
-      </Principal>
-      <Dependent Role="Size">
-        <PropertyRef Name="ClothesTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -403,7 +343,6 @@
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
     <EntitySet Name="AgeGroups" EntityType="Self.AgeGroup" />
-    <EntitySet Name="ClothesTypes" EntityType="Self.ClothesType" />
     <EntitySet Name="Counties" EntityType="Self.County" />
     <EntitySet Name="Grades" EntityType="Self.Grade" />
     <EntitySet Name="Offices" EntityType="Self.Office" />
@@ -413,10 +352,8 @@
     <EntitySet Name="Schools" EntityType="Self.School" />
     <EntitySet Name="SchoolDistricts" EntityType="Self.SchoolDistrict" />
     <EntitySet Name="SchoolTypes" EntityType="Self.SchoolType" />
-    <EntitySet Name="Sizes" EntityType="Self.Size" />
     <EntitySet Name="States" EntityType="Self.State" />
-    <EntitySet Name="Requests" EntityType="Self.Request" />
-    <EntitySet Name="RequestStatus" EntityType="Self.RequestStatu" />
+    <EntitySet Name="RequestStatus1" EntityType="ClotheOurKidsModel.RequestStatus" />
     <EntitySet Name="Urgencies" EntityType="Self.Urgency" />
     <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -426,14 +363,6 @@
     <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Reference_AgeGroup_ProvidesAgeGroupDetailsFor_Reference_Size" Association="Self.FK_Reference_AgeGroup_ProvidesAgeGroupDetailsFor_Reference_Size">
-      <End Role="AgeGroup" EntitySet="AgeGroups" />
-      <End Role="Size" EntitySet="Sizes" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Reference_ClothesType_ProvidesDetailsAboutTypeOfClothingFor_Reference_Size" Association="Self.FK_Reference_ClothesType_ProvidesDetailsAboutTypeOfClothingFor_Reference_Size">
-      <End Role="ClothesType" EntitySet="ClothesTypes" />
-      <End Role="Size" EntitySet="Sizes" />
     </AssociationSet>
     <AssociationSet Name="FK_Reference_SchoolDistrict_IsPartOfTheCounty_Reference_County" Association="Self.FK_Reference_SchoolDistrict_IsPartOfTheCounty_Reference_County">
       <End Role="County" EntitySet="Counties" />
@@ -476,6 +405,62 @@
       <End Role="ContactMethod" EntitySet="ContactMethods" />
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <EntitySet Name="Genders" EntityType="ClotheOurKidsModel.Gender" />
+    <AssociationSet Name="FK_Reference_Office_IsOfficeOf_dbo_AspNetUsers" Association="ClotheOurKidsModel.FK_Reference_Office_IsOfficeOf_dbo_AspNetUsers">
+      <End Role="Office" EntitySet="Offices" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_Position_IsPositionOf_dbo_AspNetUsers" Association="ClotheOurKidsModel.FK_Reference_Position_IsPositionOf_dbo_AspNetUsers">
+      <End Role="Position" EntitySet="Positions" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <EntitySet Name="PantSizes" EntityType="ClotheOurKidsModel.PantSize" />
+    <EntitySet Name="ShirtSizes" EntityType="ClotheOurKidsModel.ShirtSize" />
+    <AssociationSet Name="FK_Reference_AgeGroup_DescribesAgeGroupAssociatedWith_Reference_PantSize" Association="ClotheOurKidsModel.FK_Reference_AgeGroup_DescribesAgeGroupAssociatedWith_Reference_PantSize">
+      <End Role="AgeGroup" EntitySet="AgeGroups" />
+      <End Role="PantSize" EntitySet="PantSizes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_AgeGroup_DescribesAgeGroupAssociatedWith_Reference_ShirtSize" Association="ClotheOurKidsModel.FK_Reference_AgeGroup_DescribesAgeGroupAssociatedWith_Reference_ShirtSize">
+      <End Role="AgeGroup" EntitySet="AgeGroups" />
+      <End Role="ShirtSize" EntitySet="ShirtSizes" />
+    </AssociationSet>
+    <EntitySet Name="Requests" EntityType="ClotheOurKidsModel.Request" />
+    <AssociationSet Name="FK_Requests_Request_WasSubmittedBy_dbo_AspNetUsers" Association="ClotheOurKidsModel.FK_Requests_Request_WasSubmittedBy_dbo_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_Gender_DescribesGenderOfChildFor_Requests_Request" Association="ClotheOurKidsModel.FK_Reference_Gender_DescribesGenderOfChildFor_Requests_Request">
+      <End Role="Gender" EntitySet="Genders" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_Request_IsForChildInGrade_Reference_Grade" Association="ClotheOurKidsModel.FK_Requests_Request_IsForChildInGrade_Reference_Grade">
+      <End Role="Grade" EntitySet="Grades" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_PantSize_DescribesPantLengthSizeFor_Requests_Request" Association="ClotheOurKidsModel.FK_Requests_PantSize_DescribesPantLengthSizeFor_Requests_Request">
+      <End Role="PantSize" EntitySet="PantSizes" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_PantSize_DescribesPantSizeFor_Requests_Request" Association="ClotheOurKidsModel.FK_Requests_PantSize_DescribesPantSizeFor_Requests_Request">
+      <End Role="PantSize" EntitySet="PantSizes" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_Request_IsForChildAttending_Reference_School" Association="ClotheOurKidsModel.FK_Requests_Request_IsForChildAttending_Reference_School">
+      <End Role="School" EntitySet="Schools" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_ShirtSize_DescribesShirtSizeFor_Requests_Request" Association="ClotheOurKidsModel.FK_Requests_ShirtSize_DescribesShirtSizeFor_Requests_Request">
+      <End Role="ShirtSize" EntitySet="ShirtSizes" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_Request_HasAnUrgencyOf_Requests_Urgency" Association="ClotheOurKidsModel.FK_Requests_Request_HasAnUrgencyOf_Requests_Urgency">
+      <End Role="Urgency" EntitySet="Urgencies" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_RequestStatus_DescribesStatusOf_Requests_Request" Association="ClotheOurKidsModel.FK_Requests_RequestStatus_DescribesStatusOf_Requests_Request">
+      <End Role="RequestStatus" EntitySet="RequestStatus1" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="ContactMethod">
     <Key>
@@ -494,6 +479,226 @@
       </Principal>
       <Dependent Role="AspNetUser">
         <PropertyRef Name="ContactMethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="GenderId" />
+    </Key>
+    <Property Name="GenderId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Abbreviation" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="Requests" Relationship="ClotheOurKidsModel.FK_Reference_Gender_DescribesGenderOfChildFor_Requests_Request" FromRole="Gender" ToRole="Request" />
+  </EntityType>
+  <Association Name="FK_Reference_Office_IsOfficeOf_dbo_AspNetUsers">
+    <End Type="ClotheOurKidsModel.Office" Role="Office" Multiplicity="1" />
+    <End Type="ClotheOurKidsModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Office">
+        <PropertyRef Name="OfficeId" />
+      </Principal>
+      <Dependent Role="AspNetUser">
+        <PropertyRef Name="OfficeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_Position_IsPositionOf_dbo_AspNetUsers">
+    <End Type="ClotheOurKidsModel.Position" Role="Position" Multiplicity="1" />
+    <End Type="ClotheOurKidsModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="PositionId" />
+      </Principal>
+      <Dependent Role="AspNetUser">
+        <PropertyRef Name="PositionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PantSize">
+    <Key>
+      <PropertyRef Name="PantSizeId" />
+    </Key>
+    <Property Name="PantSizeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AgeGroupId" Type="Byte" Nullable="false" />
+    <Property Name="GenderId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="SortOrder" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AgeGroup" Relationship="ClotheOurKidsModel.FK_Reference_AgeGroup_DescribesAgeGroupAssociatedWith_Reference_PantSize" FromRole="PantSize" ToRole="AgeGroup" />
+    <NavigationProperty Name="Requests" Relationship="ClotheOurKidsModel.FK_Requests_PantSize_DescribesPantLengthSizeFor_Requests_Request" FromRole="PantSize" ToRole="Request" />
+    <NavigationProperty Name="Requests1" Relationship="ClotheOurKidsModel.FK_Requests_PantSize_DescribesPantSizeFor_Requests_Request" FromRole="PantSize" ToRole="Request" />
+  </EntityType>
+  <EntityType Name="ShirtSize">
+    <Key>
+      <PropertyRef Name="ShirtSizeId" />
+    </Key>
+    <Property Name="ShirtSizeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AgeGroupId" Type="Byte" Nullable="false" />
+    <Property Name="GenderId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="SortOrder" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AgeGroup" Relationship="ClotheOurKidsModel.FK_Reference_AgeGroup_DescribesAgeGroupAssociatedWith_Reference_ShirtSize" FromRole="ShirtSize" ToRole="AgeGroup" />
+    <NavigationProperty Name="Requests" Relationship="ClotheOurKidsModel.FK_Requests_ShirtSize_DescribesShirtSizeFor_Requests_Request" FromRole="ShirtSize" ToRole="Request" />
+  </EntityType>
+  <Association Name="FK_Reference_AgeGroup_DescribesAgeGroupAssociatedWith_Reference_PantSize">
+    <End Type="ClotheOurKidsModel.AgeGroup" Role="AgeGroup" Multiplicity="1" />
+    <End Type="ClotheOurKidsModel.PantSize" Role="PantSize" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AgeGroup">
+        <PropertyRef Name="AgeGroupId" />
+      </Principal>
+      <Dependent Role="PantSize">
+        <PropertyRef Name="AgeGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_AgeGroup_DescribesAgeGroupAssociatedWith_Reference_ShirtSize">
+    <End Type="ClotheOurKidsModel.AgeGroup" Role="AgeGroup" Multiplicity="1" />
+    <End Type="ClotheOurKidsModel.ShirtSize" Role="ShirtSize" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AgeGroup">
+        <PropertyRef Name="AgeGroupId" />
+      </Principal>
+      <Dependent Role="ShirtSize">
+        <PropertyRef Name="AgeGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Request">
+    <Key>
+      <PropertyRef Name="RequestId" />
+    </Key>
+    <Property Name="RequestId" Type="Int32" Nullable="false" />
+    <Property Name="DateRequested" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DateEstimatedDelivery" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DateDelivered" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="SubmittedByUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="RequestStatusId" Type="Byte" Nullable="false" />
+    <Property Name="SchoolId" Type="Int16" />
+    <Property Name="GenderId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="GradeId" Type="Int16" Nullable="false" />
+    <Property Name="UrgencyId" Type="Byte" Nullable="false" />
+    <Property Name="ShirtSizeId" Type="Int32" />
+    <Property Name="PantSizeId" Type="Int32" />
+    <Property Name="PantLengthSizeId" Type="Int32" />
+    <Property Name="UnderwearSize" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ShoeSize" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="HygieneKitFlag" Type="Boolean" Nullable="false" />
+    <Property Name="Comments" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="ClotheOurKidsModel.FK_Requests_Request_WasSubmittedBy_dbo_AspNetUsers" FromRole="Request" ToRole="AspNetUser" />
+    <NavigationProperty Name="Gender" Relationship="ClotheOurKidsModel.FK_Reference_Gender_DescribesGenderOfChildFor_Requests_Request" FromRole="Request" ToRole="Gender" />
+    <NavigationProperty Name="Grade" Relationship="ClotheOurKidsModel.FK_Requests_Request_IsForChildInGrade_Reference_Grade" FromRole="Request" ToRole="Grade" />
+    <NavigationProperty Name="PantSize" Relationship="ClotheOurKidsModel.FK_Requests_PantSize_DescribesPantLengthSizeFor_Requests_Request" FromRole="Request" ToRole="PantSize" />
+    <NavigationProperty Name="PantSize1" Relationship="ClotheOurKidsModel.FK_Requests_PantSize_DescribesPantSizeFor_Requests_Request" FromRole="Request" ToRole="PantSize" />
+    <NavigationProperty Name="School" Relationship="ClotheOurKidsModel.FK_Requests_Request_IsForChildAttending_Reference_School" FromRole="Request" ToRole="School" />
+    <NavigationProperty Name="ShirtSize" Relationship="ClotheOurKidsModel.FK_Requests_ShirtSize_DescribesShirtSizeFor_Requests_Request" FromRole="Request" ToRole="ShirtSize" />
+    <NavigationProperty Name="Urgency" Relationship="ClotheOurKidsModel.FK_Requests_Request_HasAnUrgencyOf_Requests_Urgency" FromRole="Request" ToRole="Urgency" />
+    <NavigationProperty Name="RequestStatu" Relationship="ClotheOurKidsModel.FK_Requests_RequestStatus_DescribesStatusOf_Requests_Request" FromRole="Request" ToRole="RequestStatus" />
+  </EntityType>
+  <Association Name="FK_Requests_Request_WasSubmittedBy_dbo_AspNetUsers">
+    <End Type="ClotheOurKidsModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="ClotheOurKidsModel.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="SubmittedByUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_Gender_DescribesGenderOfChildFor_Requests_Request">
+    <End Type="ClotheOurKidsModel.Gender" Role="Gender" Multiplicity="1" />
+    <End Type="ClotheOurKidsModel.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="GenderId" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="GenderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_Request_IsForChildInGrade_Reference_Grade">
+    <End Type="ClotheOurKidsModel.Grade" Role="Grade" Multiplicity="1" />
+    <End Type="ClotheOurKidsModel.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grade">
+        <PropertyRef Name="GradeId" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="GradeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_PantSize_DescribesPantLengthSizeFor_Requests_Request">
+    <End Type="ClotheOurKidsModel.PantSize" Role="PantSize" Multiplicity="0..1" />
+    <End Type="ClotheOurKidsModel.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PantSize">
+        <PropertyRef Name="PantSizeId" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="PantLengthSizeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_PantSize_DescribesPantSizeFor_Requests_Request">
+    <End Type="ClotheOurKidsModel.PantSize" Role="PantSize" Multiplicity="0..1" />
+    <End Type="ClotheOurKidsModel.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PantSize">
+        <PropertyRef Name="PantSizeId" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="PantSizeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_Request_IsForChildAttending_Reference_School">
+    <End Type="ClotheOurKidsModel.School" Role="School" Multiplicity="0..1" />
+    <End Type="ClotheOurKidsModel.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="School">
+        <PropertyRef Name="SchoolId" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="SchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_ShirtSize_DescribesShirtSizeFor_Requests_Request">
+    <End Type="ClotheOurKidsModel.ShirtSize" Role="ShirtSize" Multiplicity="0..1" />
+    <End Type="ClotheOurKidsModel.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShirtSize">
+        <PropertyRef Name="ShirtSizeId" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="ShirtSizeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_Request_HasAnUrgencyOf_Requests_Urgency">
+    <End Type="ClotheOurKidsModel.Urgency" Role="Urgency" Multiplicity="1" />
+    <End Type="ClotheOurKidsModel.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urgency">
+        <PropertyRef Name="UrgencyId" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="UrgencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_RequestStatus_DescribesStatusOf_Requests_Request">
+    <End Type="ClotheOurKidsModel.RequestStatus" Role="RequestStatus" Multiplicity="1" />
+    <End Type="ClotheOurKidsModel.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RequestStatus">
+        <PropertyRef Name="RequestStatusId" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="RequestStatusId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

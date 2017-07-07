@@ -12,22 +12,18 @@ namespace ClotheOurKids.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class AgeGroup
+    public partial class Gender
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AgeGroup()
+        public Gender()
         {
-            this.PantSizes = new HashSet<PantSize>();
-            this.ShirtSizes = new HashSet<ShirtSize>();
+            this.Requests = new HashSet<Request>();
         }
     
-        public byte AgeGroupId { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string GenderId { get; set; }
+        public string Abbreviation { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PantSize> PantSizes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ShirtSize> ShirtSizes { get; set; }
+        public virtual ICollection<Request> Requests { get; set; }
     }
 }

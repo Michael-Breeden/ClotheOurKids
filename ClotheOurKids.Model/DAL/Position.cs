@@ -18,6 +18,7 @@ namespace ClotheOurKids.Model
         public Position()
         {
             this.PositionOfficeTypes = new HashSet<PositionOfficeType>();
+            this.AspNetUsers = new HashSet<AspNetUser>();
         }
     
         public short PositionId { get; set; }
@@ -26,5 +27,7 @@ namespace ClotheOurKids.Model
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PositionOfficeType> PositionOfficeTypes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }

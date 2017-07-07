@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="ClotheOurKidsModel.AspNetUserLogin" Width="1.5" PointX="10.25" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ClotheOurKidsModel.AspNetUser" Width="1.5" PointX="8" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ClotheOurKidsModel.AgeGroup" Width="1.5" PointX="8.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClotheOurKidsModel.ClothesType" Width="1.5" PointX="8.75" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ClotheOurKidsModel.County" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ClotheOurKidsModel.Grade" Width="1.5" PointX="10.75" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ClotheOurKidsModel.Office" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
@@ -20,16 +19,12 @@
         <EntityTypeShape EntityType="ClotheOurKidsModel.School" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ClotheOurKidsModel.SchoolDistrict" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="ClotheOurKidsModel.SchoolType" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClotheOurKidsModel.Size" Width="1.5" PointX="11" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ClotheOurKidsModel.State" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClotheOurKidsModel.Request" Width="1.5" PointX="0.75" PointY="13.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClotheOurKidsModel.RequestStatu" Width="1.5" PointX="12.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.RequestStatus" Width="1.5" PointX="12.75" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ClotheOurKidsModel.Urgency" Width="1.5" PointX="5.75" PointY="13.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ClotheOurKidsModel.C__MigrationHistory" Width="1.5" PointX="12.75" PointY="8.5" IsExpanded="true" />
         <AssociationConnector Association="ClotheOurKidsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="ClotheOurKidsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_AgeGroup_ProvidesAgeGroupDetailsFor_Reference_Size" ManuallyRouted="false" />
-        <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_ClothesType_ProvidesDetailsAboutTypeOfClothingFor_Reference_Size" ManuallyRouted="false" />
         <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_SchoolDistrict_IsPartOfTheCounty_Reference_County" ManuallyRouted="false" />
         <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_OfficeType_DescribesOrganizationalTypeOf_Reference_Office" ManuallyRouted="false" />
         <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office" ManuallyRouted="false" />
@@ -41,7 +36,24 @@
         <AssociationConnector Association="ClotheOurKidsModel.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="ClotheOurKidsModel.ContactMethod" Width="1.5" PointX="12.375" PointY="11.875" />
         <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_ContactMethod_IsPreferredMethodOfContactFor_dbo_AspNetUsers" />
-      </Diagram>
+        <EntityTypeShape EntityType="ClotheOurKidsModel.Gender" Width="1.5" PointX="11.375" PointY="16.5" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_Office_IsOfficeOf_dbo_AspNetUsers" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_Position_IsPositionOf_dbo_AspNetUsers" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.PantSize" Width="1.5" PointX="18" PointY="8.125" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.ShirtSize" Width="1.5" PointX="16.75" PointY="2.5" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_AgeGroup_DescribesAgeGroupAssociatedWith_Reference_PantSize" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_AgeGroup_DescribesAgeGroupAssociatedWith_Reference_ShirtSize" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.Request" Width="1.5" PointX="15.625" PointY="6.125" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Requests_Request_WasSubmittedBy_dbo_AspNetUsers" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_Gender_DescribesGenderOfChildFor_Requests_Request" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Requests_Request_IsForChildInGrade_Reference_Grade" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Requests_PantSize_DescribesPantLengthSizeFor_Requests_Request" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Requests_PantSize_DescribesPantSizeFor_Requests_Request" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Requests_Request_IsForChildAttending_Reference_School" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Requests_ShirtSize_DescribesShirtSizeFor_Requests_Request" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Requests_Request_HasAnUrgencyOf_Requests_Urgency" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Requests_RequestStatus_DescribesStatusOf_Requests_Request" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
