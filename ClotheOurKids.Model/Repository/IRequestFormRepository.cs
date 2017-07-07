@@ -9,14 +9,12 @@ namespace ClotheOurKids.Model
 {
     public interface IRequestFormRepository
     {
-        IList<Position> GetPositionsByOfficeId(int officeTypeId);
-        IList<Office> GetAllOffices();
-        IList<Office> GetOfficesByPositionId(int positionId);
         IList<Grade> GetAllGrades();
-        //IList<AgeGroup> GetAllAgeGroups();
-        //IList<Size> GetSizesByClothesType(string clothesType);
-        //IList<Size> GetSizesByGenderAndClothesType(string gender, string clothesType);
-
-
+        IList<Gender> GetGenders();
+        IList<Urgency> GetUrgencies();
+        IList<AgeGroup> GetShirtAgeGroups(string GenderId);
+        IList<AgeGroup> GetPantAgeGroups(string GenderId);
+        IList<ShirtSize> GetShirtSizes(byte AgeGroupId);
+        IList<PantSize> GetPantSizes(byte AgeGroupId);
     }
 }

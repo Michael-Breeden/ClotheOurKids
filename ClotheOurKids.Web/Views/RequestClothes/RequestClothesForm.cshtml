@@ -1,4 +1,5 @@
-﻿@*@model ClotheOurKids.Web.Models.ViewModel.RequestFormModel*@
+﻿@model ClotheOurKids.Web.Models.ViewModel.RequestFormViewModel
+
 @section pageCSS
 {
     <style type="text/css">
@@ -18,6 +19,10 @@
             transition: all .5s ease-in-out;
         }*/
     </style>    
+}
+
+@{ 
+    ViewBag.Title = "Request Clothes";
 }
 
 <div class="container">
@@ -53,77 +58,9 @@
                 <!--/Header-->
 
                 <!--Body-->
-                <form>
-
-                    <!--First row-->
-                    <div class="row">
-                        <div class="col-md">
-                            <h2 class="h2-responsive text-center">School Administrator / F.A.C.T Resource Coordinator</h2>
-                            <br />
-                        </div>
-                    </div>
-                    <!--/First row-->
-
-                    <!--Second row-->
-                    <div class="row mt-2">
-                        <!--First column-->
-                        <div class="col-md">
-                            <div class="md-form">
-                                <i class="fa fa-user prefix"></i>
-                                <input type="text" id="firstName" name="firstName" class="form-control validate" />
-                                <label for="firstName" data-error="wrong" data-success="right">First name</label>
-                            </div>
-                        </div>
-                        <!--Second column-->
-                        <div class="col-md">
-                            <div class="md-form">
-                                <i class="fa fa-user prefix"></i>
-                                <input type="text" id="lastName" name="lastName" class="form-control validate" />
-                                <label for="lastName" data-error="wrong" data-success="right">Last name</label>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/Second row-->
-
-                    <!--Third row-->
-                    <div class="row mt-2">
-                        <div class="col-md">
-                            <div class="md-form">
-                                <i class="fa fa-envelope-o prefix"></i>
-                                <input type="email" id="emailAddress" name="emailAddress" class="form-control validate" />
-                                <label for="emailAddress" data-error="wrong" data-success="right">E-mail</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="md-form">
-                                <i class="fa fa-phone prefix"></i>
-                                <input type="tel" id="phone" name="phone" class="form-control validate" />
-                                <label for="phone" data-error="wrong" data-success="right">Phone</label>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/Third row-->
-
-                    <!--Fourth row-->
-                    <div class="row mt-2">
-                        <div class="col-md">
-                            <div class="md-form">
-                                <i class="fa fa-bell prefix"></i>                               
-                                <select id="positionSelect" class="mdb-select"></select>
-                                <label for="positionSelect">Position</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="md-form">
-                                <i class="fa fa-map-marker prefix"></i>
-                                <select id="locationSelect" class="mdb-select"></select>
-                                <label for="locationSelect">School / Office</label>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/Fourth row-->
-
-                    <hr class="between-sections" />
+                @using (Html.BeginForm("RequestClothesForm", "RequestClothes", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
 
                     <!--/Fifth row-->
                     <div class="row mt-3">
@@ -139,29 +76,57 @@
                         <div class="col-md">
                             <div class="md-form">
                                 <i class="fa fa-neuter prefix"></i>
-                                <select id="genderSelect" class="mdb-select"></select>
-                                <label for="genderSelect">Gender</label>
+                                @Html.LabelFor(m => m.GenderId, new { @class = "select2-label" })
+                                @Html.DropDownListFor(m => m.GenderId, Model.AvailableGenders, new { @class = "mdb-select md-select2" })
+                                @Html.ValidationMessageFor(m => m.GenderId)
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="md-form">
                                 <i class="fa fa-graduation-cap prefix"></i>
-                                <select id="gradeSelect" class="mdb-select"></select>
-                                <label for="gradeSelect">Grade</label>
+                                @Html.LabelFor(m => m.GradeId, new { @class = "select2-label" })
+                                @Html.DropDownListFor(m => m.GradeId, Model.AvailableGrades, new { @class = "mdb-select md-select2" })
+                                @Html.ValidationMessageFor(m => m.GradeId)
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Sixth row-->
+
+                    <!--Sixth row-->
+                    <div class="row mt-2">
+                        <div class="col-md">
+                            <div class="md-form">
+                                <i class="fa fa-neuter prefix"></i>
+                                @Html.LabelFor(m => m.SchoolId, new { @class = "select2-label" })
+                                @Html.DropDownListFor(m => m.SchoolId, Model.AvailableSchools, new { @class = "mdb-select md-select2" })
+                                @Html.ValidationMessageFor(m => m.SchoolId)
                             </div>
                         </div>
                     </div>
                     <!--/Sixth row-->
 
                     <!--Seventh row-->
-                    <div class="row mt-2 justify-content-center">
-                        <div class="col-md-6">
-                            <div class="md-form">
-                                <i class="fa fa-clock-o prefix"></i>
-                                <select id="urgencySelect" class="mdb-select"></select>
-                                <label for="urgencySelect">Urgency</label>
-                            </div>
+                    <div class="mt-1 mb-3" style="border: 0; border-top: 1px solid rgba(0, 0, 0, 0.1);"></div>
+                    <div class="row">
+                        <!--First column-->
+                        <div class="col mb-1 d-flex justify-content-md-center justify-content-sm-start">
+                            <h4 class="h4-responsive">How Quickly Does This Need to Be Delivered?</h4>
                         </div>
+                        <!--/First column-->
+                        <!--Second column-->
+                        <div class="col col-12 d-flex flex-column flex-md-row justify-content-md-center">
+                            @{
+                                foreach (var urgency in Model.AvailableUrgencies)
+                                {
+                                    <div class="form-group mr-4">
+                                        @Html.RadioButtonFor(m => m.UrgencyId, urgency.Value, new { id = "urgency" + urgency.Value, @class = "with-gap" })
+                                        @Html.Label("urgency" + urgency.Value, urgency.Text)
+                                    </div>
+                                }
+                                @Html.ValidationMessageFor(m => m.UrgencyId)
+                            }
+                        </div>
+                        <!--/Second column-->
                     </div>
                     <!--/Seventh row-->
 
@@ -176,28 +141,32 @@
                                 <!--First column-->
                                 <div class="col form-inline justify-content-center">
                                     <fieldset class="form-group">
-                                        <input type="checkbox" class="filled-in" id="NeedShirt" data-details="divShirtSizes" checked />
+                                        <input type="checkbox" class="filled-in" id="NeedShirt" data-details="divShirtSizes" />
                                         <label for="NeedShirt">Shirt</label>
                                     </fieldset>
                                     <fieldset class="form-group">
-                                        <input type="checkbox" class="filled-in" id="NeedPant" data-details="divPantSizes" checked />
+                                        <input type="checkbox" class="filled-in" id="NeedPant" data-details="divPantSizes" />
                                         <label for="NeedPant">Pants</label>
                                     </fieldset>
                                     <fieldset class="form-group">
-                                        <input type="checkbox" class="filled-in" id="NeedUnderwear" data-details="divUnderwearSizes" checked />
+                                        <input type="checkbox" class="filled-in" id="NeedUnderwear" data-details="divUnderwearSizes" />
                                         <label for="NeedUnderwear">Underwear</label>
                                     </fieldset>
                                     <fieldset class="form-group">
-                                        <input type="checkbox" class="filled-in" id="NeedSocks" data-details="divSockSizes" checked />
+                                        <input type="checkbox" class="filled-in" id="NeedSocks" data-details="divSockSizes" />
                                         <label for="NeedSocks">Socks</label>
                                     </fieldset>
                                     <fieldset class="form-group">
-                                        <input type="checkbox" class="filled-in" id="NeedShoes" data-details="divShoeSizes" checked />
+                                        <input type="checkbox" class="filled-in" id="NeedShoes" data-details="divShoeSizes" />
                                         <label for="NeedShoes">Shoes</label>
                                     </fieldset>
                                     <fieldset class="form-group">
-                                        <input type="checkbox" class="filled-in" id="NeedCoat" data-details="divCoatSizes" checked />
+                                        <input type="checkbox" class="filled-in" id="NeedCoat" data-details="divCoatSizes" />
                                         <label for="NeedCoat">Coat</label>
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <input type="checkbox" class="filled-in" id="NeedHygiene" data-details="divHygiene" />
+                                        <label for="NeedHygiene">Hygiene Kit</label>
                                     </fieldset>
                                 </div>
                                 <!--/First column-->
@@ -217,28 +186,18 @@
                             <div class="row mt-1">
                                 <div class="col">
                                     <div class="md-form">
-                                        <select id="shirtTypeSelect" class="mdb-select"></select>
-                                        <label for="shirtTypeSelect">Shirt Type</label>
+                                        @Html.LabelFor(m => m.ShirtAgeGroupId, new { @class = "select2-label" })
+                                        @Html.DropDownListFor(m => m.ShirtAgeGroupId, Model.AvailableShirtAgeGroups, new { @class = "mdb-select md-select2" })
+                                        @Html.ValidationMessageFor(m => m.ShirtAgeGroupId)
                                     </div>
-                                    @*<fieldset class="form-group">                                    
-                                        <input name="ShirtSize" type="radio" class="with-gap" id="ShirtSizeChild">
-                                        <label id="lblShirtSizeChild" for="ShirtSizeChild">Boys/Girls</label>
-                                    </fieldset>
-                                    <fieldset class="form-group">
-                                        <input name="ShirtSize" type="radio" class="with-gap" id="ShirtSizeJunior">
-                                        <label for="ShirtSizeJunior">Juniors</label>
-                                    </fieldset>
-                                    <fieldset class="form-group">
-                                        <input name="ShirtSize" type="radio" class="with-gap" id="ShirtSizeAdult">
-                                        <label id="lblShirtSizeAdult" for="ShirtSizeAdult">Men/Womens</label>
-                                    </fieldset>*@
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md">
                                     <div class="md-form">
-                                        <select id="shirtSizeSelect" class="mdb-select"></select>
-                                        <label for="shirtSizeSelect">Shirt Size</label>
+                                        @Html.LabelFor(m => m.ShirtSizeId, new { @class = "select2-label" })
+                                        @Html.DropDownListFor(m => m.ShirtSizeId, Model.AvailableShirtSizes, new { @class = "mdb-select md-select2" })
+                                        @Html.ValidationMessageFor(m => m.ShirtSizeId)
                                     </div>
                                 </div>
                             </div>
@@ -251,28 +210,18 @@
                             <div class="row mt-1">
                                 <div class="col-md">
                                     <div class="md-form">
-                                        <select id="pantTypeSelect" class="mdb-select"></select>
-                                        <label for="pantTypeSelect">Pant Type</label>
+                                        @Html.LabelFor(m => m.PantAgeGroupId, new { @class = "select2-label" })
+                                        @Html.DropDownListFor(m => m.PantAgeGroupId, Model.AvailablePantAgeGroups, new { @class = "mdb-select md-select2" })
+                                        @Html.ValidationMessageFor(m => m.PantAgeGroupId)
                                     </div>
-                                    @*<fieldset class="form-group">
-                                        <input name="PantSize" type="radio" class="with-gap" id="PantSizeChild">
-                                        <label id="lblPantSizeChild" for="PantSizeChild">Boys/Girls</label>
-                                    </fieldset>
-                                    <fieldset class="form-group">
-                                        <input name="PantSize" type="radio" class="with-gap" id="PantSizeJunior">
-                                        <label for="PantSizeJunior">Juniors</label>
-                                    </fieldset>
-                                    <fieldset class="form-group">
-                                        <input name="PantSize" type="radio" class="with-gap" id="PantSizeAdult">
-                                        <label id="lblPantSizeAdult" for="PantSizeAdult">Mens/Womens</label>
-                                    </fieldset>*@
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md">
                                     <div class="md-form">
-                                        <select id="pantSizeSelect" class="mdb-select"></select>
-                                        <label for="pantSizeSelect">Pant Size</label>
+                                        @Html.LabelFor(m => m.PantSizeId, new { @class = "select2-label" })
+                                        @Html.DropDownListFor(m => m.PantSizeId, Model.AvailablePantSizes, new { @class = "mdb-select md-select2" })
+                                        @Html.ValidationMessageFor(m => m.PantSizeId)
                                     </div>
                                 </div>
                             </div>
@@ -334,7 +283,7 @@
 
 
 
-                </form>
+                }
                 <!--/Body-->
             </div>
         </div>

@@ -39,9 +39,19 @@ namespace ClotheOurKids.Web.Models.ViewModel
         public byte UrgencyId { get; set; }
         public IList<SelectListItem> AvailableUrgencies { get; set; }
 
+
+        [Display(Name = "Shirt Age Group")]
+        public Nullable<byte> ShirtAgeGroupId { get; set; }
+        public IList<SelectListItem> AvailableShirtAgeGroups { get; set; }
+
         [Display(Name = "Shirt Size")]
         public Nullable<int> ShirtSizeId { get; set; }
         public IList<SelectListItem> AvailableShirtSizes { get; set; }
+
+
+        [Display(Name = "Pant Age Group")]
+        public Nullable<byte> PantAgeGroupId { get; set; }
+        public IList<SelectListItem> AvailablePantAgeGroups { get; set; }
 
         [Display(Name = "Pant Size")]
         public Nullable<int> PantSizeId { get; set; }

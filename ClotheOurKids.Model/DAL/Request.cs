@@ -40,6 +40,6 @@ namespace ClotheOurKids.Model
         public virtual School School { get; set; }
         public virtual ShirtSize ShirtSize { get; set; }
         public virtual Urgency Urgency { get; set; }
-        public virtual RequestStatus RequestStatus { get; set; }
+        public virtual RequestStatus RequestStatu { get; set; }
     }
 }

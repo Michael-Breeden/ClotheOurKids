@@ -9,78 +9,76 @@ namespace ClotheOurKids.Web.Models.ViewModel
     public class RequestFormRepository : IRequestFormRepository
     {
         
-        private ClotheOurKidsEntities _dataContext;
+        private ClotheOurKidsEntities context;
 
         public RequestFormRepository()
         {
-            _dataContext = new ClotheOurKidsEntities();
+            context = new ClotheOurKidsEntities();
         }
 
-        public IList<Position> GetAllPositions()
-        {
-            var query = from positions in _dataContext.Positions
-                        select positions;
-            var content = query.ToList<Position>();
-            return content;
-        }
-
-        public IList<Position> GetPositionsByOfficeId(int officeTypeId)
-        {
-            var query = from positions in _dataContext.Positions
-                        where positions.PositionOfficeTypes.Any(o => o.OfficeTypeId == officeTypeId)
-                        select positions;
-            var content = query.ToList<Position>();
-            return content;
-        }
-
-        public IList<Office> GetAllOffices()
-        {
-            var query = from offices in _dataContext.Offices
-                        select offices;
-            var content = query.ToList<Office>();
-            return content;
-        }
-
-        public IList<Office> GetOfficesByPositionId(int positionId)
-        {
-            var query = from offices in _dataContext.Offices
-                        where offices.OfficeType.PositionOfficeTypes.Any(p => p.PositionId == positionId)
-                        select offices;
-            var content = query.ToList<Office>();
-            return content;
-        }
+        
 
         public IList<Grade> GetAllGrades()
         {
-            var query = from grades in _dataContext.Grades
+            var query = from grades in context.Grades
                         select grades;
             var content = query.ToList<Grade>();
             return content;
         }
-        //public IList<AgeGroup> GetAllAgeGroups()
-        //{
-        //    var query = from ageGroups in _dataContext.AgeGroups
-        //                select ageGroups;
-        //    var content = query.ToList<AgeGroup>();
-        //    return content;
-        //}
-        //public IList<Size> GetSizesByClothesType(string clothesType)
-        //{
-        //    var query = from sizes in _dataContext.Sizes
-        //                where sizes.SizeCharts.Any(g => (g.ClothesType.Name == clothesType))
-        //                select sizes;
-        //    var content = query.ToList<Size>();
-        //    return content;
-        //}
 
-        //public IList<Size> GetSizesByGenderAndClothesType(string gender, string clothesType)
-        //{
-        //    var query = from sizes in _dataContext.Sizes
-        //                where sizes.SizeCharts.Any(g => (g.Gender == gender &&  g.ClothesType.Name == clothesType))
-        //                select sizes;
-        //    var content = query.ToList<Size>();
-        //    return content;
-        //}
+        public IList<Gender> GetGenders()
+        {
+            var query = from genders in context.Genders
+                        select genders;
+            var content = query.ToList<Gender>();
+            return content;
+        }
+
+        public IList<Urgency> GetUrgencies()
+        {
+            var query = from urgency in context.Urgencies
+                        select urgency;
+            var content = query.ToList<Urgency>();
+            return content;
+        }
+
+        public IList<AgeGroup> GetShirtAgeGroups(string GenderId)
+        {
+            var query = from shirtSizes in context.ShirtSizes
+                        where shirtSizes.GenderId == GenderId
+                        select shirtSizes.AgeGroup;
+            var ageGroups = query.ToList<AgeGroup>();
+            return ageGroups;
+        }
+
+        public IList<AgeGroup> GetPantAgeGroups(string GenderId)
+        {
+            var query = from pantSizes in context.PantSizes
+                        where pantSizes.GenderId == GenderId
+                        select pantSizes.AgeGroup;
+            var ageGroups = query.ToList<AgeGroup>();
+            return ageGroups;
+        }
+
+        public IList<ShirtSize> GetShirtSizes (byte AgeGroupId)
+        {
+            var query = from shirtSizes in context.ShirtSizes
+                        where shirtSizes.AgeGroupId == AgeGroupId
+                        select shirtSizes;
+
+            var content = query.ToList<ShirtSize>();
+            return content;
+        }
+
+        public IList<PantSize> GetPantSizes(byte AgeGroupId)
+        {
+            var query = from pantSizes in context.PantSizes
+                        where pantSizes.AgeGroupId == AgeGroupId
+                        select pantSizes;
+
+            var content = query.ToList<PantSize>();
+            return content;
+        }
 
     }
 }

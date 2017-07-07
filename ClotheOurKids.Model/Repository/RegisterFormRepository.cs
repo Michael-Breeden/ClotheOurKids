@@ -21,9 +21,7 @@ namespace ClotheOurKids.Model.Repository
                         select officeTypes;
             var content = query.ToList<OfficeType>();
             return content;
-        }
-
-        
+        }        
 
         public IList<Office> GetAllOffices()
         {
