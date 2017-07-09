@@ -15,7 +15,9 @@ namespace ClotheOurKids.Web.Models.ViewModel
             AvailableSchools = new List<SelectListItem>();
             AvailableGrades = new List<SelectListItem>();
             AvailableUrgencies = new List<SelectListItem>();
+            AvailableShirtAgeGroups = new List<SelectListItem>();
             AvailableShirtSizes = new List<SelectListItem>();
+            AvailablePantAgeGroups = new List<SelectListItem>();
             AvailablePantSizes = new List<SelectListItem>();
         }
 
