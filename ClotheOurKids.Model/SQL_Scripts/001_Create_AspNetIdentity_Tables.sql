@@ -1,5 +1,5 @@
-﻿USE [ClotheOurKids]
-GO
+﻿--USE [ClotheOurKids]
+--GO
 
 /****** Object: Table [dbo].[__MigrationHistory] Script Date: 5/24/2017 10:21:51 PM ******/
 SET ANSI_NULLS ON

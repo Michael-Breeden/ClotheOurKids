@@ -1,6 +1,6 @@
-USE ClotheOurKids
+--USE ClotheOurKids
 --USE [dbVelocity_ITL]
-GO
+--GO
 
 ALTER TABLE [Reference].[Size] DROP CONSTRAINT [FK_Reference_ClothesType$ProvidesDetailsAboutTypeOfClothingFor$Reference_Size]
 GO

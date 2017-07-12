@@ -223,6 +223,8 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RequestClothesController.cs" />
     <Compile Include="CustomClasses\GmailEmailService.cs" />
+    <Compile Include="CustomClasses\OfflineMessageAttribute.cs" />
+    <Compile Include="CustomClasses\WebsiteAvailable.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -591,6 +593,7 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Shared\_LoginForm.cshtml" />
     <Content Include="Views\Account\Confirm.cshtml" />
+    <Content Include="Views\Home\Offline.cshtml" />
     <None Include="Web.Work.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
