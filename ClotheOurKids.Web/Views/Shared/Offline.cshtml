@@ -1,0 +1,83 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Clothe Our Kids of Morgan County</title>
+
+    @Styles.Render("~/Content/css")
+
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        .wow {
+            opacity: 0;
+        }
+
+        html,
+        body,
+        header,
+        .view {
+            height: 100%;
+        }
+
+
+        * .full-bg-img {
+            color: #fff;
+        }
+
+        .view {
+            background: url("../../Content/img/ClotheOurKids/Love_Shirt.jpg")no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+    </style>
+
+
+
+</head>
+<body id="bodyDiv">
+    <header>
+        <!--Mask-->
+        <div class="view hm-black-strong">
+            <div class="full-bg-img flex-center" id="home">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 flex-center">
+                            <img src="~/Content/img/logo/ClotheOurKidsLogo_whiteText.png" class="img-fluid wow fadeInRight" />
+                        </div>
+                        <div class="col-12">
+                            <ul class="text-center ml-5">
+                                <li>
+                                    <h2 class="h2-responsive wow fadeInLeft" data-wow-delay="0.2s">Coming August 2017...</h2>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/.Mask-->
+    </header>
+
+        @Scripts.Render("~/bundles/requiredJs")
+
+    <script type="text/javascript">
+        function afterReveal(el) { el.addEventListener('animationend', function (event) { $('.wow').each(function () { $(this).css('opacity', 1); }); }); } new WOW({ callback: afterReveal }).init();
+    </script>
+    
+        <!--[if lt IE 9]-->
+        @Scripts.Render("~/bundles/ie9")
+        <!--[endif]-->
+
+</body>
+</html>

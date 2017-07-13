@@ -289,6 +289,7 @@
     <Content Include="Content\img\lightbox\default-skin.png" />
     <Content Include="Content\img\lightbox\default-skin.svg" />
     <Content Include="Content\img\lightbox\preloader.gif" />
+    <Content Include="Content\img\logo\ClotheOurKidsLogo_whiteText.png" />
     <Content Include="Content\img\logo\ClotheOurKidsLogo_withMC.png" />
     <Content Include="Content\img\logo\ClotheOurKidsLogo_withMC_Scaled.png" />
     <Content Include="Content\img\logo\ClotheOurKidsLogo_withMC_Scaled_whiteText.png" />
@@ -593,7 +594,8 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Shared\_LoginForm.cshtml" />
     <Content Include="Views\Account\Confirm.cshtml" />
-    <Content Include="Views\Home\Offline.cshtml" />
+    <Content Include="Views\Shared\OfflineOld.cshtml" />
+    <Content Include="Views\Shared\Offline.cshtml" />
     <None Include="Web.Work.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

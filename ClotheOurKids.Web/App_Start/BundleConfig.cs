@@ -30,9 +30,9 @@ namespace ClotheOurKids.Web
                       "~/assets/plugins/placeholder-IE-fixes.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/plugins/font-awesome/css/font-awesome.css",
-                      "~/Content/css/bootstrap.css",
-                      "~/Content/css/mdb.css",
+                      "~/Content/plugins/font-awesome/css/font-awesome.min.css",
+                      "~/Content/css/bootstrap.min.css",
+                      "~/Content/css/mdb.min.css",
                       "~/Content/plugins/mMenu-6.1/dist/jquery.mmenu.all.css",
                       "~/Content/plugins/mMenu-6.1/dist/wrappers/bootstrap/jquery.mmenu.bootstrap.css",
                       "~/Content/css/hamburgers-min.css",
