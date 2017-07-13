@@ -296,3 +296,6 @@ __pycache__/
 .vs/ClotheOurKids/v14/.suo
 >>>>>>> af294756bd2e9b98543a52dbd747fc7ee26a3546
 *.cache
+ClotheOurKids.Web/ConnectionStrings _Release.config
+ClotheOurKids.Web/ConnectionStrings.config
+ClotheOurKids_AppSettingsSecrets.config
