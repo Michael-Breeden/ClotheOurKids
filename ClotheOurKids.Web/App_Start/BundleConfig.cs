@@ -29,7 +29,7 @@ namespace ClotheOurKids.Web
                       "~/assets/plugins/html5shiv.js",
                       "~/assets/plugins/placeholder-IE-fixes.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/bundles/css").Include(
                       "~/Content/plugins/font-awesome/css/font-awesome.min.css",
                       "~/Content/css/bootstrap.min.css",
                       "~/Content/css/mdb.min.css",
