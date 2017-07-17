@@ -35,16 +35,28 @@
                     <div id="loginError" class="red-text hidden">
 
                     </div>
-                    <div class="text-center">
+                    <div class="text-center d-flex align-items-center justify-content-center">
                         <button id="btnLogIn" class="btn btn-primary">Log In</button>
+                        <div class="preloader-wrapper small active">
+                            <div class="spinner-layer spinner-blue-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    
                 </form>
             </div>
             <!--Footer-->
             <div class="modal-footer">
                 <div class="options text-right">
                     <p>Not a member? <a href="@Url.Action("Register", "Account")">Register</a></p>
-                    <p>Forgot <a href="#">Password?</a></p>
+                    <p>Forgot <a href="@Url.Action("ForgotPassword", "Account")">Password?</a></p>
                 </div>
             </div>
         </div>

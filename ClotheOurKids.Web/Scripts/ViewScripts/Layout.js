@@ -66,7 +66,11 @@ $(document).ready(function () {
 
     $('#loginError').hide();
 
+    $('.preloader-wrapper').hide();
+
     $("#btnLogIn").click(function () {
+        $(this).prop('disabled', true);
+
         var data = {};
         data.Email = $('#Email').val();
         data.Password = $('#Password').val();
@@ -76,27 +80,36 @@ $(document).ready(function () {
 
         var token = $('input[name = "__RequestVerificationToken"]').val();
 
+        $('.preloader-wrapper').show();
+
         $.ajax({
             url: "/Account/Login",
             method: "POST",
             data: {
                 model: data,
-                __RequestVerificationToken: token,
-                returnUrl: ""
+                __RequestVerificationToken: token                
             },
             success: function (result) {
+
+                $('#btnLogIn').prop('disabled', false);
+
+                $('.preloader-wrapper').hide();
+
                 if (result.Success == "1") {
-                    $('#loginError').hide();
-                    location.reload();
+                    $('#loginError').hide();       
+                    window.location = "/";
                 }
                 else {
                     $("#loginError").html(result.errorMsg);
                     $('#loginError').show();
                 }
-
             },
-            error: function () {
-                $("#loginError").html("Error with login. Please try again");
+            error: function (err) {
+
+                $('#btnLogIn').prop('disabled', false);
+                $('.preloader-wrapper').hide();
+
+                $("#loginError").html(err.errorMsg);
                 $('#loginError').show();
 
                 return false;

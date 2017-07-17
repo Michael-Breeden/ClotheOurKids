@@ -7,11 +7,11 @@ using System.Web;
 
 namespace ClotheOurKids.Web.CustomClasses
 {
-    public class GmailEmailService : SmtpClient
+    public class EmailService : SmtpClient
     {
         public string UserName { get; set; }
 
-        public GmailEmailService():
+        public EmailService():
             base (ConfigurationManager.AppSettings["GmailHost"], Int32.Parse(ConfigurationManager.AppSettings["GmailPort"]) )
         {
             this.UserName = ConfigurationManager.AppSettings["GmailUserName"];

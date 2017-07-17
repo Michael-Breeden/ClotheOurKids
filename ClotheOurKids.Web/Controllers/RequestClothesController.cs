@@ -214,6 +214,7 @@ namespace ClotheOurKids.Web.Controllers
         }
 
         //GET
+        [Authorize]
         [Route("Request-Clothes/Form", Name = "RequestClothesForm")]
         public ActionResult RequestClothesForm()
         {

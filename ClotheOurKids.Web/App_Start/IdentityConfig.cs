@@ -19,7 +19,7 @@ namespace ClotheOurKids.Web
     {
         public async Task SendAsync(IdentityMessage message)
         {
-            MailMessage email = new MailMessage(new MailAddress("No-Reply@givekidsclothes.com", "(do not reply)"),
+            MailMessage email = new MailMessage(new MailAddress("givekidsclothes@gmail.com"),
                 new MailAddress(message.Destination));
 
             email.Subject = message.Subject;
@@ -27,7 +27,7 @@ namespace ClotheOurKids.Web
 
             email.IsBodyHtml = true;
 
-            using (var mailClient = new ClotheOurKids.Web.CustomClasses.GmailEmailService())
+            using (var mailClient = new ClotheOurKids.Web.CustomClasses.EmailService())
             {
                 //In order to use the original from email address, uncomment this line:
                 //email.From = new MailAddress(mailClient.UserName, "(do not reply)");

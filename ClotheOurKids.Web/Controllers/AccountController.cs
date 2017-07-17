@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Web.Helpers;
 using ClotheOurKids.Model;
 using ClotheOurKids.Model.Repository;
+using System.Configuration;
 
 namespace ClotheOurKids.Web.Controllers
 {
@@ -63,7 +64,6 @@ namespace ClotheOurKids.Web.Controllers
         [Route("Login", Name = "LoginPage")]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -96,7 +96,8 @@ namespace ClotheOurKids.Web.Controllers
                 else
                 {
                     //var callbackUrl = Url.Action("Confirm", "Account", new { Email = user.Email}, protocol: Request.Url.Scheme);
-                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Account confirmation");
+                    var tempAppSetting = ConfigurationManager.AppSettings["SMTPHost"];
+                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Clothe Our Kids Account Confirmation");
                     return Json(new { Success = 0, errorMsg = "You must have a confirmed email to log on. <br/> The confirmation token has been resent to your email address."});
                 }
             }
@@ -374,7 +375,7 @@ namespace ClotheOurKids.Web.Controllers
                     //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
 
-                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Account confirmation");
+                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Clothe Our Kids Account Confirmation");
 
 
                     // Uncomment to debug locally 
@@ -419,7 +420,7 @@ namespace ClotheOurKids.Web.Controllers
             // Send an email with this link:
             string code = await UserManager.GenerateEmailConfirmationTokenAsync(userID);
             var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = userID, code = code }, protocol: Request.Url.Scheme);
-            await UserManager.SendEmailAsync(userID, subject, "Please confirm your account by clicking <a href=\"" + callbackUrl + "\"> here</a>");
+            await UserManager.SendEmailAsync(userID, subject, "You must confirm your email before you can log in to GiveKidsClothes.com and request clothes from Clothe Our Kids. Please confirm your account by clicking <a href=\"" + callbackUrl + "\"> here</a>");
 
 
             return callbackUrl;
@@ -428,6 +429,7 @@ namespace ClotheOurKids.Web.Controllers
         //
         // GET: /Account/ForgotPassword
         [AllowAnonymous]
+        [Route("ForgotPassword", Name = "ForgotPasswordPage")]
         public ActionResult ForgotPassword()
         {
             return View();
@@ -438,6 +440,7 @@ namespace ClotheOurKids.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Route("ForgotPassword", Name = "ForgotPasswordPost")]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
             if (ModelState.IsValid)
@@ -451,10 +454,10 @@ namespace ClotheOurKids.Web.Controllers
 
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
+                await UserManager.SendEmailAsync(user.Id, "Reset Password", "We receieved a request to reset your password for GiveKidsClothes.com. <br/> <br/> If you did not request this reset, please let us know at 256-887-KIDS(5437). <br/> <br/> Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form
