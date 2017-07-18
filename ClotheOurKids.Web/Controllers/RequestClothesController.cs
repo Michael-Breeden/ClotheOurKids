@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using ClotheOurKids.Web.Models.ViewModel;
 using ClotheOurKids.Model;
+using Microsoft.AspNet.Identity;
 
 namespace ClotheOurKids.Web.Controllers
 {
@@ -32,37 +33,43 @@ namespace ClotheOurKids.Web.Controllers
 
             model.AvailableGrades.Add(new SelectListItem()
             {
-                Text = "Grade",
+                Text = "Choose Grade",
                 Value = "0"
             });
 
             model.AvailableGenders.Add(new SelectListItem()
             {
-                Text = "Gender",
+                Text = "Choose Gender",
+                Value = "0"
+            });
+
+            model.AvailableSchools.Add(new SelectListItem()
+            {
+                Text = "Choose School",
                 Value = "0"
             });
 
             model.AvailableShirtAgeGroups.Add(new SelectListItem()
             {
-                Text = "Shirt Age Group",
+                Text = "Choose Shirt Age Group",
                 Value = "0"
             });
 
             model.AvailablePantAgeGroups.Add(new SelectListItem()
             {
-                Text = "Pant Age Group",
+                Text = "Choose Pant Age Group",
                 Value = "0"
             });
 
             model.AvailableShirtSizes.Add(new SelectListItem()
             {
-                Text = "Shirt Size",
+                Text = "Choose Shirt Size",
                 Value = "0"
             });
 
             model.AvailablePantSizes.Add(new SelectListItem()
             {
-                Text = "Pant Size",
+                Text = "Choose Pant Size",
                 Value = "0"
             });
 
@@ -103,11 +110,25 @@ namespace ClotheOurKids.Web.Controllers
                 });
             }
 
-            model.AvailableGenders.Add(new SelectListItem()
+
+            var userId = User.Identity.GetUserId();
+
+
+            var schools = _repository.GetSchoolByUser(userId);
+            var schoolList = (from s in schools
+                              select new
+                              {
+                                  id = s.SchoolId,
+                                  name = s.Office.Name
+                              }).ToList();
+            foreach (var school in schoolList)
             {
-                Text = "Choose Gender",
-                Value = "0"
-            });
+                model.AvailableSchools.Add(new SelectListItem()
+                {
+                    Text = school.name,
+                    Value = school.id.ToString()
+                });
+            }
 
 
             var urgencies = _repository.GetUrgencies();
@@ -115,7 +136,7 @@ namespace ClotheOurKids.Web.Controllers
                                select new
                                {
                                    id = u.UrgencyId,
-                                   name = u.Name + " - " + u.DaysForDelivery + " days"
+                                   name = u.DaysForDelivery > 1 ? u.Name + " - " + u.DaysForDelivery + " days" : u.Name + " - " + u.DaysForDelivery + " day"
                                }).ToList();
 
             foreach (var urgency in urgencyList)

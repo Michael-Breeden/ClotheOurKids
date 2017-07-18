@@ -27,7 +27,7 @@ namespace ClotheOurKids.Model.Repository
         {
             var query = from offices in context.Offices
                         select offices;
-            var content = query.ToList<Office>();
+            var content = query.OrderBy(office => office.Name).ToList<Office>();
             return content;
         }
 
@@ -54,7 +54,7 @@ namespace ClotheOurKids.Model.Repository
                         where offices.OfficeTypeId == officeTypeId
                         select offices;
 
-            var content = query.ToList<Office>();
+            var content = query.OrderBy(office => office.Name).ToList<Office>();
             return content;
         }
 

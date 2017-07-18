@@ -34,6 +34,48 @@ namespace ClotheOurKids.Web.Models.ViewModel
             return content;
         }
 
+        public IList<SchoolDistrict> GetSchoolDistricts()
+        {
+            var query = from schoolDistricts in context.SchoolDistricts
+                        select schoolDistricts;
+            var content = query.ToList<SchoolDistrict>();
+            return content;
+        }
+
+        public IList<School> GetSchools()
+        {
+            var query = from schools in context.Schools
+                        select schools;
+            var content = query.ToList<School>();
+            return content;
+        }
+
+        public IList<School> GetSchoolByUser(string userId)
+        {
+            var officeId = (from users in context.AspNetUsers
+                           where users.Id == userId && users.Office.OfficeType.Name == "School"
+                           select users.OfficeId).SingleOrDefault();
+
+            IQueryable<School> query;
+
+            if (officeId != 0)
+            {
+                query = from schools in context.Schools
+                        where schools.OfficeId == officeId
+                        select schools;
+            }
+            else
+            {
+                query = from schools in context.Schools
+                        select schools;
+            }            
+
+            var content = query.OrderBy(school => school.Office.Name).ToList<School>();
+
+            return content;
+
+        }
+
         public IList<Urgency> GetUrgencies()
         {
             var query = from urgency in context.Urgencies

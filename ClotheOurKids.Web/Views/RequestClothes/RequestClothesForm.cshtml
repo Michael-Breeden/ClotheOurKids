@@ -296,53 +296,8 @@
     <script>
         $(document).ready(function () {
 
-            var positions = { "1": "Principal", "2": "Teacher", "3": "Counselor", "4": "FACT Coordinator" };
-            var genders = { "1": "Boy", "2": "Girl" };
+            $('.md-select2 option[value = "0"]').attr('disabled', true);
 
-            $('#positionSelect').append('<option value="0" disabled selected>Choose a Position</option>');
-            $('#locationSelect').append('<option value="0" disabled selected>Choose a School/Office</option>');
-            $('#genderSelect').append('<option value="0" disabled selected>Choose a Gender</option>');
-            $('#gradeSelect').append('<option value="0" disabled selected>Choose a Grade</option>');
-            $('#urgencySelect').append('<option value="1" selected>Normal (1 week)</option>');
-            $('#shirtTypeSelect').append('<option value="0" disabled selected>Choose a Shirt Type</option>');
-            $('#shirtSizeSelect').append('<option value="0" disabled selected>Choose a Shirt Size</option>');
-            $('#pantTypeSelect').append('<option value="0" disabled selected>Choose a Pant Type</option>');
-            $('#pantSizeSelect').append('<option value="0" disabled selected>Choose a Pant Size</option>');
-
-            $('#pantSizeSelect').append('<option value="1">Large</option>');
-
-            $.each(positions, function (key, value) {
-                $('#positionSelect')
-                    .append($('<option></option>')
-                        .attr("value", key)
-                        .text(value));
-            });
-
-            $.each(genders, function (key, value) {
-                $('#genderSelect')
-                    .append($('<option></option>')
-                        .attr("value", key)
-                        .text(value));
-            });
-
-            $('#genderSelect').on('change', function () {
-                var genderSelection = $(this).val();
-
-                if (genderSelection == 1) {
-                    $('#lblShirtSizeChild').text('Boys');
-                    $('#lblShirtSizeAdult').text('Mens');
-
-                    $('#lblPantSizeChild').text('Boys');
-                    $('#lblPantSizeAdult').text('Mens');
-                }
-                else {
-                    $('#lblShirtSizeChild').text('Girls');
-                    $('#lblShirtSizeAdult').text('Womens');
-
-                    $('#lblPantSizeChild').text('Girls');
-                    $('#lblPantSizeAdult').text('Womens');
-                }
-            });
 
             $('#divNeededItems input[type="checkbox"]').on('change', function () {
                 if (!this.checked) {
@@ -353,7 +308,9 @@
                 }                
             });
 
-            $('.mdb-select').material_select();
+            //$('.mdb-select').material_select();
+
+            $('.md-select2').select2();
         });
 
         function DisableInputs(id) {

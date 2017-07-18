@@ -29,14 +29,13 @@ GO
 ALTER TABLE [dbo].[AspNetUsers] DROP CONSTRAINT [FK_Reference_Position$IsPositionOf$dbo_AspNetUsers]
 GO
 
+DROP TABLE [Requests].[Request]
+GO
 
 DROP TABLE [Requests].[Urgency]
 GO
 
 DROP TABLE [Requests].[RequestStatus]
-GO
-
-DROP TABLE [Requests].[Request]
 GO
 
 DROP TABLE [Reference].[ContactMethod]
@@ -992,8 +991,8 @@ GO
 
 INSERT INTO Requests.Urgency (UrgencyId, Name, DaysForDelivery)
 VALUES	(1, 'Normal', 7),
-		(2, 'High', 4),
-		(3, 'Immediate', 1);
+		(2, 'High Priority', 4),
+		(3, 'Immediate Need', 1);
 GO
 
 CREATE TABLE Requests.RequestStatus
