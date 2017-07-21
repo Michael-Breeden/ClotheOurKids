@@ -12,6 +12,7 @@ namespace ClotheOurKids.Model
         IList<Grade> GetAllGrades();
         IList<Gender> GetGenders();
         IList<SchoolDistrict> GetSchoolDistricts();
+        string GetOfficeType(string userId);
         IList<School> GetSchools();
         IList<School> GetSchoolByUser(string userId);
         IList<Urgency> GetUrgencies();

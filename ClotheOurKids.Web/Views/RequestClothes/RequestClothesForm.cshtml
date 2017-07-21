@@ -74,7 +74,7 @@
                     <!--Sixth row-->
                     <div class="row mt-2">
                         <div class="col-md">
-                            <div class="md-form">
+                            <div class="md-form has-icon">
                                 <i class="fa fa-neuter prefix"></i>
                                 @Html.LabelFor(m => m.GenderId, new { @class = "select2-label" })
                                 @Html.DropDownListFor(m => m.GenderId, Model.AvailableGenders, new { @class = "mdb-select md-select2" })
@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <div class="col-md">
-                            <div class="md-form">
+                            <div class="md-form has-icon">
                                 <i class="fa fa-graduation-cap prefix"></i>
                                 @Html.LabelFor(m => m.GradeId, new { @class = "select2-label" })
                                 @Html.DropDownListFor(m => m.GradeId, Model.AvailableGrades, new { @class = "mdb-select md-select2" })
@@ -93,7 +93,11 @@
                     <!--/Sixth row-->
 
                     <!--Sixth row-->
-                    <div class="row mt-2">
+
+                    <!--Hide this row if the user works at a school. The school will be defaulted to their own school-->
+                    var hideRowClass = Model.officeType == "School" ? "hidden-xs-up" : "";
+
+                    <div class="row mt-2 @hideRowClass">
                         <div class="col-md">
                             <div class="md-form">
                                 <i class="fa fa-neuter prefix"></i>
@@ -103,6 +107,7 @@
                             </div>
                         </div>
                     </div>
+
                     <!--/Sixth row-->
 
                     <!--Seventh row-->
@@ -133,55 +138,54 @@
                     <!--Seventh row-->
                     <div class="row mt-3">
                         <!--First column-->
-                        <div id="divNeededItems" class="col-sm-12 text-center">
-                            <h3 class="h3-responsive">Needed Items</h3>
+                        <div id="divNeededItems" class="col">
+                            <h4 class="h4-responsive text-center mb-2">Which Items Does This Child Need?</h4>
                                                         
-                            <!--First row-->
-                            <div class="row mt-1 ">
-                                <!--First column-->
-                                <div class="col form-inline justify-content-center">
-                                    <fieldset class="form-group">
-                                        <input type="checkbox" class="filled-in" id="NeedShirt" data-details="divShirtSizes" />
-                                        <label for="NeedShirt">Shirt</label>
-                                    </fieldset>
-                                    <fieldset class="form-group">
-                                        <input type="checkbox" class="filled-in" id="NeedPant" data-details="divPantSizes" />
-                                        <label for="NeedPant">Pants</label>
-                                    </fieldset>
-                                    <fieldset class="form-group">
-                                        <input type="checkbox" class="filled-in" id="NeedUnderwear" data-details="divUnderwearSizes" />
-                                        <label for="NeedUnderwear">Underwear</label>
-                                    </fieldset>
-                                    <fieldset class="form-group">
-                                        <input type="checkbox" class="filled-in" id="NeedSocks" data-details="divSockSizes" />
-                                        <label for="NeedSocks">Socks</label>
-                                    </fieldset>
-                                    <fieldset class="form-group">
-                                        <input type="checkbox" class="filled-in" id="NeedShoes" data-details="divShoeSizes" />
-                                        <label for="NeedShoes">Shoes</label>
-                                    </fieldset>
-                                    <fieldset class="form-group">
-                                        <input type="checkbox" class="filled-in" id="NeedCoat" data-details="divCoatSizes" />
-                                        <label for="NeedCoat">Coat</label>
-                                    </fieldset>
-                                    <fieldset class="form-group">
-                                        <input type="checkbox" class="filled-in" id="NeedHygiene" data-details="divHygiene" />
-                                        <label for="NeedHygiene">Hygiene Kit</label>
-                                    </fieldset>
+                            <div class="row justify-content-center">
+                                <div class="col-md-9 col-md-offset-3">
+                                    <div class="d-flex flex-wrap">
+                                        <fieldset class="form-group ml-4">
+                                            <input type="checkbox" class="filled-in" id="NeedShirt" data-details="divShirtSizes" />
+                                            <label for="NeedShirt">Shirt</label>
+                                        </fieldset>
+                                        <fieldset class="form-group ml-4">
+                                            <input type="checkbox" class="filled-in" id="NeedPant" data-details="divPantSizes" />
+                                            <label for="NeedPant">Pants</label>
+                                        </fieldset>
+                                        <fieldset class="form-group ml-4">
+                                            <input type="checkbox" class="filled-in" id="NeedUnderwear" data-details="divUnderwearSizes" />
+                                            <label for="NeedUnderwear">Underwear</label>
+                                        </fieldset>
+                                        <fieldset class="form-group ml-4">
+                                            <input type="checkbox" class="filled-in" id="NeedSocks" data-details="divSockSizes" />
+                                            <label for="NeedSocks">Socks</label>
+                                        </fieldset>
+                                        <fieldset class="form-group ml-4">
+                                            <input type="checkbox" class="filled-in" id="NeedShoes" data-details="divShoeSizes" />
+                                            <label for="NeedShoes">Shoes</label>
+                                        </fieldset>
+                                        <fieldset class="form-group ml-4">
+                                            <input type="checkbox" class="filled-in" id="NeedCoat" data-details="divCoatSizes" />
+                                            <label for="NeedCoat">Coat</label>
+                                        </fieldset>
+                                        <fieldset class="form-group ml-4">
+                                            <input type="checkbox" class="filled-in" id="NeedHygiene" data-details="divHygiene" />
+                                            <label for="NeedHygiene">Hygiene Kit</label>
+                                        </fieldset>
+                                    </div>        
                                 </div>
-                                <!--/First column-->
                             </div>
-                            <!--/First row-->
+                            
                         </div>
                         <!--/First column-->
                     </div>
                     <!--/Seventh row-->
 
                     <!--Eigth row-->
-                    <div class="row mt-4">
+                    <div class="row mt-4 d-flex justify-content-sm-center">
                         
                         <!--First column-->
-                        <div id="divShirtSizes" class="col-md">                            
+                        <div id="divShirtSizes" class="col">                            
                             @*<h4 class="h4-responsive">Shirt Size</h4>*@
                             <div class="row mt-1">
                                 <div class="col">
@@ -193,7 +197,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md">
+                                <div class="col">
                                     <div class="md-form">
                                         @Html.LabelFor(m => m.ShirtSizeId, new { @class = "select2-label" })
                                         @Html.DropDownListFor(m => m.ShirtSizeId, Model.AvailableShirtSizes, new { @class = "mdb-select md-select2" })
@@ -205,10 +209,10 @@
                         <!--/First column-->
 
                         <!--Second column-->
-                        <div id="divPantSizes" class="col-md">
+                        <div id="divPantSizes" class="col">
                             @*<h4 class="h4-responsive">Pant Size</h4>*@
                             <div class="row mt-1">
-                                <div class="col-md">
+                                <div class="col">
                                     <div class="md-form">
                                         @Html.LabelFor(m => m.PantAgeGroupId, new { @class = "select2-label" })
                                         @Html.DropDownListFor(m => m.PantAgeGroupId, Model.AvailablePantAgeGroups, new { @class = "mdb-select md-select2" })
@@ -217,7 +221,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md">
+                                <div class="col">
                                     <div class="md-form">
                                         @Html.LabelFor(m => m.PantSizeId, new { @class = "select2-label" })
                                         @Html.DropDownListFor(m => m.PantSizeId, Model.AvailablePantSizes, new { @class = "mdb-select md-select2" })

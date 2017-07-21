@@ -175,7 +175,7 @@
                     <!--Sixth row-->
                     <div class="row mt-2">
                         <div class="col-md">
-                            <div class="md-form">
+                            <div class="md-form has-icon">
                                 <i class="fa fa-map-marker prefix"></i>
                                 @Html.LabelFor(m => m.OfficeId, new { @class = "select2-label" })
                                 @Html.DropDownListFor(m => m.OfficeId, Model.AvailableOffices, new { @class = "mdb-select md-select2" })
@@ -183,7 +183,7 @@
                             </div>
                         </div>
                         <div class="col-md">
-                            <div class="md-form">
+                            <div class="md-form has-icon">
                                 <i class="fa fa-bell prefix"></i>
                                 @Html.LabelFor(m => m.PositionId, new { @class = "select2-label" })
                                 @Html.DropDownListFor(m => m.PositionId, Model.AvailablePositions, new { @class="mdb-select md-select2" })

@@ -113,6 +113,8 @@ namespace ClotheOurKids.Web.Controllers
 
             var userId = User.Identity.GetUserId();
 
+            var officeType = _repository.GetOfficeType(userId);
+            model.officeType = officeType;
 
             var schools = _repository.GetSchoolByUser(userId);
             var schoolList = (from s in schools

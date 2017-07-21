@@ -26,6 +26,8 @@ namespace ClotheOurKids.Web.Models.ViewModel
         public string GenderId { get; set; }
         public IList<SelectListItem> AvailableGenders { get; set; }
 
+        public string officeType { get; set; }
+
         [Required]
         [Display(Name = "School")]
         public short SchoolId { get; set; }

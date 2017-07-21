@@ -34,6 +34,14 @@ namespace ClotheOurKids.Web.Models.ViewModel
             return content;
         }
 
+        public string  GetOfficeType(string userId)
+        {
+            var officeTypeId = (from users in context.AspNetUsers
+                                where users.Id == userId
+                                select users.Office.OfficeType.Name).SingleOrDefault();
+            return officeTypeId;
+        }
+
         public IList<SchoolDistrict> GetSchoolDistricts()
         {
             var query = from schoolDistricts in context.SchoolDistricts
