@@ -1,26 +1,30 @@
 ﻿<div class="container">
 
-    <section class="section section-blog-fw">
-
+    <section class="section page-top-section mb-4 wow fadeIn" data-wow-delay="0.2s">
         <div class="row">
-            <div class="col-md-12 wow fadeIn" data-wow-delay="0.2s">
+            <div class="col-12">
+                <h1 class="section-heading">Get Involved</h1>
+            </div>
+            <div class="col-12">
+                <p class="section-description"><i>help us fulfill our mission</i></p>
+            </div>
+            <div class="col-12" style="text-align:center;">
+                <span>Share</span>
+                <!--Facebook-->
+                <a id="FBShare" type="button" class="btn-floating btn-small btn-fb"><i class="fa fa-facebook"></i></a>
 
-                <!--Featured Image-->
-                <div class="view hm-black-light">
-                    <img src="~/Content/img/ClotheOurKids/COKTrailer-22.jpg" class="img-fluid" alt="" />
-                    <div class="mask flex-center"></div>
-                </div>
+                <!--Twitter-->
+                <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgivekidsclothes.com%2FGet-Involved&hashtags=givekidsclothes&text=Help%20us%20fulfill%20our%20mission."
+                   type="button" class="btn-floating btn-small btn-tw">
+                    <i class="fa fa-twitter"></i>
+                </a>
 
-                <!--Page Description-->
-                <div class="jumbotron wow fadeIn" data-wow-delay="0.4s">
-                    <h1 class="h1-responsive">Get Involved</h1>
-                    <p><strong>Giving</strong> Clothes, <strong>Showing</strong> Love, <strong>Building</strong> Confidence</p>
+                <!--Email-->
+                <a type="button" class="btn-floating btn-small btn-email"><i class="fa fa-envelope"></i></a>
 
-                    <p>Learn how you can join us and change the lives of kids in Morgan County</p>
-                </div>
             </div>
         </div>
-    </section>
+    </section>  
 
     <hr class="between-sections">
 
@@ -101,10 +105,20 @@
                 <div class="card-block">
                     <h3 class="h3-responsive">Volunteer</h3>
                     <p>
-                        We need volunteers every week. We are looking for people who want to get involved by helping us sort, store, pack, and deliver clothes.
+                        We need volunteers every week. If you can
+                        <ul class="list-group">
+                            <li class="list-group-item justify-content-between">sort clothes <i class="fa fa-check green-text"></i></li>
+                            <li class="list-group-item justify-content-between">pack bags <i class="fa fa-check green-text"></i></li>
+                            <li class="list-group-item justify-content-between">deliver to schools <i class="fa fa-check green-text"></i></li>
+                        </ul>
                         <br />
-                        <br />
-                        While we are asking the Lord to provide us with a team of dedicated and consistent volunteers who
+
+                        we need your help!
+                    </p>
+                    
+
+                    <p>
+                        While we are paying that God will provide us with a team of dedicated and consistent volunteers who
                         can help us give clothes to kids week after week, we always love to have those who are looking for a short term project or even a single day of ministering to us and to kids in need.
                         <br />
                         <br />
@@ -142,3 +156,19 @@
     </section>
 
 </div>
+
+
+@section customScript
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#FBShare').click(function () {
+                FB.ui({
+                    method: 'share',
+                    mobile_iframe: true,
+                    href: 'https://localhost:44320//What-We-Give',
+                }, function (response) { });
+            });
+        });
+    </script>
+}

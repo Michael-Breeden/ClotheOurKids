@@ -1,32 +1,55 @@
-﻿<div class="container">
+﻿<div class="container-fluid pr-0 pl-0">
 
-    <section class="section section-blog-fw">
+    <section class="section page-top-section mb-4 wow fadeIn" data-wow-delay="0.2s">
         <div class="row">
-            <div class="col-md-12 wow fadeIn" data-wow-delay="0.2s">
+            <div class="col-12">
+                <h1 class="section-heading">Donate</h1>
+            </div>
+            <div class="col-12">
+                <p class="section-description"><i>give what you can: time, money, clothes</i></p>
+            </div>
+            <div class="col-12" style="text-align:center;">
+                <span>Share</span>
+                <!--Facebook-->
+                <a id="FBShare" type="button" class="btn-floating btn-small btn-fb"><i class="fa fa-facebook"></i></a>
 
-                <!--Featured Image-->
-                <img src="~/Content/img/slide17.jpg" />
+                <!--Twitter-->
+                <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgivekidsclothes.com%2FDonate&hashtags=givekidsclothes&text=Support%20Clothe%20Our%20Kids%20of%20North%20Alabama%21"
+                   type="button" class="btn-floating btn-small btn-tw">
+                    <i class="fa fa-twitter"></i>
+                </a>
 
-                <!--Page Description-->
-                <div class="jumbotron wow fadeIn smooth-scroll" data-wow-delay="0.4s">
-                    <h1 class="h1-responsive">Donate</h1>
-                    <p><strong>Giving</strong> Clothes, <strong>Showing</strong> Love, <strong>Building</strong> Confidence</p>
+                <!--Email-->
+                <a type="button" class="btn-floating btn-small btn-email"><i class="fa fa-envelope"></i></a>
 
-
-                    <p class="mt-2">Learn how you can donate to kids receive the clothes they need!</p>
-                    <div class="row">
-                        <div class="col-md">
-                            <button type="button" class="btn btn-rounded btn-success" onclick="location.href='#giveClothes'">Give Clothes</button>
-                            <button type="button" class="btn btn-rounded btn-warning" onclick="location.href='#funds'">Donate Funds</button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
+    </section> 
+
+    <div class="streak bg-red white-text">
+        <div class="flex-center">
+            <ul>
+                <li><h2 class="h2-responsive wow fadeIn"><i class="fa fa-quote-left" aria-hidden="true"></i> You can give without loving, but you cannot love without giving. <i class="fa fa-quote-right" aria-hidden="true"></i></h2></li>
+                <li><h5 class="text-center font-italic wow fadeIn" data-wow-delay="0.2s">~ Amy Carmichael</h5></li>
+            </ul>
+        </div>
+    </div>
+    
+
+    <!--Section: Donate Funds-->
+    <section class="section mt-4" id="funds">
+        <h1 class="section-heading wow fadeIn" data-wow-delay="0.2s">Donate Funds</h1>
+
+        <p class="section-description wow fadein" data-wow-delay="0.4s">
+            We use all the funds that we receive to help give clothes to children.
+            <br />
+            <a href="#" class="btn btn-small btn-primary btn-rounded mt-1">Donate Now</a>
+        </p>
+        
     </section>
+    <!--/Section: Donate Funds-->
 
     <hr class="between-sections">
-
 
     <!--Section: Give Clothes-->
     <section class="section" id="giveClothes">
@@ -67,13 +90,7 @@
     </section>
 
 
-    <section class="section" id="funds">
-        <h1 class="section-heading wow fadeIn" data-wow-delay="0.2s">Donate Funds</h1>
-
-        <p class="section-description wow fadein" data-wow-delay="0.4s">
-            We use all the funds that we receive to help give clothes to children. 
-        </p>
-    </section>
+    
 
 
 </div>
@@ -89,6 +106,18 @@
 
 @section customScript
 {
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('#FBShare').click(function () {
+                    FB.ui({
+                        method: 'share',
+                        mobile_iframe: true,
+                        href: 'https://localhost:44320//What-We-Give',
+                    }, function (response) { });
+                });
+            });
+    </script>
+
     <script type="text/javascript">
         function initMap() {
 

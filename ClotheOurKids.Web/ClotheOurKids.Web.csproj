@@ -241,6 +241,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\img\social\FB-f-Logo__blue_57.png" />
+    <Content Include="Content\img\social\Twitter_Logo_White_On_Blue.png" />
+    <Content Include="Content\img\social\Twitter_Logo_White_On_Blue.svg" />
     <Content Include="CustomErrors\404.html" />
     <Content Include="CustomErrors\503.html" />
     <Content Include="Changes.txt" />
@@ -527,12 +530,8 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\js\modernizr-3.5.js" />
-    <Content Include="ConnectionStrings.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ConnectionStrings _Release.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="ConnectionStrings_Release.config" />
+    <Content Include="ConnectionStrings.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\givekidsclothes.com - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

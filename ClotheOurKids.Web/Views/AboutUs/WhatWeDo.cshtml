@@ -11,16 +11,17 @@
             <div class="col-12" style="text-align:center;">
                 <span>Share</span>
                 <!--Facebook-->
-                <a type="button" class="btn-floating btn-small btn-fb"><i class="fa fa-facebook"></i></a>
+                <a id="FBShare" type="button" class="btn-floating btn-small btn-fb"><i class="fa fa-facebook"></i></a>
 
                 <!--Twitter-->
-                <a type="button" class="btn-floating btn-small btn-tw"><i class="fa fa-twitter"></i></a>
-
-                <!--Pinterest-->
-                <a type="button" class="btn-floating btn-small btn-pin"><i class="fa fa-pinterest"></i></a>
+                <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgivekidsclothes.com%2FWhat-We-Give&hashtags=givekidsclothes&text=Learn%20what%20we%20do."
+                   type="button" class="btn-floating btn-small btn-tw">
+                    <i class="fa fa-twitter"></i>
+                </a>
 
                 <!--Email-->
                 <a type="button" class="btn-floating btn-small btn-email"><i class="fa fa-envelope"></i></a>
+
             </div>
         </div>   
     </section>
@@ -65,9 +66,6 @@
             <div class="col-md-7 center-on-small-only align-self-center">
                 <!--First row-->
                 <div class="row">
-                    <div class="col-1">
-                        <i class="fa fa-bank green-text"></i>
-                    </div>
                     <div class="col-10">
                         <h4 class="feature-title">Collect</h4>
                         <p class="grey-text">We rely 100% on your clothing and financial donations to ensure we can clothe all of the kids who need our help.</p>
@@ -79,9 +77,6 @@
 
                 <!--Second row-->
                 <div class="row">
-                    <div class="col-1">
-                        <i class="fa fa-code green-text"></i>
-                    </div>
                     <div class="col-10">
                         <h4 class="feature-title">Sort</h4>
                         <p class="grey-text">We inspect all of the apparel that we collect and keep only the items that a child can wear with confidence.</p>
@@ -93,9 +88,6 @@
 
                 <!--Third row-->
                 <div class="row">
-                    <div class="col-1">
-                        <i class="fa fa-gift green-text"></i>
-                    </div>
                     <div class="col-10">
                         <h4 class="feature-title">Give</h4>
                         <p class="grey-text">At the request of a school official or child advocate we give a bag of hand-picked and matched clothing to any child from infants to highschool seniors.</p>
@@ -278,3 +270,19 @@
     <!--/Section: How We Operate-->
 
 </div>
+
+
+@section customScript
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#FBShare').click(function () {
+                FB.ui({
+                    method: 'share',
+                    mobile_iframe: true,
+                    href: 'https://localhost:44320//What-We-Do',
+                }, function (response) { });
+            });
+        });
+    </script>
+}

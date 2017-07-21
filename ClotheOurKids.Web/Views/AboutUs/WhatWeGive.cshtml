@@ -1,27 +1,30 @@
-﻿<div class="container"> 
-    
-    <section class="section section-blog-fw">
+﻿<div class="container-fluid"> 
 
+    <section class="section page-top-section mb-4 wow fadeIn" data-wow-delay="0.2s">
         <div class="row">
-            <div class="col-md-12 wow fadeIn" data-wow-delay="0.2s">
+            <div class="col-12">
+                <h1 class="section-heading">What We Give</h1>
+            </div>
+            <div class="col-12">
+                <p class="section-description"><i>clothes that provide <strong>confidence</strong></i></p>
+            </div>
+            <div class="col-12" style="text-align:center;">
+                <span>Share</span>
+                <!--Facebook-->
+                <a id="FBShare" type="button" class="btn-floating btn-small btn-fb"><i class="fa fa-facebook"></i></a>
 
-                <!--Featured Image-->
-                <div class="view">
-                    <img src="~/Content/img/ClotheOurKids/COKTrailer-9.jpg" class="img-fluid" alt="" />
-                    <div class="mask flex-center"></div>
-                </div>
+                <!--Twitter-->
+                <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgivekidsclothes.com%2FWhat-We-Do&hashtags=givekidsclothes&text=Find%20out%20what%20we%20give%20to%20kids%20in%20need." 
+                   type="button" class="btn-floating btn-small btn-tw">
+                    <i class="fa fa-twitter"></i>
+                </a>
 
-                <!--Page Description-->
-                <div class="jumbotron wow fadeIn" data-wow-delay="0.4s">
-                    <h1 class="h1-responsive">What We Give</h1>
-                    <p><strong>Giving</strong> Clothes, Showing Love, Building Confidence</p>
-                </div>
-
-
+                <!--Email-->
+                <a type="button" class="btn-floating btn-small btn-email"><i class="fa fa-envelope"></i></a>
 
             </div>
         </div>
-    </section>
+    </section>   
 
     <hr class="between-sections">
 
@@ -41,10 +44,10 @@
         </p>
 
         <!--First row-->
-        <div class="row justify-content-lg-center">
+        <div class="row justify-content-center">
 
             <!--First column-->
-            <div class="col-lg-3 col-md-6 mb-r wow fadeInUp" data-wow-delay="0.2s">
+            <div class="col-6 col-lg-3 col-sm-4 mb-r wow fadeInUp" data-wow-delay="0.2s">
                 
                 <!--Collection card-->
                 <div class="card collection-card z-depth-1-half">
@@ -65,7 +68,7 @@
             <!--/First column-->
 
             <!--Second column-->
-            <div class="col-lg-3 col-md-6 mb-r wow fadeInUp" data-wow-delay="0.2s">
+            <div class="col-6 col-lg-3 col-sm-4 mb-r wow fadeInUp" data-wow-delay="0.2s">
 
                 <!--Collection card-->
                 <div class="card collection-card z-depth-1-half">
@@ -88,7 +91,7 @@
             <!--/Second column-->
 
             <!--Third column-->
-            <div class="col-lg-3 col-md-6 mb-r wow fadeInUp" data-wow-delay="0.2s">
+            <div class="col-6 col-lg-3 col-sm-4 mb-r wow fadeInUp" data-wow-delay="0.2s">
 
                 <!--Collection card-->
                 <div class="card collection-card z-depth-1-half">
@@ -110,7 +113,7 @@
             <!--/Third column-->
 
             <!--Fourth column-->
-            <div class="col-lg-3 col-md-6 mb-r wow fadeInUp" data-wow-delay="0.2s">
+            <div class="col-6 col-lg-3 col-sm-4 mb-r wow fadeInUp" data-wow-delay="0.2s">
 
                 <!--Collection card-->
                 <div class="card collection-card z-depth-1-half">
@@ -132,7 +135,7 @@
             <!--/Fourth column-->
 
             <!--Fifth column-->
-            <div class="col-lg-3 col-md-6 mb-r wow fadeInUp" data-wow-delay="0.2s">
+            <div class="col-6 col-lg-3 col-sm-4 mb-r wow fadeInUp" data-wow-delay="0.2s">
 
                 <!--Collection card-->
                 <div class="card collection-card z-depth-1-half">
@@ -154,7 +157,7 @@
             <!--/Fifth column-->
 
             <!--Sixth column-->
-            <div class="col-lg-3 col-md-6 mb-r wow fadeInUp" data-wow-delay="0.2s">
+            <div class="col-6 col-lg-3 col-sm-4 mb-r wow fadeInUp" data-wow-delay="0.2s">
 
                 <!--Collection card-->
                 <div class="card collection-card z-depth-1-half">
@@ -193,3 +196,19 @@
     </section>
 
 </div>
+
+
+@section customScript
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#FBShare').click(function () {
+                FB.ui({
+                    method: 'share',
+                    mobile_iframe: true,
+                    href: 'https://localhost:44320//What-We-Give',
+                }, function (response) { });
+            });
+        });
+    </script>
+}
