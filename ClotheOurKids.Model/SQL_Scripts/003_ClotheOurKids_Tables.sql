@@ -991,7 +991,6 @@ GO
 
 INSERT INTO Requests.Urgency (UrgencyId, Name, DaysForDelivery)
 VALUES	(1, 'Normal', 7),
-		(2, 'High Priority', 4),
 		(3, 'Immediate Need', 1);
 GO
 

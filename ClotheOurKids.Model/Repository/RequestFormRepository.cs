@@ -94,18 +94,18 @@ namespace ClotheOurKids.Web.Models.ViewModel
 
         public IList<AgeGroup> GetShirtAgeGroups(string GenderId)
         {
-            var query = from shirtSizes in context.ShirtSizes
+            var query = (from shirtSizes in context.ShirtSizes
                         where shirtSizes.GenderId == GenderId
-                        select shirtSizes.AgeGroup;
+                        select shirtSizes.AgeGroup).Distinct();
             var ageGroups = query.ToList<AgeGroup>();
             return ageGroups;
         }
 
         public IList<AgeGroup> GetPantAgeGroups(string GenderId)
         {
-            var query = from pantSizes in context.PantSizes
+            var query = (from pantSizes in context.PantSizes
                         where pantSizes.GenderId == GenderId
-                        select pantSizes.AgeGroup;
+                        select pantSizes.AgeGroup).Distinct();
             var ageGroups = query.ToList<AgeGroup>();
             return ageGroups;
         }

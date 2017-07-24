@@ -138,6 +138,10 @@
     margin-top: .5rem;    
 }
 
+.md-form .select2-container {
+    width: 100% !important;
+}
+
 .md-form.has-icon .select2-container {
     margin-left: 3rem !important;
     width: calc(100% - 3rem) !important;

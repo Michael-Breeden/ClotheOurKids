@@ -114,12 +114,12 @@
                     <div class="mt-1 mb-3" style="border: 0; border-top: 1px solid rgba(0, 0, 0, 0.1);"></div>
                     <div class="row">
                         <!--First column-->
-                        <div class="col mb-1 d-flex justify-content-md-center justify-content-sm-start">
+                        <div class="col-12 mb-1 d-flex justify-content-center">
                             <h4 class="h4-responsive">How Quickly Does This Need to Be Delivered?</h4>
                         </div>
                         <!--/First column-->
                         <!--Second column-->
-                        <div class="col col-12 d-flex flex-column flex-md-row justify-content-md-center">
+                        <div class="col d-flex flex-column justify-content-center">
                             @{
                                 foreach (var urgency in Model.AvailableUrgencies)
                                 {
@@ -139,7 +139,7 @@
                     <div class="row mt-3">
                         <!--First column-->
                         <div id="divNeededItems" class="col">
-                            <h4 class="h4-responsive text-center mb-2">Which Items Does This Child Need?</h4>
+                            <h4 class="h4-responsive text-center mb-2">Which Items Should We Pack For This Child?</h4>
                                                         
                             <div class="row justify-content-center">
                                 <div class="col-md-9 col-md-offset-3">
@@ -182,14 +182,14 @@
                     <!--/Seventh row-->
 
                     <!--Eigth row-->
-                    <div class="row mt-4 d-flex justify-content-sm-center">
-                        
+                    <div class="row mt-4">                       
+
                         <!--First column-->
-                        <div id="divShirtSizes" class="col">                            
+                        <div class="col col-md-6">                            
                             @*<h4 class="h4-responsive">Shirt Size</h4>*@
                             <div class="row mt-1">
                                 <div class="col">
-                                    <div class="md-form">
+                                    <div id="divShirtSizes" class="md-form">
                                         @Html.LabelFor(m => m.ShirtAgeGroupId, new { @class = "select2-label" })
                                         @Html.DropDownListFor(m => m.ShirtAgeGroupId, Model.AvailableShirtAgeGroups, new { @class = "mdb-select md-select2" })
                                         @Html.ValidationMessageFor(m => m.ShirtAgeGroupId)
@@ -209,11 +209,11 @@
                         <!--/First column-->
 
                         <!--Second column-->
-                        <div id="divPantSizes" class="col">
+                        <div class="col col-md-6">
                             @*<h4 class="h4-responsive">Pant Size</h4>*@
                             <div class="row mt-1">
                                 <div class="col">
-                                    <div class="md-form">
+                                    <div id="divPantSizes" class="md-form">
                                         @Html.LabelFor(m => m.PantAgeGroupId, new { @class = "select2-label" })
                                         @Html.DropDownListFor(m => m.PantAgeGroupId, Model.AvailablePantAgeGroups, new { @class = "mdb-select md-select2" })
                                         @Html.ValidationMessageFor(m => m.PantAgeGroupId)
@@ -237,7 +237,7 @@
                     <!--Ninth row-->
                     <div class="row mt-1">
                         <!--First column-->
-                        <div class="col-md">
+                        <div class="col">
                             <div id="divUnderwearSizes" class="md-form">
                                 <input type="text" id="underwearSize" name="underwearSize" class="form-control" />
                                 <label for="underwearSize">Underwear Size</label>
@@ -246,7 +246,7 @@
                         <!--/First column-->
 
                         <!--Second column-->
-                        <div class="col-md">
+                        <div class="col">
                             <div id="divShoeSizes" class="md-form">
                                 <input type="text" id="shoeSize" name="shoeSize" class="form-control" />
                                 <label for="shoeSize">Shoe Size</label>
@@ -254,14 +254,6 @@
                         </div>
                         <!--/Second column-->
 
-                        <!--Third column-->
-                        <div class="col-md">
-                            <div id="divCoatSizes" class="md-form">
-                                <input type="text" id="coatSize" name="coatSize" class="form-control" />
-                                <label for="coatSize">Coat Size</label>
-                            </div>
-                        </div>
-                        <!--/Third column-->
                     </div>
                     <!--/Ninth row-->
 
@@ -298,9 +290,15 @@
 @section customScript
 {
     <script>
+
         $(document).ready(function () {
 
             $('.md-select2 option[value = "0"]').attr('disabled', true);
+
+            $('#ShirtSizeId').prop('disabled', true);
+            $('#PantSizeId').prop('disabled', true);
+
+            CheckNeededItems();
 
 
             $('#divNeededItems input[type="checkbox"]').on('change', function () {
@@ -309,43 +307,208 @@
                 }
                 else {
                     EnableInputs(this.dataset.details);
-                }                
+                }
             });
 
-            //$('.mdb-select').material_select();
+
+            $('#GenderId').on('change', function () {
+                var selectedItem = this.value;
+                var ddlShirtAgeGroup = $('#ShirtAgeGroupId');
+                var ddlPantAgeGroup = $('#PantAgeGroupId');
+
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "@(Url.RouteUrl("GetAgeGroups"))",
+                    data: {
+                        "genderId": selectedItem,
+                        "ageGroupType" : "Shirt"
+                    },
+                    success: function (data) {
+                        ddlShirtAgeGroup.html('');
+                        ddlShirtAgeGroup.prepend('<option value="0" disabled selected>Select...</option>');
+                        $.each(data, function(id, option) {
+                            ddlShirtAgeGroup.append($('<option></option>').val(option.id).html(option.name));
+                        });
+
+                        CheckNeededItems();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert('Failed to retrieve Shirt Age Groups');
+                    }
+                });
+
+
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "@(Url.RouteUrl("GetAgeGroups"))",
+                    data: {
+                        "genderId": selectedItem,
+                        "ageGroupType" : "Pant"
+                    },
+                    success: function (data) {
+                        ddlPantAgeGroup.html('');
+                        ddlPantAgeGroup.prepend('<option value="0" disabled selected>Select...</option>');
+                        $.each(data, function(id, option) {
+                            ddlPantAgeGroup.append($('<option></option>').val(option.id).html(option.name));
+                        });
+
+                        CheckNeededItems();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert('Failed to retrieve Pant Age Groups');
+                    }
+                });
+
+            });
+
+
+            $('#ShirtAgeGroupId').on('change', function () {
+                var selectedItem = this.value;
+                var ddlShirtSizes = $('#ShirtSizeId');
+
+                if (selectedItem == '0') {
+                    ddlShirtSizes.prop('disabled', true);
+                }
+                else {
+                    ddlShirtSizes.prop('disabled', false);
+                }
+
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "@(Url.RouteUrl("GetShirtSizes"))",
+                    data: {
+                        "ageGroupId": selectedItem
+                    },
+                    success: function (data) {
+                        ddlShirtSizes.html('');
+                        ddlShirtSizes.prepend('<option value="0" disabled selected>Select...</option>');
+                        $.each(data, function(id, option) {
+                            ddlShirtSizes.append($('<option></option>').val(option.id).html(option.name));
+                        });                        
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert('Failed to retrieve Shirt Sizes');
+                    }
+                });
+            });
+
+            $('#PantAgeGroupId').on('change', function () {
+                var selectedItem = this.value;
+                var ddlPantSizes = $('#PantSizeId');
+
+
+                if (selectedItem == '0') {
+                    ddlPantSizes.prop('disabled', true);
+                }
+                else {
+                    ddlPantSizes.prop('disabled', false);
+                }
+
+
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "@(Url.RouteUrl("GetPantSizes"))",
+                    data: {
+                        "ageGroupId": selectedItem
+                    },
+                    success: function (data) {
+                        ddlPantSizes.html('');
+                        ddlPantSizes.prepend('<option value="0" disabled selected>Select...</option>');
+                        $.each(data, function(id, option) {
+                            ddlPantSizes.append($('<option></option>').val(option.id).html(option.name));
+                        });
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert('Failed to retrieve Shirt Sizes');
+                    }
+                });
+            });
+
 
             $('.md-select2').select2();
         });
 
+        function CheckNeededItems() {
+            $('#divNeededItems input[type="checkbox"]').each(function () {
+                var id = this.dataset.details;
+
+                if (!this.checked) {
+                    DisableInputs(id);               
+                }
+                else {
+                    EnableInputs(id);              
+                }
+            });
+        }
+
         function DisableInputs(id) {
-            //$('#' + id + ' .select-dropdown li:eq(1)').trigger('click');
+            switch (id) {
+                case 'divShirtSizes':
+                    resetSelect('#' + id + ' .mdb-select2');
+                    $("#ShirtAgeGroupId").val('0').trigger('change').prop('disabled', true);
+                    break;
+                case 'divPantSizes':
+                    resetSelect('#' + id + ' .mdb-select2');
+                    $("#PantAgeGroupId").val('0').trigger('change').prop('disabled', true);
+                    break;
+                case 'divUnderwearSizes':
+                    $('#' + id + ' :input')
+                        .prop('disabled', true)
+                        .val('');
+                    break;
+                case 'divSockSizes':
+                    if (!$('#NeedShoes').is(":checked")) {
+                        $('#shoeSize')
+                            .prop('disabled', true)
+                            .val('');
+                    }
+                    break;
+                case 'divShoeSizes':
+                    if (!$('#NeedSocks').is(":checked")) {
+                        $('#shoeSize')
+                            .prop('disabled', true)
+                            .val('');
+                    }                    
+                    break;
+                default:
+                    break;
+            }
 
-            resetSelect('#' + id + ' .mdb-select');
-
-            $('#' + id + ' :input')
-                .prop('disabled', true)
-                .prop('checked', false)
-                .prop('selected', false)
-                .not(':button, :submit, :reset, :hidden, :radio, :checkbox')
-                .not('.select-dropdown')
-                .val('');            
             $('#' + id + " :header").addClass('disabled');
             $('#' + id + " label").removeClass('active').addClass('disabled');
             $('#' + id + " i").removeClass('active');
-
-
         }
 
         function EnableInputs(id) {
+            if (id == 'divSockSizes') {
+                id = 'divShoeSizes';
+
+                EnableInput(id);
+            }
+            else if (id == 'divShirtSizes' || id == 'divPantSizes') {
+
+                if ($('#GenderId').val() != null) {
+                    EnableInput(id);
+                }
+            }
+            else {
+                EnableInput(id);
+            }
+           
+        }
+
+        function EnableInput(id) {
             $('#' + id + " :input").prop('disabled', false);
             $('#' + id + " :header").removeClass('disabled');
-            $('#' + id + " label").removeClass('disabled');
+            $('#' + id + " label").removeClass('disabled');  
         }
 
         function resetSelect(id) {
-            $(id).material_select('destroy');
-            $(id).val('0').change();
-            $(id).material_select();
+            $(id).val('0').trigger('change');
         }
 
     </script>   

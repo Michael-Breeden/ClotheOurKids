@@ -530,7 +530,6 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\js\modernizr-3.5.js" />
-    <Content Include="ConnectionStrings_Release.config" />
     <Content Include="ConnectionStrings.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\givekidsclothes.com - Web Deploy.pubxml" />

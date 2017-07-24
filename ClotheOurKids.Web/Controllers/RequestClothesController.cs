@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using ClotheOurKids.Web.Models.ViewModel;
 using ClotheOurKids.Model;
 using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
 
 namespace ClotheOurKids.Web.Controllers
 {
@@ -33,43 +34,43 @@ namespace ClotheOurKids.Web.Controllers
 
             model.AvailableGrades.Add(new SelectListItem()
             {
-                Text = "Choose Grade",
+                Text = "Select...",
                 Value = "0"
             });
 
             model.AvailableGenders.Add(new SelectListItem()
             {
-                Text = "Choose Gender",
+                Text = "Select...",
                 Value = "0"
             });
 
             model.AvailableSchools.Add(new SelectListItem()
             {
-                Text = "Choose School",
+                Text = "Select...",
                 Value = "0"
             });
 
             model.AvailableShirtAgeGroups.Add(new SelectListItem()
             {
-                Text = "Choose Shirt Age Group",
+                Text = "Select...",
                 Value = "0"
             });
 
             model.AvailablePantAgeGroups.Add(new SelectListItem()
             {
-                Text = "Choose Pant Age Group",
+                Text = "Select...",
                 Value = "0"
             });
 
             model.AvailableShirtSizes.Add(new SelectListItem()
             {
-                Text = "Choose Shirt Size",
+                Text = "Select...",
                 Value = "0"
             });
 
             model.AvailablePantSizes.Add(new SelectListItem()
             {
-                Text = "Choose Pant Size",
+                Text = "Select...",
                 Value = "0"
             });
 
@@ -138,7 +139,7 @@ namespace ClotheOurKids.Web.Controllers
                                select new
                                {
                                    id = u.UrgencyId,
-                                   name = u.DaysForDelivery > 1 ? u.Name + " - " + u.DaysForDelivery + " days" : u.Name + " - " + u.DaysForDelivery + " day"
+                                   name = u.DaysForDelivery > 1 ? u.Name + " (" + u.DaysForDelivery + " days)" : u.Name + " (" + u.DaysForDelivery + "-3 days)"
                                }).ToList();
 
             foreach (var urgency in urgencyList)
@@ -249,7 +250,104 @@ namespace ClotheOurKids.Web.Controllers
 
         }
 
+        [Authorize]
+        [AcceptVerbs(HttpVerbs.Get)]
+        [Route("Get-AgeGroups", Name = "GetAgeGroups")]
+        public ActionResult GetAgeGroupsByGenderId(string genderId, string ageGroupType)
+        {
+            IList<AgeGroup> ageGroups;
 
+            if (String.IsNullOrEmpty(genderId))
+            {
+                throw new ArgumentNullException("genderId");
+            }
+
+            if (genderId != "Male" && genderId != "Female")
+            {
+                throw new ArgumentException("genderId");
+            }
+
+            if (ageGroupType != "Shirt" && ageGroupType != "Pant")
+            {
+                throw new ArgumentException("ageGroupType");
+            }
+
+            if (ageGroupType == "Shirt")
+            {
+                ageGroups = _repository.GetShirtAgeGroups(genderId);
+            }
+            else
+            {
+                ageGroups = _repository.GetPantAgeGroups(genderId);
+            }
+
+
+            var result = (from a in ageGroups
+                          select new
+                          {
+                              id = a.AgeGroupId,
+                              name = a.Name
+                          }).ToList();
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        [Authorize]
+        [AcceptVerbs(HttpVerbs.Get)]
+        [Route("Get-Shirt-Sizes", Name = "GetShirtSizes")]
+        public ActionResult GetShirtSizesByAgeGroup(string ageGroupId)
+        {
+            if (String.IsNullOrEmpty(ageGroupId))
+            {
+                throw new ArgumentNullException("ageGroupId");
+            }
+
+            byte id = 0;
+            bool isValid = Byte.TryParse(ageGroupId, out id);
+
+            var sizes = _repository.GetShirtSizes(id);
+
+            var result = (from s in sizes
+                          orderby (s.SortOrder)
+                          select new
+                          {
+                              id = s.ShirtSizeId,
+                              name = s.Name
+                          }).ToList();
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+
+        }
+
+
+        [Authorize]
+        [AcceptVerbs(HttpVerbs.Get)]
+        [Route("Get-Pant-Sizes", Name = "GetPantSizes")]
+        public ActionResult GetPantSizesByAgeGroup(string ageGroupId)
+        {
+            if (String.IsNullOrEmpty(ageGroupId))
+            {
+                throw new ArgumentNullException("ageGroupId");
+            }
+
+            byte id = 0;
+            bool isValid = Byte.TryParse(ageGroupId, out id);
+
+            var sizes = _repository.GetPantSizes(id);
+
+            var result = (from s in sizes
+                          orderby (s.SortOrder)
+                          select new
+                          {
+                              id = s.PantSizeId,
+                              name = s.Name
+                          }).ToList();
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+
+        }
 
         //[AcceptVerbs(HttpVerbs.Get)]
         //public ActionResult GetOfficesByPositionId(string positionId)

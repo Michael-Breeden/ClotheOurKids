@@ -520,5 +520,3 @@ M:\Development Projects\Visual Studio 2015\Projects\ClotheOurKids\ClotheOurKids\
 M:\Development Projects\Visual Studio 2015\Projects\ClotheOurKids\ClotheOurKids\ClotheOurKids.Web\obj\Debug\ClotheOurKids.Web.dll
 M:\Development Projects\Visual Studio 2015\Projects\ClotheOurKids\ClotheOurKids\ClotheOurKids.Web\obj\Debug\ClotheOurKids.Web.pdb
 C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKids.Web\bin\ClotheOurKids.Model.dll.config
-C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKids.Web\bin\ConnectionStrings.config
-C:\Users\Michael\Documents\Visual Studio 2017\Projects\ClotheOurKids\ClotheOurKids.Web\bin\ConnectionStrings _Release.config
