@@ -27,19 +27,13 @@
 
 <div class="container">
 
-    <section class="section section-blog-fw">
-
+    <section class="section page-top-section mb-4 wow fadeIn" data-wow-delay="0.2s">
         <div class="row">
-            <div class="col-md wow fadeIn" data-wow-delay="0.2s">
-
-                <!--Featured Image-->
-                <img src="~/Content/img/slide17.jpg" />
-
-                <!--Page Description-->
-                <div class="jumbotron wow fadeIn" data-wow-delay="0.4s">
-                    <h1 class="h1-responsive">Request Clothes For A Child</h1>
-                    <p><strong>Giving</strong> Clothes, <strong>Showing</strong> Love, <strong>Building</strong> Confidence</p>
-                </div>
+            <div class="col-12">
+                <h1 class="section-heading">Request Clothes For A Child</h1>
+            </div>
+            <div class="col-12">
+                <p class="section-description"><i><strong>Giving</strong> clothes. <strong>Showing</strong> love. <strong>Building</strong> confidence.</i></p>
             </div>
         </div>
     </section>
@@ -53,7 +47,7 @@
 
                 <!--Header-->
                 <div class="form-header blue darken-4">
-                    <h1 class="h1-responsive"><i class="fa fa-lock"></i> Clothing Request</h1>
+                    <h1 class="h1-responsive"><i class="fa fa-gift"></i> Clothing Request</h1>
                 </div>
                 <!--/Header-->
 
@@ -326,12 +320,15 @@
                     },
                     success: function (data) {
                         ddlShirtAgeGroup.html('');
-                        ddlShirtAgeGroup.prepend('<option value="0" disabled selected>Select...</option>');
+                        ddlShirtAgeGroup.prepend('<option value="0" disabled selected>Select...</option>').trigger('change');
                         $.each(data, function(id, option) {
                             ddlShirtAgeGroup.append($('<option></option>').val(option.id).html(option.name));
                         });
 
                         CheckNeededItems();
+
+                        //$('#ShirtSizeId').val('0').prop('disabled', true);    
+                        
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         alert('Failed to retrieve Shirt Age Groups');
@@ -349,12 +346,15 @@
                     },
                     success: function (data) {
                         ddlPantAgeGroup.html('');
-                        ddlPantAgeGroup.prepend('<option value="0" disabled selected>Select...</option>');
+                        ddlPantAgeGroup.prepend('<option value="0" disabled selected>Select...</option>').trigger('change');
                         $.each(data, function(id, option) {
                             ddlPantAgeGroup.append($('<option></option>').val(option.id).html(option.name));
                         });
 
                         CheckNeededItems();
+
+                        //$('#PantSizeId').val('0').prop('disabled', true);
+
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         alert('Failed to retrieve Pant Age Groups');

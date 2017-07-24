@@ -250,6 +250,32 @@ namespace ClotheOurKids.Web.Controllers
 
         }
 
+        //POST
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        [Route("Request-Clothes/Form", Name = "RequestClothesFormPost")]
+        public ActionResult RequestClothesForm(RequestFormViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var request = new Request
+                {
+                    GenderId = model.GenderId,
+                    GradeId = model.GradeId,
+                    UrgencyId = model.UrgencyId,
+                    ShirtSizeId = model.ShirtSizeId,
+                    PantSizeId = model.PantSizeId,
+                    UnderwearSize = model.UnderwearSize,
+                    ShoeSize = model.ShoeSize,
+                    Comments = model.Comments
+                };
+            }
+
+            //If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
         [Authorize]
         [AcceptVerbs(HttpVerbs.Get)]
         [Route("Get-AgeGroups", Name = "GetAgeGroups")]
@@ -348,12 +374,5 @@ namespace ClotheOurKids.Web.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
 
         }
-
-        //[AcceptVerbs(HttpVerbs.Get)]
-        //public ActionResult GetOfficesByPositionId(string positionId)
-        //{
-        //    if (String.IsNullOrEmpty)
-        //}
-
     }
 }
