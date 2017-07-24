@@ -221,6 +221,7 @@
     <Compile Include="Controllers\DonationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OurWorkController.cs" />
     <Compile Include="Controllers\RequestClothesController.cs" />
     <Compile Include="CustomClasses\GmailEmailService.cs" />
     <Compile Include="CustomClasses\OfflineMessageAttribute.cs" />
@@ -603,6 +604,8 @@
     <Content Include="Views\Shared\OfflineOld.cshtml" />
     <Content Include="Views\Shared\Offline.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\OurWork\OurWork.cshtml" />
+    <Content Include="Views\AboutUs\Leadership.cshtml" />
     <None Include="Web.Work.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

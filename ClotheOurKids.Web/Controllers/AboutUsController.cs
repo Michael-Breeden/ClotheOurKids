@@ -21,6 +21,13 @@ namespace ClotheOurKids.Web.Controllers
             return View();
         }
 
+        [Route("Leadership", Name = "LeadershipPage")]
+        public ActionResult Leadership()
+        {
+            return View();
+        }
+
+
         [Route("What-We-Do", Name = "WhatWeDo")]
         public ActionResult WhatWeDo()
         {
