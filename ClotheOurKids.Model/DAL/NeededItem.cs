@@ -11,22 +11,25 @@ namespace ClotheOurKids.Model
 {
     using System;
     using System.Collections.Generic;
-    using ClotheOurKids.Web.Models;
-
-
-    public partial class ContactMethod
+    
+    public partial class NeededItem
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ContactMethod()
+        public NeededItem()
         {
-            this.AspNetUsers = new HashSet<AspNetUser>();
+            this.Requests = new HashSet<Request>();
         }
     
-        public short ContactMethodId { get; set; }
-        public string Name { get; set; }
+        public int NeededItemsId { get; set; }
+        public bool ShirtFlag { get; set; }
+        public bool PantFlag { get; set; }
+        public bool UnderwearFlag { get; set; }
+        public bool SockFlag { get; set; }
+        public bool ShoeFlag { get; set; }
+        public bool CoatFlag { get; set; }
+        public bool HygieneFlag { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
-
+        public virtual ICollection<Request> Requests { get; set; }
     }
 }

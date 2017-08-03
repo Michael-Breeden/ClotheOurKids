@@ -6,17 +6,15 @@ using ClotheOurKids.Model;
 
 namespace ClotheOurKids.Web.Models.ViewModel
 {
-    public class RequestFormRepository : IRequestFormRepository
+    public class RequestFormRepository : IRequestFormRepository, IDisposable
     {
         
-        private ClotheOurKidsEntities context;
+        private ClotheOurKidsEntities context;        
 
-        public RequestFormRepository()
+        public RequestFormRepository(ClotheOurKidsEntities context)
         {
-            context = new ClotheOurKidsEntities();
+            this.context = context;
         }
-
-
         
 
         public IList<Grade> GetAllGrades()
@@ -93,6 +91,18 @@ namespace ClotheOurKids.Web.Models.ViewModel
             return content;
         }
 
+        public System.DateTime GetEstimatedDeliveryDate(byte UrgencyId)
+        {
+            byte deliveryDays = (from urgency in context.Urgencies
+                        where urgency.UrgencyId == UrgencyId
+                        select urgency.DaysForDelivery).SingleOrDefault();
+
+            var deliveryDate = DateTime.Today.AddDays(deliveryDays);
+
+            return deliveryDate;
+
+        }
+
         public IList<AgeGroup> GetShirtAgeGroups(string GenderId)
         {
             var query = (from shirtSizes in context.ShirtSizes
@@ -129,6 +139,46 @@ namespace ClotheOurKids.Web.Models.ViewModel
 
             var content = query.ToList<PantSize>();
             return content;
+        }
+
+        public AspNetUser GetUserByAppUserId(string userId)
+        {
+            var query = from user in context.AspNetUsers
+                        where user.Id == userId
+                        select user;
+            var content = query.SingleOrDefault();
+            return content;
+        }
+
+        public void InsertRequest (Request request)
+        {
+            context.Requests.Add(request);
+        }
+
+        public void Save()
+        {
+            context.SaveChanges();
+        }
+
+
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    context.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
     }

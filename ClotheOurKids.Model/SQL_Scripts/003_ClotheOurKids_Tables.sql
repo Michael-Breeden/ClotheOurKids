@@ -2,10 +2,9 @@
 --USE [dbVelocity_ITL]
 --GO
 
-ALTER TABLE [Reference].[Size] DROP CONSTRAINT [FK_Reference_ClothesType$ProvidesDetailsAboutTypeOfClothingFor$Reference_Size]
+ALTER TABLE [Requests].[NeededItems] DROP CONSTRAINT [FK_Requests_NeededItems$IdentifiesItemsNeededFor$Requests_Request]
 GO
-ALTER TABLE [Reference].[Size] DROP CONSTRAINT [FK_Reference_AgeGroup$ProvidesAgeGroupDetailsFor$Reference_Size]
-GO
+
 ALTER TABLE [Reference].[SchoolDistrict] DROP CONSTRAINT [FK_Reference_SchoolDistrict$IsPartOfTheCounty$Reference_County]
 GO
 ALTER TABLE [Reference].[School] DROP CONSTRAINT [FK_Reference_SchoolType$IdentifiesTypeOf$Reference_School]
@@ -27,6 +26,9 @@ GO
 ALTER TABLE [dbo].[AspNetUsers] DROP CONSTRAINT [FK_Reference_Office$IsOfficeOf$dbo_AspNetUsers]
 GO
 ALTER TABLE [dbo].[AspNetUsers] DROP CONSTRAINT [FK_Reference_Position$IsPositionOf$dbo_AspNetUsers]
+GO
+
+DROP TABLE [Requests].[NeededItems]
 GO
 
 DROP TABLE [Requests].[Request]
@@ -790,189 +792,6 @@ VALUES  ('Newborn', 1, 'Male', 1010),
 		('20', 5, 'Female', 5110);
 GO
 
---CREATE TABLE Reference.Size
---(
---	SizeId			int NOT NULL IDENTITY(1,1) CONSTRAINT PK_Reference_Size_SizeId PRIMARY KEY,
---	Name			varchar(50) NOT NULL,
---	AgeGroupId		tinyint NOT NULL,
---	Gender			varchar(10) NOT NULL,
---	ClothesTypeId	tinyint NOT NULL,
---	SortOrder		int NOT NULL
---)
-
---ALTER TABLE Reference.Size
---	ADD CONSTRAINT AK_Reference_Size_Name_AgeGroupId_Gender_ClothesTypeId UNIQUE (Name, AgeGroupId, Gender, ClothesTypeId);
---GO
-
---CREATE UNIQUE INDEX UQ_Reference_SortOrder ON Reference.Size (SortOrder);
---GO
-
---ALTER TABLE Reference.Size
---	ADD CONSTRAINT CHK_Reference_Size_Gender
---		CHECK (Gender IN ('Male', 'Female'));
---GO
-
---INSERT INTO Reference.Size (Name, AgeGroupId, Gender, ClothesTypeId, SortOrder)
---VALUES	
---		--Shirts--
---			--Boys		
---		('Newborn', 1, 'Male', 1, 1010),
---		('0-3 Months', 1, 'Male', 1, 1020),
---		('3-6 Months', 1, 'Male', 1, 1030),
---		('6-9 Months', 1, 'Male', 1, 1040),
---		('9-12 Months', 1, 'Male', 1, 1050),
---		('12-18 Months', 1, 'Male', 1, 1060),
---		('2T', 1, 'Male', 1, 1070),
---		('3T', 1, 'Male', 1, 1080),
---		('4T', 1, 'Male', 1, 1090),
---		('5', 1, 'Male', 1, 1100),
---		('6', 1, 'Male', 1, 1110),
---		('7', 1, 'Male', 1, 1120),
---		('8', 1, 'Male', 1, 1130),
---		('10', 1, 'Male', 1, 1140),
---		('12', 1, 'Male', 1, 1150),
---		('14', 1, 'Male', 1, 1160),
---		('16', 1, 'Male', 1, 1170),
---			--Girls
---		('Newborn', 2, 'Female', 1, 2010),
---		('0-3 Months', 2, 'Female', 1, 2020),
---		('3-6 Months', 2, 'Female', 1, 2030),
---		('6-9 Months', 2, 'Female', 1, 2040),
---		('9-12 Months', 2, 'Female', 1, 2050),
---		('12-18 Months', 2, 'Female', 1, 2060),
---		('2T', 2, 'Female', 1, 2070),
---		('3T', 2, 'Female', 1, 2080),
---		('4T', 2, 'Female', 1, 2090),
---		('5', 2, 'Female', 1, 2100),
---		('6', 2, 'Female', 1, 2110),
---		('7', 2, 'Female', 1, 2120),
---		('8', 2, 'Female', 1, 2130),
---		('10', 2, 'Female', 1, 2140),
---		('12', 2, 'Female', 1, 2150),
---		('14', 2, 'Female', 1, 2160),
---		('16', 2, 'Female', 1, 2170),
---			--Juniors
---		('XS', 3, 'Female', 1, 3010),
---		('Small', 3, 'Female', 1, 3020),
---		('Medium', 3, 'Female', 1, 3030),
---		('Large', 3, 'Female', 1, 3040),
---		('XL', 3, 'Female', 1, 3050),
---			--Mens
---		('XS', 4, 'Male', 1, 4010),
---		('Small', 4, 'Male', 1, 4020),
---		('Medium', 4, 'Male', 1, 4030),
---		('Large', 4, 'Male', 1, 4040),
---		('XL', 4, 'Male', 1, 4050),
---		('2XL', 4, 'Male', 1, 4060),
---		('3XL', 4, 'Male', 1, 4070),
---		('4XL', 4, 'Male', 1, 4080),
---			--Womens
---		('XS', 5, 'Female', 1, 5010),
---		('Small', 5, 'Female', 1, 5020),
---		('Medium', 5, 'Female', 1,  54030),
---		('Large', 5, 'Female', 1, 5040),
---		('XL', 5, 'Female', 1, 5050),
---		('2XL', 5, 'Female', 1, 5060),
---		('3XL', 5, 'Female', 1, 5070),
---		('4XL', 5, 'Female', 1, 5080),
-
---		--Pants--
---			--Boys
---		('Newborn', 1, 'Male', 2, 6010),
---		('0-3 Months', 1, 'Male', 2, 6020),
---		('3-6 Months', 1, 'Male', 2, 6030),
---		('6-9 Months', 1, 'Male', 2, 6040),
---		('9-12 Months', 1, 'Male', 2, 6050),
---		('12-18 Months', 1, 'Male', 2, 6060),
---		('2T', 1, 'Male', 2, 6070),
---		('3T', 1, 'Male', 2, 6080),
---		('4T', 1, 'Male', 2, 6090),
---		('5', 1, 'Male', 2, 6100),
---		('6', 1, 'Male', 2, 6110),
---		('7', 1, 'Male', 2, 6120),
---		('8', 1, 'Male', 2, 6130),
---		('10', 1, 'Male', 2, 6140),
---		('12', 1, 'Male', 2, 6150),
---		('14', 1, 'Male', 2, 6160),
---		('16', 1, 'Male', 2, 6170),
---		('18', 1, 'Male', 2, 6180),
---			--Girls
---		('Newborn', 2, 'Female', 2, 7010),
---		('0-3 Months', 2, 'Female', 2,7020),
---		('3-6 Months', 2, 'Female', 2, 7030),
---		('6-9 Months', 2, 'Female', 2, 7040),
---		('9-12 Months', 2, 'Female', 2, 7050),
---		('12-18 Months', 2, 'Female', 2, 7060),
---		('2T', 2, 'Female', 2, 7070),
---		('3T', 2, 'Female', 2, 7080),
---		('4T', 2, 'Female', 2, 7090),
---		('5', 2, 'Female', 2, 7100),
---		('6', 2, 'Female', 2, 7110),
---		('7', 2, 'Female', 2, 7120),
---		('8', 2, 'Female', 2, 7130),
---		('10', 2, 'Female', 2, 7140),
---		('12', 2, 'Female', 2, 7150),
---		('14', 2, 'Female', 2, 7160),
---		('16', 2, 'Female', 2, 7170),
---		('18', 2, 'Female', 2, 7180),
---			--Juniors
---		('00', 3, 'Female', 2, 8010),
---		('0', 3, 'Female', 2, 8020),
---		('1', 3, 'Female', 2, 8030),
---		('3', 3, 'Female', 2, 8040),
---		('5', 3, 'Female', 2, 8050),
---		('7', 3, 'Female', 2, 8060),
---		('9', 3, 'Female', 2, 8070),
---		('11', 3, 'Female', 2, 8080),
---		('13', 3, 'Female', 2, 8090),
---		('15', 3, 'Female', 2, 8110),
---		('17', 3, 'Female', 2, 8120),
---			--Mens
---		('26', 4, 'Male', 2, 9010),
---		('27', 4, 'Male', 2, 9020),
---		('28', 4, 'Male', 2, 9030),
---		('29', 4, 'Male', 2, 9040),
---		('30-31', 4, 'Male', 2, 9050),
---		('32-33', 4, 'Male', 2, 9060),
---		('34-35', 4, 'Male', 2, 9070),
---		('36-37', 4, 'Male', 2, 9080),
---		('38-39', 4, 'Male', 2, 9090),
---		('40-41', 4, 'Male', 2, 9100),
---		('42-43', 4, 'Male', 2, 9110),
---		('44-45', 4, 'Male', 2, 9120),
---		('46-47', 4, 'Male', 2, 9130),
---		('48-49', 4, 'Male', 2, 9140),
---			--Womens
---		('0', 5, 'Female', 2, 10010),
---		('2', 5, 'Female', 2, 10020),
---		('4', 5, 'Female', 2, 10030),
---		('6', 5, 'Female', 2, 10040),
---		('8', 5, 'Female', 2, 10050),
---		('10', 5, 'Female', 2, 10060),
---		('12', 5, 'Female', 2, 10070),
---		('14', 5, 'Female', 2, 10080),
---		('16', 5, 'Female', 2, 10090),
---		('18', 5, 'Female', 2, 10100),
---		('20', 5, 'Female', 2, 10110);
-
-
---ALTER TABLE Reference.Size
---	ADD CONSTRAINT FK_Reference_AgeGroup$ProvidesAgeGroupDetailsFor$Reference_Size
---	FOREIGN KEY (AgeGroupId) REFERENCES Reference.AgeGroup (AgeGroupId)
---ON UPDATE NO ACTION
---ON DELETE NO ACTION;
---GO
-
---ALTER TABLE Reference.Size
---	ADD CONSTRAINT FK_Reference_ClothesType$ProvidesDetailsAboutTypeOfClothingFor$Reference_Size
---	FOREIGN KEY (ClothesTypeId) REFERENCES Reference.ClothesType (ClothesTypeId)
---ON UPDATE NO ACTION
---ON DELETE NO ACTION;
---GO
-
-
-
-
 CREATE SCHEMA Requests;
 GO
 
@@ -1013,7 +832,7 @@ CREATE TABLE Requests.Request
 	RequestId			int NOT NULL CONSTRAINT PK_Requests_Request_RequestId PRIMARY KEY,
 	DateRequested		date NOT NULL,
 	DateEstimatedDelivery date NOT NULL,
-	DateDelivered		date NOT NULL,
+	DateDelivered		date NULL,
 	SubmittedByUserId	nvarchar(128) NOT NULL,
 	RequestStatusId		tinyint NOT NULL,
 	SchoolId			smallint NULL,
@@ -1025,8 +844,8 @@ CREATE TABLE Requests.Request
 	PantLengthSizeId	int NULL,
 	UnderwearSize		varchar(20) NOT NULL,
 	ShoeSize			varchar(20) NOT NULL,
-	HygieneKitFlag		bit NOT NULL DEFAULT(0),
-	Comments			varchar(2000) NOT NULL DEFAULT('')
+	Comments			varchar(2000) NOT NULL DEFAULT(''),
+	NeededItemsId		int NOT NULL
 );
 GO
 
@@ -1093,6 +912,11 @@ ON UPDATE NO ACTION
 ON DELETE NO ACTION;
 GO
 
+ALTER TABLE Requests.Request
+	ADD CONSTRAINT FK_Requests_NeededItems$IdentifiesItemsNeededFor$Requests_Request
+	FOREIGN KEY (NeededItemsId) REFERENCES Requests.NeededItems (NeededItemsId);
+GO
+
 
 ALTER TABLE Requests.Request
 	ADD CONSTRAINT CHK_Requests_Request_DateEstimatedDelivery
@@ -1101,9 +925,23 @@ GO
 
 ALTER TABLE Requests.Request
 	ADD CONSTRAINT CHK_Requests_Request_DateDelivered
-		CHECK (DateDelivered >= DateRequested);
+		CHECK (DateDelivered >= DateRequested OR DateDelivered IS NULL);
 GO
 
+
+
+CREATE TABLE Requests.NeededItems
+(
+	NeededItemsId		int NOT NULL CONSTRAINT PK_Requests_NeededItems PRIMARY KEY,
+	ShirtFlag			bit NOT NULL DEFAULT(0),
+	PantFlag			bit NOT NULL DEFAULT(0),
+	UnderwearFlag		bit NOT NULL DEFAULT(0),
+	SockFlag			bit NOT NULL DEFAULT(0),
+	ShoeFlag			bit NOT NULL DEFAULT(0),
+	CoatFlag			bit NOT NULL DEFAULT(0),
+	HygieneFlag			bit NOT NULL DEFAULT(0)
+);
+GO
 
 
 ALTER TABLE dbo.AspNetUsers

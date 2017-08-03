@@ -235,11 +235,25 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="NeededItems">
+      <EntityTypeMapping TypeName="ClotheOurKidsModel.NeededItem">
+        <MappingFragment StoreEntitySet="NeededItems">
+          <ScalarProperty Name="HygieneFlag" ColumnName="HygieneFlag" />
+          <ScalarProperty Name="CoatFlag" ColumnName="CoatFlag" />
+          <ScalarProperty Name="ShoeFlag" ColumnName="ShoeFlag" />
+          <ScalarProperty Name="SockFlag" ColumnName="SockFlag" />
+          <ScalarProperty Name="UnderwearFlag" ColumnName="UnderwearFlag" />
+          <ScalarProperty Name="PantFlag" ColumnName="PantFlag" />
+          <ScalarProperty Name="ShirtFlag" ColumnName="ShirtFlag" />
+          <ScalarProperty Name="NeededItemsId" ColumnName="NeededItemsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Requests">
       <EntityTypeMapping TypeName="ClotheOurKidsModel.Request">
         <MappingFragment StoreEntitySet="Request">
+          <ScalarProperty Name="NeededItemsId" ColumnName="NeededItemsId" />
           <ScalarProperty Name="Comments" ColumnName="Comments" />
-          <ScalarProperty Name="HygieneKitFlag" ColumnName="HygieneKitFlag" />
           <ScalarProperty Name="ShoeSize" ColumnName="ShoeSize" />
           <ScalarProperty Name="UnderwearSize" ColumnName="UnderwearSize" />
           <ScalarProperty Name="PantLengthSizeId" ColumnName="PantLengthSizeId" />

@@ -5,22 +5,29 @@ using ClotheOurKids.Web.Models.ViewModel;
 using ClotheOurKids.Model;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
+using ClotheOurKids.Web.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ClotheOurKids.Web.Controllers
 {
     public class RequestClothesController : Controller
-    {
-
+    {        
         private IRequestFormRepository _repository;
+        protected ApplicationDbContext ApplicationDbContext { get; set; }
+        protected UserManager<ApplicationUser> UserManager { get; set; }
 
-        public RequestClothesController() : this(new RequestFormRepository())
+        public RequestClothesController()
         {
-
+            this._repository = new RequestFormRepository(new ClotheOurKidsEntities());
+            this.ApplicationDbContext = new ApplicationDbContext();
+            this.UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(this.ApplicationDbContext));
         }
 
         public RequestClothesController(IRequestFormRepository repository)
         {
-            _repository = repository;
+            this._repository = repository;
+            this.ApplicationDbContext = new ApplicationDbContext();
+            this.UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(this.ApplicationDbContext));
         }
 
         [Route("Request-Clothes", Name = "RequestClothes")]
@@ -259,6 +266,37 @@ namespace ClotheOurKids.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                bool NeedShirt = Convert.ToBoolean(Request.Form["NeedShirt"]);
+                bool NeedPant = Convert.ToBoolean(Request.Form["NeedPant"]);
+                bool NeedUnderwear = Convert.ToBoolean(Request.Form["NeedUnderwear"]);
+                bool NeedSocks = Convert.ToBoolean(Request.Form["NeedSocks"]);
+                bool NeedShoes = Convert.ToBoolean(Request.Form["NeedShoes"]);
+                bool NeedCoat = Convert.ToBoolean(Request.Form["NeedCoat"]);
+                bool NeedHygiene = Convert.ToBoolean(Request.Form["NeedHygiene"]);
+
+                //Need validation based on Checkboxes
+
+                string userId = User.Identity.GetUserId();
+                //var user = UserManager.FindById(userId);
+
+                var aspNetUser = _repository.GetUserByAppUserId(userId);
+
+                string school = aspNetUser.Office.Schools.SingleOrDefault().ToString();
+                short schoolId = 0;
+                bool isValidSchool = short.TryParse(school, out schoolId);
+
+                var neededItems = new NeededItem
+                {
+                    ShirtFlag = NeedShirt,
+                    PantFlag = NeedPant,
+                    UnderwearFlag = NeedUnderwear,
+                    SockFlag = NeedSocks,
+                    ShoeFlag = NeedShoes,
+                    CoatFlag = NeedCoat,
+                    HygieneFlag = NeedHygiene
+                };
+
                 var request = new Request
                 {
                     GenderId = model.GenderId,
@@ -268,9 +306,24 @@ namespace ClotheOurKids.Web.Controllers
                     PantSizeId = model.PantSizeId,
                     UnderwearSize = model.UnderwearSize,
                     ShoeSize = model.ShoeSize,
-                    Comments = model.Comments
+                    Comments = model.Comments,
+                    SchoolId = schoolId == 0 ? (model.SchoolId == 0 ? null : model.SchoolId) : schoolId,
+                    DateRequested = DateTime.Today,
+                    DateEstimatedDelivery = _repository.GetEstimatedDeliveryDate(model.UrgencyId),
+                    SubmittedByUserId = userId,
+                    RequestStatusId = 1,
+                    NeededItem = neededItems
+                    //Need PantLengthSize                    
                 };
+
+                _repository.InsertRequest(request);
+                _repository.Save();
+
+
+                return RedirectToAction("Index", "Home");
             }
+
+            PopulateRequestFormModel(model);
 
             //If we got this far, something failed, redisplay form
             return View(model);

@@ -103,6 +103,9 @@
     <Compile Include="DAL\Grade.cs">
       <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\NeededItem.cs">
+      <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Office.cs">
       <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
     </Compile>

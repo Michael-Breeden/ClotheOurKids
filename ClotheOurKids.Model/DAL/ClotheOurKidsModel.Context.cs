@@ -47,6 +47,7 @@ namespace ClotheOurKids.Model
         public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<PantSize> PantSizes { get; set; }
         public virtual DbSet<ShirtSize> ShirtSizes { get; set; }
+        public virtual DbSet<NeededItem> NeededItems { get; set; }
         public virtual DbSet<Request> Requests { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace ClotheOurKids.Model
         public int RequestId { get; set; }
         public System.DateTime DateRequested { get; set; }
         public System.DateTime DateEstimatedDelivery { get; set; }
-        public System.DateTime DateDelivered { get; set; }
+        public Nullable<System.DateTime> DateDelivered { get; set; }
         public string SubmittedByUserId { get; set; }
         public byte RequestStatusId { get; set; }
         public Nullable<short> SchoolId { get; set; }
@@ -29,8 +29,8 @@ namespace ClotheOurKids.Model
         public Nullable<int> PantLengthSizeId { get; set; }
         public string UnderwearSize { get; set; }
         public string ShoeSize { get; set; }
-        public bool HygieneKitFlag { get; set; }
         public string Comments { get; set; }
+        public int NeededItemsId { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Gender Gender { get; set; }
@@ -39,6 +39,7 @@ namespace ClotheOurKids.Model
         public virtual PantSize PantSize1 { get; set; }
         public virtual School School { get; set; }
         public virtual ShirtSize ShirtSize { get; set; }
+        public virtual NeededItem NeededItem { get; set; }
         public virtual Urgency Urgency { get; set; }
         public virtual RequestStatus RequestStatu { get; set; }
     }

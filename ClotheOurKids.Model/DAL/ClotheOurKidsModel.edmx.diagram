@@ -43,7 +43,8 @@
         <EntityTypeShape EntityType="ClotheOurKidsModel.ShirtSize" Width="1.5" PointX="16.75" PointY="2.5" />
         <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_AgeGroup_DescribesAgeGroupAssociatedWith_Reference_PantSize" />
         <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_AgeGroup_DescribesAgeGroupAssociatedWith_Reference_ShirtSize" />
-        <EntityTypeShape EntityType="ClotheOurKidsModel.Request" Width="1.5" PointX="15.625" PointY="6.125" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.NeededItem" Width="1.5" PointX="18" PointY="12" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.Request" Width="1.5" PointX="20.25" PointY="6.375" />
         <AssociationConnector Association="ClotheOurKidsModel.FK_Requests_Request_WasSubmittedBy_dbo_AspNetUsers" />
         <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_Gender_DescribesGenderOfChildFor_Requests_Request" />
         <AssociationConnector Association="ClotheOurKidsModel.FK_Requests_Request_IsForChildInGrade_Reference_Grade" />
@@ -51,6 +52,7 @@
         <AssociationConnector Association="ClotheOurKidsModel.FK_Requests_PantSize_DescribesPantSizeFor_Requests_Request" />
         <AssociationConnector Association="ClotheOurKidsModel.FK_Requests_Request_IsForChildAttending_Reference_School" />
         <AssociationConnector Association="ClotheOurKidsModel.FK_Requests_ShirtSize_DescribesShirtSizeFor_Requests_Request" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Requests_NeededItems_IdentifiesItemsNeededFor_Requests_Request" />
         <AssociationConnector Association="ClotheOurKidsModel.FK_Requests_Request_HasAnUrgencyOf_Requests_Urgency" />
         <AssociationConnector Association="ClotheOurKidsModel.FK_Requests_RequestStatus_DescribesStatusOf_Requests_Request" />
         </Diagram>

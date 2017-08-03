@@ -7,7 +7,7 @@ using ClotheOurKids.Model;
 
 namespace ClotheOurKids.Model
 {
-    public interface IRequestFormRepository
+    public interface IRequestFormRepository : IDisposable
     {
         IList<Grade> GetAllGrades();
         IList<Gender> GetGenders();
@@ -20,5 +20,9 @@ namespace ClotheOurKids.Model
         IList<AgeGroup> GetPantAgeGroups(string GenderId);
         IList<ShirtSize> GetShirtSizes(byte AgeGroupId);
         IList<PantSize> GetPantSizes(byte AgeGroupId);
+        System.DateTime GetEstimatedDeliveryDate(byte UrgencyId);
+        AspNetUser GetUserByAppUserId(string userId);
+        void InsertRequest(Request request);
+        void Save();
     }
 }

@@ -30,7 +30,7 @@ namespace ClotheOurKids.Web.Models.ViewModel
 
         [Required]
         [Display(Name = "School")]
-        public short SchoolId { get; set; }
+        public short? SchoolId { get; set; }
         public IList<SelectListItem> AvailableSchools { get; set; }
 
         [Required]

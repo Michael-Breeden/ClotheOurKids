@@ -203,6 +203,19 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <Property Name="Name" Type="varchar" MaxLength="50" />
     <Property Name="Code" Type="varchar" MaxLength="2" />
   </EntityType>
+  <EntityType Name="NeededItems">
+    <Key>
+      <PropertyRef Name="NeededItemsId" />
+    </Key>
+    <Property Name="NeededItemsId" Type="int" Nullable="false" />
+    <Property Name="ShirtFlag" Type="bit" Nullable="false" />
+    <Property Name="PantFlag" Type="bit" Nullable="false" />
+    <Property Name="UnderwearFlag" Type="bit" Nullable="false" />
+    <Property Name="SockFlag" Type="bit" Nullable="false" />
+    <Property Name="ShoeFlag" Type="bit" Nullable="false" />
+    <Property Name="CoatFlag" Type="bit" Nullable="false" />
+    <Property Name="HygieneFlag" Type="bit" Nullable="false" />
+  </EntityType>
   <EntityType Name="Request">
     <Key>
       <PropertyRef Name="RequestId" />
@@ -210,7 +223,7 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <Property Name="RequestId" Type="int" Nullable="false" />
     <Property Name="DateRequested" Type="date" Nullable="false" />
     <Property Name="DateEstimatedDelivery" Type="date" Nullable="false" />
-    <Property Name="DateDelivered" Type="date" Nullable="false" />
+    <Property Name="DateDelivered" Type="date" />
     <Property Name="SubmittedByUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="RequestStatusId" Type="tinyint" Nullable="false" />
     <Property Name="SchoolId" Type="smallint" />
@@ -222,8 +235,8 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <Property Name="PantLengthSizeId" Type="int" />
     <Property Name="UnderwearSize" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="ShoeSize" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="HygieneKitFlag" Type="bit" Nullable="false" />
     <Property Name="Comments" Type="varchar" MaxLength="2000" Nullable="false" />
+    <Property Name="NeededItemsId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="RequestStatus">
     <Key>
@@ -465,6 +478,18 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Requests_NeededItems$IdentifiesItemsNeededFor$Requests_Request">
+    <End Role="NeededItems" Type="Self.NeededItems" Multiplicity="1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NeededItems">
+        <PropertyRef Name="NeededItemsId" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="NeededItemsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Requests_PantSize$DescribesPantLengthSizeFor$Requests_Request">
     <End Role="PantSize" Type="Self.PantSize" Multiplicity="0..1" />
     <End Role="Request" Type="Self.Request" Multiplicity="*" />
@@ -582,6 +607,7 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <EntitySet Name="SchoolType" EntityType="Self.SchoolType" Schema="Reference" store:Type="Tables" />
     <EntitySet Name="ShirtSize" EntityType="Self.ShirtSize" Schema="Reference" store:Type="Tables" />
     <EntitySet Name="States" EntityType="Self.States" Schema="Reference" store:Type="Tables" />
+    <EntitySet Name="NeededItems" EntityType="Self.NeededItems" Schema="Requests" store:Type="Tables" />
     <EntitySet Name="Request" EntityType="Self.Request" Schema="Requests" store:Type="Tables" />
     <EntitySet Name="RequestStatus" EntityType="Self.RequestStatus" Schema="Requests" store:Type="Tables" />
     <EntitySet Name="Urgency" EntityType="Self.Urgency" Schema="Requests" store:Type="Tables" />
@@ -664,6 +690,10 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <AssociationSet Name="FK_Reference_State$DefinesStateOfResidenceFor$Reference_Office" Association="Self.FK_Reference_State$DefinesStateOfResidenceFor$Reference_Office">
       <End Role="States" EntitySet="States" />
       <End Role="Office" EntitySet="Office" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_NeededItems$IdentifiesItemsNeededFor$Requests_Request" Association="Self.FK_Requests_NeededItems$IdentifiesItemsNeededFor$Requests_Request">
+      <End Role="NeededItems" EntitySet="NeededItems" />
+      <End Role="Request" EntitySet="Request" />
     </AssociationSet>
     <AssociationSet Name="FK_Requests_PantSize$DescribesPantLengthSizeFor$Requests_Request" Association="Self.FK_Requests_PantSize$DescribesPantLengthSizeFor$Requests_Request">
       <End Role="PantSize" EntitySet="PantSize" />

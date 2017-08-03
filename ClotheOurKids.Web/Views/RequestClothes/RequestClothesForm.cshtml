@@ -233,8 +233,9 @@
                         <!--First column-->
                         <div class="col">
                             <div id="divUnderwearSizes" class="md-form">
-                                <input type="text" id="underwearSize" name="underwearSize" class="form-control" />
-                                <label for="underwearSize">Underwear Size</label>
+                                @Html.TextBoxFor(m => m.UnderwearSize, new { @class = "form-control validate" })
+                                @Html.LabelFor(m => m.UnderwearSize)
+                                @Html.ValidationMessageFor(m => m.UnderwearSize)
                             </div>
                         </div>
                         <!--/First column-->
@@ -242,8 +243,9 @@
                         <!--Second column-->
                         <div class="col">
                             <div id="divShoeSizes" class="md-form">
-                                <input type="text" id="shoeSize" name="shoeSize" class="form-control" />
-                                <label for="shoeSize">Shoe Size</label>
+                                @Html.TextBoxFor(m => m.ShoeSize, new { @class = "form-control validate" })
+                                @Html.LabelFor(m => m.ShoeSize)
+                                @Html.ValidationMessageFor(m => m.ShoeSize)
                             </div>
                         </div>
                         <!--/Second column-->
@@ -256,8 +258,9 @@
                         <div class="col">
                             <div class="md-form">
                                 <i class="fa fa-comment prefix"></i>
-                                <textarea type="text" id="comments" name="comments" class="md-textarea"></textarea>
-                                <label for="comments">Comments</label>
+                                @Html.TextAreaFor(m => m.Comments, new { @class = "md-textarea validate"})
+                                @Html.LabelFor(m => m.Comments)
+                                @Html.ValidationMessageFor(m => m.Comments)
                             </div>                            
                         </div>
                     </div>
@@ -266,7 +269,7 @@
                     <!--Eleventh row-->
                     <div class="row mt-2 text-center">
                         <div class="col">
-                            <button class="btn btn-primary btn-rounded btn-lg">Submit</button>
+                            <button type="submit" class="btn btn-primary btn-rounded btn-lg">Submit</button>
                         </div>
                     </div>
                     <!--/Eleventh row-->
@@ -450,34 +453,48 @@
                 case 'divShirtSizes':
                     resetSelect('#' + id + ' .mdb-select2');
                     $("#ShirtAgeGroupId").val('0').trigger('change').prop('disabled', true);
+
+                    DisableInputHelpers(id);
                     break;
                 case 'divPantSizes':
                     resetSelect('#' + id + ' .mdb-select2');
                     $("#PantAgeGroupId").val('0').trigger('change').prop('disabled', true);
+
+                    DisableInputHelpers(id);
                     break;
                 case 'divUnderwearSizes':
                     $('#' + id + ' :input')
                         .prop('disabled', true)
                         .val('');
+
+                    DisableInputHelpers(id);
                     break;
                 case 'divSockSizes':
                     if (!$('#NeedShoes').is(":checked")) {
-                        $('#shoeSize')
+                        $('#ShoeSize')
                             .prop('disabled', true)
                             .val('');
+
+                        DisableInputHelpers(id);
                     }
                     break;
                 case 'divShoeSizes':
                     if (!$('#NeedSocks').is(":checked")) {
-                        $('#shoeSize')
+                        $('#ShoeSize')
                             .prop('disabled', true)
                             .val('');
+
+                        DisableInputHelpers(id);
                     }                    
                     break;
                 default:
                     break;
             }
 
+            
+        }
+
+        function DisableInputHelpers(id) {
             $('#' + id + " :header").addClass('disabled');
             $('#' + id + " label").removeClass('active').addClass('disabled');
             $('#' + id + " i").removeClass('active');
