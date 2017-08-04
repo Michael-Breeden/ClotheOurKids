@@ -11,9 +11,7 @@ namespace ClotheOurKids.Model
 {
     using System;
     using System.Collections.Generic;
-    using ClotheOurKids.Web.Models;
-
-
+    
     public partial class ContactMethod
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -27,6 +25,5 @@ namespace ClotheOurKids.Model
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
-
     }
 }

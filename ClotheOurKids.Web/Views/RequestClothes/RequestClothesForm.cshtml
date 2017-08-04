@@ -138,33 +138,33 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-9 col-md-offset-3">
                                     <div class="d-flex flex-wrap">
-                                        <fieldset class="form-group ml-4">
-                                            <input type="checkbox" class="filled-in" id="NeedShirt" data-details="divShirtSizes" />
-                                            <label for="NeedShirt">Shirt</label>
+                                        <fieldset class="form-group ml-4">                                            
+                                            @Html.CheckBoxFor(m => m.NeedShirt, new { @class="filled-in", data_details = "divShirtSizes"})
+                                            @Html.LabelFor(m => m.NeedShirt)
+                                        </fieldset>
+                                        <fieldset class="form-group ml-4">                                            
+                                            @Html.CheckBoxFor(m => m.NeedPant, new { @class = "filled-in", data_details = "divPantSizes" })
+                                            @Html.LabelFor(m => m.NeedPant)
                                         </fieldset>
                                         <fieldset class="form-group ml-4">
-                                            <input type="checkbox" class="filled-in" id="NeedPant" data-details="divPantSizes" />
-                                            <label for="NeedPant">Pants</label>
+                                            @Html.CheckBoxFor(m => m.NeedUnderwear, new { @class = "filled-in", data_details = "divUnderwearSizes" })
+                                            @Html.LabelFor(m => m.NeedUnderwear)
                                         </fieldset>
                                         <fieldset class="form-group ml-4">
-                                            <input type="checkbox" class="filled-in" id="NeedUnderwear" data-details="divUnderwearSizes" />
-                                            <label for="NeedUnderwear">Underwear</label>
+                                            @Html.CheckBoxFor(m => m.NeedSocks, new { @class = "filled-in", data_details = "divSockSizes" })
+                                            @Html.LabelFor(m => m.NeedSocks)
                                         </fieldset>
                                         <fieldset class="form-group ml-4">
-                                            <input type="checkbox" class="filled-in" id="NeedSocks" data-details="divSockSizes" />
-                                            <label for="NeedSocks">Socks</label>
+                                            @Html.CheckBoxFor(m => m.NeedShoes, new { @class = "filled-in", data_details = "divShoeSizes" })
+                                            @Html.LabelFor(m => m.NeedShoes)
                                         </fieldset>
                                         <fieldset class="form-group ml-4">
-                                            <input type="checkbox" class="filled-in" id="NeedShoes" data-details="divShoeSizes" />
-                                            <label for="NeedShoes">Shoes</label>
+                                            @Html.CheckBoxFor(m => m.NeedCoat, new { @class = "filled-in", data_details = "divCoatSizes" })
+                                            @Html.LabelFor(m => m.NeedCoat)
                                         </fieldset>
                                         <fieldset class="form-group ml-4">
-                                            <input type="checkbox" class="filled-in" id="NeedCoat" data-details="divCoatSizes" />
-                                            <label for="NeedCoat">Coat</label>
-                                        </fieldset>
-                                        <fieldset class="form-group ml-4">
-                                            <input type="checkbox" class="filled-in" id="NeedHygiene" data-details="divHygiene" />
-                                            <label for="NeedHygiene">Hygiene Kit</label>
+                                            @Html.CheckBoxFor(m => m.NeedHygiene, new { @class = "filled-in", data_details = "divHygiene" })
+                                            @Html.LabelFor(m => m.NeedHygiene)
                                         </fieldset>
                                     </div>        
                                 </div>
@@ -220,6 +220,13 @@
                                         @Html.LabelFor(m => m.PantSizeId, new { @class = "select2-label" })
                                         @Html.DropDownListFor(m => m.PantSizeId, Model.AvailablePantSizes, new { @class = "mdb-select md-select2" })
                                         @Html.ValidationMessageFor(m => m.PantSizeId)
+                                    </div>                                    
+                                </div>
+                                <div id="pantLength" class="col hidden-xs-up">
+                                    <div class="md-form">
+                                        @Html.LabelFor(m => m.PantLengthSizeId, new { @class = "select2-label" })
+                                        @Html.DropDownListFor(m => m.PantLengthSizeId, Model.AvailablePantLengthSizes, new { @class = "mdb-select md-select2" })
+                                        @Html.ValidationMessageFor(m => m.PantLengthSizeId)
                                     </div>
                                 </div>
                             </div>
@@ -290,12 +297,33 @@
 
         $(document).ready(function () {
 
+            //Ensure HTML helper checkboxes work with template CSS.
+            $(':checkbox').each(function () {
+                var hiddenInput = $(this).next("input:hidden");
+                var label = hiddenInput.next("label");
+                //temporarily remove the hidden field
+                hiddenInput.remove();
+
+                //re-add the hidden field after the label
+                label.after(hiddenInput);
+            });
+
             $('.md-select2 option[value = "0"]').attr('disabled', true);
 
-            $('#ShirtSizeId').prop('disabled', true);
-            $('#PantSizeId').prop('disabled', true);
+
+
+            //$('#ShirtSizeId').prop('disabled', true);
+            //$('#PantSizeId').prop('disabled', true);
 
             CheckNeededItems();
+
+            if ($('#ShirtAgeGroupId').prop('disabled')) {
+                $('#ShirtSizeId').prop('disabled', true);
+            }
+
+            if ($('#PantAgeGroupId').prop('disabled')) {
+                $('#PantSizeId').prop('disabled', true);
+            }
 
 
             $('#divNeededItems input[type="checkbox"]').on('change', function () {
@@ -400,16 +428,30 @@
 
             $('#PantAgeGroupId').on('change', function () {
                 var selectedItem = this.value;
+                var data = $('#PantAgeGroupId').select2('data');
                 var ddlPantSizes = $('#PantSizeId');
+                var ddlPantLengthSizes = $('#PantLengthSizeId');
 
 
                 if (selectedItem == '0') {
-                    ddlPantSizes.prop('disabled', true);
+                    ddlPantSizes.prop('disabled', true);                    
                 }
                 else {
                     ddlPantSizes.prop('disabled', false);
                 }
 
+
+                if (data[0].text == 'Mens') {
+                    $("label[for='PantSizeId']").text('Pant Waist');
+                    ddlPantLengthSizes.prop('disabled', false);
+                    $('#pantLength').removeClass('hidden-xs-up');
+                }
+                else {
+                    $("label[for='PantSizeId']").text('Pant Size');
+                    ddlPantLengthSizes.prop('disabled', true);
+                    $('#pantLength').addClass('hidden-xs-up');
+                }
+                
 
                 $.ajax({
                     cache: false,
@@ -421,12 +463,19 @@
                     success: function (data) {
                         ddlPantSizes.html('');
                         ddlPantSizes.prepend('<option value="0" disabled selected>Select...</option>');
+
+                        ddlPantLengthSizes.html('');
+                        ddlPantLengthSizes.prepend('<option value="0" disabled selected>Select...</option>');
+
+
                         $.each(data, function(id, option) {
                             ddlPantSizes.append($('<option></option>').val(option.id).html(option.name));
-                        });
+                            ddlPantLengthSizes.append($('<option></option>').val(option.id).html(option.name));
+                        });  
+
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
-                        alert('Failed to retrieve Shirt Sizes');
+                        alert('Failed to retrieve Pant Sizes');
                     }
                 });
             });

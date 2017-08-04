@@ -28,11 +28,13 @@ GO
 ALTER TABLE [dbo].[AspNetUsers] DROP CONSTRAINT [FK_Reference_Position$IsPositionOf$dbo_AspNetUsers]
 GO
 
+DROP TABLE [Requests].[Request]
+GO
+
 DROP TABLE [Requests].[NeededItems]
 GO
 
-DROP TABLE [Requests].[Request]
-GO
+
 
 DROP TABLE [Requests].[Urgency]
 GO
@@ -912,10 +914,6 @@ ON UPDATE NO ACTION
 ON DELETE NO ACTION;
 GO
 
-ALTER TABLE Requests.Request
-	ADD CONSTRAINT FK_Requests_NeededItems$IdentifiesItemsNeededFor$Requests_Request
-	FOREIGN KEY (NeededItemsId) REFERENCES Requests.NeededItems (NeededItemsId);
-GO
 
 
 ALTER TABLE Requests.Request
@@ -932,7 +930,7 @@ GO
 
 CREATE TABLE Requests.NeededItems
 (
-	NeededItemsId		int NOT NULL CONSTRAINT PK_Requests_NeededItems PRIMARY KEY,
+	NeededItemsId		int NOT NULL IDENTITY(1,1) CONSTRAINT PK_Requests_NeededItems PRIMARY KEY,
 	ShirtFlag			bit NOT NULL DEFAULT(0),
 	PantFlag			bit NOT NULL DEFAULT(0),
 	UnderwearFlag		bit NOT NULL DEFAULT(0),
@@ -942,6 +940,12 @@ CREATE TABLE Requests.NeededItems
 	HygieneFlag			bit NOT NULL DEFAULT(0)
 );
 GO
+
+ALTER TABLE Requests.Request
+	ADD CONSTRAINT FK_Requests_NeededItems$IdentifiesItemsNeededFor$Requests_Request
+	FOREIGN KEY (NeededItemsId) REFERENCES Requests.NeededItems (NeededItemsId);
+GO
+
 
 
 ALTER TABLE dbo.AspNetUsers

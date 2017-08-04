@@ -207,7 +207,7 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <Key>
       <PropertyRef Name="NeededItemsId" />
     </Key>
-    <Property Name="NeededItemsId" Type="int" Nullable="false" />
+    <Property Name="NeededItemsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ShirtFlag" Type="bit" Nullable="false" />
     <Property Name="PantFlag" Type="bit" Nullable="false" />
     <Property Name="UnderwearFlag" Type="bit" Nullable="false" />

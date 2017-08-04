@@ -19,6 +19,7 @@ namespace ClotheOurKids.Web.Models.ViewModel
             AvailableShirtSizes = new List<SelectListItem>();
             AvailablePantAgeGroups = new List<SelectListItem>();
             AvailablePantSizes = new List<SelectListItem>();
+            AvailablePantLengthSizes = new List<SelectListItem>();
         }
 
         [Required]
@@ -61,6 +62,12 @@ namespace ClotheOurKids.Web.Models.ViewModel
         public Nullable<int> PantSizeId { get; set; }
         public IList<SelectListItem> AvailablePantSizes { get; set; }
 
+
+        [Display(Name = "Pant Length")]
+        public Nullable<int> PantLengthSizeId { get; set; }
+        public IList<SelectListItem> AvailablePantLengthSizes { get; set; }
+
+
         [Display(Name = "Underwear Size")]
         public string UnderwearSize { get; set; }
 
@@ -69,6 +76,28 @@ namespace ClotheOurKids.Web.Models.ViewModel
 
         [Display(Name = "Additional Information")]
         public string Comments { get; set; }
+
+
+        [Display(Name = "Shirt")]
+        public bool NeedShirt { get; set; }
+
+        [Display(Name = "Pants")]
+        public bool NeedPant { get; set; }
+
+        [Display(Name = "Underwear")]
+        public bool NeedUnderwear { get; set; }
+
+        [Display(Name = "Socks")]
+        public bool NeedSocks { get; set; }
+
+        [Display(Name = "Shoes")]
+        public bool NeedShoes { get; set; }
+
+        [Display(Name = "Coat")]
+        public bool NeedCoat { get; set; }
+
+        [Display(Name = "Hygiene Kit")]
+        public bool NeedHygiene { get; set; }
 
     }
 }

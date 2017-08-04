@@ -140,6 +140,23 @@ namespace ClotheOurKids.Web.Controllers
                 });
             }
 
+            if (officeType == "School")
+            {
+
+                //Set to 0 and find school for this user during form submission
+                //model.SchoolId = 0;
+
+
+
+                string userSchool = model.AvailableSchools.FirstOrDefault().Value;
+                short userSchoolShort;
+
+                short.TryParse(userSchool, out userSchoolShort);
+
+                model.SchoolId = userSchoolShort;
+
+            }
+
 
             var urgencies = _repository.GetUrgencies();
             var urgencyList = (from u in urgencies
@@ -264,37 +281,41 @@ namespace ClotheOurKids.Web.Controllers
         [Route("Request-Clothes/Form", Name = "RequestClothesFormPost")]
         public ActionResult RequestClothesForm(RequestFormViewModel model)
         {
-            if (ModelState.IsValid)
+
+            string userId = User.Identity.GetUserId();
+            //var user = UserManager.FindById(userId);
+
+            var aspNetUser = _repository.GetUserByAppUserId(userId);
+
+            string school = aspNetUser.Office.Schools.Select(s => s.SchoolId).SingleOrDefault().ToString();
+            short schoolId = 0;
+            bool isValidSchool = short.TryParse(school, out schoolId);
+
+            if (isValidSchool && schoolId != 0)
             {
+                ModelState.Remove("SchoolId");
+            }
+            //Need validation based on Checkboxes
+            if (model.NeedShirt)
+            {
+                if (model.ShirtSizeId == 0 || model.ShirtSizeId == null)
+                {
+                    ModelState.AddModelError("ShirtSizeId", "You said this child needs shirts. Please choose a size.");
+                }
+            }
 
-                bool NeedShirt = Convert.ToBoolean(Request.Form["NeedShirt"]);
-                bool NeedPant = Convert.ToBoolean(Request.Form["NeedPant"]);
-                bool NeedUnderwear = Convert.ToBoolean(Request.Form["NeedUnderwear"]);
-                bool NeedSocks = Convert.ToBoolean(Request.Form["NeedSocks"]);
-                bool NeedShoes = Convert.ToBoolean(Request.Form["NeedShoes"]);
-                bool NeedCoat = Convert.ToBoolean(Request.Form["NeedCoat"]);
-                bool NeedHygiene = Convert.ToBoolean(Request.Form["NeedHygiene"]);
 
-                //Need validation based on Checkboxes
-
-                string userId = User.Identity.GetUserId();
-                //var user = UserManager.FindById(userId);
-
-                var aspNetUser = _repository.GetUserByAppUserId(userId);
-
-                string school = aspNetUser.Office.Schools.SingleOrDefault().ToString();
-                short schoolId = 0;
-                bool isValidSchool = short.TryParse(school, out schoolId);
-
+            if (ModelState.IsValid)
+            {               
                 var neededItems = new NeededItem
                 {
-                    ShirtFlag = NeedShirt,
-                    PantFlag = NeedPant,
-                    UnderwearFlag = NeedUnderwear,
-                    SockFlag = NeedSocks,
-                    ShoeFlag = NeedShoes,
-                    CoatFlag = NeedCoat,
-                    HygieneFlag = NeedHygiene
+                    ShirtFlag = model.NeedShirt,
+                    PantFlag = model.NeedPant,
+                    UnderwearFlag = model.NeedUnderwear,
+                    SockFlag = model.NeedSocks,
+                    ShoeFlag = model.NeedShoes,
+                    CoatFlag = model.NeedCoat,
+                    HygieneFlag = model.NeedHygiene
                 };
 
                 var request = new Request
