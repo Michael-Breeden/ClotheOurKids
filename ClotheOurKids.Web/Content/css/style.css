@@ -25,8 +25,7 @@
   background-color: #aa66cc; }
 
 
-.page-top-section .section-heading {
-    font-family: 'Love Ya Like A Sister', cursive;
+.page-top-section .section-heading {    
     margin: 0;
 }
 
@@ -238,4 +237,9 @@
 .validation-summary-errors {
     color: #ff4444;
     font-size: 0.75rem;
+}
+
+.toast-top-right {
+    top: 80px;
+    right: 12px;
 }

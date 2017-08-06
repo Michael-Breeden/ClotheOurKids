@@ -831,8 +831,8 @@ VALUES (1, 'Requested'), (2, 'Delivered')
 
 CREATE TABLE Requests.Request 
 (
-	RequestId			int NOT NULL CONSTRAINT PK_Requests_Request_RequestId PRIMARY KEY,
-	DateRequested		date NOT NULL,
+	RequestId			int NOT NULL IDENTITY(1,1) CONSTRAINT PK_Requests_Request_RequestId PRIMARY KEY,
+	DateRequested		datetime2 NOT NULL,
 	DateEstimatedDelivery date NOT NULL,
 	DateDelivered		date NULL,
 	SubmittedByUserId	nvarchar(128) NOT NULL,

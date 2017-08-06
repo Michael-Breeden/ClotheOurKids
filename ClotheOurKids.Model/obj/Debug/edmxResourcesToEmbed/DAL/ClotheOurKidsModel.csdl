@@ -586,8 +586,8 @@
     <Key>
       <PropertyRef Name="RequestId" />
     </Key>
-    <Property Name="RequestId" Type="Int32" Nullable="false" />
-    <Property Name="DateRequested" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="RequestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateRequested" Type="DateTime" Nullable="false" Precision="7" />
     <Property Name="DateEstimatedDelivery" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="DateDelivered" Type="DateTime" Precision="0" />
     <Property Name="SubmittedByUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />

@@ -220,8 +220,8 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <Key>
       <PropertyRef Name="RequestId" />
     </Key>
-    <Property Name="RequestId" Type="int" Nullable="false" />
-    <Property Name="DateRequested" Type="date" Nullable="false" />
+    <Property Name="RequestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateRequested" Type="datetime2" Precision="7" Nullable="false" />
     <Property Name="DateEstimatedDelivery" Type="date" Nullable="false" />
     <Property Name="DateDelivered" Type="date" />
     <Property Name="SubmittedByUserId" Type="nvarchar" MaxLength="128" Nullable="false" />

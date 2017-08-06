@@ -35,6 +35,7 @@ namespace ClotheOurKids.Web.Models.ViewModel
         public IList<SelectListItem> AvailableSchools { get; set; }
 
         [Required]
+        [Range(1, short.MaxValue, ErrorMessage = "The Grade field is required")]
         [Display(Name = "Grade")]
         public short GradeId { get; set; }
         public IList<SelectListItem> AvailableGrades { get; set; }

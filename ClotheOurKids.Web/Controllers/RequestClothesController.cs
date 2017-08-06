@@ -300,10 +300,39 @@ namespace ClotheOurKids.Web.Controllers
             {
                 if (model.ShirtSizeId == 0 || model.ShirtSizeId == null)
                 {
-                    ModelState.AddModelError("ShirtSizeId", "You said this child needs shirts. Please choose a size.");
+                    ModelState.AddModelError("ShirtSizeId", "Please choose a size.");
                 }
             }
 
+            if (model.NeedPant)
+            {
+                if (model.PantSizeId == 0 || model.PantSizeId == null)
+                {
+                    ModelState.AddModelError("PantSizeId", "Please choose a size.");
+                }
+            }
+
+            if (model.NeedUnderwear)
+            {
+                if (String.IsNullOrWhiteSpace(model.UnderwearSize))
+                {
+                    ModelState.AddModelError("UnderwearSize", "Please provide a size.");
+                }
+            }
+
+            if (model.NeedSocks || model.NeedShoes)
+            {
+                if (String.IsNullOrWhiteSpace(model.ShoeSize))
+                {
+                    ModelState.AddModelError("ShoeSize", "Please provide a size.");
+                }
+            }
+
+            //Check that at least one item is requested
+            if (!model.NeedShirt && !model.NeedPant && !model.NeedUnderwear && !model.NeedSocks && !model.NeedShoes && !model.NeedCoat && !model.NeedHygiene)
+            {
+                ModelState.AddModelError(string.Empty, "You must select at least one item for us to give this child.");
+            }
 
             if (ModelState.IsValid)
             {               
@@ -325,28 +354,31 @@ namespace ClotheOurKids.Web.Controllers
                     UrgencyId = model.UrgencyId,
                     ShirtSizeId = model.ShirtSizeId,
                     PantSizeId = model.PantSizeId,
-                    UnderwearSize = model.UnderwearSize,
-                    ShoeSize = model.ShoeSize,
-                    Comments = model.Comments,
+                    UnderwearSize = string.IsNullOrEmpty(model.UnderwearSize) ? "" : model.UnderwearSize,
+                    ShoeSize = string.IsNullOrEmpty(model.ShoeSize) ? "" : model.ShoeSize,
+                    Comments = string.IsNullOrEmpty(model.Comments) ? "" : model.Comments,
                     SchoolId = schoolId == 0 ? (model.SchoolId == 0 ? null : model.SchoolId) : schoolId,
-                    DateRequested = DateTime.Today,
+                    DateRequested = DateTime.Now,
                     DateEstimatedDelivery = _repository.GetEstimatedDeliveryDate(model.UrgencyId),
                     SubmittedByUserId = userId,
                     RequestStatusId = 1,
-                    NeededItem = neededItems
-                    //Need PantLengthSize                    
+                    NeededItem = neededItems,
+                    //Add pant length if gender is Male and PantAgeGroup is 4 (Men)
+                    PantLengthSizeId = (model.GenderId == "Male" && model.PantAgeGroupId == 4) ? model.PantLengthSizeId : null                
                 };
 
                 _repository.InsertRequest(request);
                 _repository.Save();
 
+                TempData["RequestSuccess"] = "You submitted the request successfully!";
+                return RedirectToAction("RequestClothesForm");
 
-                return RedirectToAction("Index", "Home");
             }
 
             PopulateRequestFormModel(model);
 
             //If we got this far, something failed, redisplay form
+            TempData["SubmitError"] = "Error Submitting!";
             return View(model);
         }
 

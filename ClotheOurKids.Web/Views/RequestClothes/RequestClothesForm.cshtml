@@ -27,6 +27,16 @@
 
 <div class="container">
 
+    @if (TempData["RequestSuccess"] != null)
+    {
+        <label id="RequestSuccess" class="hidden-xs-up"></label>
+    }
+
+    @if (TempData["SubmitError"] != null)
+    {
+        <label id="SubmitError" class="hidden-xs-up"></label>
+    }
+
     <section class="section page-top-section mb-4 wow fadeIn" data-wow-delay="0.2s">
         <div class="row">
             <div class="col-12">
@@ -47,7 +57,7 @@
 
                 <!--Header-->
                 <div class="form-header blue darken-4">
-                    <h1 class="h1-responsive"><i class="fa fa-gift"></i> Clothing Request</h1>
+                    <h1 class="h1-responsive"> Clothing Request</h1>
                 </div>
                 <!--/Header-->
 
@@ -56,10 +66,16 @@
                 {
                     @Html.AntiForgeryToken()
 
+                    <div class="row">
+                        <div class="col-12">
+                            @Html.ValidationSummary(true)
+                        </div>
+                    </div>
+
                     <!--/Fifth row-->
                     <div class="row mt-3">
                         <div class="col-md">
-                            <h2 class="h2-responsive text-center">Child Information</h2>
+                            <h4 class="h4-responsive text-center">Child Information</h4>
                             <br />
                         </div>
                     </div>
@@ -67,17 +83,15 @@
 
                     <!--Sixth row-->
                     <div class="row mt-2">
-                        <div class="col-md">
-                            <div class="md-form has-icon">
-                                <i class="fa fa-neuter prefix"></i>
+                        <div class="col-12 col-sm-6">
+                            <div class="md-form">
                                 @Html.LabelFor(m => m.GenderId, new { @class = "select2-label" })
                                 @Html.DropDownListFor(m => m.GenderId, Model.AvailableGenders, new { @class = "mdb-select md-select2" })
                                 @Html.ValidationMessageFor(m => m.GenderId)
                             </div>
                         </div>
-                        <div class="col-md">
-                            <div class="md-form has-icon">
-                                <i class="fa fa-graduation-cap prefix"></i>
+                        <div class="col-12 col-sm-6">
+                            <div class="md-form">
                                 @Html.LabelFor(m => m.GradeId, new { @class = "select2-label" })
                                 @Html.DropDownListFor(m => m.GradeId, Model.AvailableGrades, new { @class = "mdb-select md-select2" })
                                 @Html.ValidationMessageFor(m => m.GradeId)
@@ -92,9 +106,8 @@
                     var hideRowClass = Model.officeType == "School" ? "hidden-xs-up" : "";
 
                     <div class="row mt-2 @hideRowClass">
-                        <div class="col-md">
+                        <div class="col col-md-6">
                             <div class="md-form">
-                                <i class="fa fa-neuter prefix"></i>
                                 @Html.LabelFor(m => m.SchoolId, new { @class = "select2-label" })
                                 @Html.DropDownListFor(m => m.SchoolId, Model.AvailableSchools, new { @class = "mdb-select md-select2" })
                                 @Html.ValidationMessageFor(m => m.SchoolId)
@@ -310,10 +323,10 @@
 
             $('.md-select2 option[value = "0"]').attr('disabled', true);
 
-
-
-            //$('#ShirtSizeId').prop('disabled', true);
-            //$('#PantSizeId').prop('disabled', true);
+            //Default the urgency to 'Normal'
+            if (!$('#urgency1').is(':checked') && !$('#urgency3').is(':checked')) {
+                $('#urgency1').prop('checked', true);
+            }
 
             CheckNeededItems();
 
@@ -482,6 +495,27 @@
 
 
             $('.md-select2').select2();
+
+            if ($('#RequestSuccess').length) {
+
+                //toastr.options = {
+                //    positionClass: "toast-bottom-right"
+                //}
+
+                toastr["success"]("You submitted the request successfully!");
+            }
+
+            if ($('#SubmitError').length) {
+
+                //toastr.options = {
+                //    positionClass: "toast-bottom-right"
+                //}
+
+                toastr["error"]("Unable to submit. Please ensure you completed all necessary fields.");
+            }
+
+            SubmitError
+
         });
 
         function CheckNeededItems() {
