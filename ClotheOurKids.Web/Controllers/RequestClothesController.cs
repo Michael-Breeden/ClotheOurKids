@@ -57,6 +57,12 @@ namespace ClotheOurKids.Web.Controllers
                 Value = "0"
             });
 
+            model.AvailableSchools.Add(new SelectListItem()
+            {
+                Text = "Unknown",
+                Value = "-1"
+            });
+
             model.AvailableShirtAgeGroups.Add(new SelectListItem()
             {
                 Text = "Select...",
@@ -76,6 +82,12 @@ namespace ClotheOurKids.Web.Controllers
             });
 
             model.AvailablePantSizes.Add(new SelectListItem()
+            {
+                Text = "Select...",
+                Value = "0"
+            });
+
+            model.AvailablePantLengthSizes.Add(new SelectListItem()
             {
                 Text = "Select...",
                 Value = "0"
@@ -254,6 +266,13 @@ namespace ClotheOurKids.Web.Controllers
                         Value = pantSize.id.ToString()
                     });
 
+                    model.AvailablePantLengthSizes.Add(new SelectListItem()
+                    {
+                        Text = pantSize.name,
+                        Value = pantSize.id.ToString()
+                    });
+
+
                 }
             }
 
@@ -357,7 +376,7 @@ namespace ClotheOurKids.Web.Controllers
                     UnderwearSize = string.IsNullOrEmpty(model.UnderwearSize) ? "" : model.UnderwearSize,
                     ShoeSize = string.IsNullOrEmpty(model.ShoeSize) ? "" : model.ShoeSize,
                     Comments = string.IsNullOrEmpty(model.Comments) ? "" : model.Comments,
-                    SchoolId = schoolId == 0 ? (model.SchoolId == 0 ? null : model.SchoolId) : schoolId,
+                    SchoolId = schoolId == 0 ? (model.SchoolId <= 0 ? null : model.SchoolId) : schoolId,
                     DateRequested = DateTime.Now,
                     DateEstimatedDelivery = _repository.GetEstimatedDeliveryDate(model.UrgencyId),
                     SubmittedByUserId = userId,

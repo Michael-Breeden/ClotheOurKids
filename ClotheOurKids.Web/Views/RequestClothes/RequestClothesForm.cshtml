@@ -62,7 +62,7 @@
                 <!--/Header-->
 
                 <!--Body-->
-                @using (Html.BeginForm("RequestClothesForm", "RequestClothes", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                @using (Html.BeginForm("RequestClothesForm", "RequestClothes", FormMethod.Post, new { @id= "requestForm", @class = "form-horizontal", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
 
@@ -235,7 +235,7 @@
                                         @Html.ValidationMessageFor(m => m.PantSizeId)
                                     </div>                                    
                                 </div>
-                                <div id="pantLength" class="col hidden-xs-up">
+                                <div id="pantLength" class="col-12 col-sm-6 hidden-xs-up">
                                     <div class="md-form">
                                         @Html.LabelFor(m => m.PantLengthSizeId, new { @class = "select2-label" })
                                         @Html.DropDownListFor(m => m.PantLengthSizeId, Model.AvailablePantLengthSizes, new { @class = "mdb-select md-select2" })
@@ -307,6 +307,14 @@
 @section customScript
 {
     <script>
+
+        $.validator.setDefaults({
+            ignore: ''
+        });
+
+        $('#requestForm').bind('invalid-form.validate', function () {
+            toastr["error"]("Unable to submit. Please ensure you completed all necessary fields.");
+        });
 
         $(document).ready(function () {
 
@@ -454,16 +462,7 @@
                 }
 
 
-                if (data[0].text == 'Mens') {
-                    $("label[for='PantSizeId']").text('Pant Waist');
-                    ddlPantLengthSizes.prop('disabled', false);
-                    $('#pantLength').removeClass('hidden-xs-up');
-                }
-                else {
-                    $("label[for='PantSizeId']").text('Pant Size');
-                    ddlPantLengthSizes.prop('disabled', true);
-                    $('#pantLength').addClass('hidden-xs-up');
-                }
+                TogglePantLength(data[0].text);
                 
 
                 $.ajax({
@@ -494,7 +493,16 @@
             });
 
 
-            $('.md-select2').select2();
+            $('.md-select2')
+                .select2()
+                .on('change', function () {
+                    $(this).trigger('blur');
+                });
+            
+
+            var pantAgeGroup = $('#PantAgeGroupId').select2('data');
+            TogglePantLength(pantAgeGroup[0].text);
+
 
             if ($('#RequestSuccess').length) {
 
@@ -514,7 +522,9 @@
                 toastr["error"]("Unable to submit. Please ensure you completed all necessary fields.");
             }
 
-            SubmitError
+
+            
+
 
         });
 
@@ -529,6 +539,21 @@
                     EnableInputs(id);              
                 }
             });
+        }
+
+        function TogglePantLength(pantAgeGroup) {
+            var ddlPantLengthSizes = $('#PantLengthSizeId');
+
+            if (pantAgeGroup == 'Mens') {
+                $("label[for='PantSizeId']").text('Pant Waist');
+                ddlPantLengthSizes.prop('disabled', false);
+                $('#pantLength').removeClass('hidden-xs-up');
+            }
+            else {
+                $("label[for='PantSizeId']").text('Pant Size');
+                ddlPantLengthSizes.prop('disabled', true);
+                $('#pantLength').addClass('hidden-xs-up');
+            }
         }
 
         function DisableInputs(id) {

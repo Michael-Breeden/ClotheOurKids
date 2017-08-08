@@ -32,7 +32,6 @@ namespace ClotheOurKids.Model
         public string Comments { get; set; }
         public int NeededItemsId { get; set; }
     
-        public virtual AspNetUser AspNetUser { get; set; }
         public virtual Gender Gender { get; set; }
         public virtual Grade Grade { get; set; }
         public virtual PantSize PantSize { get; set; }
@@ -42,5 +41,6 @@ namespace ClotheOurKids.Model
         public virtual NeededItem NeededItem { get; set; }
         public virtual Urgency Urgency { get; set; }
         public virtual RequestStatus RequestStatu { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

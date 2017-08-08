@@ -239,7 +239,17 @@
     font-size: 0.75rem;
 }
 
-.toast-top-right {
-    top: 80px;
-    right: 12px;
+
+@media(max-width:992px) and (min-width: 0) {
+    .toast-top-right {
+        top: 165px;
+        right: 5px;
+    }
+}
+
+@media (min-width: 992px) {
+    .toast-top-right {
+        top: 80px;
+        right: 5px;
+    }
 }
