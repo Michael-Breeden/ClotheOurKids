@@ -20,3 +20,7 @@ ADD ContactMethodId smallInt not null;
 ALTER TABLE dbo.AspNetUsers
 ALTER COLUMN PhoneNumber varchar(50);
 GO
+
+ALTER TABLE dbo.AspNetUsers
+ADD IsVerified bit NOT NULL DEFAULT (0);
+GO
