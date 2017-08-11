@@ -69,6 +69,7 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <Property Name="PositionId" Type="smallint" Nullable="false" />
     <Property Name="OfficeId" Type="smallint" Nullable="false" />
     <Property Name="ContactMethodId" Type="smallint" Nullable="false" />
+    <Property Name="IsVerified" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="AgeGroup">
     <Key>

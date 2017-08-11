@@ -18,8 +18,8 @@ namespace ClotheOurKids.Web.Controllers
         }
 
 
-        [Route("Donate", Name = "Donate")]
-        public ActionResult Donate()
+        [Route("Give", Name = "Give")]
+        public ActionResult Give()
         {
             return View();
         }

@@ -306,8 +306,7 @@
 
 @section customScript
 {
-    <script>
-
+    <script type="text/javascript">
         $.validator.setDefaults({
             ignore: ''
         });
@@ -368,19 +367,19 @@
                     url: "@(Url.RouteUrl("GetAgeGroups"))",
                     data: {
                         "genderId": selectedItem,
-                        "ageGroupType" : "Shirt"
+                        "ageGroupType": "Shirt"
                     },
                     success: function (data) {
                         ddlShirtAgeGroup.html('');
                         ddlShirtAgeGroup.prepend('<option value="0" disabled selected>Select...</option>').trigger('change');
-                        $.each(data, function(id, option) {
+                        $.each(data, function (id, option) {
                             ddlShirtAgeGroup.append($('<option></option>').val(option.id).html(option.name));
                         });
 
                         CheckNeededItems();
 
-                        //$('#ShirtSizeId').val('0').prop('disabled', true);    
-                        
+                        //$('#ShirtSizeId').val('0').prop('disabled', true);
+
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         alert('Failed to retrieve Shirt Age Groups');
@@ -394,12 +393,12 @@
                     url: "@(Url.RouteUrl("GetAgeGroups"))",
                     data: {
                         "genderId": selectedItem,
-                        "ageGroupType" : "Pant"
+                        "ageGroupType": "Pant"
                     },
                     success: function (data) {
                         ddlPantAgeGroup.html('');
                         ddlPantAgeGroup.prepend('<option value="0" disabled selected>Select...</option>').trigger('change');
-                        $.each(data, function(id, option) {
+                        $.each(data, function (id, option) {
                             ddlPantAgeGroup.append($('<option></option>').val(option.id).html(option.name));
                         });
 
@@ -437,9 +436,9 @@
                     success: function (data) {
                         ddlShirtSizes.html('');
                         ddlShirtSizes.prepend('<option value="0" disabled selected>Select...</option>');
-                        $.each(data, function(id, option) {
+                        $.each(data, function (id, option) {
                             ddlShirtSizes.append($('<option></option>').val(option.id).html(option.name));
-                        });                        
+                        });
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         alert('Failed to retrieve Shirt Sizes');
@@ -455,7 +454,7 @@
 
 
                 if (selectedItem == '0') {
-                    ddlPantSizes.prop('disabled', true);                    
+                    ddlPantSizes.prop('disabled', true);
                 }
                 else {
                     ddlPantSizes.prop('disabled', false);
@@ -463,7 +462,7 @@
 
 
                 TogglePantLength(data[0].text);
-                
+
 
                 $.ajax({
                     cache: false,
@@ -480,10 +479,10 @@
                         ddlPantLengthSizes.prepend('<option value="0" disabled selected>Select...</option>');
 
 
-                        $.each(data, function(id, option) {
+                        $.each(data, function (id, option) {
                             ddlPantSizes.append($('<option></option>').val(option.id).html(option.name));
                             ddlPantLengthSizes.append($('<option></option>').val(option.id).html(option.name));
-                        });  
+                        });
 
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
@@ -498,7 +497,7 @@
                 .on('change', function () {
                     $(this).trigger('blur');
                 });
-            
+
 
             var pantAgeGroup = $('#PantAgeGroupId').select2('data');
             TogglePantLength(pantAgeGroup[0].text);
@@ -523,7 +522,7 @@
             }
 
 
-            
+
 
 
         });
@@ -533,10 +532,10 @@
                 var id = this.dataset.details;
 
                 if (!this.checked) {
-                    DisableInputs(id);               
+                    DisableInputs(id);
                 }
                 else {
-                    EnableInputs(id);              
+                    EnableInputs(id);
                 }
             });
         }
@@ -593,13 +592,13 @@
                             .val('');
 
                         DisableInputHelpers(id);
-                    }                    
+                    }
                     break;
                 default:
                     break;
             }
 
-            
+
         }
 
         function DisableInputHelpers(id) {
@@ -623,19 +622,18 @@
             else {
                 EnableInput(id);
             }
-           
+
         }
 
         function EnableInput(id) {
             $('#' + id + " :input").prop('disabled', false);
             $('#' + id + " :header").removeClass('disabled');
-            $('#' + id + " label").removeClass('disabled');  
+            $('#' + id + " label").removeClass('disabled');
         }
 
         function resetSelect(id) {
             $(id).val('0').trigger('change');
         }
-
-    </script>   
+    </script>
 };
 

@@ -150,6 +150,25 @@ namespace ClotheOurKids.Web.Models.ViewModel
             return content;
         }
 
+        public string GetPantSizeNameById(int pantSizeId)
+        {
+            string size = (from pantSizes in context.PantSizes
+                           where pantSizes.PantSizeId == pantSizeId
+                           select pantSizes.Name).SingleOrDefault();
+            return size;
+        }
+
+        public Request AttachRequest(Request request)
+        {
+            context.Entry(request).Reference(s => s.School).Load();
+            context.Entry(request).Reference(g => g.Grade).Load();
+            context.Entry(request).Reference(u => u.Urgency).Load();
+            context.Entry(request).Reference(s => s.ShirtSize).Load();
+            context.Entry(request).Reference(p => p.PantSize1).Load();
+
+            return request;
+        }
+
         public void InsertRequest (Request request)
         {
             context.Requests.Add(request);

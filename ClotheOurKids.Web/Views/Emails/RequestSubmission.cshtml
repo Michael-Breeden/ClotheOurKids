@@ -1,0 +1,231 @@
+﻿@model ClotheOurKids.Web.Models.ViewModel.RequestSubmissionViewModel
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Title</title> 
+        <link rel="stylesheet" href="~/Content/css/foundation-emails.css">
+        <style>
+            body,
+            html,
+            .body {
+                background: #f3f3f3 !important;
+            }
+        </style>
+    </head>
+    <body>
+        <table class="body" data-made-with-foundation="">
+            <tr>
+                <td class="float-center" align="center" valign="top">
+                    <center data-parsed="">
+                        <table class="spacer float-center">
+                            <tbody>
+                                <tr>
+                                    <td height="16px" style="font-size:16px; line-height:16px;">&#xA0;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table align="center" class="container float-center">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <table class="spacer">
+                                            <tbody>
+                                                <tr>
+                                                    <td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="row">
+                                            <tbody>
+                                                <tr>
+                                                    <th class="small-12 large-12 columns first last">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    <h1>Request Number @Model.RequestNumber has been submitted</h1>
+                                                                    <p>
+                                                                        Thanks for shopping with us! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad earum ducimus, non, eveniet neque dolores voluptas architecto sed, voluptatibus aut dolorem odio. Cupiditate a recusandae, illum
+                                                                        cum voluptatum modi nostrum.
+                                                                    </p>
+                                                                    <table class="spacer">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <h4>Requestor</h4>
+                                                                    <table class="callout">
+                                                                        <tr>
+                                                                            <th class="callout-inner secondary">                                                                                
+                                                                                <table class="row">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <th class="small-12 large-6 columns first">
+                                                                                                <table>
+                                                                                                    <tr>
+                                                                                                        <th>
+                                                                                                            <p> <strong>Name</strong><br> @Model.Name</p>
+                                                                                                            <p> <strong>Email Address</strong><br> @Model.Email </p>
+                                                                                                            <p> <strong>Phone Number</strong><br> @Model.PhoneNumber </p>
+                                                                                                            <p> <strong>Verified</strong><br> @Model.IsVerified </p>
+                                                                                                        </th>
+                                                                                                    </tr>
+                                                                                                </table>
+                                                                                            </th>
+                                                                                            <th class="small-12 large-6 columns last">
+                                                                                                <table>
+                                                                                                    <tr>
+                                                                                                        <th>
+                                                                                                            <p> <strong>Office</strong><br> @Model.Office</p>
+                                                                                                            <p> <strong>Position</strong><br> @Model.Position</p>
+                                                                                                            <p> <strong>Contact Method</strong><br> @Model.ContactMethod</p>
+                                                                                                        </th>
+                                                                                                    </tr>
+                                                                                                </table>
+                                                                                            </th>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </th>
+                                                                            <th class="expander"></th>
+                                                                        </tr>
+                                                                    </table>
+                                                                    <h4>Needed Items</h4>
+                                                                    <table>
+                                                                        <tr>
+                                                                            <th>Shirts</th>
+                                                                            <th>Pants</th>
+                                                                            <th>Underwear</th>
+                                                                            <th>Socks</th>
+                                                                            <th>Shoes</th>
+                                                                            <th>Coat</th>
+                                                                            <th>Hygiene Kit</th>
+                                                                        </tr>
+                                                                        <tr>                                                                            
+                                                                            @if (Model.NeedShirt)
+                                                                            {
+                                                                                <td>X</td>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <td></td>
+                                                                            }
+
+                                                                            @if (Model.NeedPant)
+                                                                            {
+                                                                                <td>X</td>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <td></td>
+                                                                            }
+
+                                                                            @if (Model.NeedUnderwear)
+                                                                            {
+                                                                                <td>X</td>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <td></td>
+                                                                            }
+
+                                                                            @if (Model.NeedSocks)
+                                                                            {
+                                                                                <td>X</td>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <td></td>
+                                                                            }
+
+                                                                            @if (Model.NeedShoes)
+                                                                            {
+                                                                                <td>X</td>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <td></td>
+                                                                            }
+
+                                                                            @if (Model.NeedCoat)
+                                                                            {
+                                                                                <td>X</td>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <td></td>
+                                                                            }
+
+                                                                            @if (Model.NeedHygiene)
+                                                                            {
+                                                                                <td>X</td>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <td></td>
+                                                                            }
+                                                                        </tr>
+                                                                    </table>
+                                                                    <hr>
+                                                                    <h4>Request Details</h4>
+                                                                    <table>
+                                                                        <tr>
+                                                                            <th>
+                                                                                <table class="row">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <th class="small-12 large-6 columns first">
+                                                                                                <table>
+                                                                                                    <tr>
+                                                                                                        <th>
+                                                                                                            <p> <strong>Gender</strong><br> @Model.Gender</p>
+                                                                                                            <p> <strong>Grade</strong><br> @Model.Grade </p>
+                                                                                                            <p> <strong>Urgency</strong><br> @Model.Urgency </p>
+                                                                                                        </th>
+                                                                                                    </tr>
+                                                                                                </table>
+                                                                                            </th>
+                                                                                            <th class="small-12 large-6 columns last">
+                                                                                                <table>
+                                                                                                    <tr>
+                                                                                                        <th>
+                                                                                                            <p> <strong>Shirt</strong><br> @Model.ShirtSize</p>
+                                                                                                            <p> <strong>Pant</strong><br> @Model.PantSize</p>
+                                                                                                            <p> <strong>Pant Length</strong><br> @Model.PantLengthSize</p>
+                                                                                                            <p> <strong>Underwear</strong><br> @Model.UnderwearSize</p>
+                                                                                                            <p> <strong>Shoe</strong><br> @Model.ShoeSize</p>
+                                                                                                        </th>
+                                                                                                    </tr>
+                                                                                                </table>
+                                                                                            </th>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </th>
+                                                                            <th class="expander"></th>
+                                                                        </tr>
+                                                                    </table>
+                                                                    <h4>Comments</h4>
+                                                                    <p>
+                                                                        @Model.Comments
+                                                                    </p>
+                                                                </th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

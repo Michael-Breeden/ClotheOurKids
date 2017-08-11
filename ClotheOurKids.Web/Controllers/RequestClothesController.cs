@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using ClotheOurKids.Web.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Threading.Tasks;
+using Postal;
 
 namespace ClotheOurKids.Web.Controllers
 {
@@ -15,19 +17,25 @@ namespace ClotheOurKids.Web.Controllers
         private IRequestFormRepository _repository;
         protected ApplicationDbContext ApplicationDbContext { get; set; }
         protected UserManager<ApplicationUser> UserManager { get; set; }
+        protected EmailService aspEmailService { get; set; }
+        readonly IEmailService emailService;
 
         public RequestClothesController()
         {
             this._repository = new RequestFormRepository(new ClotheOurKidsEntities());
             this.ApplicationDbContext = new ApplicationDbContext();
             this.UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(this.ApplicationDbContext));
+            this.aspEmailService = new EmailService();
+            this.emailService = new Postal.EmailService();
         }
 
-        public RequestClothesController(IRequestFormRepository repository)
+        public RequestClothesController(IRequestFormRepository repository, IEmailService emailService)
         {
             this._repository = repository;
             this.ApplicationDbContext = new ApplicationDbContext();
             this.UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(this.ApplicationDbContext));
+            this.aspEmailService = new EmailService();
+            this.emailService = emailService;
         }
 
         [Route("Request-Clothes", Name = "RequestClothes")]
@@ -298,7 +306,7 @@ namespace ClotheOurKids.Web.Controllers
         [Authorize]
         [ValidateAntiForgeryToken]
         [Route("Request-Clothes/Form", Name = "RequestClothesFormPost")]
-        public ActionResult RequestClothesForm(RequestFormViewModel model)
+        public async Task<ActionResult> RequestClothesForm(RequestFormViewModel model)
         {
 
             string userId = User.Identity.GetUserId();
@@ -388,6 +396,169 @@ namespace ClotheOurKids.Web.Controllers
 
                 _repository.InsertRequest(request);
                 _repository.Save();
+
+                request = _repository.AttachRequest(request);
+
+                string submitterName = request.AspNetUser.FirstName + " " + request.AspNetUser.LastName;
+                string email = request.AspNetUser.Email;
+                string phone = request.AspNetUser.PhoneNumber;
+                string verified = request.AspNetUser.IsVerified.ToString();
+                string office = request.AspNetUser.Office.Name;
+                string position = request.AspNetUser.Position.Name;
+                string contactMethod = request.AspNetUser.ContactMethod.Name;
+
+                string needShirt = request.NeededItem.ShirtFlag ? "X" : "";
+                string needPant = request.NeededItem.PantFlag ? "X" : "";
+                string needUnderwear = request.NeededItem.UnderwearFlag ? "X" : "";
+                string needSock = request.NeededItem.SockFlag ? "X" : "";
+                string needShoe = request.NeededItem.ShoeFlag ? "X" : "";
+                string needCoat = request.NeededItem.CoatFlag ? "X" : "";
+                string needHygiene = request.NeededItem.HygieneFlag ? "X" : "";
+
+                string submittedSchool = request.School.Office.Name;
+                string gender = request.GenderId;
+                string grade = request.Grade.Name;
+                string urgency = request.Urgency.Name + "(" + request.Urgency.DaysForDelivery + " days)";
+                string shirt = request.ShirtSize.AgeGroup.Name + " - " + request.ShirtSize.Name;
+                string pant = request.PantSize1.AgeGroup.Name + " - " + request.PantSize1.Name;
+                string pantLength = request.PantLengthSizeId != null ? _repository.GetPantSizeNameById((int)request.PantLengthSizeId) : "";
+                string underwear = request.UnderwearSize;
+                string shoe = request.ShoeSize;
+                string comments = request.Comments;
+
+
+
+                //Send email to notify of request submission
+                IdentityMessage message = new IdentityMessage();
+                message.Destination = "givekidsclothes@gmail.com";
+                message.Subject = "Request Number " + request.RequestId + " has been submitted by " + request.AspNetUser.FirstName + " " + request.AspNetUser.LastName;
+                message.Body = @"
+                    <html>
+                        <body>
+                          <h1>Request Number " + request.RequestId + @" </h1>
+                          <div style=""margin-top: 20px;"">
+                               <h2>Requestor</h2>
+
+                               <table>   
+                                   <tr style = ""text-align: center;"">   
+                                     <th>Name</th>   
+                                     <th>Email Address</th>      
+                                     <th>Phone Number</th>
+                                     <th>Verified</th>         
+                                  </tr>
+         
+                                  <tr style = ""text-align: center;"">         
+                                    <td> " + submitterName + @" </td>         
+                                    <td> " + email + @" </td>         
+                                    <td> " + phone + @" </td>         
+                                    <td> " + verified + @" </td>         
+                                  </tr>
+         
+                                </table>         
+                         </div>
+                        
+                        <br/>
+
+                        <div style = ""margin-top: 20px;"">          
+                            <table>          
+                            <tr style = ""text-align: center;"">          
+                                <th> Office </th>          
+                                <th> Position </th>          
+                                <th> Contact Method </th>             
+                            </tr>
+             
+                            <tr style = ""text-align: center;"">
+             
+                                <td> " + office + @" </td>             
+                                <td> " + position + @" </td>             
+                                <td> " + contactMethod + @" </td>             
+                            </tr>
+             
+                            </table>
+             
+                        </div>
+             
+
+                        <div  style = ""margin-top: 40px;"">
+              
+                            <h2> Needed Items </h2> 
+                                            
+                            <table>                 
+                                    <tr>                 
+                                    <th>Shirts</th>                 
+                                    <th>Pants</th>                 
+                                    <th>Underwear</th>                 
+                                    <th>Socks</th>                 
+                                    <th>Shoes</th>                 
+                                    <th>Coat</th>                 
+                                    <th>Hygiene Kit</th>                    
+                                </tr>
+                    
+                                <tr style = ""text-align: center;"">                     
+                                    <td> " + needShirt + @" </td>                     
+                                    <td> " + needPant + @" </td>                     
+                                    <td> " + needUnderwear + @" </td>                     
+                                    <td> " + needSock + @" </td>                     
+                                    <td> " + needShoe + @" </td>                     
+                                    <td> " + needCoat + @" </td>                     
+                                    <td> " + needHygiene + @" </td>                     
+                                </tr>
+                     
+                            </table>                     
+                        </div>
+                     
+
+                        <div style = ""margin-top: 40px;"">                      
+                        <h2> Request Details </h2>
+                        
+                        <h5>" + submittedSchool + @"</h5>
+                                        
+                        <table>                         
+                            <tr style = ""text-align: center;"">                         
+                            <th>Gender</th>                         
+                            <th>Grade</th>                         
+                            <th>Urgency</th>                         
+                            </tr>
+                         
+                            <tr style = ""text-align: center;"">                          
+                            <td>" + gender + @"</td>                         
+                            <td>" + grade + @"</td>                          
+                            <td>" + urgency + @"</td>                          
+                            </tr>                          
+                        </table>                          
+                        </div>   
+
+                        <br/>
+
+                        <div style = ""margin-top: 20px;"">                           
+                        <table>                           
+                            <tr style = ""text-align: center;"">                           
+                            <th> Shirt </th>                           
+                            <th> Pant </th>                           
+                            <th> Pant Length </th>                              
+                            <th> Underwear </th>                              
+                            <th> Shoe </th>                              
+                            </tr>
+                              
+                            <tr style = ""text-align: center;"">                               
+                            <td> " + shirt + @" </td>                               
+                            <td> " + pant + @" </td>                               
+                            <td> " + pantLength + @" </td>                               
+                            <td> " + underwear + @" </td>                               
+                            <td> " + shoe + @" </td>                               
+                            </tr>                               
+                        </table>                               
+                        </div>
+                               
+
+                        <div style = ""margin-top: 20px;"">                                
+                        <h5>Comments</h5>                                
+                        <p>" + comments + @"</p>                                
+                        </div>     
+                    </ body >
+                </ html >";
+
+                await aspEmailService.SendAsync(message);
 
                 TempData["RequestSuccess"] = "You submitted the request successfully!";
                 return RedirectToAction("RequestClothesForm");

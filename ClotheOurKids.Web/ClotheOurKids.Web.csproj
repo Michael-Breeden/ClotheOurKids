@@ -119,6 +119,12 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Postal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=45719375b8b4d528, processorArchitecture=MSIL">
+      <HintPath>..\packages\Postal.Mvc5.1.2.0\lib\net45\Postal.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorEngine, Version=3.4.1.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorEngine.3.4.1\lib\net45\RazorEngine.dll</HintPath>
+    </Reference>
     <Reference Include="Stripe.net, Version=7.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Stripe.net.7.6.0\lib\net45\Stripe.net.dll</HintPath>
       <Private>True</Private>
@@ -238,10 +244,13 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModel\RequestFormViewModel.cs" />
+    <Compile Include="Models\ViewModel\RequestSubmissionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\foundation-emails.css" />
+    <Content Include="Content\img\logo\ClotheOurKidsLogo_withNA_Scaled.png" />
     <Content Include="Content\img\social\FB-f-Logo__blue_57.png" />
     <Content Include="Content\img\social\Twitter_Logo_White_On_Blue.png" />
     <Content Include="Content\img\social\Twitter_Logo_White_On_Blue.svg" />
@@ -296,8 +305,6 @@
     <Content Include="Content\img\lightbox\default-skin.svg" />
     <Content Include="Content\img\lightbox\preloader.gif" />
     <Content Include="Content\img\logo\ClotheOurKidsLogo_whiteText.png" />
-    <Content Include="Content\img\logo\ClotheOurKidsLogo_withMC.png" />
-    <Content Include="Content\img\logo\ClotheOurKidsLogo_withMC_Scaled.png" />
     <Content Include="Content\img\logo\ClotheOurKidsLogo_withMC_Scaled_whiteText.png" />
     <Content Include="Content\img\logo\ClotheOurKidsLogo_withMC_WhiteBackground.jpg" />
     <Content Include="Content\img\logo\FacebookProfilePic.png" />
@@ -586,7 +593,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Donation\Donate.cshtml" />
     <Content Include="Views\Donation\DonationComplete.cshtml" />
     <Content Include="Views\AboutUs\WhatWeDo.cshtml" />
     <Content Include="Views\AboutUs\WhatWeGive.cshtml" />
@@ -606,6 +612,11 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\OurWork\OurWork.cshtml" />
     <Content Include="Views\AboutUs\Leadership.cshtml" />
+    <Content Include="Views\Emails\_ViewStart.cshtml" />
+    <Content Include="Views\Emails\Web.config" />
+    <Content Include="Views\Emails\RequestSubmission.cshtml" />
+    <Content Include="Views\Emails\RequestSubmissionInlined.cshtml" />
+    <Content Include="Views\Donation\Give.cshtml" />
     <None Include="Web.Work.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

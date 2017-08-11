@@ -22,6 +22,8 @@ namespace ClotheOurKids.Model
         IList<PantSize> GetPantSizes(byte AgeGroupId);
         System.DateTime GetEstimatedDeliveryDate(byte UrgencyId);
         AspNetUser GetUserByAppUserId(string userId);
+        string GetPantSizeNameById(int pantSizeId);
+        Request AttachRequest(Request request);
         void InsertRequest(Request request);
         void Save();
     }
