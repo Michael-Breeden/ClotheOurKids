@@ -247,7 +247,8 @@ GO
 INSERT INTO Reference.SchoolDistrict (SchoolDistrictId, Name, CountyId)
 VALUES	(1, 'Morgan County', 1),
 		(2, 'Decatur City', 1),
-		(3, 'Hartselle City', 1);
+		(3, 'Hartselle City', 1),
+		(4, 'Lawrence County', 2);
 GO
 
 CREATE TABLE Reference.SchoolType
@@ -263,9 +264,10 @@ ALTER TABLE Reference.SchoolType
 GO
 
 INSERT INTO Reference.SchoolType (SchoolTypeId, Name)
-VALUES	(1, 'Elementary'),
+VALUES	(1, 'Elementary School'),
 		(2, 'Middle School'),
-		(3, 'High School');
+		(3, 'High School'),
+		(4, 'Other');
 GO
 
 CREATE TABLE Reference.Office
@@ -302,6 +304,7 @@ GO
 
 INSERT INTO Reference.Office (Name, OfficeTypeId, StreetAddress, City, StateId, PostalCode, Phone)
 VALUES 
+	--Morgan County Schools
 	('Brewer High School', 1, '59 Eva Rd', 'Somerville', 1, '35670', '2567788634'),
 	('Cotaco Junior High School', 1, '100 Cotaco School Rd', 'Somerville', 1, '35670', '2567788154'),
 	('Danville High School', 1, '9235 Danville Rd', 'Danville', 1, '35619', '2567739909'),
@@ -342,8 +345,33 @@ VALUES
 	('Hartselle Intermediate', 1, '130 Petain St SW', 'Hartselle', 1, '35640', '2567736094'),
 	('Hartselle Jr High', 1, '904 Sparkman St SW', 'Hartselle', 1, '35640', '2567735426'),
 	('Hartselle High School', 1, '1000 Bethel Rd NE', 'Hartselle', 1, '35640', '2567515615'),
+	
+
+	--Lawrence County Schools
+	('East Lawrence Elementary', 1, '263 County Road 370', 'Trinity', 1, '35673', '2569052514'),
+	('East Lawrence High', 1, '55 County Road 370', 'Trinity', 1, '35673', '2569052430'),
+	('East Lawrence Middle', 1, '99 County Road 370', 'Trinity', 1, '35673', '2569052420'),
+	('Hatton Elementary', 1, '6536 County Road 236', 'Town Creek', 1, '35672', '2566854000'),
+	('Hatton High', 1, '6909 Alabama Highway 101', 'Town Creek', 1, '35672', '2566854010'),
+	('Hazlewood Elementary', 1, '334 Hazlewood Street', 'Town Creek', 1, '35672', '2566854020'),
+	('Lawrence County Center of Technology', 1, '179 College Street', 'Moulton', 1, '35650', '2569052425'),
+	('Lawrence County High School', 1, '102 College Street', 'Moulton', 1, '35650', '2569052440'),
+	('Moulton Elementary', 1, '412 Main Street', 'Moulton', 1, '35650', '2569052450'),
+	('Moulton Middle', 1, '660 College Street', 'Moulton', 1, '35650', '2569052460'),
+	('Mount Hope School', 1, '8455 County Road 23', 'Mt. Hope', 1, '35651', '2569052470'),
+	('R. A. Hubbard', 1, '12905 Jesse Jackson Parkway', 'Courtland', 1, '35618', '2566373010'),
+	('Speake School', 1, '7323 Al Hwy 36', 'Danville', 1, '35619', '2569749201'),
+
+	--School Boards
+	('Morgan County Board of Education', 3, '235 Highway 67 South', 'Decatur', 1, '35603', '2563536442'),
+	('Decatur City Board of Education', 3, '302 Fourth Avenue', 'Decatur', 1, '35601', '2565523000'),
+	('Hartselle City Board of Education', 3, '305 College St NE', 'Hartselle', 1, '35640', '2567735419'),
+	('Lawrence County Board of Education', 3, '14131 Market St', 'Moulton', 1, '35650', '2569052400'),
+
+	--Other Organizations
 	('P.A.C.T', 2, '245 Jackson St SE', 'Decatur', 1, '35601', '2563557252'),
 	('CASA of Noth Alabama', 2, '302 Lee Street NE', 'Decatur', 1, '35602', '2565606102');
+
 GO
 
 CREATE TABLE Reference.School
@@ -422,6 +450,19 @@ SELECT	o.OfficeId,
 			WHEN 'Hartselle Intermediate' THEN 3 --Hartselle City
 			WHEN 'Hartselle Jr High' THEN 3 --Hartselle City
 			WHEN 'Hartselle High School' THEN 3 --Hartselle City
+			WHEN 'East Lawrence Elementary' THEN 4 --Lawrence County
+			WHEN 'East Lawrence High' THEN 4 --Lawrence County
+			WHEN 'East Lawrence Middle' THEN 4 --Lawrence County
+			WHEN 'Hatton Elementary' THEN 4 --Lawrence County
+			WHEN 'Hatton High' THEN 4 --Lawrence County
+			WHEN 'Hazlewood Elementary' THEN 4 --Lawrence County
+			WHEN 'Lawrence County Center of Technology' THEN 4 --Lawrence County
+			WHEN 'Lawrence County High School' THEN 4 --Lawrence County
+			WHEN 'Moulton Elementary' THEN 4 --Lawrence County
+			WHEN 'Moulton Middle' THEN 4 --Lawrence County	
+			WHEN 'Mount Hope School' THEN 4 --Lawrence County
+			WHEN 'R. A. Hubbard' THEN 4 --Lawrence County
+			WHEN 'Speake School' THEN 4 --Lawrence County
 			Else 0
 		END as SchoolDistrict,
 		CASE o.Name
@@ -465,6 +506,19 @@ SELECT	o.OfficeId,
 			WHEN 'Hartselle Intermediate' THEN 2 --Middle school
 			WHEN 'Hartselle Jr High' THEN 2 --Middle school
 			WHEN 'Hartselle High School' THEN 3 --High school
+			WHEN 'East Lawrence Elementary' THEN 1 --Elementary school
+			WHEN 'East Lawrence High' THEN 3 --High school
+			WHEN 'East Lawrence Middle' THEN 2 --Middle school
+			WHEN 'Hatton Elementary' THEN 1 --Elementary school
+			WHEN 'Hatton High' THEN 3 --High school
+			WHEN 'Hazlewood Elementary' THEN 1 --Elementary school
+			WHEN 'Lawrence County Center of Technology' THEN 3 --High school
+			WHEN 'Lawrence County High School' THEN 3 --High school
+			WHEN 'Moulton Elementary' THEN 1 --Elementary school
+			WHEN 'Moulton Middle' THEN 2 --Middle school		
+			WHEN 'Mount Hope School' THEN 1 --Elementary school
+			WHEN 'R. A. Hubbard' THEN 3 --High school
+			WHEN 'Speake School' THEN 1 --Elementary school
 			Else 0
 		END as SchoolType
 FROM Reference.Office o
