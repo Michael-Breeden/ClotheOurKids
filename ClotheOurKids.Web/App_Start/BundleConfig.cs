@@ -10,13 +10,15 @@ namespace ClotheOurKids.Web
             bundles.Add(new ScriptBundle("~/bundles/requiredJs").Include(
                         "~/Content/js/jquery-3.1.1.js",
                         "~/Content/js/tether.js",
+                        "~/Content/js/jquery.waypoints.min.js",
                         "~/Content/js/jquery.validate.min.js",
                         "~/Content/js/jquery.validate.unobtrusive.min.js",
                         "~/Content/js/bootstrap.js",
                         "~/Content/js/mdb.js",
                         "~/Content/plugins/select2-4.0.3/js/select2.full.min.js",
                         "~/Content/plugins/mmenu-6.1/dist/jquery.mmenu.all.js",
-                        "~/Content/plugins/mmenu-6.1/dist/wrappers/bootstrap/jquery.mmenu.bootstrap.js"
+                        "~/Content/plugins/mmenu-6.1/dist/wrappers/bootstrap/jquery.mmenu.bootstrap.js",
+                        "~/Content/js/jquery.animateNumber.min.js"
                         ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

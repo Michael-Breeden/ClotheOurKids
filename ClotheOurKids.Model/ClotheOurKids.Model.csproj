@@ -146,6 +146,8 @@
       <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\HomeRepository.cs" />
+    <Compile Include="Repository\IHomeRepository.cs" />
     <Compile Include="Repository\IRegisterFormRepository.cs" />
     <Compile Include="Repository\IRequestFormRepository.cs" />
     <Compile Include="Repository\RegisterFormRepository.cs" />

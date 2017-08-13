@@ -156,5 +156,22 @@
     border-color: #4285F4; }
   .kids-skin .pagination-primary-color .page-link {
     color: #4285F4; }
+  .kids-skin .streak.streak-lg {
+      margin-right: 0;
+      margin-left: 0;
+  }
   .kids-skin .bg-red {
     background-color: #c00 !important;  }
+  .kids-skin .bg-light-blue {
+      background-color: #33b5e5 !important;
+      color: #fff;
+  }
+    .kids-skin .bg-light-green {
+        background-color: #7cb342 !important;
+        color: #fff;
+    }
+    .kids-skin .bg-yellow {
+        background-color: #fdb614 !important;
+        color: #fff;
+    }
+

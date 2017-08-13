@@ -10,7 +10,6 @@ $(document).ready(function () {
             appId: '676045709255023',
             version: 'v2.7' // or v2.1, v2.2, v2.3, ...
         });
-        FB.getLoginStatus(updateStatusCallback);
     });
 
     //$("#mobileMenu").append($("#mainSiteMenu").clone().attr("id", "mobileMenu").attr("class", ""));

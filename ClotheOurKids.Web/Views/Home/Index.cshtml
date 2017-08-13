@@ -1,4 +1,6 @@
-﻿@section pageCSS
+﻿@model ClotheOurKids.Web.Models.ViewModel.HomeViewModel
+
+@section pageCSS
 {
     <style>
         html,
@@ -19,6 +21,7 @@
             .navContainer {
                 position: static;
                 border: 0;
+                margin-bottom: 5px;
             }
         }*
 
@@ -38,12 +41,7 @@
             background-color: #7E929C;
         }
 
-        #WhatWeDo {
-            cursor: pointer;
-            cursor: hand;
-        }
-
-        #WhatWeGive {
+        #OurWork {
             cursor: pointer;
             cursor: hand;
         }
@@ -58,6 +56,12 @@
             cursor: hand;
         }
 
+        @@media (max-width: 1199px) and (min-width: 992px) {
+            .view {
+                height: calc(100vh - 125px);
+            }
+        }
+
         @@media (max-width: 992px) {
             .view {
                 height: calc(100vh - 163px);
@@ -66,7 +70,7 @@
 
         @@media (min-width: 1200px) {
             .logo-container {
-                background: url("../../Content/img/logo/ClotheOurKidsLogo_withMC_Scaled_whiteText.png") left top no-repeat !important;
+                background: url("../../Content/img/logo/ClotheOurKidsLogo_withNAwhite_Scaled.png") left top no-repeat !important;
             }
         }
 
@@ -89,14 +93,17 @@
                 </li>
                 <li>
                     <a href="@Url.RouteUrl("GetInvolved")" class="btn btn-outline-white btn-lg wow fadeInLeft" data-wow-delay="0.2s"><i class="fa fa-user left"></i> Get involved!</a>
-                    <a href="@Url.RouteUrl("WhatWeDo")" class="btn btn-outline-white btn-lg wow fadeInRight" data-wow-delay="0.2s"><i class="fa fa-book left"></i>Learn more</a>
+                    <a href="@Url.RouteUrl("OurWork")" class="btn btn-outline-white btn-lg wow fadeInRight" data-wow-delay="0.2s"><i class="fa fa-book left"></i>Learn more</a>
                 </li>
             </ul>
+            @*<div class="d-flex align-self-end justify-content-center">
+                    <i class="fa fa-angle-down fa-5x"></i>
+                </div>*@
         </div>
+        
     </div>
     <!--/.Mask-->
 }
-
 
 <!-- Main container-->
 <div class="container" style="z-index: 2000;">
@@ -104,61 +111,85 @@
     <!--Section: About Us-->
     <section class="section extra-margins" id="about">
         <!--Section heading-->
-        <h1 class="section-heading wow fadeIn" data-wow-delay="0.2s">About Us</h1>
+        <h1 class="section-heading wow fadeIn" data-wow-delay="0.2s">Our Mission</h1>
 
         <!--Section description-->
         <p class="section-description wow fadeIn" data-wow-delay="0.4s">
-            We are a nonprofit group who is giving clothes and shoes to children in need in Morgan County, Alabama. 
+            Clothe Our Kids of North Alabama is a 501(c)(3) non-profit organization with a mission to provide clothing and hygiene items to children and teens in need in Morgan and Lawrence County Alabama. 
             <br />
-            We rely 100% on your clothing and financial donations to ensure we can clothe all of the kids who need our help.
+            <br />
+            We believe that every child deserves clothing that gives them confidence in who they are and who they can become. We also believe that giving clothing to kids not only meets one of their most basic needs but also gives them a glimpse of the love and compassion of Jesus.
+            
+            <br />
+            <br />
+            It is our hope that every child who receives a bag from us will understand one message:
+            <br />
+            <span style="font-size: 1.5rem;">You Are Loved</span>
+            
         </p>
     </section>
     <!--/Section: About Us-->
+</div>
 
-    <hr class="between-sections">
+<div id="RequestStreak" class="streak bg-light-green white-text" style="width: 100%;">
+    <div class="flex-center">
+        <h1 class="wow fadeIn"><span id="RequestCount">0</span> Kids Clothed</h1>            
+    </div>
+</div>
 
+<div class="container" style="z-index: 2000;">
     <!--Section: Find Out More-->
-    <section class="section feature-box" id="findOutMore">
+    <section class="section mt-5" id="findOutMore">
         <!--Section heading-->
         <h1 class="section-heading wow fadeIn" data-wow-delay="0.2s">Find Out More</h1>
         <!--Section description-->
-        <p class="section-description lead wow fadeIn" data-wow-delay="0.4s">Learn more about us!</p>
+        <p class="section-description wow fadeIn" data-wow-delay="0.4s">Learn more about us!</p>
 
-        <!--First row-->
-        <div class="row features-big">
-            <!--First column-->
-            <div id="WhatWeDo" class="col-md-3 mb-r wow zoomIn">
-                <i class="fa fa-area-chart blue-text"></i>
-                <h4 class="feature-title">What We Do</h4>
-                <p class="grey-text">Learn how we operate and who we help</p>
-            </div>
-            <!--/First column-->
 
-            <!--Second column-->
-            <div id="WhatWeGive" class="col-md-3 mb-r wow zoomIn">
-                <i class="fa fa-book green-text"></i>
-                <h4 class="feature-title">What We Give</h4>
-                <p class="grey-text">Find out what we put in each bag that we give to children</p>
+        <div class="row mb-1 text-center">
+            <div id="OurWork" class="col white-text mr-2">
+                <div class="card card-cascade bg-red">
+                    <div class="card-block text-center">
+                        <div class="mb-1">
+                            <h4 class="card-title">Our Work</h4>
+                            <p class="card-text">Learn how we operate and who we help</p>
+                        </div>
+                        
+                        <div class="card-footer">
+                            <p>Learn More <i class="fa fa-angle-right"></i></p>
+                        </div>                        
+                    </div>
+                </div>
             </div>
-            <!--/Second column-->
-
-            <!--Third column-->
-            <div id="GetInvolved" class="col-md-3 mb-r wow zoomIn">
-                <i class="fa fa-coffee red-text"></i>
-                <h4 class="feature-title">Get Involved</h4>
-                <p class="grey-text">Find ways to help the children in our county</p>
+            <div id="GetInvolved" class="col mr-2">
+                <div class="card card-cascade bg-light-blue" style="height: 100%;">
+                    <div class="card-block text-center">
+                        <div class="mb-1">
+                            <h4 class="card-title">Get Involved</h4>
+                            <p class="card-text">Find ways to help the children in your county</p>
+                        </div>
+                        
+                        <div class="card-footer">
+                            <p>Join Us <i class="fa fa-angle-right"></i></p>
+                        </div>                        
+                    </div>
+                </div>
             </div>
-            <!--/Third column-->
-
-            <!--Third column-->
-            <div id="Donate" class="col-md-3 mb-r wow zoomIn">
-                <i class="fa fa-apple purple-text"></i>
-                <h4 class="feature-title">Donate</h4>
-                <p class="grey-text">Help us make sure we never have to turn a child away</p>
+            <div id="Donate" class="col">
+                <div class="card card-cascade bg-yellow" style="height: 100%;">
+                    <div class="card-block text-center">
+                        <div class="mb-1">
+                            <h4 class="card-title">Give</h4>
+                            <p class="card-text">Help us make sure we never have to turn a child away</p>
+                        </div>
+                        
+                        <div class="card-footer">
+                            <p>Donate Today <i class="fa fa-angle-right"></i></p>
+                        </div>                        
+                    </div>
+                </div>
             </div>
-            <!--/Third column-->
         </div>
-
     </section>
     <!--/Section: Find Out More-->
 
@@ -168,7 +199,7 @@
     <section class="section" id="contact">
         <!--Section heading-->
         <h1 class="section-heading wow fadeIn" data-wow-delay="0.2s">Contact Us</h1>
-        
+
         <div class="row wow zoomIn" data-wow-delay="0.4s">
 
             <!--First column-->
@@ -209,16 +240,7 @@
 
 @section scripts
 {
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2xc4rPas-4JZpu2txBdfWUtKXASh2O1k&callback=initMap">
-    </script>
-
-}
-
-@section customScript
-{
     <script type="text/javascript">
-        
         function initMap() {
 
             var var_location = new google.maps.LatLng(34.528204, -86.898599);
@@ -250,17 +272,24 @@
                             '<h3 class="h3-responsive">' + locations[i][0] + '</h3>' +
                             '<p>' + locations[i][3] +
                             '<br>Trailer behind Priceville Junior High School, beside the Baseball fields'
-                            '<br>' + locations[i][4] +
-                        '</div>';
+                        '<br>' + locations[i][4] +
+                            '</div>';
                         infowindow.setContent(contentString);
                         infowindow.open(map, marker);
                     }
                 })(marker, i));
             }
-
-
         }
+    </script>
 
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2xc4rPas-4JZpu2txBdfWUtKXASh2O1k&callback=initMap">
+    </script>
+}
+
+@section customScript
+{
+    <script type="text/javascript">  
 
         $(document).ready(function () {
 
@@ -272,13 +301,8 @@
                 setNavbar();
             });
 
-            $('#WhatWeDo').click(function () {
-                var url = '@Url.RouteUrl("WhatWeDo")';
-                window.location = url
-            });
-
-            $('#WhatWeGive').click(function () {
-                var url = '@Url.RouteUrl("WhatWeGive")';
+            $('#OurWork').click(function () {
+                var url = '@Url.RouteUrl("OurWork")';
                 window.location = url
             });
 
@@ -290,6 +314,21 @@
             $('#Donate').click(function () {
                 var url = '@Url.RouteUrl("Give")';
                 window.location = url
+            });
+
+            var requestCount = @Model.RequestCount;
+            var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',');
+            var direction = 'down';
+            var waypoint = $('#RequestStreak').waypoint(function (direction) {
+                $('#RequestCount').animateNumber(
+                    {
+                        number: requestCount,
+                        numberStep: comma_separator_number_step
+                    }
+                );
+            },
+            {
+                offset: 'bottom-in-view'
             });
         });
 
@@ -304,5 +343,4 @@
         }       
 
     </script>   
-
 }

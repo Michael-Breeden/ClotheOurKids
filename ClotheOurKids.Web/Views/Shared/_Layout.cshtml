@@ -66,7 +66,7 @@
                                             <div class="dropdown-menu dropdown-primary" aria-labelledby="AboutMeMenu">
                                                 <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("WhoWeAre")">Who We Are</a>
                                                 <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("LeadershipPage")">Leadership</a>
-                                                <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("Home")">Who We Serve</a>
+                                                <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("WhoWeServe")">Who We Serve</a>
                                                 <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("FAQ")">Frequently Asked Questions</a>
                                             </div>
                                         </li>
@@ -74,7 +74,7 @@
                                             <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("OurWork")">Our Work</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Home")">Stories</a>
+                                            <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Stories")">Stories</a>
                                         </li>
                                         <li class="nav-item">
                                             @if (Request.IsAuthenticated)
@@ -129,12 +129,12 @@
                                         <li class="top-level"><a>About Us</a></li>
                                         <li><a href="@Url.RouteUrl("WhoWeAre")">Who We Are</a></li>
                                         <li><a href="@Url.RouteUrl("LeadershipPage")">Leadership</a></li>
-                                        <li><a href="@Url.RouteUrl("Home")">Who We Serve</a></li>
+                                        <li><a href="@Url.RouteUrl("WhoWeServe")">Who We Serve</a></li>
                                         <li><a href="@Url.RouteUrl("FAQ")">Frequently Asked Questions</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="@Url.RouteUrl("OurWork")">Our Work</a></li>
-                                <li><a href="@Url.RouteUrl("Home")">Stories</a></li>
+                                <li><a href="@Url.RouteUrl("Stories")">Stories</a></li>
                                 <li>
                                     @if (Request.IsAuthenticated)
                                     {

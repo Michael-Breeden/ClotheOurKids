@@ -1,4 +1,4 @@
-﻿<div class="container-fluid pr-0 pl-0">
+﻿<div class="container">
 
     <section class="section page-top-section mb-4 wow fadeIn" data-wow-delay="0.2s">
         <div class="row">
@@ -21,17 +21,18 @@
             </div>
         </div>
     </section>
+</div>
 
-    <div class="streak bg-red white-text">
-        <div class="flex-center">
-            <ul>
-                <li><h2 class="h2-responsive wow fadeIn"><i class="fa fa-quote-left" aria-hidden="true"></i> You can give without loving, but you cannot love without giving. <i class="fa fa-quote-right" aria-hidden="true"></i></h2></li>
-                <li><h5 class="text-center font-italic wow fadeIn" data-wow-delay="0.2s">~ Amy Carmichael</h5></li>
-            </ul>
-        </div>
+<div class="streak bg-red white-text">
+    <div class="flex-center">
+        <ul>
+            <li><h2 class="h2-responsive wow fadeIn"><i class="fa fa-quote-left" aria-hidden="true"></i> You can give without loving, but you cannot love without giving. <i class="fa fa-quote-right" aria-hidden="true"></i></h2></li>
+            <li><h5 class="text-center font-italic wow fadeIn" data-wow-delay="0.2s">~ Amy Carmichael</h5></li>
+        </ul>
     </div>
+</div>
 
-
+<div class="container">
     <!--Section: Donate Funds-->
     <section class="section mt-4" id="funds">
         <h1 class="section-heading wow fadeIn" data-wow-delay="0.2s">Give Funds</h1>
@@ -61,43 +62,11 @@
             Take a look at the map below and find the drop-off location closest to you!
         </p>
 
-        <div id="map" class="z-depth-1 wow fadeIn" data-wow-delay="0.4s" style="height:500px"></div>
-
-        <div class="table-responsive mt-1">
-            <!--Table-->
-            <table id="locationTable" class="table table-hover">
-                <!--Table Head-->
-                <thead>
-                    <tr class="primary-color white-text">
-                        <th>Place</th>
-                        <th>Address</th>
-                        <th>Phone</th>
-                        <th>Website</th>
-                    </tr>
-                </thead>
-                <!--/Table Head-->
-                <!--Table Body-->
-                <tbody></tbody>
-                <!--/Table Body-->
-            </table>
-            <!--/Table-->
-        </div>
+        
     </section>
-
-
-
-
-
 </div>
 
 
-@section scripts
-{
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2xc4rPas-4JZpu2txBdfWUtKXASh2O1k&callback=initMap">
-    </script>
-
-}
 
 @section customScript
 {
@@ -152,19 +121,6 @@
                         infowindow.open(map, marker);
                     }
                 })(marker, i));
-
-
-
-                $('#locationTable > tbody:last-child').append(
-                    '<tr>'
-                    + '<td>' + locations[i][0] + '</td>'
-                    + '<td>' + locations[i][3] + '</td>'
-                    + '<td>' + locations[i][4] + '</td>'
-                    + '<td><a href="' + locations[i][5] + '">' + locations[i][5] + '</td>'
-                    + '<td style="display: none;">' + i + '</td>'
-                    + '</tr>');
-
-            }
         }
     </script>
 }

@@ -229,6 +229,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OurWorkController.cs" />
     <Compile Include="Controllers\RequestClothesController.cs" />
+    <Compile Include="Controllers\StoriesController.cs" />
     <Compile Include="CustomClasses\GmailEmailService.cs" />
     <Compile Include="CustomClasses\OfflineMessageAttribute.cs" />
     <Compile Include="CustomClasses\WebsiteAvailable.cs" />
@@ -243,6 +244,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModel\HomeViewModel.cs" />
     <Compile Include="Models\ViewModel\RequestFormViewModel.cs" />
     <Compile Include="Models\ViewModel\RequestSubmissionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -250,10 +252,35 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\foundation-emails.css" />
+    <Content Include="Content\img\ClotheOurKids\COKJULY-1.jpg" />
+    <Content Include="Content\img\ClotheOurKids\COKJULY-10.jpg" />
+    <Content Include="Content\img\ClotheOurKids\COKJULY-11.jpg" />
+    <Content Include="Content\img\ClotheOurKids\COKJULY-12.jpg" />
+    <Content Include="Content\img\ClotheOurKids\COKJULY-13.jpg" />
+    <Content Include="Content\img\ClotheOurKids\COKJULY-14.jpg" />
+    <Content Include="Content\img\ClotheOurKids\COKJULY-15.jpg" />
+    <Content Include="Content\img\ClotheOurKids\COKJULY-16.jpg" />
+    <Content Include="Content\img\ClotheOurKids\COKJULY-17.jpg" />
+    <Content Include="Content\img\ClotheOurKids\COKJULY-18.jpg" />
+    <Content Include="Content\img\ClotheOurKids\COKJULY-19.jpg" />
+    <Content Include="Content\img\ClotheOurKids\COKJULY-2.jpg" />
+    <Content Include="Content\img\ClotheOurKids\COKJULY-20.jpg" />
+    <Content Include="Content\img\ClotheOurKids\COKJULY-3.jpg" />
+    <Content Include="Content\img\ClotheOurKids\COKJULY-4.jpg" />
+    <Content Include="Content\img\ClotheOurKids\COKJULY-5.jpg" />
+    <Content Include="Content\img\ClotheOurKids\COKJULY-6.jpg" />
+    <Content Include="Content\img\ClotheOurKids\COKJULY-7.jpg" />
+    <Content Include="Content\img\ClotheOurKids\COKJULY-8.jpg" />
+    <Content Include="Content\img\ClotheOurKids\COKJULY-9.jpg" />
+    <Content Include="Content\img\ClotheOurKids\COKJULY-HighRes-17.jpg" />
+    <Content Include="Content\img\logo\ClotheOurKidsLogo_withNAwhite_Scaled.png" />
     <Content Include="Content\img\logo\ClotheOurKidsLogo_withNA_Scaled.png" />
+    <Content Include="Content\img\perry.jpg" />
     <Content Include="Content\img\social\FB-f-Logo__blue_57.png" />
     <Content Include="Content\img\social\Twitter_Logo_White_On_Blue.png" />
     <Content Include="Content\img\social\Twitter_Logo_White_On_Blue.svg" />
+    <Content Include="Content\js\jquery.animateNumber.min.js" />
+    <Content Include="Content\js\jquery.waypoints.min.js" />
     <Content Include="CustomErrors\404.html" />
     <Content Include="CustomErrors\503.html" />
     <Content Include="Changes.txt" />
@@ -541,25 +568,11 @@
     <Content Include="ConnectionStrings.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\givekidsclothes.com - Web Deploy.pubxml" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-3.1.1.js" />
-    <Content Include="Scripts\jquery-3.1.1.min.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <None Include="Content\js\jquery.validate-vsdoc.js" />
     <Content Include="Content\js\jquery.validate.js" />
     <Content Include="Content\js\jquery.validate.min.js" />
     <Content Include="Content\js\jquery.validate.unobtrusive.js" />
     <Content Include="Content\js\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\ViewScripts\Layout.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -594,8 +607,6 @@
     <Content Include="Views\Home\FAQ.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Donation\DonationComplete.cshtml" />
-    <Content Include="Views\AboutUs\WhatWeDo.cshtml" />
-    <Content Include="Views\AboutUs\WhatWeGive.cshtml" />
     <Content Include="Views\AboutUs\WhoWeAre.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\RequestClothes\RequestClothes.cshtml" />
@@ -603,8 +614,6 @@
     <Content Include="Views\Donation\GetInvolved.cshtml" />
     <Content Include="Views\RequestClothes\RequestClothesForm.cshtml" />
     <Content Include="Views\Shared\_PushBelowNavbar.cshtml" />
-    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Shared\_LoginForm.cshtml" />
     <Content Include="Views\Account\Confirm.cshtml" />
     <Content Include="Views\Shared\OfflineOld.cshtml" />
@@ -617,6 +626,8 @@
     <Content Include="Views\Emails\RequestSubmission.cshtml" />
     <Content Include="Views\Emails\RequestSubmissionInlined.cshtml" />
     <Content Include="Views\Donation\Give.cshtml" />
+    <Content Include="Views\Stories\Stories.cshtml" />
+    <Content Include="Views\AboutUs\WhoWeServe.cshtml" />
     <None Include="Web.Work.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
