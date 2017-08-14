@@ -58,6 +58,12 @@
     z-index: 4050;
 }
 
+@media(max-width: 1199px) {
+    .navContainer {
+        margin-bottom: 5px;
+    }
+}
+
 
 @media only screen and (max-width: 768px) {
     .page-top-section .section-heading {

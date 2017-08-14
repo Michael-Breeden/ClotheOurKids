@@ -212,11 +212,116 @@
 
         </header>
 
-        <main class="pt-4">
+        <main class="pt-4 pb-3">
             @RenderBody()
         </main>
 
-        <footer>
+        <footer class="page-footer bg-red">
+            <!--/Footer Links-->
+            <div class="container-fluid">
+                <!--First row-->
+                <div class="row">
+                    <!--First column-->
+                    <div class="col col-md-3 offset-md-1 text-md-left text-center">
+                        <p>
+                            P.O. Box 565 <br />
+                            Somerville, AL 35670 <br />
+                            <a href="mailto:info@GiveKidsClothes.com">info@GiveKidsClothes.com</a>
+                        </p>
+                    </div>
+                    <!--/.First column-->
+
+                    <!--Second column-->
+                    <div class="hidden-sm-down col-md-2 offset-md-1">
+                        <h5 class="title">About Us</h5>
+                        <ul>
+                            <li><a href="@Url.RouteUrl("WhoWeAre")">Who We Are</a></li>
+                            <li><a href="@Url.RouteUrl("LeadershipPage")">Leadership</a></li>
+                            <li><a href="@Url.RouteUrl("WhoWeServe")">Who We Serve</a></li>
+                            <li><a href="@Url.RouteUrl("FAQ")">F.A.Q</a></li>
+                        </ul>
+                    </div>
+
+                    <!--/.Second column-->
+
+
+                    <!--Third column-->
+                    <div class="hidden-sm-down col-md-2">
+                        <h5 class="title">What We Do</h5>
+                        <ul>
+                            <li><a href="@Url.RouteUrl("OurWork")">Our Work</a></li>
+                            <li><a href="@Url.RouteUrl("Stories")">Stories</a></li>
+                        </ul>
+                    </div>
+                    <!--/.Third column-->
+
+                    <!--Fourth column-->
+                    <div class="hidden-sm-down col-md-2">
+                        <h5 class="title">Take Action</h5>
+                        <ul>
+                            <li><a href="@Url.RouteUrl("Give")">Give</a></li>
+                            <li><a href="@Url.RouteUrl("GetInvolved")">Get Involved</a></li>
+                            <li>
+                                @if (Request.IsAuthenticated)
+                                {
+                                    <a class="waves-effect waves-light" href="@Url.Action("RequestClothesForm", "RequestClothes")">Request Clothes</a>
+                                }
+                                else
+                                {
+                                    <a class="waves-effect waves-light" href="@Url.RouteUrl("RequestClothes")">Request Clothes</a>
+                                }
+                        </ul>
+                    </div>
+                    <!--/.Fourth column-->
+
+                </div>
+                <!--/First row-->
+
+
+                <div class="hidden-xl-down">
+                    <hr>
+                    <!--Second row-->
+                    <div class="row">
+                        <div class="col">
+                            <h5>Our Sponsors in <span class="thisYear"></span></h5>
+                        </div>
+
+                    </div>
+                    <!--Second row-->
+                    <!--Third row-->
+                    <div class="row">
+                        <div class="col">
+
+                        </div>
+                    </div>
+                    <!--Third row-->
+                </div>
+
+            </div>
+            <!--/Footer Links-->
+
+
+            <hr>
+
+            <!--Social buttons-->
+            <div class="social-section">
+                <ul>
+                    <li><a class="btn-floating btn-small btn-fb"><i class="fa fa-facebook"> </i></a></li>
+                    <li><a class="btn-floating btn-small btn-ins"><i class="fa fa-instagram"> </i></a></li>
+                </ul>
+            </div>
+            <!--/.Social buttons-->
+
+            <!--Copyright-->
+            <div class="footer-copyright">
+                <div class="container-fluid">
+                    © <span class="thisYear"></span> <a class="hidden-sm-down" href="@Url.RouteUrl("Home")"> Clothe Our Kids of North Alabama </a>
+
+                </div>
+            </div>
+            <!--/.Copyright-->
+
+
             <div id="largeScreenIndicator"></div>
         </footer>
 

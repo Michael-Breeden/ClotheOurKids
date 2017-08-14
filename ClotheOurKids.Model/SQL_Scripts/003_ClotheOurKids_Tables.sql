@@ -2,9 +2,6 @@
 --USE [dbVelocity_ITL]
 --GO
 
-ALTER TABLE [Requests].[NeededItems] DROP CONSTRAINT [FK_Requests_NeededItems$IdentifiesItemsNeededFor$Requests_Request]
-GO
-
 ALTER TABLE [Reference].[SchoolDistrict] DROP CONSTRAINT [FK_Reference_SchoolDistrict$IsPartOfTheCounty$Reference_County]
 GO
 ALTER TABLE [Reference].[School] DROP CONSTRAINT [FK_Reference_SchoolType$IdentifiesTypeOf$Reference_School]
@@ -34,22 +31,18 @@ GO
 DROP TABLE [Requests].[NeededItems]
 GO
 
-
-
 DROP TABLE [Requests].[Urgency]
 GO
 
 DROP TABLE [Requests].[RequestStatus]
 GO
 
+
 DROP TABLE [Reference].[ContactMethod]
 GO
 
 DROP TABLE [Reference].[States]
 GO
-
---DROP TABLE [Reference].[Size]
---GO
 
 DROP TABLE [Reference].[SchoolType]
 GO
@@ -86,9 +79,6 @@ GO
 
 DROP TABLE [Reference].[Gender]
 GO
-
---DROP TABLE [Reference].[ClothesType]
---GO
 
 DROP TABLE [Reference].[AgeGroup]
 GO
@@ -128,7 +118,7 @@ ALTER TABLE Reference.OfficeType
 GO
 
 INSERT INTO Reference.OfficeType (OfficeTypeId, Name)
-VALUES (1, 'School'), (2, 'NonProfit'), (3, 'Government'), (4, 'Church');
+VALUES (1, 'School'), (2, 'NonProfit'), (3, 'Government');--, (4, 'Church');
 GO
 
 -- Reference.States Table courtesy Reference.Statestable.com
@@ -541,7 +531,9 @@ GO
 INSERT INTO Reference.Position (PositionId, Name)
 VALUES	(1, 'Counselor'),
 		(2, 'Teacher'),
-		(3, 'Principal');
+		(3, 'Principal'),
+		(4, 'Case Worker'),
+		(5, 'Other');
 GO
 
 CREATE TABLE Reference.PositionOfficeType
@@ -573,9 +565,14 @@ INSERT INTO Reference.PositionOfficeType (PositionId, OfficeTypeId)
 VALUES	(1, 1),
 		(2, 1),
 		(3, 1),
-		(1, 2);
+		(5, 1),
+		(1, 2),
+		(4, 2),
+		(5, 2),
+		(1, 3),
+		(4, 3),
+		(5, 3);
 GO
-
 
 CREATE TABLE Reference.Grade
 (

@@ -128,6 +128,9 @@ $(document).ready(function () {
         return false;
     });
 
+    var year = new Date().getFullYear();
+    $('.thisYear').html(year);
+
 });
 
 function toggleMobileInnerNavbar(panelId) {

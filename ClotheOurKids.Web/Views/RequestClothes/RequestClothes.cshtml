@@ -2,23 +2,25 @@
 
 <div class="container">
 
-    <section class="section section-blog-fw">
 
+    <section class="section page-top-section mb-4 wow fadeIn" data-wow-delay="0.2s">
         <div class="row">
-            <div class="col-md-12 wow fadeIn" data-wow-delay="0.2s">
+            <div class="col-12">
+                <h1 class="section-heading">Request Clothing</h1>
+            </div>
+            <div class="col-12">
+                <p class="section-description"><i>how to get clothes for your child</i></p>
+            </div>
+            <div class="col-12" style="text-align:center;">
+                <span>Share</span>
+                <!--Facebook-->
+                <a id="FBShare" type="button" class="btn-floating btn-small btn-fb"><i class="fa fa-facebook"></i></a>
 
-                <!--Featured Image-->
-                <div class="view hm-black-light">
-                    <img src="~/Content/img/ClotheOurKids/COKTrailer-10.jpg" class="img-fluid" alt="" />
-                    <div class="mask flex-center"></div>
-                </div>
-                
-
-                <!--Page Description-->
-                <div class="jumbotron wow fadeIn" data-wow-delay="0.4s">
-                    <h1 class="h1-responsive">How To Request Clothes</h1>
-                    <p>Learn how to request clothes for your child or a child that you know is in need</p>
-                </div>
+                <!--Twitter-->
+                <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgivekidsclothes.com%2FRequest-Clothes&hashtags=givekidsclothes&text=Request+clothes+for+a+child+in+need."
+                   type="button" class="btn-floating btn-small btn-tw">
+                    <i class="fa fa-twitter"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -30,13 +32,13 @@
         <!--Section heading-->
         <h1 class="section-heading wow fadeIn" data-wow-delay="0.2s">Parents</h1>
         <!--Section description-->
-        <p class="section-description wow fadeIn" data-wow-delay="0.4s">If you need clothes for your child or a child in your care we would love to help! The process to request a bag of clothes for your child is simple and quick.</p>
+        <p class="section-description wow fadeIn" data-wow-delay="0.4s">If you need clothing or hygiene items for your child or a child in your care we would love to help! The process to request a bag for your child is simple and quick.</p>
 
         <!--First row-->
         <div class="row features-small wow fadeIn" data-wow-delay="0.4s">
             <!--First column-->
             <div class="col-md-5 mb-r center-on-small-only align-self-center">
-                <img src="~/Content/img/TennesseeCOK/take action.jpg" class="img-fluid" />
+                <img src="~/Content/img/ClotheOurKids/COKJULY-13.jpg" class="img-fluid" style="max-height: 500px;" />
             </div>
             <!--/First column-->
 
@@ -44,12 +46,9 @@
             <div class="col-md-7 center-on-small-only">
                 <!--First row-->
                 <div class="row">
-                    <div class="col-1">
-                        <i class="fa fa-bank green-text"></i>
-                    </div>
-                    <div class="col-10">
+                    <div class="col-12">
                         <h4 class="feature-title">Call your school</h4>
-                        <p class="grey-text">Start by calling your school to speak with your child's school counselor. We are already working with numerous schools across Morgan County. If your school is not already working with us they can contact us at 256-887-5437.</p>
+                        <p class="grey-text">Call your child's school and speak with their counselor or teacher about requesting a bag for your child through Clothe Our Kids.</p>
                     </div>
                 </div>
                 <!--/First row-->
@@ -58,12 +57,9 @@
 
                 <!--Second row-->
                 <div class="row">
-                    <div class="col-1">
-                        <i class="fa fa-code green-text"></i>
-                    </div>
-                    <div class="col-10">
+                    <div class="col-12">
                         <h4 class="feature-title">School Official Sends Request</h4>
-                        <p class="grey-text">Your school counselor or official will send us a request for clothes for your child.</p>
+                        <p class="grey-text">Your child's school counselor or teacher will send us a request for needed clothing and hygiene items for your child.</p>
                     </div>
                 </div>
                 <!--/Second row-->
@@ -72,12 +68,9 @@
 
                 <!--Third row-->
                 <div class="row">
-                    <div class="col-1">
-                        <i class="fa fa-gift green-text"></i>
-                    </div>
-                    <div class="col-10">
+                    <div class="col-12">
                         <h4 class="feature-title">Delivery</h4>
-                        <p class="grey-text">The clothes will be delivered to your child by the school counselor in a discrete bag. Our goal is to get the bag of clothes to your school counselor within one week from when we get the request, but let the school know if you have an immediate need and we can get the clothes delivered in as little as 48 hours.</p>
+                        <p class="grey-text">Your child's items will be delivered to your child's school in a discrete bag. The school will pass on the bag to your child to take home.</p>
                     </div>
                 </div>
                 <!--/Third row-->
@@ -120,3 +113,17 @@
 </div>
 
 
+@section customScript
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#FBShare').click(function () {
+                FB.ui({
+                    method: 'share',
+                    mobile_iframe: true,
+                    href: 'https://www.givekidsclothes.com/Request-Clothes',
+                }, function (response) { });
+            });
+        });
+    </script>
+}

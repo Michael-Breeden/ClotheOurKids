@@ -6,7 +6,7 @@
                 <h1 class="section-heading">Who We Are</h1>
             </div>
             <div class="col-12">
-                <p class="section-description"><i>learn about the people behind this organization</i></p>
+                <p class="section-description"><i>learn how we got started</i></p>
             </div>
             <div class="col-12" style="text-align:center;">
                 <span>Share</span>
@@ -14,14 +14,10 @@
                 <a id="FBShare" type="button" class="btn-floating btn-small btn-fb"><i class="fa fa-facebook"></i></a>
 
                 <!--Twitter-->
-                <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgivekidsclothes.com%2FWhat-We-Do&hashtags=givekidsclothes&text=Find%20out%20what%20we%20give%20to%20kids%20in%20need."
+                <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgivekidsclothes.com%2FWho-We-Are&hashtags=givekidsclothes&text=Learn+how+we+got+started."
                    type="button" class="btn-floating btn-small btn-tw">
                     <i class="fa fa-twitter"></i>
                 </a>
-
-                <!--Email-->
-                <a type="button" class="btn-floating btn-small btn-email"><i class="fa fa-envelope"></i></a>
-
             </div>
         </div>
     </section>  
@@ -57,6 +53,8 @@
             Michael and Brandi reside in Priceville, AL and have two children, Jeremiah and Bella. They are members of Lifepoint Church in Decatur, AL.
         </p>
 
+        <img src="~/Content/img/ClotheOurKids/Founders_scaled.jpg" class="img-fluid" alt="" />
+
         
 
     </section>
@@ -64,3 +62,19 @@
 
 
 </div>
+
+
+@section customScript
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#FBShare').click(function () {
+                FB.ui({
+                    method: 'share',
+                    mobile_iframe: true,
+                    href: 'https://www.givekidsclothes.com/Who-We-Are',
+                }, function (response) { });
+            });
+        });
+    </script>
+}

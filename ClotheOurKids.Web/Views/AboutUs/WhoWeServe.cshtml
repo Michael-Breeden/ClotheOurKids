@@ -1,4 +1,7 @@
-﻿<div class="container-fluid pr-0 pl-0">
+﻿
+@model ClotheOurKids.Web.Models.ViewModel.WhoWeServeViewModel
+
+<div class="container">
     <section class="section page-top-section mb-4 wow fadeIn" data-wow-delay="0.2s">
         <div class="row">
             <div class="col-12">
@@ -7,15 +10,124 @@
             <div class="col-12">
                 <p class="section-description"><i>how far is our reach?</i></p>
             </div>
+
+            <div class="col-12" style="text-align:center;">
+                <span>Share</span>
+                <!--Facebook-->
+                <a id="FBShare" type="button" class="btn-floating btn-small btn-fb"><i class="fa fa-facebook"></i></a>
+
+                <!--Twitter-->
+                <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgivekidsclothes.com%2FWho-We-Serve&hashtags=givekidsclothes&text=See+how+many+children+we+help%21"
+                   type="button" class="btn-floating btn-small btn-tw">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </div>
         </div>
     </section>
 
-    <div class="streak bg-light-blue">
-        <div class="flex-center">
-            <ul>
-                <li><h1 class="h1-responsive wow fadeIn" data-wow-delay="0.4s">Coming Soon...</h1></li>
-            </ul>
+    <hr class="between-sections">
+
+    <section class="section">
+        <p class="section-description wow fadeIn">
+            Clothe Our Kids of North Alabama currently serves all schools in the Morgan County, Decatur City, Hartselle City, and Lawrence County school districts.
+        </p>
+
+        <p class="section-description wow fadeIn" data-wow-delay="0.2s">
+            We give bags to children and teens from Pre-K through 12th grade. 
+            If we receive a request for a child who is not yet in school, we partner with Save-A-Life Pregnancy Center to ensure we get them the clothing and hygiene items they need.
+            We also serve children by receiving requests from PACT, CASA, and Save-A-Life.
+        </p>
+
+        <p class="section-description wow fadeIn" data-wow-delay="0.2s">
+            We do not accept requests from the public. Parents or guardians in need of clothing for a child will be directed to the child's school or a child advocate for an official request to be made.
+        </p>
+    </section>
+
+    <hr class="between-sections">
+
+    <section class="section">
+
+        <h1 class="section-heading">Locations We Serve</h1>
+
+        <div class="justify-content-center">
+            <div id="map" class="z-depth-1 wow fadeInUp" style="height: 300px"></div>
         </div>
-    </div>
+
+
+    </section>
 
 </div>
+
+
+@section scripts
+{
+    <script type="text/javascript">
+        function initMap() {
+
+            var var_location = new google.maps.LatLng(34.528204, -86.898599);
+
+            var locations = new Array();
+
+            @{ 
+                foreach (var office in Model.AvailableOffices)
+                {
+                    @:locations.push(["@office.Name", "@office.StreetAddress, @office.City, @office.State.Code @office.PostalCode", "@office.Phone"])
+                }
+            }
+
+            //var locations = [
+            //    ['Clothe Our Kids of Morgan County', 34.528204, -86.898599, '317 AL-67, Decatur, AL 35603', '256-887-5437']
+            //];
+
+            var map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 14,
+                center: new google.maps.LatLng(locations[0][1], locations[0][2])
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+
+
+            var marker, i;
+
+            for (i = 0; i < locations.length; i++) {
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    map: map,
+                    title: locations[i][0]
+                });
+
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                        var contentString = '<div id="content">' +
+                            '<h3 class="h3-responsive">' + locations[i][0] + '</h3>' +
+                            '<p>' + locations[i][3] +
+                            '<br>Trailer behind Priceville Junior High School, beside the Baseball fields'
+                        '<br>' + locations[i][4] +
+                            '</div>';
+                        infowindow.setContent(contentString);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+            }
+        }
+    </script>
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2xc4rPas-4JZpu2txBdfWUtKXASh2O1k&callback=initMap">
+    </script>
+}
+
+@section customScript
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#FBShare').click(function () {
+                FB.ui({
+                    method: 'share',
+                    mobile_iframe: true,
+                    href: 'https://www.givekidsclothes.com/Who-We-Serve',
+                }, function (response) { });
+            });
+        });
+    </script>
+}

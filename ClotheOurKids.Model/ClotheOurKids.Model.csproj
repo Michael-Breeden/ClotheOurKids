@@ -150,8 +150,10 @@
     <Compile Include="Repository\IHomeRepository.cs" />
     <Compile Include="Repository\IRegisterFormRepository.cs" />
     <Compile Include="Repository\IRequestFormRepository.cs" />
+    <Compile Include="Repository\IWhoWeServeRepository.cs" />
     <Compile Include="Repository\RegisterFormRepository.cs" />
     <Compile Include="Repository\RequestFormRepository.cs" />
+    <Compile Include="Repository\WhoWeServeRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

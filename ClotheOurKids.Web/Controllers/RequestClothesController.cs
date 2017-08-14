@@ -144,6 +144,22 @@ namespace ClotheOurKids.Web.Controllers
             var officeType = _repository.GetOfficeType(userId);
             model.officeType = officeType;
 
+            //var schoolDistricts = _repository.GetSchoolDistrictsByUser(userId);
+            //var schoolDistrictList = (from s in schoolDistricts
+            //                          select new
+            //                          {
+            //                              id = s.SchoolDistrictId,
+            //                              name = s.Name
+            //                          }).ToList();
+            //foreach (var schoolDistrict in schoolDistrictList)
+            //{
+            //    model.AvailableSchoolDistricts.Add(new SelectListItem()
+            //    {
+            //        Text = schoolDistrict.name,
+            //        Value = schoolDistrict.id.ToString()
+            //    });
+            //}
+
             var schools = _repository.GetSchoolByUser(userId);
             var schoolList = (from s in schools
                               select new
@@ -167,6 +183,12 @@ namespace ClotheOurKids.Web.Controllers
                 //model.SchoolId = 0;
 
 
+                //string userSchoolDistrict = model.AvailableSchoolDistricts.FirstOrDefault().Value;
+                //short userSchoolDistrictShort;
+
+                //short.TryParse(userSchoolDistrict, out userSchoolDistrictShort);
+                //model.SchoolDistrictId = userSchoolDistrictShort;
+
 
                 string userSchool = model.AvailableSchools.FirstOrDefault().Value;
                 short userSchoolShort;
@@ -176,7 +198,6 @@ namespace ClotheOurKids.Web.Controllers
                 model.SchoolId = userSchoolShort;
 
             }
-
 
             var urgencies = _repository.GetUrgencies();
             var urgencyList = (from u in urgencies
@@ -235,6 +256,29 @@ namespace ClotheOurKids.Web.Controllers
 
 
             }
+
+            //if (model.SchoolDistrictId.HasValue && officeType != "School")
+            //{
+            //    var schoolsUpdated = _repository.GetSchoolBySchoolDistrict((short)model.SchoolDistrictId);
+            //    var schoolsUpdatedList = (from s in schoolsUpdated
+            //                              select new
+            //                              {
+            //                                  id = s.SchoolId,
+            //                                  name = s.Office.Name
+            //                              }).ToList();
+
+            //    model.AvailableSchools.Clear();
+
+            //    foreach (var schoolUpdate in schoolsUpdatedList)
+            //    {
+            //        model.AvailableSchools.Add(new SelectListItem()
+            //        {
+            //            Text = schoolUpdate.name,
+            //            Value = schoolUpdate.id.ToString()
+            //        });
+            //    }
+
+            //}
 
             if (model.ShirtAgeGroupId.HasValue)
             {
@@ -320,6 +364,7 @@ namespace ClotheOurKids.Web.Controllers
 
             if (isValidSchool && schoolId != 0)
             {
+                ModelState.Remove("SchoolDistrictId");
                 ModelState.Remove("SchoolId");
             }
             //Need validation based on Checkboxes
@@ -415,12 +460,13 @@ namespace ClotheOurKids.Web.Controllers
                 string needCoat = request.NeededItem.CoatFlag ? "X" : "";
                 string needHygiene = request.NeededItem.HygieneFlag ? "X" : "";
 
-                string submittedSchool = request.School.Office.Name;
+                //string submittedSchoolDistrict = request.School.SchoolDistrict.Name;
+                string submittedSchool = request.School != null ? request.School.Office.Name : "Unknown";
                 string gender = request.GenderId;
                 string grade = request.Grade.Name;
                 string urgency = request.Urgency.Name + "(" + request.Urgency.DaysForDelivery + " days)";
-                string shirt = request.ShirtSize.AgeGroup.Name + " - " + request.ShirtSize.Name;
-                string pant = request.PantSize1.AgeGroup.Name + " - " + request.PantSize1.Name;
+                string shirt = request.ShirtSize != null ? request.ShirtSize.AgeGroup.Name + " - " + request.ShirtSize.Name : "";
+                string pant = request.PantSize1 != null ? request.PantSize1.AgeGroup.Name + " - " + request.PantSize1.Name : "";
                 string pantLength = request.PantLengthSizeId != null ? _repository.GetPantSizeNameById((int)request.PantLengthSizeId) : "";
                 string underwear = request.UnderwearSize;
                 string shoe = request.ShoeSize;
@@ -614,7 +660,30 @@ namespace ClotheOurKids.Web.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        //[Authorize]
+        //[AcceptVerbs(HttpVerbs.Get)]
+        //[Route("Get-Schools", Name = "GetSchools")]
+        //public ActionResult GetSchoolsBySchoolDistrict(string schoolDistrictId)
+        //{
+        //    if (String.IsNullOrEmpty(schoolDistrictId))
+        //    {
+        //        throw new ArgumentNullException("schoolDistrictId");
+        //    }
 
+        //    short id = 0;
+        //    bool isValid = short.TryParse(schoolDistrictId, out id);
+
+        //    var schools = _repository.GetSchoolBySchoolDistrict(id);
+
+        //    var result = (from s in schools
+        //                  select new
+        //                  {
+        //                      id = s.SchoolId,
+        //                      name = s.Office.Name
+        //                  }).ToList();
+
+        //    return Json(result, JsonRequestBehavior.AllowGet);
+        //}
 
         [Authorize]
         [AcceptVerbs(HttpVerbs.Get)]

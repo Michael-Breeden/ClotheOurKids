@@ -12,7 +12,7 @@
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort>44320</IISExpressSSLPort>
     <ToolsVersionPromptShown>2.2</ToolsVersionPromptShown>
-    <NameOfLastUsedPublishProfile>givekidsclothes.com - Web Deploy</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>FolderProfile</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

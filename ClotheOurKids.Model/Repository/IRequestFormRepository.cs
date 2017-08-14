@@ -11,10 +11,11 @@ namespace ClotheOurKids.Model
     {
         IList<Grade> GetAllGrades();
         IList<Gender> GetGenders();
-        IList<SchoolDistrict> GetSchoolDistricts();
+        IList<SchoolDistrict> GetSchoolDistrictsByUser(string userId);
         string GetOfficeType(string userId);
         IList<School> GetSchools();
         IList<School> GetSchoolByUser(string userId);
+        IList<School> GetSchoolBySchoolDistrict(short schoolDistrictId);
         IList<Urgency> GetUrgencies();
         IList<AgeGroup> GetShirtAgeGroups(string GenderId);
         IList<AgeGroup> GetPantAgeGroups(string GenderId);

@@ -3,12 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ClotheOurKids.Web.Models;
+using ClotheOurKids.Web.Models.ViewModel;
+using ClotheOurKids.Model;
 
 namespace ClotheOurKids.Web.Controllers
 {
     
     public class AboutUsController : Controller
     {
+
+        private IWhoWeServeRepository _repository;
+
+        public AboutUsController()
+        {
+            this._repository = new WhoWeServeRepository(new ClotheOurKidsEntities());
+        }
+        
         // GET: AboutUs  
         public ActionResult Index()
         {
@@ -30,20 +41,11 @@ namespace ClotheOurKids.Web.Controllers
         [Route("Who-We-Serve", Name = "WhoWeServe")]
         public ActionResult WhoWeServe()
         {
-            return View();
-        }
+            var model = new WhoWeServeViewModel();
 
+            model.AvailableOffices = _repository.GetAllOffices();
 
-        [Route("What-We-Do", Name = "WhatWeDo")]
-        public ActionResult WhatWeDo()
-        {
-            return View();
-        }
-
-        [Route("What-We-Give", Name = "WhatWeGive")]
-        public ActionResult WhatWeGive()
-        {
-            return View();
+            return View(model);
         }
     }
 }

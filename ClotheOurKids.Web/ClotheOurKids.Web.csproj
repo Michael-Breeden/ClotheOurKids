@@ -247,11 +247,13 @@
     <Compile Include="Models\ViewModel\HomeViewModel.cs" />
     <Compile Include="Models\ViewModel\RequestFormViewModel.cs" />
     <Compile Include="Models\ViewModel\RequestSubmissionViewModel.cs" />
+    <Compile Include="Models\ViewModel\WhoWeServeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\foundation-emails.css" />
+    <Content Include="Content\img\ClotheOurKids\Brandi_scaled.jpg" />
     <Content Include="Content\img\ClotheOurKids\COKJULY-1.jpg" />
     <Content Include="Content\img\ClotheOurKids\COKJULY-10.jpg" />
     <Content Include="Content\img\ClotheOurKids\COKJULY-11.jpg" />
@@ -273,6 +275,10 @@
     <Content Include="Content\img\ClotheOurKids\COKJULY-8.jpg" />
     <Content Include="Content\img\ClotheOurKids\COKJULY-9.jpg" />
     <Content Include="Content\img\ClotheOurKids\COKJULY-HighRes-17.jpg" />
+    <Content Include="Content\img\ClotheOurKids\comingSoon_scaled.jpg" />
+    <Content Include="Content\img\ClotheOurKids\Founders.JPG" />
+    <Content Include="Content\img\ClotheOurKids\Founders_scaled.jpg" />
+    <Content Include="Content\img\ClotheOurKids\Michael_scaled.jpg" />
     <Content Include="Content\img\logo\ClotheOurKidsLogo_withNAwhite_Scaled.png" />
     <Content Include="Content\img\logo\ClotheOurKidsLogo_withNA_Scaled.png" />
     <Content Include="Content\img\perry.jpg" />
@@ -566,8 +572,9 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\js\modernizr-3.5.js" />
     <Content Include="ConnectionStrings.config" />
+    <Content Include="ConnectionStrings _Release.config" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
-    <None Include="Properties\PublishProfiles\givekidsclothes.com - Web Deploy.pubxml" />
     <None Include="Content\js\jquery.validate-vsdoc.js" />
     <Content Include="Content\js\jquery.validate.js" />
     <Content Include="Content\js\jquery.validate.min.js" />
@@ -606,17 +613,14 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Donation\DonationComplete.cshtml" />
     <Content Include="Views\AboutUs\WhoWeAre.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\RequestClothes\RequestClothes.cshtml" />
-    <Content Include="Views\Donation\DonateFunds.cshtml" />
     <Content Include="Views\Donation\GetInvolved.cshtml" />
     <Content Include="Views\RequestClothes\RequestClothesForm.cshtml" />
     <Content Include="Views\Shared\_PushBelowNavbar.cshtml" />
     <Content Include="Views\Shared\_LoginForm.cshtml" />
     <Content Include="Views\Account\Confirm.cshtml" />
-    <Content Include="Views\Shared\OfflineOld.cshtml" />
     <Content Include="Views\Shared\Offline.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\OurWork\OurWork.cshtml" />
@@ -628,6 +632,7 @@
     <Content Include="Views\Donation\Give.cshtml" />
     <Content Include="Views\Stories\Stories.cshtml" />
     <Content Include="Views\AboutUs\WhoWeServe.cshtml" />
+    <None Include="Properties\PublishProfiles\givekidsclothes.com - Web Deploy.pubxml" />
     <None Include="Web.Work.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

@@ -12,6 +12,7 @@ namespace ClotheOurKids.Web.Models.ViewModel
         public RequestFormViewModel()
         {
             AvailableGenders = new List<SelectListItem>();
+            AvailableSchoolDistricts = new List<SelectListItem>();
             AvailableSchools = new List<SelectListItem>();
             AvailableGrades = new List<SelectListItem>();
             AvailableUrgencies = new List<SelectListItem>();
@@ -28,6 +29,10 @@ namespace ClotheOurKids.Web.Models.ViewModel
         public IList<SelectListItem> AvailableGenders { get; set; }
 
         public string officeType { get; set; }
+
+        [Display(Name = "School District")]
+        public short? SchoolDistrictId { get; set; }
+        public IList<SelectListItem> AvailableSchoolDistricts { get; set; }
 
         [Required]
         [Display(Name = "School")]

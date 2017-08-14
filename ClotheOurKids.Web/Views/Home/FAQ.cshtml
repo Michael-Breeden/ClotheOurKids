@@ -1,21 +1,23 @@
 ﻿<div class="container">
 
-    <section class="section section-blog-fw">
-
+    <section class="section page-top-section mb-4 wow fadeIn" data-wow-delay="0.2s">
         <div class="row">
-            <div class="col-md-12 wow fadeIn" data-wow-delay="0.2s">
+            <div class="col-12">
+                <h1 class="section-heading">Frequently Asked Questions</h1>
+            </div>
+            <div class="col-12">
+                <p class="section-description"><i>others were wondering too</i></p>
+            </div>
+            <div class="col-12" style="text-align:center;">
+                <span>Share</span>
+                <!--Facebook-->
+                <a id="FBShare" type="button" class="btn-floating btn-small btn-fb"><i class="fa fa-facebook"></i></a>
 
-                <!--Featured Image-->
-                <div class="view hm-black-light">
-                    <img src="~/Content/img/ClotheOurKids/COKTrailer-19.jpg" class="img-fluid" alt="" />
-                    <div class="mask flex-center"></div>
-                </div>
-
-                <!--Page Description-->
-                <div class="jumbotron wow fadeIn smooth-scroll" data-wow-delay="0.4s">
-                    <h1 class="h1-responsive">Frequently Asked Questions</h1>
-                    <p>Have a question? If you can't find the answer below please <a href="#contactUs">contact us!</a></p>
-                </div>
+                <!--Twitter-->
+                <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgivekidsclothes.com%2FFAQ&hashtags=givekidsclothes&text=Find+answers+to+your+questions%21"
+                   type="button" class="btn-floating btn-small btn-tw">
+                    <i class="fa fa-twitter"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -51,14 +53,64 @@
                             <div class="card-block">
                                 We gladly accept <strong>gently used</strong>:
                                 <ul>
-                                    <li><i class="fa fa-check green-text"></i> Children's clothing size newborn and up</li>
+                                    <li><i class="fa fa-check green-text"></i> Children's clothing size 4T and up</li>
                                     <li><i class="fa fa-check green-text"></i> Adult size clothing that is style appropriate for teens</li>
-                                    <li><i class="fa fa-check green-text"></i> Shoes (especially gym shoes)</li>
-                                    <li><i class="fa fa-check green-text"></i> Pajamas</li>
+                                    <li><i class="fa fa-check green-text"></i> Gym Shoes</li>
                                     <li><i class="fa fa-check green-text"></i> Coats and jackets</li>
                                     <li><i class="fa fa-check green-text"></i> Socks &amp; underwear (new in the package)</li>
                                     <li><i class="fa fa-check green-text"></i> Winter hats and gloves</li>
                                 </ul>
+                            </div>
+                        </div>
+                        <!--/Card content-->
+                    </div>
+                    <!--/Card-->                    
+
+                    <!--Card-->
+                    <div class="card">
+                        <!--Card Header-->
+                        <div class="card-header" role="tab" id="headingHygiene">
+                            <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseHygiene" aria-expanded="false" aria-controls="collapseHygiene">
+                                <h5 class="mb-0">
+                                    What hygiene items do you accept? <i class="fa fa-angle-down rotate-icon"></i>
+                                </h5>
+                            </a>
+                        </div>
+                        <!--/Card Header-->
+                        <!--Card content-->
+                        <div id="collapseHygiene" class="collapse" role="tabpanel" aria-labelledby="headingHygiene">
+                            <div class="card-block">
+                                We accept <strong>new, FULL SIZE products</strong> of:
+                                <ul>
+                                    <li><i class="fa fa-check green-text"></i> Shampoo/Conditioner (2-in-1 preferred)</li>
+                                    <li><i class="fa fa-check green-text"></i> Soap (bar or bottle)</li>
+                                    <li><i class="fa fa-check green-text"></i> Deodorant</li>
+                                    <li><i class="fa fa-check green-text"></i> Toothpaste</li>
+                                    <li><i class="fa fa-check green-text"></i> Toothbrushes</li>
+                                    <li><i class="fa fa-check green-text"></i> Combs/Brushes</li>
+                                    <li><i class="fa fa-check green-text"></i> Feminine Products (Pads or Tampons)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--/Card content-->
+                    </div>
+                    <!--/Card-->
+
+                    <!--Card-->
+                    <div class="card">
+                        <!--Card Header-->
+                        <div class="card-header" role="tab" id="headingBag">
+                            <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseBag" aria-expanded="false" aria-controls="collapseBag">
+                                <h5 class="mb-0">
+                                    What is in a bag? <i class="fa fa-angle-down rotate-icon"></i>
+                                </h5>
+                            </a>
+                        </div>
+                        <!--/Card Header-->
+                        <!--Card content-->
+                        <div id="collapseBag" class="collapse" role="tabpanel" aria-labelledby="headingBag">
+                            <div class="card-block">
+                                Please visit the <a href="@Url.RouteUrl("OurWork")">Our Work</a> page to find details on what items we put in our bags to give to chidren in need.
                             </div>
                         </div>
                         <!--/Card content-->
@@ -71,7 +123,7 @@
                         <div class="card-header" role="tab" id="headingTwo">
                             <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                 <h5 class="mb-0">
-                                    How do I request clothes? <i class="fa fa-angle-down rotate-icon"></i>
+                                    How do I request a bag for a child? <i class="fa fa-angle-down rotate-icon"></i>
                                 </h5>
                             </a>
                         </div>
@@ -79,8 +131,16 @@
                         <!--Card content-->
                         <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
                             <div class="card-block">
-                                If you are a parent or caretaker for a child you can request clothes through the guidance counselor or principal at your child's school.  
-                                If you are school administrator, you can request clothes for a child by calling us at 256-887-5437.
+                                Please visit the 
+                                    @if (Request.IsAuthenticated)
+                                    {
+                                        <a href="@Url.Action("RequestClothesForm", "RequestClothes")">Request Clothes</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.RouteUrl("RequestClothes")">Request Clothes</a>
+                                    }
+                                page to learn more about how you can request clothing for a child in need.
                             </div>
                         </div>
                         <!--/Card content-->
@@ -101,7 +161,7 @@
                         <!--Card content-->
                         <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
                             <div class="card-block">
-                                We have donation boxes set up in schools, businesses, and churches in Decatur, Hartselle, and Priceville.  Please visit our Donate page to learn more and find the donation box closest to you!
+                                Donations can be dropped off at our location on Tuesdays through Thursdays from 9:30 to 12:30. Please call first to ensure someone is available to take your donations. Saturday dropoff days will also be announced as they are scheduled. If you would like to drop off items during non-business hours please call 256-887-KIDS(5437) to schedule your dropoff.
                             </div>
                         </div>
                         <!--/Card content-->
@@ -134,7 +194,7 @@
                         <div class="card-header" role="tab" id="headingFour">
                             <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                                 <h5 class="mb-0">
-                                    My own kids need help. How do I request clothes for them? <i class="fa fa-angle-down rotate-icon"></i>
+                                    My own kids need help. How do I request clothing for them? <i class="fa fa-angle-down rotate-icon"></i>
                                 </h5>
                             </a>
                         </div>
@@ -143,7 +203,7 @@
                         <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
                             <div class="card-block">
                                 We do <strong>NOT</strong> accept clothing requests directly from parents in order to ensure the anonimity of the kids that we help.
-                                If you need to request clothes for your own kids, please contact your child's school guidance counselor.
+                                If you need to request clothing for your own kids, please contact your child's school guidance counselor.
                                 They can submit the request to us for your child and we will deliver the bag of clothing back to them to give to your child.
                             </div>
                         </div>
@@ -156,7 +216,7 @@
                         <div class="card-header" role="tab" id="headingFive">
                             <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                                 <h5 class="mb-0">
-                                    Does my child have to be on welface, subsidized lunches, or other forms of financial assistance to get clothes? <i class="fa fa-angle-down rotate-icon"></i>
+                                    Does my child have to be on welface, subsidized lunches, or other forms of financial assistance to get clothing? <i class="fa fa-angle-down rotate-icon"></i>
                                 </h5>
                             </a>
                         </div>
@@ -167,7 +227,6 @@
                                 No, we want to help all children that are truly in need of clothes.
                                 We know that people who receive no outside financial assistance can go through hard times or disasters in life that can cause them to have immediate needs.
                                 We want to help in these situations to ensure that your kids have the clothing they need.
-                                However, we do our best to prioritize giving to children based on the level of need expressed to us by the requesting school.
                             </div>
                         </div>
                         <!--/Card content-->
@@ -179,7 +238,7 @@
                         <div class="card-header" role="tab" id="headingSix">
                             <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
                                 <h5 class="mb-0">
-                                    How long does it take to get clothes for my child? <i class="fa fa-angle-down rotate-icon"></i>
+                                    How long does it take to get a bag for my child? <i class="fa fa-angle-down rotate-icon"></i>
                                 </h5>
                             </a>
                         </div>
@@ -187,8 +246,8 @@
                         <!--Card content-->
                         <div id="collapseSix" class="collapse" role="tabpanel" aria-labelledby="headingSix">
                             <div class="card-block">
-                                As a parent you should work with your child's school guidance counselor to request clothes from us.
-                                Once we receive the request from the school our normal delivery time is one week. However if the school indicates that the need is immediate, we will get the clothes to the school as soon as possible, usually within 48 hours.
+                                As a parent you should work with your child's school to request a bag from us.
+                                Once we receive the request from the school our normal delivery time is one week. However if the school indicates that the need is immediate, we will get the bag to the school as soon as possible, usually within 48 hours.
                                 If we do not have the correct sizes in stock for your child, we will notify the requestor so that they can let you know that there might be a delay before your child can receive clothes.
                             </div>
                         </div>
@@ -209,7 +268,7 @@
     <!--Section: Schools-->
     <section class="section">
         <!--Section heading-->
-        <h1 class="section-heading wow fadeIn" data-wow-delay="0.2s">Schools, Churches, and Businesses</h1>
+        <h1 class="section-heading wow fadeIn" data-wow-delay="0.2s">Churches and Businesses</h1>
         <!--First row-->
         <div class="row">
             <div class="col-lg-8 mx-auto float-xs-none">
@@ -221,7 +280,7 @@
                         <div class="card-header" role="tab" id="headingSeven">
                             <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
                                 <h5 class="mb-0">
-                                    How do I set up a drop-off location in my building? <i class="fa fa-angle-down rotate-icon"></i>
+                                    How can i get my church involved? <i class="fa fa-angle-down rotate-icon"></i>
                                 </h5>
                             </a>
                         </div>
@@ -229,8 +288,8 @@
                         <!--Card content-->
                         <div id="collapseSeven" class="collapse" role="tabpanel" aria-labelledby="headingSeven">
                             <div class="card-block">
-                                If you are representing a school, church, or business and wish to set up a drop-off location in your building, please email us at donate@GiveKidsClothes.com or call us at 256-887-5437.
-                                We would love the opportunity to work with you and place a donation box in your building so that you can help us collect the clothes we need.
+                                We love having churches get involved in our ministry.
+                                Please visit our <a href="@Url.RouteUrl("GetInvolved")">Get Involved</a> page to learn more.
                             </div>
                         </div>
                         <!--/Card content-->
@@ -242,7 +301,7 @@
                         <div class="card-header" role="tab" id="headingEight">
                             <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
                                 <h5 class="mb-0">
-                                    Do you need business sponsors? <i class="fa fa-angle-down rotate-icon"></i>
+                                    Do you need sponsors? <i class="fa fa-angle-down rotate-icon"></i>
                                 </h5>
                             </a>
                         </div>
@@ -268,83 +327,24 @@
 
     <hr class="between-sections">
 
-    <!--Section: Contact Us-->
-    <section class="section" id="contactUs">
-
+    <!--Section: Contact-->
+    <section class="section" id="contact">
         <!--Section heading-->
         <h1 class="section-heading wow fadeIn" data-wow-delay="0.2s">Contact Us</h1>
-        <!--Section description-->
-        <p class="section-description mb-5 wow fadeIn" data-wow-delay="0.4s">If you still have questions, please contact us!</p>
 
-        <!--First row-->
-        <div class="row wow fadeIn" data-wow-delay="0.4s">
+        <div class="row wow zoomIn" data-wow-delay="0.4s">
 
             <!--First column-->
-            <div class="col-md-8">
-                <!--Form-->
-                <form>
-                    <!--First row-->
-                    <div class="row">
-                        <!--First column-->
-                        <div class="col-md-6">
-                            <div class="md-form">
-                                <div class="md-form">
-                                    <input type="text" id="ContactName" class="form-control">
-                                    <label for="ContactName" class="">Your name</label>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/First column-->
-
-                        <!--Second column-->
-                        <div class="col-md-6">
-                            <div class="md-form">
-                                <div class="md-form">
-                                    <input type="text" id="ContactEmail" class="form-control">
-                                    <label for="ContactEmail" class="">Your email</label>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/Second column-->
-                    </div>
-                    <!--/First row-->
-
-                    <!--Second row-->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="md-form">
-                                <input type="text" id="ContactSubject" class="form-control">
-                                <label for="ContactSubject" class="">Subject</label>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/Second row-->
-
-                    <!--Third row-->
-                    <div class="row">
-                        <!--First column-->
-                        <div class="col-md-12">
-
-                            <div class="md-form">
-                                <textarea type="text" id="ContactMessage" class="md-textarea"></textarea>
-                                <label for="ContactMessage">Your message</label>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!--/.Third row-->
-
-                </form>
-                <!--/Form-->
-
-                <div class="center-on-small-only">
-                    <a class="btn btn-ins">Send</a>
-                </div>
+            <div class="col-sm-8">
+                <div id="map" class="z-depth-1 wow fadeInUp" style="height: 300px"></div>
             </div>
-            <!--/First column-->
+
+            <div class="col-12 hidden-sm-up">
+                <p></p>
+            </div>
 
             <!--Second column-->
-            <div class="col-md-4">
+            <div class="col-sm-4">
                 <ul class="contact-icons">
                     <li>
                         <i class="fa fa-map-marker fa-2x"></i>
@@ -353,7 +353,7 @@
 
                     <li>
                         <i class="fa fa-phone fa-2x"></i>
-                        <p>256 877 5437</p>
+                        <p>256 887 5437</p>
                     </li>
 
                     <li>
@@ -362,11 +362,76 @@
                     </li>
                 </ul>
             </div>
-            <!--/Second column-->
+            <!--.Second column-->
 
         </div>
-        <!--/First row-->
+
     </section>
-    <!--/Section: Contact Us-->
 
 </div>
+
+
+
+@section scripts
+{
+    <script type="text/javascript">
+        function initMap() {
+
+            var var_location = new google.maps.LatLng(34.528204, -86.898599);
+
+            var locations = [
+                ['Clothe Our Kids of North Alabama', 34.528204, -86.898599, '317 AL-67, Decatur, AL 35603', '256-887-5437']
+            ];
+
+            var map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 14,
+                center: new google.maps.LatLng(locations[0][1], locations[0][2])
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+
+
+            var marker, i;
+
+            for (i = 0; i < locations.length; i++) {
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    map: map,
+                    title: locations[i][0]
+                });
+
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                        var contentString = '<div id="content">' +
+                            '<h3 class="h3-responsive">' + locations[i][0] + '</h3>' +
+                            '<p>' + locations[i][3] +
+                            '<br>Trailer behind Priceville Junior High School, beside the Baseball fields'
+                        '<br>' + locations[i][4] +
+                            '</div>';
+                        infowindow.setContent(contentString);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+            }
+        }
+    </script>
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2xc4rPas-4JZpu2txBdfWUtKXASh2O1k&callback=initMap">
+    </script>
+}
+
+@section customScript
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#FBShare').click(function () {
+                FB.ui({
+                    method: 'share',
+                    mobile_iframe: true,
+                    href: 'https://www.givekidsclothes.com/FAQ',
+                }, function (response) { });
+            });
+        });
+    </script>
+}

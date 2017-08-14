@@ -41,11 +41,28 @@ namespace ClotheOurKids.Web.Models.ViewModel
             return officeTypeId;
         }
 
-        public IList<SchoolDistrict> GetSchoolDistricts()
+        public IList<SchoolDistrict> GetSchoolDistrictsByUser(string userId)
         {
-            var query = from schoolDistricts in context.SchoolDistricts
+            var schoolDistrictId = (from schools in context.Schools
+                          where schools.Office.AspNetUsers.Any(u => u.Id == userId)
+                          select schools.SchoolDistrictId).SingleOrDefault();
+
+            IQueryable<SchoolDistrict> schoolDistrict;
+
+            if (schoolDistrictId != 0)
+            {
+                schoolDistrict = from schoolDistricts in context.SchoolDistricts
+                        where schoolDistricts.SchoolDistrictId == schoolDistrictId
                         select schoolDistricts;
-            var content = query.ToList<SchoolDistrict>();
+            }
+            else
+            {
+                schoolDistrict = from schoolDistricts in context.SchoolDistricts
+                                 select schoolDistricts;
+            }
+
+            var content = schoolDistrict.OrderBy(s => s.Name).ToList<SchoolDistrict>();
+
             return content;
         }
 
@@ -56,6 +73,8 @@ namespace ClotheOurKids.Web.Models.ViewModel
             var content = query.ToList<School>();
             return content;
         }
+
+
 
         public IList<School> GetSchoolByUser(string userId)
         {
@@ -76,6 +95,29 @@ namespace ClotheOurKids.Web.Models.ViewModel
                 query = from schools in context.Schools
                         select schools;
             }            
+
+            var content = query.OrderBy(school => school.Office.Name).ToList<School>();
+
+            return content;
+
+        }
+
+        public IList<School> GetSchoolBySchoolDistrict(short schoolDistrictId)
+        {
+
+            IQueryable<School> query;
+
+            if (schoolDistrictId != 0)
+            {
+                query = from schools in context.Schools
+                        where schools.SchoolDistrictId == schoolDistrictId
+                        select schools;
+            }
+            else
+            {
+                query = from schools in context.Schools
+                        select schools;
+            }
 
             var content = query.OrderBy(school => school.Office.Name).ToList<School>();
 
