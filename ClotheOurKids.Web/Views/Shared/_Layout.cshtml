@@ -21,7 +21,14 @@
 
     <link href='https://fonts.googleapis.com/css?family=Bad+Script' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister" rel="stylesheet"> 
-    @Styles.Render("~/bundles/css")
+    
+    <link href="~/Content/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/Content/css/bundles")
+    @Styles.Render("~/Content/plugins/mMenu-6.1/dist/bundles")
+
+    <link href="~/Content/plugins/select2-4.0.3/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+    @Styles.Render("~/Content/css/myBundles")
     
     @Scripts.Render("~/bundles/modernizr")
      
@@ -306,8 +313,8 @@
             <!--Social buttons-->
             <div class="social-section">
                 <ul>
-                    <li><a class="btn-floating btn-small btn-fb"><i class="fa fa-facebook"> </i></a></li>
-                    <li><a class="btn-floating btn-small btn-ins"><i class="fa fa-instagram"> </i></a></li>
+                    <li><a href="https://www.facebook.com/clotheourkidsofnorthalabama" class="btn-floating btn-small btn-fb"><i class="fa fa-facebook"> </i></a></li>
+                    <li><a href="https://www.instagram.com/clotheourkids/" class="btn-floating btn-small btn-ins"><i class="fa fa-instagram"> </i></a></li>
                 </ul>
             </div>
             <!--/.Social buttons-->

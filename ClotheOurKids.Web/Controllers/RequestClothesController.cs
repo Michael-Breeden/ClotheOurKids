@@ -61,15 +61,15 @@ namespace ClotheOurKids.Web.Controllers
 
             model.AvailableSchools.Add(new SelectListItem()
             {
-                Text = "Select...",
-                Value = "0"
+                Text = "Unknown",
+                Value = "-1"
             });
 
             model.AvailableSchools.Add(new SelectListItem()
             {
-                Text = "Unknown",
-                Value = "-1"
-            });
+                Text = "Select...",
+                Value = "0"
+            });            
 
             model.AvailableShirtAgeGroups.Add(new SelectListItem()
             {
@@ -166,7 +166,7 @@ namespace ClotheOurKids.Web.Controllers
                               {
                                   id = s.SchoolId,
                                   name = s.Office.Name
-                              }).ToList();
+                              }).OrderBy(s => s.id).ToList();
             foreach (var school in schoolList)
             {
                 model.AvailableSchools.Add(new SelectListItem()
@@ -364,7 +364,7 @@ namespace ClotheOurKids.Web.Controllers
 
             if (isValidSchool && schoolId != 0)
             {
-                ModelState.Remove("SchoolDistrictId");
+                //ModelState.Remove("SchoolDistrictId");
                 ModelState.Remove("SchoolId");
             }
             //Need validation based on Checkboxes

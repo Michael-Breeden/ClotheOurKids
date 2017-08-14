@@ -31,18 +31,25 @@ namespace ClotheOurKids.Web
                       "~/assets/plugins/html5shiv.js",
                       "~/assets/plugins/placeholder-IE-fixes.js"));
 
-            bundles.Add(new StyleBundle("~/bundles/css")
-                .Include("~/Content/plugins/font-awesome/css/font-awesome.min.css", new CssRewriteUrlTransform())
-                .Include("~/Content/css/bootstrap.min.css", new CssRewriteUrlTransform())
-                .Include("~/Content/css/mdb.min.css", new CssRewriteUrlTransform())
-                .Include("~/Content/plugins/mMenu-6.1/dist/jquery.mmenu.all.css", new CssRewriteUrlTransform())
-                .Include("~/Content/plugins/mMenu-6.1/dist/wrappers/bootstrap/jquery.mmenu.bootstrap.css", new CssRewriteUrlTransform())
-                .Include("~/Content/css/hamburgers-min.css", new CssRewriteUrlTransform())
-                .Include("~/Content/css/mySkin.css", new CssRewriteUrlTransform())
-                .Include("~/Content/plugins/select2-4.0.3/css/select2.min.css", new CssRewriteUrlTransform())
-                .Include("~/Content/css/myHeader.css", new CssRewriteUrlTransform())
-                .Include("~/Content/css/style.css", new CssRewriteUrlTransform())
-            );
+            bundles.Add(new StyleBundle("~/Content/css/bundles")
+                .Include(
+                "~/Content/css/bootstrap.min.css",
+                "~/Content/css/mdb.min.css",
+                "~/Content/css/hamburgers-min.css"
+                ));
+
+            bundles.Add(new StyleBundle("~/Content/plugins/mMenu-6.1/dist/bundles")
+                .Include(
+                "~/Content/plugins/mMenu-6.1/dist/jquery.mmenu.all.css",
+                "~/Content/plugins/mMenu-6.1/dist/wrappers/bootstrap/jquery.mmenu.bootstrap.css"
+                ));
+
+            bundles.Add(new StyleBundle("~/Content/css/myBundles")
+                .Include(
+                "~/Content/css/mySkin.css",
+                "~/Content/css/myHeader.css",
+                "~/Content/css/style.css"
+                ));
         }
     }
 }

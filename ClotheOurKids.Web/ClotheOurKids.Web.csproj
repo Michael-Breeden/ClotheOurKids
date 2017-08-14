@@ -285,6 +285,7 @@
     <Content Include="Content\img\social\FB-f-Logo__blue_57.png" />
     <Content Include="Content\img\social\Twitter_Logo_White_On_Blue.png" />
     <Content Include="Content\img\social\Twitter_Logo_White_On_Blue.svg" />
+    <Content Include="Content\img\toothbrush_blue.jpeg" />
     <Content Include="Content\js\jquery.animateNumber.min.js" />
     <Content Include="Content\js\jquery.waypoints.min.js" />
     <Content Include="CustomErrors\404.html" />

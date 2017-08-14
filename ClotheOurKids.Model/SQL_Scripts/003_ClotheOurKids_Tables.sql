@@ -360,7 +360,8 @@ VALUES
 
 	--Other Organizations
 	('P.A.C.T', 2, '245 Jackson St SE', 'Decatur', 1, '35601', '2563557252'),
-	('CASA of Noth Alabama', 2, '302 Lee Street NE', 'Decatur', 1, '35602', '2565606102');
+	('CASA of Noth Alabama', 2, '302 Lee Street NE', 'Decatur', 1, '35602', '2565606102'),
+	('Save-A-Life', 2, '801 Bradley St SW', 'Decatur', 1, '35601', '2563553828');
 
 GO
 

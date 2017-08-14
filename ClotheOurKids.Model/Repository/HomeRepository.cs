@@ -20,7 +20,7 @@ namespace ClotheOurKids.Model
             int requestCount = (from requests in context.Requests
                                 select requests).Count();
 
-            requestCount = requestCount + 343;
+            requestCount = requestCount + 346;
 
             return requestCount.ToString();
         }

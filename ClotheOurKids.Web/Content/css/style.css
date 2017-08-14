@@ -261,13 +261,3 @@
 }
 
 
-.card.card-cascade {
-    height: 100%;
-    display: flex;
-}
-
-.card.card-cascade .card-block {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-}

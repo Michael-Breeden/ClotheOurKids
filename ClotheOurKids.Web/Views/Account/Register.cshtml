@@ -38,7 +38,7 @@
 
                     <div class="row">
                         <div class="col-12">
-                            @Html.ValidationSummary()
+                            @Html.ValidationSummary(true)
                         </div>
                     </div>
 
@@ -102,18 +102,29 @@
                                 <div class="col d-flex justify-content-sm-start justify-content-md-center">
                                     <h5 class="h5-responsive">Best Way to Contact You</h5>
                                 </div>
-                                <div class="col-12 d-flex flex-row justify-content-md-center">
-                                    @{
-                                        foreach (var contactMethod in Model.AvailableContactMethods)
-                                        {
-                                            <div class="form-group mr-4">
-                                                @Html.RadioButtonFor(m => m.ContactMethodId, contactMethod.Value, new { id = "contactMethod" + contactMethod.Value, @class = "with-gap" })
-                                                @Html.Label("contactMethod" + contactMethod.Value, contactMethod.Text)
-                                            </div>
-                                        }
-                                        @Html.ValidationMessageFor(m => m.ContactMethodId)
-                                    }
+                                <div class="col-12">
+                                    <div class="md-form ">
+                                        <div class="d-flex flex-row justify-content-md-center">
+                                            @{
+                                                foreach (var contactMethod in Model.AvailableContactMethods)
+                                                {
+                                                    <div class="form-group mr-4">
+                                                        @Html.RadioButtonFor(m => m.ContactMethodId, contactMethod.Value, new { id = "contactMethod" + contactMethod.Value, @class = "with-gap" })
+                                                        @Html.Label("contactMethod" + contactMethod.Value, contactMethod.Text)
+                                                    </div>
+                                                }
+
+                                            }
+                                        </div>
+                                        <div class="text-center">
+                                            @Html.ValidationMessageFor(m => m.ContactMethodId)
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                    
                                 </div>
+                                
                             </div>
 
                         </div>
