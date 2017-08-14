@@ -299,3 +299,4 @@ __pycache__/
 ClotheOurKids.Web/ConnectionStrings _Release.config
 ClotheOurKids.Web/ConnectionStrings.config
 ClotheOurKids_AppSettingsSecrets.config
+ClotheOurKids.Web/Web.Release.config
