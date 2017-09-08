@@ -1,0 +1,111 @@
+﻿@section pageCSS
+{
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/pdfmake-0.1.27/dt-1.10.15/b-1.4.0/b-html5-1.4.0/b-print-1.4.0/se-1.2.2/datatables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
+
+    <style>
+        .dataTables_filter {
+            float: left !important;
+            text-align: left !important;
+        }
+
+        #datatableDiv {
+            margin-right: 15px;
+            margin-left: 15px;
+        }
+    </style>
+    
+}
+
+
+@model ClotheOurKids.Web.Models.ViewModel.ViewRequestViewModel
+
+@{
+    ViewBag.Title = "View Your Requests";
+}
+
+
+
+
+<div id="container">
+    <div id="datatableDiv">
+        <h2 class="h1-responsive">Your Requests</h2>
+        <hr />
+        <table id="dataTable" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Number</th>
+                    <th>School</th>
+                    <th>Gender</th>
+                    <th>Grade</th>
+                    <th>Request Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.requests)
+                {
+                    <tr>
+                        <td></td>
+                        <td style="text-align: center;">@Html.DisplayFor(i => item.RequestId)</td>
+                        <td>@Html.DisplayFor(i => item.School.Office.Name)</td>
+                        <td>@Html.DisplayFor(i => item.GenderId)</td>
+                        <td>@Html.DisplayFor(i => item.Grade.Name)</td>
+                        <td>@Html.DisplayFor(i => item.DateRequested)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+@section scripts
+{
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/pdfmake-0.1.27/dt-1.10.15/b-1.4.0/b-html5-1.4.0/b-print-1.4.0/se-1.2.2/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.16/dataRender/datetime.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>       
+}
+
+@section customScript
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            //$.fn.dataTable.moment('M/DD/YYYY H:mm:ss a');
+
+            $('#dataTable').dataTable({
+                "bLengthChange": false,
+                "dom": 'frtip',
+                "order": [[5, "desc"]],
+                "columnDefs": [
+                    {
+                        orderable: false,
+                        className: 'select-checkbox',
+                        targets: 0
+                    },
+                    {
+                        targets: 5,
+                        render: $.fn.dataTable.render.moment('M/DD/YYYY h:mm:ss a', 'M/DD/YYYY h:mm a')
+                    }
+                ],
+                select: {
+                    style: 'os',
+                    selector: 'td:first-child'
+                }
+            });
+        });
+
+    </script>
+
+}

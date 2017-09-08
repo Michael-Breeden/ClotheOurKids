@@ -245,8 +245,10 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModel\HomeViewModel.cs" />
+    <Compile Include="Models\ViewModel\jQueryDatatableParamModel.cs" />
     <Compile Include="Models\ViewModel\RequestFormViewModel.cs" />
     <Compile Include="Models\ViewModel\RequestSubmissionViewModel.cs" />
+    <Compile Include="Models\ViewModel\ViewRequestViewModel.cs" />
     <Compile Include="Models\ViewModel\WhoWeServeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -279,6 +281,7 @@
     <Content Include="Content\img\ClotheOurKids\Founders.JPG" />
     <Content Include="Content\img\ClotheOurKids\Founders_scaled.jpg" />
     <Content Include="Content\img\ClotheOurKids\Michael_scaled.jpg" />
+    <Content Include="Content\img\logo\ClotheOurKidsLogo_withNA.png" />
     <Content Include="Content\img\logo\ClotheOurKidsLogo_withNAwhite_Scaled.png" />
     <Content Include="Content\img\logo\ClotheOurKidsLogo_withNA_Scaled.png" />
     <Content Include="Content\img\perry.jpg" />
@@ -634,6 +637,7 @@
     <Content Include="Views\Stories\Stories.cshtml" />
     <Content Include="Views\AboutUs\WhoWeServe.cshtml" />
     <None Include="Properties\PublishProfiles\givekidsclothes.com - Web Deploy.pubxml" />
+    <Content Include="Views\RequestClothes\ViewRequests.cshtml" />
     <None Include="Web.Work.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

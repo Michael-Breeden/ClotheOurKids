@@ -183,6 +183,27 @@ namespace ClotheOurKids.Web.Models.ViewModel
             return content;
         }
 
+
+        public IList<Request> GetRequestsByUser(string userId)
+        {
+            var query = from requests in context.Requests
+                        where requests.AspNetUser.Id == userId
+                        select requests;
+
+            var content = query.ToList<Request>();
+            return content;
+        }
+
+        public IList<Request> GetRequests()
+        {
+            var query = from requests in context.Requests
+                        select requests;
+
+            var content = query.ToList<Request>();
+            return content;
+        }
+
+
         public AspNetUser GetUserByAppUserId(string userId)
         {
             var query = from user in context.AspNetUsers
@@ -221,6 +242,7 @@ namespace ClotheOurKids.Web.Models.ViewModel
             context.SaveChanges();
         }
 
+        
 
         private bool disposed = false;
 

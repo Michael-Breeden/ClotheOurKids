@@ -9,6 +9,7 @@ using ClotheOurKids.Web.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Threading.Tasks;
 using Postal;
+using System.Web.Script.Serialization;
 
 namespace ClotheOurKids.Web.Controllers
 {
@@ -58,18 +59,19 @@ namespace ClotheOurKids.Web.Controllers
                 Text = "Select...",
                 Value = "0"
             });
+            
+
+            model.AvailableSchools.Add(new SelectListItem()
+            {
+                Text = "Select...",
+                Value = "0"
+            });
 
             model.AvailableSchools.Add(new SelectListItem()
             {
                 Text = "Unknown",
                 Value = "-1"
             });
-
-            model.AvailableSchools.Add(new SelectListItem()
-            {
-                Text = "Select...",
-                Value = "0"
-            });            
 
             model.AvailableShirtAgeGroups.Add(new SelectListItem()
             {
@@ -190,7 +192,7 @@ namespace ClotheOurKids.Web.Controllers
                 //model.SchoolDistrictId = userSchoolDistrictShort;
 
 
-                string userSchool = model.AvailableSchools.FirstOrDefault().Value;
+                string userSchool = model.AvailableSchools.Where(s => s.Value == "-1").FirstOrDefault().Value;
                 short userSchoolShort;
 
                 short.TryParse(userSchool, out userSchoolShort);
@@ -739,5 +741,42 @@ namespace ClotheOurKids.Web.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
 
         }
+
+
+
+        //GET
+        [Authorize]
+        [Route("View-Requests", Name = "ViewRequests")]
+        public ActionResult ViewRequests()
+        {
+            var model = new ViewRequestViewModel();
+
+            string userId = User.Identity.GetUserId();
+            var request = _repository.GetRequestsByUser(userId).ToList();
+
+            model.requests = request;
+
+            return View(model);
+        }
+
+        //[Authorize]
+        //[AcceptVerbs(HttpVerbs.Get)]
+        //[Route("GetRequests", Name = "GetRequests")]
+        //public ActionResult GetRequests()
+        //{
+        //    string userId = User.Identity.GetUserId();
+
+        //    var requests = _repository.GetRequestsByUser(userId);
+
+        //    var result = requests.ToList();
+
+
+        //    var json = Json.
+            
+
+        //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+
+        //}
+
     }
 }
