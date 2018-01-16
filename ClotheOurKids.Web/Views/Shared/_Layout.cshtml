@@ -34,9 +34,9 @@
     @Scripts.Render("~/bundles/modernizr")
      
     <style>
-        .wow {
+        /*.wow {
             opacity: 0;
-        }
+        }*/
 
         .dropdown-menu .dropdown-item:active {
             background: #2196F3
@@ -62,10 +62,10 @@
                             </span>
                         </a>
 
-                        <div id="navbar" class="navbar navbar-toggleable-md navbar-light z-depth-0">
-                            <div class="hidden-md-down">    
+                        <nav id="navbar" class="navbar navbar-expand-md navbar-light z-depth-0">
+                            <div class="d-none d-lg-block">    
                                     <!--Links-->
-                                    <ul class="nav navbar-nav" id="mainSiteMenu">
+                                    <ul class="navbar-nav mr-auto" id="mainSiteMenu">
                                         <li class="nav-item">
                                             <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Home")">Home <span class="sr-only">(current)</span></a>
                                         </li>
@@ -112,7 +112,7 @@
                                     </ul>
                                 
                             </div>
-                            <div class="hidden-lg-up navbar-inner">
+                            <div class="d-lg-none navbar-inner">
                                 <div class="container">
                                     <button id="mMenuToggle" class="hamburger hamburger--collapse" type="button">
                                         <span class="hamburger-box">
@@ -126,8 +126,8 @@
                                     </a>*@
                                 </div>
                             </div>
-                        </div>
-                        <nav id="mobileMenu" class="hidden-lg-up">
+                        </nav>
+                        <nav id="mobileMenu" class="d-lg-none">
                             <ul>
                                 <li>
                                     <a href="@Url.RouteUrl("Home")">Home</a>
@@ -163,7 +163,7 @@
                         </nav>
                     </div>
                     <div class="column-two d-flex justify-content-start">
-                        <ul id="desktopCta" class="default header-cta-buttons hidden-lg-down">
+                        <ul id="desktopCta" class="default header-cta-buttons d-none d-xl-block">
                             <li>
                                 <a class="btn btn-rounded btn-danger" href="@Url.RouteUrl("Give")">Give</a>
                             </li>
@@ -190,7 +190,7 @@
                     </div>
                 </div>
             </div>
-            <ul id="md-cta-buttons" class="default header-cta-buttons hidden-xl-up full-width-buttons">
+            <ul id="md-cta-buttons" class="default header-cta-buttons d-xl-none full-width-buttons">
                 <li>
                     <a class="btn btn-rounded btn-danger" href="@Url.RouteUrl("Give")">Give</a>
                 </li>
@@ -230,7 +230,7 @@
                 <!--First row-->
                 <div class="row">
                     <!--First column-->
-                    <div class="col col-md-3 offset-md-1 text-md-left text-center">
+                    <div class="col col-md-3 ml-md-auto text-md-left text-center">
                         <p>
                             P.O. Box 565 <br />
                             Somerville, AL 35670 <br />
@@ -240,7 +240,7 @@
                     <!--/.First column-->
 
                     <!--Second column-->
-                    <div class="hidden-sm-down col-md-2 offset-md-1">
+                    <div class="d-none d-md-block col-md-2 ml-md-auto">
                         <h5 class="title">About Us</h5>
                         <ul>
                             <li><a href="@Url.RouteUrl("WhoWeAre")">Who We Are</a></li>
@@ -254,7 +254,7 @@
 
 
                     <!--Third column-->
-                    <div class="hidden-sm-down col-md-2">
+                    <div class="d-none d-md-block col-md-2">
                         <h5 class="title">What We Do</h5>
                         <ul>
                             <li><a href="@Url.RouteUrl("OurWork")">Our Work</a></li>
@@ -264,7 +264,7 @@
                     <!--/.Third column-->
 
                     <!--Fourth column-->
-                    <div class="hidden-sm-down col-md-2">
+                    <div class="d-none d-md-block col-md-2">
                         <h5 class="title">Take Action</h5>
                         <ul>
                             <li><a href="@Url.RouteUrl("Give")">Give</a></li>
@@ -286,7 +286,7 @@
                 <!--/First row-->
 
 
-                <div class="hidden-xl-down">
+                <div class="d-none d-lg-block">
                     <hr>
                     <!--Second row-->
                     <div class="row">
@@ -314,8 +314,8 @@
             <!--Social buttons-->
             <div class="social-section">
                 <ul>
-                    <li><a href="https://www.facebook.com/clotheourkidsofnorthalabama" class="btn-floating btn-small btn-fb"><i class="fa fa-facebook"> </i></a></li>
-                    <li><a href="https://www.instagram.com/clotheourkids/" class="btn-floating btn-small btn-ins"><i class="fa fa-instagram"> </i></a></li>
+                    <li><a href="https://www.facebook.com/clotheourkidsofnorthalabama" class="btn-floating btn-sm btn-fb"><i class="fa fa-facebook"> </i></a></li>
+                    <li><a href="https://www.instagram.com/clotheourkids/" class="btn-floating btn-sm btn-ins"><i class="fa fa-instagram"> </i></a></li>
                 </ul>
             </div>
             <!--/.Social buttons-->
@@ -323,7 +323,7 @@
             <!--Copyright-->
             <div class="footer-copyright">
                 <div class="container-fluid">
-                    © <span class="thisYear"></span> <a class="hidden-sm-down" href="@Url.RouteUrl("Home")"> Clothe Our Kids of North Alabama </a>
+                    © <span class="thisYear"></span> <a class="d-sm-none" href="@Url.RouteUrl("Home")"> Clothe Our Kids of North Alabama </a>
 
                 </div>
             </div>

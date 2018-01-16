@@ -52,7 +52,7 @@
             display: flex;
         }
 
-        .card.card-cascade .card-block {
+        .card.card-cascade .card-body {
             display: flex;
             justify-content: space-between;
             flex-direction: column;
@@ -170,10 +170,10 @@
         <div class="row mb-1 text-center">
             <div id="OurWork" class="col white-text mr-2">
                 <div class="card card-cascade bg-red">
-                    <div class="card-block text-center">
+                    <div class="card-body text-center">
                         <div class="mb-1">
                             <h4 class="card-title">Our Work</h4>
-                            <p class="card-text">Learn how we operate and who we help</p>
+                            <p class="card-text white-text">Learn how we operate and who we help</p>
                         </div>
                         
                         <div class="card-footer">
@@ -183,14 +183,14 @@
                 </div>
             </div>
 
-            <div class="col-12 mt-2 hidden-sm-up"></div>
+            <div class="col-12 mt-2 d-sm-none"></div>
 
             <div id="GetInvolved" class="col mr-2">
                 <div class="card card-cascade bg-light-blue" style="height: 100%;">
-                    <div class="card-block text-center">
+                    <div class="card-body text-center">
                         <div class="mb-1">
                             <h4 class="card-title">Get Involved</h4>
-                            <p class="card-text">Find ways to help the children in your county</p>
+                            <p class="card-text white-text">Find ways to help the children in your county</p>
                         </div>
                         
                         <div class="card-footer">
@@ -200,14 +200,14 @@
                 </div>
             </div>
 
-            <div class="col-12 mt-2 hidden-sm-up"></div>
+            <div class="col-12 mt-2 d-sm-none"></div>
 
             <div id="Donate" class="col">
                 <div class="card card-cascade bg-yellow" style="height: 100%;">
-                    <div class="card-block text-center">
+                    <div class="card-body text-center">
                         <div class="mb-1">
                             <h4 class="card-title">Give</h4>
-                            <p class="card-text">Help us make sure we never have to turn a child away</p>
+                            <p class="card-text white-text">Help us make sure we never have to turn a child away</p>
                         </div>
                         
                         <div class="card-footer">
@@ -234,12 +234,12 @@
                 <div id="map" class="z-depth-1 wow fadeInUp" style="height: 300px"></div>
             </div>
 
-            <div class="col-12 hidden-sm-up">
+            <div class="col-12 d-sm-none">
                 <p></p>
             </div>
 
             <!--Second column-->
-            <div class="col-sm-4">
+            <div class="col-sm-4 align-self-center">
                 <ul class="contact-icons">
                     <li>
                         <i class="fa fa-map-marker fa-2x"></i>
@@ -354,7 +354,7 @@
                     $(this).prop('Counter', 0).animate({
                         Counter: @Model.RequestCount
                     }, {
-                            duration: 3000,
+                            duration: 1500,
                             easing: 'swing',
                             step: function (now) {
                                 $(this).text(Math.ceil(now));

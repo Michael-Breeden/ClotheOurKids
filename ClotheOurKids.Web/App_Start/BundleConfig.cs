@@ -8,8 +8,8 @@ namespace ClotheOurKids.Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/requiredJs").Include(
-                        "~/Content/js/jquery-3.1.1.js",
-                        "~/Content/js/tether.js",
+                        "~/Content/js/jquery-3.2.1.min.js",
+                        "~/Content/js/popper.min.js",
                         "~/Content/js/jquery.waypoints.min.js",
                         "~/Content/js/jquery.validate.min.js",
                         "~/Content/js/jquery.validate.unobtrusive.min.js",

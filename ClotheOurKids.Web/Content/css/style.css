@@ -1,31 +1,41 @@
 .striped li {
-      border-bottom: 1px solid rgba(153, 153, 153, 0.298039);
-      margin-bottom: 1rem; }
+    border-bottom: 1px solid rgba(153, 153, 153, 0.298039);
+    margin-bottom: 1rem;
+}
 
- .md-form .prefix ~ .select-wrapper {
+.md-form .prefix ~ .select-wrapper {
     margin-left: 3rem;
     width: 92%;
-    width: calc(100% - 3rem); }
-  @media only screen and (max-width: 992px) {
+    width: calc(100% - 3rem);
+}
+
+@media only screen and (max-width: 992px) {
     .md-form .prefix ~ .select-wrapper {
-      width: 86%;
-      width: calc(100% - 3rem); } }
-  @media only screen and (max-width: 600px) {
+        width: 86%;
+        width: calc(100% - 3rem);
+    }
+}
+
+@media only screen and (max-width: 600px) {
     .md-form .prefix ~ .select-wrapper {
-      width: 80%;
-      width: calc(100% - 3rem); } }
+        width: 80%;
+        width: calc(100% - 3rem);
+    }
+}
 
 
 
-  .dropdown-main .dropdown-content li.active {
-  background-color: #aa66cc; }
+.dropdown-main .dropdown-content li.active {
+    background-color: #aa66cc;
+}
 
 .dropdown-main .dropdown-content li a:hover,
 .dropdown-main .dropdown-content li span:hover {
-  background-color: #aa66cc; }
+    background-color: #aa66cc;
+}
 
 
-.page-top-section .section-heading {    
+.page-top-section .section-heading {
     margin: 0;
 }
 
@@ -34,7 +44,7 @@
 }
 
 .page-top-section .btn-floating {
-    margin:0;
+    margin: 0;
 }
 
 .page-top-section span {
@@ -83,7 +93,6 @@
     .streak.streak-lg {
         height: 350px;
     }
-
 }
 
 @media only screen and (min-width: 992px) {
@@ -140,7 +149,7 @@
 }
 
 .select2-container {
-    margin-top: .5rem;    
+    margin-top: .5rem;
 }
 
 .md-form .select2-container {
@@ -182,7 +191,7 @@
     color: #4285F4;
 }
 
-/*multiple select remove borders - no round corners*/ 
+/*multiple select remove borders - no round corners*/
 .select2-container--default .select2-selection--multiple {
     border-top: 0;
     border-left: 0;
@@ -198,7 +207,7 @@
     outline: none;
 }
 
-/*multiple select remove focus*/ 
+/*multiple select remove focus*/
 .select2-container--default.select2-container--focus .select2-selection--multiple {
     border: 0;
 }
@@ -259,5 +268,3 @@
         right: 5px;
     }
 }
-
-

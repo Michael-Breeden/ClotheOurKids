@@ -59,6 +59,7 @@ header .column-two {
     float: left;
     width: 100%;
     position: relative;
+    list-style: none;
 }
 
 .header-cta-buttons a.btn-rounded {
