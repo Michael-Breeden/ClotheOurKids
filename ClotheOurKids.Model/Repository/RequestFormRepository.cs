@@ -203,6 +203,16 @@ namespace ClotheOurKids.Web.Models.ViewModel
             return content;
         }
 
+        public IList<Request> GetRequestsByIdList(int[] ids)
+        {
+            var query = from requests in context.Requests
+                        where ids.Contains(requests.RequestId)
+                        select requests;
+
+            var content = query.ToList<Request>();
+            return content;
+        }
+
 
         public AspNetUser GetUserByAppUserId(string userId)
         {

@@ -18,7 +18,8 @@ namespace ClotheOurKids.Web
                         "~/Content/plugins/select2-4.0.3/js/select2.full.min.js",
                         "~/Content/plugins/mmenu-6.1/dist/jquery.mmenu.all.js",
                         "~/Content/plugins/mmenu-6.1/dist/wrappers/bootstrap/jquery.mmenu.bootstrap.js",
-                        "~/Content/js/jquery.animateNumber.min.js"
+                        "~/Content/js/jquery.animateNumber.min.js",
+                        "~/Content/js/vfs_fonts.js"
                         ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

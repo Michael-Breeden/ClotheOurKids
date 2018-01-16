@@ -15,5 +15,6 @@ namespace ClotheOurKids.Web.Models.ViewModel
         }
 
         public List<Request> requests { get; set; }
+
     }
 }

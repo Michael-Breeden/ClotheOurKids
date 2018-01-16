@@ -759,6 +759,50 @@ namespace ClotheOurKids.Web.Controllers
             return View(model);
         }
 
+        [Authorize]
+        [AcceptVerbs(HttpVerbs.Get)]
+        [Route("GetRequestDetailsForPrint", Name = "GetRequestDetailsForPrint")]
+        public ActionResult GetRequestDetailsForPrint(int[] ids)
+        {
+            //var idList = ids;
+            //var result = "";
+            var requests = _repository.GetRequestsByIdList(ids);
+
+            var result = (from r in requests
+                          orderby (r.DateRequested)
+                          select new
+                          {
+                              id = r.RequestId,
+                              gender = r.GenderId,
+                              grade = r.Grade.Name,
+                              school = r.SchoolId == null ? "Unknown" : r.School.Office.Name,
+                              schoolDistrict = r.SchoolId == null ? "" : r.School.SchoolDistrict.Name,
+                              county = r.SchoolId == null ? "" : r.School.SchoolDistrict.County.Name,
+                              urgency = r.Urgency.Name + '(' + r.Urgency.DaysForDelivery + ')',
+                              requestedBy = r.AspNetUser.FirstName + ' ' + r.AspNetUser.LastName,
+                              requestorOffice = r.AspNetUser.Office.Name,
+                              requestorPosition = r.AspNetUser.Position.Name,
+                              requestorPhone = r.AspNetUser.PhoneNumber,
+                              requestorEmail = r.AspNetUser.Email,
+                              requestorContactMethod = r.AspNetUser.ContactMethod.Name,
+                              needShirt = r.NeededItem.ShirtFlag ? "X" : "",
+                              needPant = r.NeededItem.PantFlag ? "X" : "",
+                              needUnderwear = r.NeededItem.UnderwearFlag ? "X" : "",
+                              needSock = r.NeededItem.SockFlag ? "X" : "",
+                              needShoe = r.NeededItem.ShoeFlag ? "X" : "",
+                              needCoat = r.NeededItem.CoatFlag ? "X" : "",
+                              needHygiene = r.NeededItem.HygieneFlag ? "X" : "",
+                              shirtSize = r.ShirtSizeId == null ? "" : r.ShirtSize.AgeGroup.Name + " - " + r.ShirtSize.Name  ,
+                              pantSize = r.PantSizeId == null ? "" : r.PantSize1.AgeGroup.Name + " - " + r.PantSize1.Name + (r.PantLengthSizeId == null ? "" : "w, " + _repository.GetPantSizeNameById((int)r.PantLengthSizeId) + "h"),
+                              pantLength = r.PantLengthSizeId == null ? "" : _repository.GetPantSizeNameById((int)r.PantLengthSizeId) + " - " + r.PantSize1.AgeGroup.Name,
+                              underwear = r.UnderwearSize,
+                              shoes = r.ShoeSize,
+                              comments = r.Comments
+                          }).ToList();
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
         //[Authorize]
         //[AcceptVerbs(HttpVerbs.Get)]
         //[Route("GetRequests", Name = "GetRequests")]
@@ -772,7 +816,7 @@ namespace ClotheOurKids.Web.Controllers
 
 
         //    var json = Json.
-            
+
 
         //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);
 

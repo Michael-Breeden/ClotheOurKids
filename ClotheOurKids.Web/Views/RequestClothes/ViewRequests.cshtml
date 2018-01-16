@@ -5,10 +5,10 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
 
     <style>
-        .dataTables_filter {
+        /*.dataTables_filter {
             float: left !important;
             text-align: left !important;
-        }
+        }*/
 
         #datatableDiv {
             margin-right: 15px;
@@ -84,9 +84,9 @@
 
             //$.fn.dataTable.moment('M/DD/YYYY H:mm:ss a');
 
-            $('#dataTable').dataTable({
+            var table = $('#dataTable').DataTable({
                 "bLengthChange": false,
-                "dom": 'frtip',
+                "dom": '<"row align-items-end"<"col col-6 mb-1"B><"col col-6"f>>rtip',
                 "order": [[5, "desc"]],
                 "columnDefs": [
                     {
@@ -100,11 +100,168 @@
                     }
                 ],
                 select: {
-                    style: 'os',
+                    style: 'multi',
                     selector: 'td:first-child'
-                }
+                },
+                buttons: [
+                    {
+                        text: 'Print Details',
+                        action: function () {
+                            var selectedRows = table.rows({ selected: true }).data().toArray();
+
+                            if (selectedRows.length >= 1) {
+                                printRequests(selectedRows);
+                            }                         
+
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        text: 'Print Table'
+                    }
+                ]
             });
         });
+
+
+        function printRequests(rows) {
+
+            var indexes = [];
+
+            $.each(rows, function (index, obj) {
+                indexes.push(obj[1]);
+            });
+
+            $.ajax({
+                cache: false,
+                type: "GET",
+                traditional: true,
+                url: "@(Url.RouteUrl("GetRequestDetailsForPrint"))",
+                data: {
+                    "ids": indexes
+                },
+                dataType: "json",
+                success: function (data) {
+                    var docDefinition = formatForPrint(data);
+                    pdfMake.createPdf(docDefinition).open();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Failed to retrieve request details');
+                }
+            });
+
+        }
+
+        function formatForPrint(data) {
+
+            var docDefinition = {
+                content: [
+                    //Title row
+                    {
+                        columns: [
+                            {
+                                width: '*',
+                                text: 'Clothing Requests',
+                                style: 'title' 
+                            },
+                            [
+                                {text: 'Retrieved', alignment: "right" },
+                                { text: moment().format('M/DD/YYYY h:MM a'), lineHeight: 2, alignment: "right"}
+                            ]                            
+                        ],
+                        columnGap: 10                       
+                    }
+                ],
+
+                styles: {
+                    title: {
+                        fontSize: 22,
+                        bold: true,
+                        lineHeight: 2
+                    },
+                    header: {
+                        fontSize: 14,
+                        bold: true
+                    },
+                    inlineHeader: {
+                        fontSize: 11,
+                        bold: true
+                    },
+                    tableStyle: {
+                        margin: [0, 5, 0, 15],
+                        alignment: "center"
+                    }
+                }
+            };
+
+            $.each(data, function (index, request) {
+                docDefinition.content.push(
+                    {
+                        columns: [
+                            {
+                                width: 'auto',
+                                stack: [
+                                    { text: 'Request Number ' + request.id, style: 'header' },
+                                    { text: request.gender + ' - ' + request.grade },
+                                    { text: 'Urgency: ' + request.urgency, lineHeight: 2},
+                                    { text: 'School', style: 'header' },
+                                    request.school,
+                                    request.schoolDistrict,
+                                    request.county
+                                ]
+                            },
+                            {
+                                width: '*',
+                                alignment: "right",
+                                stack: [
+                                    { text: 'Requested By', style: 'header' },
+                                    request.requestedBy,
+                                    request.requestorPosition,
+                                    { text: request.requestorOffice },
+                                    {
+                                        text: [
+                                            { text: 'Phone: ', style: 'inlineHeader' },
+                                            request.requestorPhone
+                                        ]
+                                    },
+                                    {
+                                        text: [
+                                            { text: 'Email: ', style: 'inlineHeader' },
+                                            request.requestorEmail
+                                        ]
+                                    },
+                                    {
+                                        text: [
+                                            { text: 'Contact Method: ', style: 'inlineHeader' },
+                                            { text: request.requestorContactMethod}
+                                        ], lineHeight: 3
+                                    }
+                                ]         
+                            }
+                        ],
+                        columnGap: 30
+                    },
+                    {
+                        style: 'tableStyle',
+                        table: {
+                            headerRows: 1,
+                            widths: ['auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto'],
+                            body: [
+                                [{ text: 'Needed Items', style: 'header', colSpan: 7, alignment: 'center' }, {}, {}, {}, {}, {}, {}],
+                                ['Shirts', 'Pants', 'Underwear', 'Shoes', 'Socks', 'Coat', 'Hygiene Kit'],
+                                [request.needShirt, request.needPant, request.needUnderwear, request.needShoe, request.needSock, request.needCoat, request.needHygiene],
+                                [request.shirtSize, request.pantSize, request.underwear, request.shoes, "", "", ""]
+                            ]                            
+                        }
+                    }
+                    
+
+                );
+            });
+
+
+            return docDefinition;
+        }
 
     </script>
 
