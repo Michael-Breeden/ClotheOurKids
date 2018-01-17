@@ -19,6 +19,8 @@ namespace ClotheOurKids.Model
         {
             this.Schools = new HashSet<School>();
             this.AspNetUsers = new HashSet<AspNetUser>();
+            this.Chapters = new HashSet<Chapter>();
+            this.ChapterOffices = new HashSet<ChapterOffice>();
         }
     
         public short OfficeId { get; set; }
@@ -30,6 +32,7 @@ namespace ClotheOurKids.Model
         public string PostalCode { get; set; }
         public string PostalCodeExt { get; set; }
         public string Phone { get; set; }
+        public short CountyId { get; set; }
     
         public virtual OfficeType OfficeType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -37,5 +40,10 @@ namespace ClotheOurKids.Model
         public virtual State State { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
+        public virtual County County { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Chapter> Chapters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChapterOffice> ChapterOffices { get; set; }
     }
 }

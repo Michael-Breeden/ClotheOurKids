@@ -15,6 +15,7 @@ using System.Web.Helpers;
 using ClotheOurKids.Model;
 using ClotheOurKids.Model.Repository;
 using System.Configuration;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ClotheOurKids.Web.Controllers
 {
@@ -23,15 +24,17 @@ namespace ClotheOurKids.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationRoleManager _roleManager;
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            RoleManager = roleManager;
         }
 
         public ApplicationSignInManager SignInManager
@@ -58,12 +61,53 @@ namespace ClotheOurKids.Web.Controllers
             }
         }
 
+        // Utility
+        // Add RoleManager
+        #region public ApplicationRoleManager RoleManager
+        public ApplicationRoleManager RoleManager
+        {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationRoleManager>();
+            }
+            private set
+            {
+                _roleManager = value;
+            }
+        }
+        #endregion
+
+        // Add CreateAdminIfNeeded
+        #region private void CreateAdminIfNeeded()
+        private void CreateAdminRoleIfNeeded()
+        {
+            // Get Admin Account
+            string AdminUserName = "givekidsclothes@gmail.com";
+            // See if Admin exists
+            var objAdminUser = UserManager.FindByEmail(AdminUserName);
+            if (objAdminUser != null)
+            {
+                //See if the Admin role exists
+                if (!RoleManager.RoleExists("Administrator"))
+                {
+                    // Create the Admin Role (if needed)
+                    IdentityRole objAdminRole = new IdentityRole("Administrator");
+                    RoleManager.Create(objAdminRole);
+                }
+                 // Put user in Admin role
+                UserManager.AddToRole(objAdminUser.Id, "Administrator");
+            }
+        }
+        #endregion
+
         //
         // GET: /Login
         [AllowAnonymous]
         [Route("Login", Name = "LoginPage")]
         public ActionResult Login(string returnUrl)
         {
+            
+
             return View();
         }
 
@@ -75,6 +119,7 @@ namespace ClotheOurKids.Web.Controllers
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             string totalError;
+
 
             if (!ModelState.IsValid)
             {
@@ -200,6 +245,8 @@ namespace ClotheOurKids.Web.Controllers
         [Route("Register", Name = "RegisterPage")]
         public ActionResult Register()
         {
+            //CreateAdminRoleIfNeeded();
+
             var model = new RegisterViewModel();
                 
             PopulateRegisterModel(model);

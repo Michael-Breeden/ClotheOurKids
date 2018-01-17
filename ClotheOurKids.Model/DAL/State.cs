@@ -18,6 +18,7 @@ namespace ClotheOurKids.Model
         public State()
         {
             this.Offices = new HashSet<Office>();
+            this.Chapters = new HashSet<Chapter>();
         }
     
         public short StateId { get; set; }
@@ -26,5 +27,7 @@ namespace ClotheOurKids.Model
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Office> Offices { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Chapter> Chapters { get; set; }
     }
 }

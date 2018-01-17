@@ -627,6 +627,7 @@
     <Content Include="Views\AboutUs\WhoWeServe.cshtml" />
     <None Include="Properties\PublishProfiles\givekidsclothes.com - Web Deploy.pubxml" />
     <Content Include="Views\RequestClothes\ViewRequests.cshtml" />
+    <Content Include="Views\Admin\ManageRoles.cshtml" />
     <None Include="Web.Work.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

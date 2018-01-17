@@ -12,28 +12,27 @@ namespace ClotheOurKids.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class County
+    public partial class Chapter
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public County()
+        public Chapter()
         {
-            this.SchoolDistricts = new HashSet<SchoolDistrict>();
-            this.Offices = new HashSet<Office>();
             this.ChapterCounties = new HashSet<ChapterCounty>();
+            this.ChapterOffices = new HashSet<ChapterOffice>();
         }
     
-        public short CountyId { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public Nullable<System.DateTime> ServiceStartDate { get; set; }
-        public Nullable<System.DateTime> ServiceEndDate { get; set; }
-        public Nullable<short> StateId { get; set; }
+        public int ChapterId { get; set; }
+        public short OfficeId { get; set; }
+        public int MailingAddressId { get; set; }
+        public System.DateTime IncorporatedDate { get; set; }
+        public short IncorporatedStateId { get; set; }
+        public string Email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SchoolDistrict> SchoolDistricts { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Office> Offices { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChapterCounty> ChapterCounties { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChapterOffice> ChapterOffices { get; set; }
+        public virtual Office Office { get; set; }
+        public virtual State State { get; set; }
     }
 }

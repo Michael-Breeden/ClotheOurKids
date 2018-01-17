@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cb5967c2385c4e6d87b48f10acd83dc5" Name="Diagram1">
+      <Diagram DiagramId="cb5967c2385c4e6d87b48f10acd83dc5" Name="Diagram1" ZoomLevel="47">
         <EntityTypeShape EntityType="ClotheOurKidsModel.AspNetRole" Width="1.5" PointX="5.75" PointY="9.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ClotheOurKidsModel.AspNetUserClaim" Width="1.5" PointX="10.25" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="ClotheOurKidsModel.AspNetUserLogin" Width="1.5" PointX="10.25" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClotheOurKidsModel.AgeGroup" Width="1.5" PointX="8.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClotheOurKidsModel.County" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.AgeGroup" Width="1.5" PointX="18.875" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.County" Width="1.5" PointX="0.5" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ClotheOurKidsModel.Grade" Width="1.5" PointX="10.75" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ClotheOurKidsModel.Office" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ClotheOurKidsModel.OfficeType" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
@@ -55,6 +55,17 @@
         <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_Position_IsPositionOf_dbo_AspNetUsers" />
         <AssociationConnector Association="ClotheOurKidsModel.FK_Requests_Request_WasSubmittedBy_dbo_AspNetUsers" />
         <AssociationConnector Association="ClotheOurKidsModel.AspNetUserRoles" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_County_DefinesCountyOfResidenceFor_Reference_Office" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.Address" Width="1.5" PointX="0.75" PointY="16.5" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.Chapter" Width="1.5" PointX="7.375" PointY="0.5" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.ChapterCounty" Width="1.5" PointX="13.25" PointY="1.125" />
+        <EntityTypeShape EntityType="ClotheOurKidsModel.ChapterOffice" Width="1.5" PointX="11.125" PointY="0.5" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_Chapter_DefinesChapterFor_Reference_ChapterCounty" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_Chapter_DefinesChapterFor_Reference_ChapterOffice" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_Office_DefinesOfficeOfThis_Reference_Chapter" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_States_DefinesStateWhereChapterIsIncorporatedIn_Reference_Chapter" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_County_DefinesCountyFor_Reference_ChapterCounty" />
+        <AssociationConnector Association="ClotheOurKidsModel.FK_Reference_Office_DefinesServedByChapterIn_Reference_ChapterOffice" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

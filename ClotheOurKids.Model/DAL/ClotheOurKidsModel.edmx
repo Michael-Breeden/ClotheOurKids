@@ -76,6 +76,17 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <Property Name="ContactMethodId" Type="smallint" Nullable="false" />
           <Property Name="IsVerified" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StreetAddress" Type="varchar" MaxLength="500" />
+          <Property Name="City" Type="varchar" MaxLength="100" />
+          <Property Name="StateId" Type="smallint" />
+          <Property Name="PostalCode" Type="char" MaxLength="6" />
+          <Property Name="PostalCodeExt" Type="char" MaxLength="4" />
+        </EntityType>
         <EntityType Name="AgeGroup">
           <Key>
             <PropertyRef Name="AgeGroupId" />
@@ -83,6 +94,33 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <Property Name="AgeGroupId" Type="tinyint" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Chapter">
+          <Key>
+            <PropertyRef Name="ChapterId" />
+          </Key>
+          <Property Name="ChapterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OfficeId" Type="smallint" Nullable="false" />
+          <Property Name="MailingAddressId" Type="int" Nullable="false" />
+          <Property Name="IncorporatedDate" Type="date" Nullable="false" />
+          <Property Name="IncorporatedStateId" Type="smallint" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ChapterCounty">
+          <Key>
+            <PropertyRef Name="ChapterCountyId" />
+          </Key>
+          <Property Name="ChapterCountyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChapterId" Type="int" Nullable="false" />
+          <Property Name="CountyId" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ChapterOffice">
+          <Key>
+            <PropertyRef Name="ChapterOfficeId" />
+          </Key>
+          <Property Name="ChapterOfficeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChapterId" Type="int" Nullable="false" />
+          <Property Name="OfficeId" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="ContactMethod">
           <Key>
@@ -130,6 +168,7 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <Property Name="PostalCode" Type="char" MaxLength="6" />
           <Property Name="PostalCodeExt" Type="char" MaxLength="4" />
           <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="CountyId" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="OfficeType">
           <Key>
@@ -340,6 +379,30 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Reference_Chapter$DefinesChapterFor$Reference_ChapterCounty">
+          <End Role="Chapter" Type="Self.Chapter" Multiplicity="1" />
+          <End Role="ChapterCounty" Type="Self.ChapterCounty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chapter">
+              <PropertyRef Name="ChapterId" />
+            </Principal>
+            <Dependent Role="ChapterCounty">
+              <PropertyRef Name="ChapterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_Chapter$DefinesChapterFor$Reference_ChapterOffice">
+          <End Role="Chapter" Type="Self.Chapter" Multiplicity="1" />
+          <End Role="ChapterOffice" Type="Self.ChapterOffice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chapter">
+              <PropertyRef Name="ChapterId" />
+            </Principal>
+            <Dependent Role="ChapterOffice">
+              <PropertyRef Name="ChapterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Reference_ContactMethod$IsPreferredMethodOfContactFor$dbo_AspNetUsers">
           <End Role="ContactMethod" Type="Self.ContactMethod" Multiplicity="1" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
@@ -352,6 +415,30 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Reference_County$DefinesCountyFor$Reference_ChapterCounty">
+          <End Role="County" Type="Self.County" Multiplicity="1" />
+          <End Role="ChapterCounty" Type="Self.ChapterCounty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="County">
+              <PropertyRef Name="CountyId" />
+            </Principal>
+            <Dependent Role="ChapterCounty">
+              <PropertyRef Name="CountyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_County$DefinesCountyOfResidenceFor$Reference_Office">
+          <End Role="County" Type="Self.County" Multiplicity="1" />
+          <End Role="Office" Type="Self.Office" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="County">
+              <PropertyRef Name="CountyId" />
+            </Principal>
+            <Dependent Role="Office">
+              <PropertyRef Name="CountyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Reference_Gender$DescribesGenderOfChildFor$Requests_Request">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
           <End Role="Request" Type="Self.Request" Multiplicity="*" />
@@ -361,6 +448,30 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
             </Principal>
             <Dependent Role="Request">
               <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_Office$DefinesOfficeOfThis$Reference_Chapter">
+          <End Role="Office" Type="Self.Office" Multiplicity="1" />
+          <End Role="Chapter" Type="Self.Chapter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Office">
+              <PropertyRef Name="OfficeId" />
+            </Principal>
+            <Dependent Role="Chapter">
+              <PropertyRef Name="OfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_Office$DefinesServedByChapterIn$Reference_ChapterOffice">
+          <End Role="Office" Type="Self.Office" Multiplicity="1" />
+          <End Role="ChapterOffice" Type="Self.ChapterOffice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Office">
+              <PropertyRef Name="OfficeId" />
+            </Principal>
+            <Dependent Role="ChapterOffice">
+              <PropertyRef Name="OfficeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -484,6 +595,18 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Reference_States$DefinesStateWhereChapterIsIncorporatedIn$Reference_Chapter">
+          <End Role="States" Type="Self.States" Multiplicity="1" />
+          <End Role="Chapter" Type="Self.Chapter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="States">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="Chapter">
+              <PropertyRef Name="IncorporatedStateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Requests_NeededItems$IdentifiesItemsNeededFor$Requests_Request">
           <End Role="NeededItems" Type="Self.NeededItems" Multiplicity="1" />
           <End Role="Request" Type="Self.Request" Multiplicity="*" />
@@ -598,7 +721,11 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="Reference" store:Type="Tables" />
           <EntitySet Name="AgeGroup" EntityType="Self.AgeGroup" Schema="Reference" store:Type="Tables" />
+          <EntitySet Name="Chapter" EntityType="Self.Chapter" Schema="Reference" store:Type="Tables" />
+          <EntitySet Name="ChapterCounty" EntityType="Self.ChapterCounty" Schema="Reference" store:Type="Tables" />
+          <EntitySet Name="ChapterOffice" EntityType="Self.ChapterOffice" Schema="Reference" store:Type="Tables" />
           <EntitySet Name="ContactMethod" EntityType="Self.ContactMethod" Schema="Reference" store:Type="Tables" />
           <EntitySet Name="County" EntityType="Self.County" Schema="Reference" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="Reference" store:Type="Tables" />
@@ -649,13 +776,37 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
             <End Role="AgeGroup" EntitySet="AgeGroup" />
             <End Role="ShirtSize" EntitySet="ShirtSize" />
           </AssociationSet>
+          <AssociationSet Name="FK_Reference_Chapter$DefinesChapterFor$Reference_ChapterCounty" Association="Self.FK_Reference_Chapter$DefinesChapterFor$Reference_ChapterCounty">
+            <End Role="Chapter" EntitySet="Chapter" />
+            <End Role="ChapterCounty" EntitySet="ChapterCounty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_Chapter$DefinesChapterFor$Reference_ChapterOffice" Association="Self.FK_Reference_Chapter$DefinesChapterFor$Reference_ChapterOffice">
+            <End Role="Chapter" EntitySet="Chapter" />
+            <End Role="ChapterOffice" EntitySet="ChapterOffice" />
+          </AssociationSet>
           <AssociationSet Name="FK_Reference_ContactMethod$IsPreferredMethodOfContactFor$dbo_AspNetUsers" Association="Self.FK_Reference_ContactMethod$IsPreferredMethodOfContactFor$dbo_AspNetUsers">
             <End Role="ContactMethod" EntitySet="ContactMethod" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <AssociationSet Name="FK_Reference_County$DefinesCountyFor$Reference_ChapterCounty" Association="Self.FK_Reference_County$DefinesCountyFor$Reference_ChapterCounty">
+            <End Role="County" EntitySet="County" />
+            <End Role="ChapterCounty" EntitySet="ChapterCounty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_County$DefinesCountyOfResidenceFor$Reference_Office" Association="Self.FK_Reference_County$DefinesCountyOfResidenceFor$Reference_Office">
+            <End Role="County" EntitySet="County" />
+            <End Role="Office" EntitySet="Office" />
+          </AssociationSet>
           <AssociationSet Name="FK_Reference_Gender$DescribesGenderOfChildFor$Requests_Request" Association="Self.FK_Reference_Gender$DescribesGenderOfChildFor$Requests_Request">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_Office$DefinesOfficeOfThis$Reference_Chapter" Association="Self.FK_Reference_Office$DefinesOfficeOfThis$Reference_Chapter">
+            <End Role="Office" EntitySet="Office" />
+            <End Role="Chapter" EntitySet="Chapter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_Office$DefinesServedByChapterIn$Reference_ChapterOffice" Association="Self.FK_Reference_Office$DefinesServedByChapterIn$Reference_ChapterOffice">
+            <End Role="Office" EntitySet="Office" />
+            <End Role="ChapterOffice" EntitySet="ChapterOffice" />
           </AssociationSet>
           <AssociationSet Name="FK_Reference_Office$IsOfficeOf$dbo_AspNetUsers" Association="Self.FK_Reference_Office$IsOfficeOf$dbo_AspNetUsers">
             <End Role="Office" EntitySet="Office" />
@@ -696,6 +847,10 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <AssociationSet Name="FK_Reference_State$DefinesStateOfResidenceFor$Reference_Office" Association="Self.FK_Reference_State$DefinesStateOfResidenceFor$Reference_Office">
             <End Role="States" EntitySet="States" />
             <End Role="Office" EntitySet="Office" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_States$DefinesStateWhereChapterIsIncorporatedIn$Reference_Chapter" Association="Self.FK_Reference_States$DefinesStateWhereChapterIsIncorporatedIn$Reference_Chapter">
+            <End Role="States" EntitySet="States" />
+            <End Role="Chapter" EntitySet="Chapter" />
           </AssociationSet>
           <AssociationSet Name="FK_Requests_NeededItems$IdentifiesItemsNeededFor$Requests_Request" Association="Self.FK_Requests_NeededItems$IdentifiesItemsNeededFor$Requests_Request">
             <End Role="NeededItems" EntitySet="NeededItems" />
@@ -788,6 +943,8 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <Property Name="ServiceEndDate" Type="DateTime" Precision="0" />
           <Property Name="StateId" Type="Int16" />
           <NavigationProperty Name="SchoolDistricts" Relationship="Self.FK_Reference_SchoolDistrict_IsPartOfTheCounty_Reference_County" FromRole="County" ToRole="SchoolDistrict" />
+          <NavigationProperty Name="Offices" Relationship="ClotheOurKidsModel.FK_Reference_County_DefinesCountyOfResidenceFor_Reference_Office" FromRole="County" ToRole="Office" />
+          <NavigationProperty Name="ChapterCounties" Relationship="ClotheOurKidsModel.FK_Reference_County_DefinesCountyFor_Reference_ChapterCounty" FromRole="County" ToRole="ChapterCounty" />
         </EntityType>
         <EntityType Name="Grade">
           <Key>
@@ -815,6 +972,10 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <NavigationProperty Name="Schools" Relationship="Self.FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office" FromRole="Office" ToRole="School" />
           <NavigationProperty Name="State" Relationship="Self.FK_Reference_State_DefinesStateOfResidenceFor_Reference_Office" FromRole="Office" ToRole="States" />
           <NavigationProperty Name="AspNetUsers" Relationship="ClotheOurKidsModel.FK_Reference_Office_IsOfficeOf_dbo_AspNetUsers" FromRole="Office" ToRole="AspNetUser" />
+          <Property Name="CountyId" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="County" Relationship="ClotheOurKidsModel.FK_Reference_County_DefinesCountyOfResidenceFor_Reference_Office" FromRole="Office" ToRole="County" />
+          <NavigationProperty Name="Chapters" Relationship="ClotheOurKidsModel.FK_Reference_Office_DefinesOfficeOfThis_Reference_Chapter" FromRole="Office" ToRole="Chapter" />
+          <NavigationProperty Name="ChapterOffices" Relationship="ClotheOurKidsModel.FK_Reference_Office_DefinesServedByChapterIn_Reference_ChapterOffice" FromRole="Office" ToRole="ChapterOffice" />
         </EntityType>
         <EntityType Name="OfficeType">
           <Key>
@@ -887,6 +1048,7 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Code" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Offices" Relationship="Self.FK_Reference_State_DefinesStateOfResidenceFor_Reference_Office" FromRole="States" ToRole="Office" />
+          <NavigationProperty Name="Chapters" Relationship="ClotheOurKidsModel.FK_Reference_States_DefinesStateWhereChapterIsIncorporatedIn_Reference_Chapter" FromRole="State" ToRole="Chapter" />
         </EntityType>
         <EntityType Name="RequestStatus">
           <Key>
@@ -1142,6 +1304,38 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <AssociationSet Name="AspNetUserRoles" Association="ClotheOurKidsModel.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_County_DefinesCountyOfResidenceFor_Reference_Office" Association="ClotheOurKidsModel.FK_Reference_County_DefinesCountyOfResidenceFor_Reference_Office">
+            <End Role="County" EntitySet="Counties" />
+            <End Role="Office" EntitySet="Offices" />
+          </AssociationSet>
+          <EntitySet Name="Addresses" EntityType="ClotheOurKidsModel.Address" />
+          <EntitySet Name="Chapters" EntityType="ClotheOurKidsModel.Chapter" />
+          <EntitySet Name="ChapterCounties" EntityType="ClotheOurKidsModel.ChapterCounty" />
+          <EntitySet Name="ChapterOffices" EntityType="ClotheOurKidsModel.ChapterOffice" />
+          <AssociationSet Name="FK_Reference_Chapter_DefinesChapterFor_Reference_ChapterCounty" Association="ClotheOurKidsModel.FK_Reference_Chapter_DefinesChapterFor_Reference_ChapterCounty">
+            <End Role="Chapter" EntitySet="Chapters" />
+            <End Role="ChapterCounty" EntitySet="ChapterCounties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_Chapter_DefinesChapterFor_Reference_ChapterOffice" Association="ClotheOurKidsModel.FK_Reference_Chapter_DefinesChapterFor_Reference_ChapterOffice">
+            <End Role="Chapter" EntitySet="Chapters" />
+            <End Role="ChapterOffice" EntitySet="ChapterOffices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_Office_DefinesOfficeOfThis_Reference_Chapter" Association="ClotheOurKidsModel.FK_Reference_Office_DefinesOfficeOfThis_Reference_Chapter">
+            <End Role="Office" EntitySet="Offices" />
+            <End Role="Chapter" EntitySet="Chapters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_States_DefinesStateWhereChapterIsIncorporatedIn_Reference_Chapter" Association="ClotheOurKidsModel.FK_Reference_States_DefinesStateWhereChapterIsIncorporatedIn_Reference_Chapter">
+            <End Role="State" EntitySet="States" />
+            <End Role="Chapter" EntitySet="Chapters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_County_DefinesCountyFor_Reference_ChapterCounty" Association="ClotheOurKidsModel.FK_Reference_County_DefinesCountyFor_Reference_ChapterCounty">
+            <End Role="County" EntitySet="Counties" />
+            <End Role="ChapterCounty" EntitySet="ChapterCounties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_Office_DefinesServedByChapterIn_Reference_ChapterOffice" Association="ClotheOurKidsModel.FK_Reference_Office_DefinesServedByChapterIn_Reference_ChapterOffice">
+            <End Role="Office" EntitySet="Offices" />
+            <End Role="ChapterOffice" EntitySet="ChapterOffices" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="ContactMethod">
@@ -1473,6 +1667,136 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <End Type="ClotheOurKidsModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="ClotheOurKidsModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
+        <Association Name="FK_Reference_County_DefinesCountyOfResidenceFor_Reference_Office">
+          <End Type="ClotheOurKidsModel.County" Role="County" Multiplicity="1" />
+          <End Type="ClotheOurKidsModel.Office" Role="Office" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="County">
+              <PropertyRef Name="CountyId" />
+            </Principal>
+            <Dependent Role="Office">
+              <PropertyRef Name="CountyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StreetAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StateId" Type="Int16" />
+          <Property Name="PostalCode" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="PostalCodeExt" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Chapter">
+          <Key>
+            <PropertyRef Name="ChapterId" />
+          </Key>
+          <Property Name="ChapterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OfficeId" Type="Int16" Nullable="false" />
+          <Property Name="MailingAddressId" Type="Int32" Nullable="false" />
+          <Property Name="IncorporatedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IncorporatedStateId" Type="Int16" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ChapterCounties" Relationship="ClotheOurKidsModel.FK_Reference_Chapter_DefinesChapterFor_Reference_ChapterCounty" FromRole="Chapter" ToRole="ChapterCounty" />
+          <NavigationProperty Name="ChapterOffices" Relationship="ClotheOurKidsModel.FK_Reference_Chapter_DefinesChapterFor_Reference_ChapterOffice" FromRole="Chapter" ToRole="ChapterOffice" />
+          <NavigationProperty Name="Office" Relationship="ClotheOurKidsModel.FK_Reference_Office_DefinesOfficeOfThis_Reference_Chapter" FromRole="Chapter" ToRole="Office" />
+          <NavigationProperty Name="State" Relationship="ClotheOurKidsModel.FK_Reference_States_DefinesStateWhereChapterIsIncorporatedIn_Reference_Chapter" FromRole="Chapter" ToRole="State" />
+        </EntityType>
+        <EntityType Name="ChapterCounty">
+          <Key>
+            <PropertyRef Name="ChapterCountyId" />
+          </Key>
+          <Property Name="ChapterCountyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChapterId" Type="Int32" Nullable="false" />
+          <Property Name="CountyId" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Chapter" Relationship="ClotheOurKidsModel.FK_Reference_Chapter_DefinesChapterFor_Reference_ChapterCounty" FromRole="ChapterCounty" ToRole="Chapter" />
+          <NavigationProperty Name="County" Relationship="ClotheOurKidsModel.FK_Reference_County_DefinesCountyFor_Reference_ChapterCounty" FromRole="ChapterCounty" ToRole="County" />
+        </EntityType>
+        <EntityType Name="ChapterOffice">
+          <Key>
+            <PropertyRef Name="ChapterOfficeId" />
+          </Key>
+          <Property Name="ChapterOfficeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChapterId" Type="Int32" Nullable="false" />
+          <Property Name="OfficeId" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Chapter" Relationship="ClotheOurKidsModel.FK_Reference_Chapter_DefinesChapterFor_Reference_ChapterOffice" FromRole="ChapterOffice" ToRole="Chapter" />
+          <NavigationProperty Name="Office" Relationship="ClotheOurKidsModel.FK_Reference_Office_DefinesServedByChapterIn_Reference_ChapterOffice" FromRole="ChapterOffice" ToRole="Office" />
+        </EntityType>
+        <Association Name="FK_Reference_Chapter_DefinesChapterFor_Reference_ChapterCounty">
+          <End Type="ClotheOurKidsModel.Chapter" Role="Chapter" Multiplicity="1" />
+          <End Type="ClotheOurKidsModel.ChapterCounty" Role="ChapterCounty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chapter">
+              <PropertyRef Name="ChapterId" />
+            </Principal>
+            <Dependent Role="ChapterCounty">
+              <PropertyRef Name="ChapterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_Chapter_DefinesChapterFor_Reference_ChapterOffice">
+          <End Type="ClotheOurKidsModel.Chapter" Role="Chapter" Multiplicity="1" />
+          <End Type="ClotheOurKidsModel.ChapterOffice" Role="ChapterOffice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chapter">
+              <PropertyRef Name="ChapterId" />
+            </Principal>
+            <Dependent Role="ChapterOffice">
+              <PropertyRef Name="ChapterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_Office_DefinesOfficeOfThis_Reference_Chapter">
+          <End Type="ClotheOurKidsModel.Office" Role="Office" Multiplicity="1" />
+          <End Type="ClotheOurKidsModel.Chapter" Role="Chapter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Office">
+              <PropertyRef Name="OfficeId" />
+            </Principal>
+            <Dependent Role="Chapter">
+              <PropertyRef Name="OfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_States_DefinesStateWhereChapterIsIncorporatedIn_Reference_Chapter">
+          <End Type="ClotheOurKidsModel.State" Role="State" Multiplicity="1" />
+          <End Type="ClotheOurKidsModel.Chapter" Role="Chapter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="Chapter">
+              <PropertyRef Name="IncorporatedStateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_County_DefinesCountyFor_Reference_ChapterCounty">
+          <End Type="ClotheOurKidsModel.County" Role="County" Multiplicity="1" />
+          <End Type="ClotheOurKidsModel.ChapterCounty" Role="ChapterCounty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="County">
+              <PropertyRef Name="CountyId" />
+            </Principal>
+            <Dependent Role="ChapterCounty">
+              <PropertyRef Name="CountyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_Office_DefinesServedByChapterIn_Reference_ChapterOffice">
+          <End Type="ClotheOurKidsModel.Office" Role="Office" Multiplicity="1" />
+          <End Type="ClotheOurKidsModel.ChapterOffice" Role="ChapterOffice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Office">
+              <PropertyRef Name="OfficeId" />
+            </Principal>
+            <Dependent Role="ChapterOffice">
+              <PropertyRef Name="OfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1539,6 +1863,7 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
           <EntitySetMapping Name="Offices">
             <EntityTypeMapping TypeName="ClotheOurKidsModel.Office">
               <MappingFragment StoreEntitySet="Office">
+                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
                 <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="OfficeTypeId" ColumnName="OfficeTypeId" />
@@ -1751,6 +2076,48 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="ClotheOurKidsModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="PostalCodeExt" ColumnName="PostalCodeExt" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chapters">
+            <EntityTypeMapping TypeName="ClotheOurKidsModel.Chapter">
+              <MappingFragment StoreEntitySet="Chapter">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IncorporatedStateId" ColumnName="IncorporatedStateId" />
+                <ScalarProperty Name="IncorporatedDate" ColumnName="IncorporatedDate" />
+                <ScalarProperty Name="MailingAddressId" ColumnName="MailingAddressId" />
+                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+                <ScalarProperty Name="ChapterId" ColumnName="ChapterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChapterCounties">
+            <EntityTypeMapping TypeName="ClotheOurKidsModel.ChapterCounty">
+              <MappingFragment StoreEntitySet="ChapterCounty">
+                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+                <ScalarProperty Name="ChapterId" ColumnName="ChapterId" />
+                <ScalarProperty Name="ChapterCountyId" ColumnName="ChapterCountyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChapterOffices">
+            <EntityTypeMapping TypeName="ClotheOurKidsModel.ChapterOffice">
+              <MappingFragment StoreEntitySet="ChapterOffice">
+                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+                <ScalarProperty Name="ChapterId" ColumnName="ChapterId" />
+                <ScalarProperty Name="ChapterOfficeId" ColumnName="ChapterOfficeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

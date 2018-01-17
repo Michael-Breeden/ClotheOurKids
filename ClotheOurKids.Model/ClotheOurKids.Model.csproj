@@ -58,6 +58,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\Address.cs">
+      <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\AgeGroup.cs">
       <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
     </Compile>
@@ -71,6 +74,15 @@
       <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\AspNetUserLogin.cs">
+      <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Chapter.cs">
+      <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\ChapterCounty.cs">
+      <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\ChapterOffice.cs">
       <DependentUpon>ClotheOurKidsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\ClotheOurKidsModel.Context.cs">

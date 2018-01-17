@@ -49,5 +49,9 @@ namespace ClotheOurKids.Model
         public virtual DbSet<NeededItem> NeededItems { get; set; }
         public virtual DbSet<Request> Requests { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<Address> Addresses { get; set; }
+        public virtual DbSet<Chapter> Chapters { get; set; }
+        public virtual DbSet<ChapterCounty> ChapterCounties { get; set; }
+        public virtual DbSet<ChapterOffice> ChapterOffices { get; set; }
     }
 }
