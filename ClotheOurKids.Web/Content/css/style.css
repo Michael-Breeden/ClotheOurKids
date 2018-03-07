@@ -68,6 +68,10 @@
     z-index: 4050;
 }
 
+.navbar {
+    box-shadow: none;
+}
+
 @media(max-width: 1199px) {
     .navContainer {
         margin-bottom: 5px;

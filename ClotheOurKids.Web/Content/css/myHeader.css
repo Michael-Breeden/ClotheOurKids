@@ -137,25 +137,17 @@ header .column-two {
 
     header .logo {
         position: absolute;
-        margin-top: -20px;
+        margin-top: -15px;
+        margin-left: 5px;
     }
 
-    #mMenuToggle {
+    /*#mMenuToggle {
         margin-top: -11px;
-        position: absolute;
-        right: -35px;
-    }
+        margin-right: -35px;
+    }*/
 
-    .navbar-toggler {
-        margin-top: -11px;
-        position: absolute;
-        right: -35px;
-        cursor: pointer;
-    }
 
     .headerPad {
-        padding-top: 15px;
-        padding-bottom: 15px;
         padding-left: 0px;
         padding-right: 0px;
         height: 85px;

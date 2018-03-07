@@ -42,6 +42,7 @@
             background: #2196F3
         }
         
+
     </style>
 
     @RenderSection("pageCSS", required: false)
@@ -112,20 +113,7 @@
                                     </ul>
                                 
                             </div>
-                            <div class="d-lg-none navbar-inner">
-                                <div class="container">
-                                    <button id="mMenuToggle" class="hamburger hamburger--collapse" type="button">
-                                        <span class="hamburger-box">
-                                            <span class="hamburger-inner"></span>
-                                        </span>
-                                    </button>
-                                    <h6 style="font-size: 12px;">MENU</h6>
-                                    @*<a class="navbar-toggler" style="text-align:center;" href="#mobileMenu">
-                                        <span class="navbar-toggler-icon"></span>
-                                        <h6 style="font-size: 12px;">MENU</h6>
-                                    </a>*@
-                                </div>
-                            </div>
+                            
                         </nav>
                         <nav id="mobileMenu" class="d-lg-none">
                             <ul>
@@ -188,6 +176,14 @@
                             </li>
                         </ul>
                     </div>
+                </div>
+                <div class="d-lg-none d-flex align-self-center justify-content-end" style="width:100%;">
+
+                    <button id="mMenuToggle" class="hamburger hamburger--collapse align-self-end" type="button">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
                 </div>
             </div>
             <ul id="md-cta-buttons" class="default header-cta-buttons d-xl-none full-width-buttons">
