@@ -284,6 +284,8 @@
     <Content Include="Content\img\logo\ClotheOurKidsLogo_withNA.png" />
     <Content Include="Content\img\logo\ClotheOurKidsLogo_withNAwhite_Scaled.png" />
     <Content Include="Content\img\logo\ClotheOurKidsLogo_withNA_Scaled.png" />
+    <Content Include="Content\img\logo\logo3 - black.png" />
+    <Content Include="Content\img\logo\main logo - black.png" />
     <Content Include="Content\img\logo\MainLogo_color_scaled.png" />
     <Content Include="Content\img\logo\MainLogo_color_scaled_noTagLine.png" />
     <Content Include="Content\img\perry.jpg" />
