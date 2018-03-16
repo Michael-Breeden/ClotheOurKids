@@ -21,6 +21,8 @@
         .navContainer {
             width: 100%;
             position: absolute;
+            z-index: 1000;
+            background-color: #fff;
         }
 
         @@media(max-width: 1199px) {
@@ -75,6 +77,11 @@
             z-index: 0;
         }
 
+        #mainLogo {
+            z-index: 100;
+            position: relative;
+        }
+
         @@media (min-width: 1199px){
             #map-canvas {
                 top: 106px;
@@ -82,7 +89,8 @@
             }
 
             #mainLogo {
-                top: 106px;
+                /*top: 106px;*/
+                top: calc(((100vh - 106px) / 3))
             }
         }
 
@@ -97,7 +105,8 @@
             }
 
             #mainLogo {
-                top: 125px;
+                /*top: 125px;*/
+                top: calc(((100vh - 125px) / 3))
             }
         }
 
@@ -112,7 +121,8 @@
             }
 
             #mainLogo {
-                top: 162px;
+                /*top: 162px;*/
+                top: calc(((100vh - 162px) / 3))
             }
         }
 
@@ -128,8 +138,11 @@
 
 @section headerMask
 {
-    <div id="mainLogo" class="container justify-content-center align-items-center" style="z-index: 100; position: relative;">
-        <ul class="list-unstyled text-center ml-5">
+    <div id="map-canvas" class="full-bg-img">
+    </div>   
+
+    <div  class="container">
+        <ul id="mainLogo" class="list-unstyled text-center ml-5 mr-5">
             <li>
                 @*<h1 class="h1-responsive wow fadeInUp">Clothe Our Kids of North Alabama</h1>*@
                 <img class="img-fluid" src="~/Content/img/logo/logo3 - black.png" />
@@ -138,15 +151,11 @@
                     <p class="wow fadeInUp" data-wow-delay="0.2s">Giving Clothes. Showing Love. Building Confidence.</p>
                 </li>*@
             @*<li>
-                <a href="@Url.RouteUrl("GetInvolved")" class="btn btn-black btn-rounded btn-lg wow fadeInLeft" data-wow-delay="0.2s"><i class="fa fa-user left"></i> Get involved!</a>
-                <a href="@Url.RouteUrl("OurWork")" class="btn btn-black btn-rounded btn-lg wow fadeInRight" data-wow-delay="0.2s"><i class="fa fa-book left"></i>Learn more</a>
-            </li>*@
+                    <a href="@Url.RouteUrl("GetInvolved")" class="btn btn-black btn-rounded btn-lg wow fadeInLeft" data-wow-delay="0.2s"><i class="fa fa-user left"></i> Get involved!</a>
+                    <a href="@Url.RouteUrl("OurWork")" class="btn btn-black btn-rounded btn-lg wow fadeInRight" data-wow-delay="0.2s"><i class="fa fa-book left"></i>Learn more</a>
+                </li>*@
         </ul>
     </div>
-
-
-    <div id="map-canvas" class="full-bg-img">
-    </div>   
 
 }
 
@@ -197,7 +206,7 @@
 
 
         <div class="row mb-1 text-center">
-            <div id="OurWork" class="col white-text mr-2">
+            <div id="OurWork" class="col white-text mr-2 wow fadeIn" data-wow-delay="0.2s">
                 <div class="card card-cascade bg-red">
                     <div class="card-body text-center">
                         <div class="mb-1">
@@ -214,7 +223,7 @@
 
             <div class="col-12 mt-2 d-sm-none"></div>
 
-            <div id="GetInvolved" class="col mr-2">
+            <div id="GetInvolved" class="col mr-2 wow fadeIn" data-wow-delay="0.2s">
                 <div class="card card-cascade bg-light-blue" style="height: 100%;">
                     <div class="card-body text-center">
                         <div class="mb-1">
@@ -231,7 +240,7 @@
 
             <div class="col-12 mt-2 d-sm-none"></div>
 
-            <div id="Donate" class="col">
+            <div id="Donate" class="col wow fadeIn" data-wow-delay="0.2s">
                 <div class="card card-cascade bg-yellow" style="height: 100%;">
                     <div class="card-body text-center">
                         <div class="mb-1">

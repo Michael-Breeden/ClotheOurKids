@@ -160,18 +160,56 @@
       margin-right: 0;
       margin-left: 0;
   }
-  .kids-skin .bg-red {
-    background-color: #c00 !important;  }
-  .kids-skin .bg-light-blue {
+
+
+    /*main red color*/
+    .kids-skin .bg-red, .kids-skin .btn-danger {
+        background-color: #ee4266 !important;
+    }
+
+    /*main blue color*/
+    .kids-skin .bg-light-blue, .kids-skin .btn-info {
+        background-color: #540d6e !important;
+        color: #fff;
+    }
+
+
+    /*main green color*/
+    .kids-skin .bg-light-green, .kids-skin .btn-light-green {
+        background-color: #38bfb3 !important;
+        color: #fff;
+    }
+
+
+    /*main yellow color*/
+    .kids-skin .bg-yellow, .kids-skin .btn-yellow {
+        background-color: #ffd23f !important;
+        color: #fff;
+    }
+
+
+
+  /*main red color*/
+  /*.kids-skin .bg-red {
+    background-color: #c00 !important;  }*/
+
+    /*main blue color*/
+  /*.kids-skin .bg-light-blue {
       background-color: #33b5e5 !important;
       color: #fff;
-  }
-    .kids-skin .bg-light-green {
+  }*/
+
+
+    /*main green color*/
+    /*.kids-skin .bg-light-green {
         background-color: #7cb342 !important;
         color: #fff;
-    }
-    .kids-skin .bg-yellow {
+    }*/
+
+
+    /*main yellow color*/
+    /*.kids-skin .bg-yellow {
         background-color: #fdb614 !important;
         color: #fff;
-    }
+    }*/
 

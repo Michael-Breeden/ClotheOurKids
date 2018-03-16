@@ -156,7 +156,7 @@
                                 <a class="btn btn-rounded btn-danger" href="@Url.RouteUrl("Give")">Give</a>
                             </li>
                             <li>
-                                <a class="btn btn-rounded btn-info" href="@Url.RouteUrl("GetInvolved")">Get Involved</a>
+                                <a class="btn btn-rounded btn-yellow" href="@Url.RouteUrl("GetInvolved")">Get Involved</a>
                             </li>
                             <li>
                                 @if (Request.IsAuthenticated)
@@ -191,7 +191,7 @@
                     <a class="btn btn-rounded btn-danger" href="@Url.RouteUrl("Give")">Give</a>
                 </li>
                 <li>
-                    <a class="btn btn-rounded btn-info" href="@Url.RouteUrl("GetInvolved")">Get Involved</a>
+                    <a class="btn btn-rounded btn-yellow" href="@Url.RouteUrl("GetInvolved")">Get Involved</a>
                 </li>
                 <li>
                     @if (Request.IsAuthenticated)
@@ -220,13 +220,13 @@
             @RenderBody()
         </main>
 
-        <footer class="page-footer bg-red">
+        <footer class="page-footer pt-4 mt-4 text-center text-md-left bg-red">
             <!--/Footer Links-->
             <div class="container-fluid">
                 <!--First row-->
                 <div class="row">
                     <!--First column-->
-                    <div class="col col-md-3 ml-md-auto text-md-left text-center">
+                    <div class="col col-md-3 ml-3 mt-auto mb-auto">
                         <p>
                             P.O. Box 565 <br />
                             Somerville, AL 35670 <br />
@@ -236,9 +236,9 @@
                     <!--/.First column-->
 
                     <!--Second column-->
-                    <div class="d-none d-md-block col-md-2 ml-md-auto">
+                    <div class="d-none d-md-block col-md-2 ml-auto">
                         <h5 class="title">About Us</h5>
-                        <ul>
+                        <ul class="list-unstyled">
                             <li><a href="@Url.RouteUrl("WhoWeAre")">Who We Are</a></li>
                             <li><a href="@Url.RouteUrl("LeadershipPage")">Leadership</a></li>
                             <li><a href="@Url.RouteUrl("WhoWeServe")">Who We Serve</a></li>
@@ -250,9 +250,9 @@
 
 
                     <!--Third column-->
-                    <div class="d-none d-md-block col-md-2">
+                    <div class="d-none d-md-block col-md-2 col-lg-2">
                         <h5 class="title">What We Do</h5>
-                        <ul>
+                        <ul class="list-unstyled">
                             <li><a href="@Url.RouteUrl("OurWork")">Our Work</a></li>
                             <li><a href="@Url.RouteUrl("Stories")">Stories</a></li>
                         </ul>
@@ -260,9 +260,9 @@
                     <!--/.Third column-->
 
                     <!--Fourth column-->
-                    <div class="d-none d-md-block col-md-2">
+                    <div class="d-none d-md-block col-md-2 col-lg-2">
                         <h5 class="title">Take Action</h5>
-                        <ul>
+                        <ul class="list-unstyled">
                             <li><a href="@Url.RouteUrl("Give")">Give</a></li>
                             <li><a href="@Url.RouteUrl("GetInvolved")">Get Involved</a></li>
                             <li>
@@ -282,44 +282,36 @@
                 <!--/First row-->
 
 
-                <div class="d-none d-lg-block">
-                    <hr>
-                    <!--Second row-->
-                    <div class="row">
-                        <div class="col">
-                            <h5>Our Sponsors in <span class="thisYear"></span></h5>
-                        </div>
-
-                    </div>
-                    <!--Second row-->
-                    <!--Third row-->
-                    <div class="row">
-                        <div class="col">
-
-                        </div>
-                    </div>
-                    <!--Third row-->
-                </div>
-
             </div>
             <!--/Footer Links-->
 
 
             <hr>
 
+            <div class="container">
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <ul class="list-unstyled d-flex justify-content-center mb-0 py-4 list-inline">
+                            <li class="list-inline-item"><a href="https://www.facebook.com/clotheourkidsofnorthalabama" class="p-2 m-2 fa-lg fb-ic"><i class="fa fa-facebook white-text fa-lg"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.instagram.com/clotheourkids/" class="p-2 m-2 fa-lg tw-ic"><i class="fa fa-twitter white-text fa-lg"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
             <!--Social buttons-->
-            <div class="social-section">
+            @*<div class="social-section">
                 <ul>
                     <li><a href="https://www.facebook.com/clotheourkidsofnorthalabama" class="btn-floating btn-sm btn-fb"><i class="fa fa-facebook"> </i></a></li>
                     <li><a href="https://www.instagram.com/clotheourkids/" class="btn-floating btn-sm btn-ins"><i class="fa fa-instagram"> </i></a></li>
                 </ul>
-            </div>
+            </div>*@
             <!--/.Social buttons-->
 
             <!--Copyright-->
-            <div class="footer-copyright">
+            <div class="footer-copyright py-3 text-center">
                 <div class="container-fluid">
-                    © <span class="thisYear"></span> <a class="d-sm-none" href="@Url.RouteUrl("Home")"> Clothe Our Kids of North Alabama </a>
+                    © <span class="thisYear"></span> <a class="d-none d-sm-inline-block ml-1" href="@Url.RouteUrl("Home")"> Clothe Our Kids of North Alabama </a>
 
                 </div>
             </div>
