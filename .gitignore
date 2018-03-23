@@ -300,3 +300,6 @@ ClotheOurKids.Web/ConnectionStrings _Release.config
 ClotheOurKids.Web/ConnectionStrings.config
 ClotheOurKids_AppSettingsSecrets.config
 ClotheOurKids.Web/Web.Release.config
+.vs/ClotheOurKids/v14/.suo
+.vs/config/applicationhost.config
+Thumbs.db
