@@ -153,10 +153,10 @@
                     <div class="column-two d-flex justify-content-start">
                         <ul id="desktopCta" class="default header-cta-buttons d-none d-xl-block">
                             <li>
-                                <a class="btn btn-rounded btn-danger" href="@Url.RouteUrl("Give")">Give</a>
+                                <a class="btn btn-rounded bg-red" href="@Url.RouteUrl("Give")">Give</a>
                             </li>
                             <li>
-                                <a class="btn btn-rounded btn-yellow" href="@Url.RouteUrl("GetInvolved")">Get Involved</a>
+                                <a class="btn btn-rounded bg-yellow" href="@Url.RouteUrl("GetInvolved")">Get Involved</a>
                             </li>
                             <li>
                                 @if (Request.IsAuthenticated)
@@ -164,13 +164,13 @@
                                     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                                     {
                                         @Html.AntiForgeryToken()
-                                        <a class="btn btn-rounded btn-light-green" href="javascript:document.getElementById('logoutForm').submit()">Log Out</a>
+                                        <a class="btn btn-rounded bg-green" href="javascript:document.getElementById('logoutForm').submit()">Log Out</a>
                                     }
 
                                 }
                                 else
                                 {
-                                    <a class="btn btn-rounded btn-light-green" data-toggle="modal" data-target="#modal-login">Log In</a>
+                                    <a class="btn btn-rounded bg-green" data-toggle="modal" data-target="#modal-login">Log In</a>
                                 }
                                 
                             </li>
@@ -188,10 +188,10 @@
             </div>
             <ul id="md-cta-buttons" class="default header-cta-buttons d-xl-none full-width-buttons">
                 <li>
-                    <a class="btn btn-rounded btn-danger" href="@Url.RouteUrl("Give")">Give</a>
+                    <a class="btn btn-rounded bg-red" href="@Url.RouteUrl("Give")">Give</a>
                 </li>
                 <li>
-                    <a class="btn btn-rounded btn-yellow" href="@Url.RouteUrl("GetInvolved")">Get Involved</a>
+                    <a class="btn btn-rounded bg-yellow" href="@Url.RouteUrl("GetInvolved")">Get Involved</a>
                 </li>
                 <li>
                     @if (Request.IsAuthenticated)
@@ -199,13 +199,13 @@
                         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                         {
                             @Html.AntiForgeryToken()
-                            <a class="btn btn-rounded btn-light-green" href="javascript:document.getElementById('logoutForm').submit()">Log Out</a>
+                            <a class="btn btn-rounded bg-green" href="javascript:document.getElementById('logoutForm').submit()">Log Out</a>
                         }
 
                     }
                     else
                     {
-                        <a class="btn btn-rounded btn-light-green" data-toggle="modal" data-target="#modal-login">Log In</a>
+                        <a class="btn btn-rounded bg-green" data-toggle="modal" data-target="#modal-login">Log In</a>
                     }
                 </li>
             </ul>

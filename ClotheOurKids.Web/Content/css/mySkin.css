@@ -15,8 +15,6 @@
       background-color: #f44336;
       color: rgba(255, 255, 255, 0.75);
     }
-  .kids-skin .page-footer {
-    background-color: #797979; }
   .kids-skin .double-nav a {
     color: rgba(255, 255, 255, .75); }
   .kids-skin .side-nav {
@@ -162,54 +160,28 @@
   }
 
 
-    /*main red color*/
-    .kids-skin .bg-red, .kids-skin .btn-danger {
-        background-color: #ee4266 !important;
-    }
-
-    /*main blue color*/
-    .kids-skin .bg-light-blue, .kids-skin .btn-info {
-        background-color: #540d6e !important;
-        color: #fff;
-    }
-
 
     /*main green color*/
-    .kids-skin .bg-light-green, .kids-skin .btn-light-green {
+    .kids-skin .bg-green {
         background-color: #41BEB3 !important;
         color: #fff;
     }
 
+    /*main red color*/
+    .kids-skin .bg-red {
+        background-color: #ee4266 !important;
+        color: #fff !important;
+    }
 
-    /*main yellow color*/
-    .kids-skin .bg-yellow, .kids-skin .btn-yellow {
-        background-color: #ffd23f !important;
+    /*Main purple color*/
+    .kids-skin .bg-purple {
+        background-color: #540d6e !important;
         color: #fff;
     }
 
-
-
-  /*main red color*/
-  /*.kids-skin .bg-red {
-    background-color: #c00 !important;  }*/
-
-    /*main blue color*/
-  /*.kids-skin .bg-light-blue {
-      background-color: #33b5e5 !important;
-      color: #fff;
-  }*/
-
-
-    /*main green color*/
-    /*.kids-skin .bg-light-green {
-        background-color: #7cb342 !important;
-        color: #fff;
-    }*/
-
-
     /*main yellow color*/
-    /*.kids-skin .bg-yellow {
-        background-color: #fdb614 !important;
+    .kids-skin .bg-yellow {
+        background-color: #ffd23f !important;
         color: #fff;
-    }*/
+    }
 

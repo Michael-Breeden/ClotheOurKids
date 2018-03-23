@@ -47,7 +47,7 @@ namespace ClotheOurKids.Web
 
             bundles.Add(new StyleBundle("~/Content/css/myBundles")
                 .Include(
-                "~/Content/css/mySkin.css",
+                "~/Content/css/kidsSkin.css",
                 "~/Content/css/myHeader.css",
                 "~/Content/css/style.css"
                 ));

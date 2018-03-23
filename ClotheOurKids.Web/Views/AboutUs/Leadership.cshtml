@@ -1,4 +1,13 @@
-﻿<div class="container">
+﻿@section pageCSS
+{
+    <style>
+        .card-wrapper {
+            min-height: 450px;
+        }
+    </style>
+}
+
+<div class="container">
 
     <section class="section page-top-section mb-5 wow fadeIn" data-wow-delay="0.2s">
         <div class="row">
@@ -22,78 +31,198 @@
         </div>
     </section>
 
-    <hr class="between-sections">
+    <hr class="between-sections"/>
 
-    <!--Section: Team v.1-->
-    <section class="section team-section">
+
+    <!--Section: Team v.4-->
+    <section class="section pb-3 wow fadeIn" data-wow-delay="0.4s">
 
         <!--Section heading-->
-        <h1 class="section-heading">Meet Our Officers</h1>
+        <h2 class="text-center h1 py-5">Meet Our Founders</h2>
         <!--Section description-->
-        <p class="section-description">Our officers are dedicated to ensuring that we do everything that we can to clothe kids in North Alabama.</p>
+        <p class="grey-text pb-5 text-center">
+            Our founders shared a vision to clothe kids across the United States.
+            <br />They joined together and started Clothe Our Kids Foundation to make this vision a reality!
+        </p>
 
-        <!--First row-->
-        <div class="row text-center">
+        <div class="row">
 
-            <!--First column-->
-            <div class="col-lg-4 col-md-12 mb-r">
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-3 ml-auto">
 
-                <div class="avatar">
-                    <img src="~/Content/img/ClotheOurKids/Brandi_scaled.JPG" class="rounded-circle"/>
+                <!--Rotating card-->
+                <div class="card-wrapper">
+                    <div id="card-1" class="card-rotating effect__click text-center w-100 h-100">
+
+                        <!--Front Side-->
+                        <div class="face front">
+
+                            <!-- Image-->
+                            <div class="card-up">
+                                <img src="~/Content/img/ClotheOurKids/Brandi_scaled.JPG" alt="Team member card image">
+                            </div>
+
+
+                            <!--Content-->
+                            <div class="card-body">
+                                <h4 class="mt-1">Laura Mayer</h4>
+                                <p class="font-weight-bold dark-grey-text">Vision, Expansion, Funding</p>
+                                <!--Triggering button-->
+                                <a class="rotate-btn grey-text" data-card="card-1">
+                                    <i class="fa fa-repeat grey-text"></i> Find out more
+                                </a>
+                            </div>
+
+                        </div>
+                        <!--Front Side-->
+                        <!--Back Side-->
+                        <div class="face back">
+
+                            <!--Content-->
+                            <div class="card-body">
+
+                                <!--Content-->
+                                <h4 class="font-weight-bold mt-4 mb-2">
+                                    <strong>About me</strong>
+                                </h4>
+                                <hr>
+                                <p>
+                                    Laura sets the global vision for our Foundation. 
+                                    She drives our expansion into new locations through speaking engagements and intentional networking. 
+                                    She also explores new fundraising opportunities and directs distribution of funding to Clothe Our Kids chapters.
+                                </p>
+                                <hr>
+                                <!--Social Icons-->
+                                <ul class="list-inline list-unstyled">
+                                    <li class="list-inline-item">
+                                        <a class="icons-sm fb-ic">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="icons-sm ins-ic">
+                                            <i class="fa fa-instagram"> </i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="icons-sm tw-ic">
+                                            <i class="fa fa-twitter"> </i>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!--Triggering button-->
+                                <a class="rotate-btn grey-text" data-card="card-1">
+                                    <i class="fa fa-repeat grey-text"></i> Rotate back
+                                </a>
+
+                            </div>
+
+                        </div>
+                        <!--Back Side-->
+
+                    </div>
                 </div>
-                <h4>Brandi Breeden</h4>
-                <h5>President / Co-Founder</h5>
-                <p>Brandi is the life and soul of our organization. She pours herself into the day to day operations, administrative tasks, outreach, and vision of Clothe Our Kids of North Alabama.</p>
+                <!--Rotating card-->
 
             </div>
-            <!--/First column-->
-            <!--Second column-->
-            <div class="col-lg-4 col-md-12 mb-r">
+            <!--Grid column-->
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4 mr-auto">
 
-                <div class="avatar">
-                    <img src="~/Content/img/ClotheOurKids/comingSoon_scaled.jpg" class="rounded-circle">
+                <!--Rotating card-->
+                <div class="card-wrapper">
+                    <div id="card-2" class="card-rotating effect__click text-center w-100 h-100">
+
+                        <!--Front Side-->
+                        <div class="face front">
+
+                            <!-- Image-->
+                            <div class="card-up">
+                                <img src="~/Content/img/ClotheOurKids/Brandi_scaled.JPG" alt="Team member card image">
+                            </div>
+
+                            <!--Content-->
+                            <div class="card-body">
+                                <h4 class="mt-1">Brandi Breeden</h4>
+                                <p class="font-weight-bold dark-grey-text">Operations, Planning, Training</p>
+                                <!--Triggering button-->
+                                <a class="rotate-btn grey-text" data-card="card-2">
+                                    <i class="fa fa-repeat grey-text"></i> Find out more
+                                </a>
+                            </div>
+
+                        </div>
+                        <!--Front Side-->
+                        <!--Back Side-->
+                        <div class="face back">
+
+                            <!--Content-->
+                            <div class="card-body">
+
+                                <!--Content-->
+                                <h4 class="font-weight-bold mt-4 mb-2">
+                                    <strong>About me</strong>
+                                </h4>
+                                <hr>
+                                <p>
+                                    Brandi oversees the day-to-day operations at all of our chapters.
+                                    She provides oversight to foundation planning acivities.
+                                    She also coordinates training activities for Chapter Presidents and Support Volunteers.
+                                </p>
+                                <hr>
+                                <!--Social Icons-->
+                                <ul class="list-inline list-unstyled">
+                                    <li class="list-inline-item">
+                                        <a class="icons-sm fb-ic">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="icons-sm ins-ic">
+                                            <i class="fa fa-instagram"> </i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="icons-sm tw-ic">
+                                            <i class="fa fa-twitter"> </i>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!--Triggering button-->
+                                <a class="rotate-btn grey-text" data-card="card-2">
+                                    <i class="fa fa-repeat grey-text"></i> Rotate back
+                                </a>
+
+                            </div>
+
+                        </div>
+                        <!--Back Side-->
+
+                    </div>
                 </div>
-                <h4>Perry Jeffers</h4>
-                <h5>Vice President</h5>
-                <p>Perry serves as our Vice President. He dedicates his time to assist Brandi with many day to day activities as well as offering guidance and wisdom in the vision and planning of our operations.</p>
+                <!--Rotating card-->
 
             </div>
-            <!--/Second column-->
-            <!--Third column-->
-            <div class="col-lg-4 col-md-12 mb-r">
-
-                <div class="avatar">
-                    <img src="~/Content/img/ClotheOurKids/Michael_scaled.JPG" class="rounded-circle"/>
-                </div>
-                <h4>Michael Breeden</h4>
-                <h5>Secretary / Treasurer / Co-Founder</h5>
-                <p>Michael serves as our Secretary and Treasurer. He helps out with the day to day activities as often as possible, but the majority of his work happens behind the scenes. He dedicates his time after his day job to building and maintaining our website.</p>
-
-            </div>
-            <!--/Third column-->
+            <!--Grid column-->           
 
         </div>
-        <!--/First row-->
 
     </section>
-    <!--/Section: Team v.1-->
+    <!--Section: Team v.4-->
 
     <hr class="between-sections" />
 
     <!--Section-->
     <section class="section">
         <!--Section heading-->
-        <h1 class="section-heading">Clothe Our Kids of North Alabama Board of Directors</h1>
+        <h1 class="section-heading">Clothe Our Kids Foundation Board of Directors</h1>
         <!--Section description-->
         @*<p class="section-description">Clothe Our Kids of North Alabama Board Members</p>*@
 
         <p class="text-center">
+            Laura Mayer <br />
             Brandi Breeden <br />
             Michael Breeden <br />
-            Melanie Burger <br />
-            Perry Jeffers <br />
-            Amanda McAlpin <br />
-            Cindy Sandoval
         </p>
     </section>
     <!--/Section-->

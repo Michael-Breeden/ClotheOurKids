@@ -3,31 +3,29 @@
 
 <!-- Modal Login -->
 <div class="modal fade modal-ext" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <!--Content-->
-        <div class="modal-content">
+        <div class="modal-content form-elegant">
             <!--Header-->
             <div class="modal-header d-flex flex-row ">                
-                <h3 class="w-100 mr-auto text-center"><i class="fa fa-user"></i> Login</h3>
+                <h3 class="modal-title w-100 dark-grey-text font-weight-bold mr-auto text-center"><strong>Log in</strong></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <!--Body-->
-            <div class="modal-body">
-                <form class="form-horizontal">
+            <div class="modal-body mx-4">
+                <form class="ml-3 mr-3">
                     @Html.AntiForgeryToken()
-                    <div class="md-form">
-                        <i class="fa fa-envelope prefix"></i>
+                    <div class="md-form mb-4">
                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate" })
                         @Html.LabelFor(m => m.Email)
                     </div>
-                    <div class="md-form">
-                        <i class="fa fa-lock prefix"></i>
+                    <div class="md-form mb-4">
                         @Html.PasswordFor(m => m.Password, new { @class = "form-control validate" })
                         @Html.LabelFor(m => m.Password)
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-5 mb-3">
                         <input type="checkbox" class="filled-in" id="RememberMe" name="RememberMe" />
                         <label for="RememberMe">Remember Me?</label>
                         <input name="RememberMe" type="hidden" value="false" />
@@ -36,7 +34,7 @@
 
                     </div>
                     <div class="text-center d-flex align-items-center justify-content-center">
-                        <button id="btnLogIn" class="btn btn-primary">Log In</button>
+                        <button id="btnLogIn" class="btn bg-green">Log In</button>
                         <div class="preloader-wrapper small active">
                             <div class="spinner-layer spinner-blue-only">
                                 <div class="circle-clipper left">
@@ -53,9 +51,9 @@
                 </form>
             </div>
             <!--Footer-->
-            <div class="modal-footer">
+            <div class="modal-footer mx-5 pt-3 mb-1">
                 <div class="options text-right">
-                    <p>Not a member? <a href="@Url.Action("Register", "Account")">Register</a></p>
+                    <p>Don't have an account? <a href="@Url.Action("Register", "Account")">Sign up</a></p>
                     <p>Forgot <a href="@Url.Action("ForgotPassword", "Account")">Password?</a></p>
                 </div>
             </div>

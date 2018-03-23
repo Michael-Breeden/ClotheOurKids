@@ -1,5 +1,32 @@
-body, h1, h2, h3, h4, h5, h6, .lead {
+body, h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
+}
+
+
+
+.block-text {
+    line-height: 2;
+    font-size: 1.25rem;
+    margin-bottom: 2.5rem;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.lead {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+
+.pull-right {
+    float: right; 
+    width: 200px;
+    margin-left: 15px;
+    margin-right: 15%; 
+    margin-top: -12px;
+    font-size: 1.5rem; 
+    line-height: 1.5;
+    font-weight: 500;
 }
 
 .striped li {
@@ -270,6 +297,22 @@ body, h1, h2, h3, h4, h5, h6, .lead {
 }
 
 
+.form-elegant .z-depth-1a {
+    -webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+    box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25); }
+
+.form-elegant .z-depth-1-half,
+.form-elegant .btn:hover {
+    -webkit-box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+    box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15); }
+
+.form-elegant .modal-header {
+    border-bottom: none; }
+
+.form-elegant .modal-body, .form-elegant .modal-footer {
+    font-weight: 400; }
+
+
 @media(max-width:992px) and (min-width: 0) {
     .toast-top-right {
         top: 165px;
@@ -280,6 +323,17 @@ body, h1, h2, h3, h4, h5, h6, .lead {
         margin-left: 5%;
         margin-right: 5%;
     }
+
+    .block-text {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .pull-right {
+        float: none;
+        width: 100%;
+    }
+
 }
 
 @media (min-width: 992px) {

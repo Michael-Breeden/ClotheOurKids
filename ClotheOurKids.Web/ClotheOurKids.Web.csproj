@@ -255,6 +255,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\foundation-emails.css" />
+    <Content Include="Content\css\kidsSkin.css" />
     <Content Include="Content\img\ClotheOurKids\Brandi_scaled.jpg" />
     <Content Include="Content\img\ClotheOurKids\COKJULY-1.jpg" />
     <Content Include="Content\img\ClotheOurKids\COKJULY-10.jpg" />

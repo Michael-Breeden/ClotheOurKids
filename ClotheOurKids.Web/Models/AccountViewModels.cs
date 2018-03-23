@@ -75,13 +75,13 @@ namespace ClotheOurKids.Web.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Your Email")]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Your Password")]
         public string Password { get; set; }
 
         [Display(Name = "Remember me?")]
