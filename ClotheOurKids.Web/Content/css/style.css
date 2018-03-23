@@ -1,3 +1,7 @@
+body, h1, h2, h3, h4, h5, h6, .lead {
+    font-weight: 400;
+}
+
 .striped li {
     border-bottom: 1px solid rgba(153, 153, 153, 0.298039);
     margin-bottom: 1rem;
@@ -58,6 +62,13 @@
     max-height: 500px;
     margin-left: -15px;
     margin-right: -20px;
+}
+
+.streak-section {
+    background-attachment: fixed;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-bottom: 4rem;
 }
 
 .modal-backdrop {
@@ -263,6 +274,11 @@
     .toast-top-right {
         top: 165px;
         right: 5px;
+    }
+
+    .streak-section {
+        margin-left: 5%;
+        margin-right: 5%;
     }
 }
 
