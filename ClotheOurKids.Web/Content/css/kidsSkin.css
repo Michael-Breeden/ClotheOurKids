@@ -9,7 +9,9 @@
 
 
 .kids-skin {
-  /* Select colors */ }
+  /* Select colors */ 
+    background-color: #fffbdc;
+                                    }
   .kids-skin .gradient {
     background: #ababab;
     background: -webkit-linear-gradient(315deg, #ababab 0%, #fff 100%);
