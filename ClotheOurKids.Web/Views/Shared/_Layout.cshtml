@@ -19,7 +19,7 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="~/favicon.ico">
 
-
+    <link href="https://fonts.googleapis.com/css?family=Mukta:400,500,600,700" rel="stylesheet"> 
     <link href='https://fonts.googleapis.com/css?family=Bad+Script' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister" rel="stylesheet"> 
     
@@ -52,7 +52,7 @@
     @Html.Partial("_LoginForm", new ClotheOurKids.Web.Models.LoginViewModel())
     <div id="page-wrapper">       
 
-        <header>
+        <header class="bg-blue">
 
             <div class="container-fluid navContainer d-flex justify-content-lg-center">
                 <div class="row align-items-center headerPad justify-content-lg-center">
@@ -63,7 +63,7 @@
                             </span>
                         </a>
 
-                        <nav id="navbar" class="navbar navbar-expand-md navbar-light z-depth-0">
+                        <nav id="navbar" class="navbar navbar-expand-md navbar-dark z-depth-0 text-logo">
                             <div class="d-none d-lg-block">    
                                     <!--Links-->
                                     <ul class="navbar-nav mr-auto" id="mainSiteMenu">
@@ -216,11 +216,11 @@
 
         </header>
 
-        <main class="pt-5 pb-4">
+        <main>
             @RenderBody()
         </main>
 
-        <footer class="page-footer pt-4 mt-4 text-center text-md-left bg-red">
+        <footer class="page-footer pt-4 text-center text-md-left bg-red">
             <!--/Footer Links-->
             <div class="container-fluid">
                 <!--First row-->

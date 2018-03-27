@@ -1,4 +1,46 @@
-﻿.show > .kids-skin .btn-primary:focus, .kids-skin .btn-primary.focus, .kids-skin .btn-primary:not([disabled]):not(.disabled):active, .kids-skin .btn-primary.active:not([disabled]):not(.disabled),
+﻿@font-face {
+  font-family: "Mukta";
+  src: url("https://fonts.googleapis.com/css?family=Mukta:400");
+  font-weight: 400; }
+
+@font-face {
+  font-family: "Mukta";
+  src: url("https://fonts.googleapis.com/css?family=Mukta:700");
+  font-weight: 700; }
+
+
+@font-face {
+  font-family: "Open Sans";
+  src: local(Open Sans), url("https://fonts.googleapis.com/css?family=Open+Sans:300");
+ font-weight: 300; }
+
+
+@font-face {
+  font-family: "Open Sans";
+  src: local(Open Sans), url("https://fonts.googleapis.com/css?family=Open+Sans:400");
+ font-weight: 400; }
+
+@font-face {
+  font-family: "Open Sans";
+  src: local(Open Sans), url("https://fonts.googleapis.com/css?family=Open+Sans:700");
+ font-weight: 700; }
+
+body {
+    font-family: 'Open Sans';
+    font-weight: 400;
+    color: #24335a;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Mukta';
+    font-weight: 700;
+}
+
+/*.h1, .h2, .h3, .h4, .h5, .h6, .p, .a, .h1-responsive, .h2-responsive, .h3-responsive, .h4-responsive, .h5-responsive, .h6-responsive, h1, h2, h3, h4, h5, h6, li, p, .section-description {
+    color: #24335a;
+}*/
+
+.show > .kids-skin .btn-primary:focus, .kids-skin .btn-primary.focus, .kids-skin .btn-primary:not([disabled]):not(.disabled):active, .kids-skin .btn-primary.active:not([disabled]):not(.disabled),
 .show > .kids-skin .btn-primary.dropdown-toggle, .kids-skin .btn-primary:not([disabled]):not(.disabled):active:focus, .kids-skin .btn-primary.active:not([disabled]):not(.disabled):focus,
 .show > .kids-skin .btn-primary.dropdown-toggle:focus, .kids-skin .btn-secondary:focus, .kids-skin .btn-secondary.focus, .kids-skin .btn-secondary:not([disabled]):not(.disabled):active, .kids-skin .btn-secondary.active:not([disabled]):not(.disabled),
 .show > .kids-skin .btn-secondary.dropdown-toggle, .kids-skin .btn-secondary:not([disabled]):not(.disabled):active:focus, .kids-skin .btn-secondary.active:not([disabled]):not(.disabled):focus,
@@ -12,21 +54,38 @@
   /* Select colors */ 
     background-color: #fffbdc;
                                     }
+
+    
+
   .kids-skin .gradient {
     background: #ababab;
     background: -webkit-linear-gradient(315deg, #ababab 0%, #fff 100%);
     background: linear-gradient(135deg, #ababab 0%, #fff 100%); }
   .kids-skin .primary-color, .kids-skin .stepper li.active a .circle, .stepper li.active a .kids-skin .circle, .kids-skin .stepper li.completed a .circle, .stepper li.completed a .kids-skin .circle {
     background-color: #41BEB3 !important; }
-  .kids-skin .navbar {
+  /*.kids-skin .navbar {
     background-color: #fff;
-    color: #424242; }
-    .kids-skin .navbar .navbar-nav .nav-item .dropdown-menu a:hover, .kids-skin .navbar .navbar-nav .nav-item .dropdown-menu a:focus, .kids-skin .navbar .navbar-nav .nav-item .dropdown-menu a:active {
-      background-color: #41BEB3 !important;
-      color: #000;
+    color: #424242; }*/
+    .kids-skin .navbar .navbar-nav .nav-item .dropdown-menu a:hover, .navbar .navbar-nav .nav-item .dropdown-menu a:focus, .kids-skin .navbar .navbar-nav .nav-item .dropdown-menu a:active {
+      background-color: #24335a !important;
     }
-    .kids-skin .navbar .navbar-nav .nav-item a {
-      color: #424242; }
+    .kids-skin .navbar.navbar-dark .breadcrumb .nav-item .nav-link, .navbar.navbar-dark .navbar-nav .nav-item .nav-link {
+        color: #41BEB3;
+        font-weight: 700;
+    }
+    .kids-skin .navbar.navbar-dark .breadcrumb .nav-item .nav-link:hover, .navbar.navbar-dark .navbar-nav .nav-item .nav-link:hover{
+        color: #fff;
+    }
+    .kids-skin .dropdown-menu {
+        background-color: #41BEB3;
+    }
+    .kids-skin .navbar .dropdown-menu a {
+        color: #fff !important;
+        font-weight: 400;
+    }
+    .kids-skin .dropdown .dropdown-menu .dropdown-item {
+        font-size: 1rem;
+    }
   .kids-skin .btn-primary {
     background-color: #4285F4 !important;
     color: #ffffff !important; }
@@ -139,10 +198,14 @@
       color: #fff;
   }
 
+  .kids-skin .text-logo {
+      color: #41BEB3;
+  }
+
   /*main green color*/
     .kids-skin .bg-green {
-        background-color: #41BEB3 !important;
-        color: #fff;
+        background-color: #00b191 !important;
+        color: #fff !important;
     }
 
     /*main red color*/
@@ -153,12 +216,27 @@
 
     /*Main purple color*/
     .kids-skin .bg-purple {
-        background-color: #540d6e !important;
-        color: #fff;
+        background-color: #4d409a !important;
+        color: #fff !important;
+    }
+
+    /*Main blue color*/
+    .kids-skin .bg-blue {
+        background-color: #24335a !important;
+        color: #fff !important;
     }
 
     /*main yellow color*/
     .kids-skin .bg-yellow {
-        background-color: #ffd23f !important;
-        color: #fff;
+        background-color: #fdb813 !important;
+        color: #fff !important;
+    }
+
+    .kids-skin .bg-orange {
+        background-color: #f47e58 !important;
+        color: #fff !important;
+    }
+
+    .kids-skin .hamburger-inner, .kids-skin .hamburger-inner:before, .kids-skin .hamburger-inner:after {
+        background-color: #fff;
     }

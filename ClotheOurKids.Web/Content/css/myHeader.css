@@ -26,16 +26,6 @@ header {
     margin-left: 20px;
 }
 
-.navbar.navbar-light .nav-item.dropdown span {
-    color: #212121;
-    transition: .35s; }
-
-.navbar.navbar-dark .navbar-nav .nav-item.dropdown span {
-    color: #fff;
-    transition: .35s; }
-
-.navbar.navbar-dark .navbar-nav .nav-item span:hover {
-      color: rgba(255, 255, 255, 0.75); }
 
 ul.default {
     margin: 0;
@@ -263,7 +253,7 @@ header .column-two {
 
 /*mMenu Styles*/
 #mobileMenu {
-    top:163px;
+    top:155px;
     background-color: #ffffff;
 }
 
