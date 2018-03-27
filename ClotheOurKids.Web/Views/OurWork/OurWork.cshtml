@@ -1,4 +1,18 @@
-﻿<div class="container">
+﻿@section pageCSS
+{
+    <style>
+        .collection-card .stripe.dark {
+            background-color: rgba(0, 0, 0, .9);
+        }
+
+        .collection-card .stripe.light {
+            background-color: rgba(255, 255, 255, .9);
+        }
+    </style>
+    
+}
+
+<div class="container">
     <section class="section page-top-section mb-5 wow fadeIn" data-wow-delay="0.2s">
         <div class="row">
             <div class="col-12">
@@ -34,11 +48,11 @@
         <p class="section-description lead wow fadeIn" data-wow-delay="0.2s">We have a simple process to get clothing and hygiene items into the hands of kids who need them</p>
 
         <div class="row mb-1 text-center">
-            <div class="col bg-red white-text mr-2">
+            <div class="col bg-red white-text mr-2 ml-2 ml-sm-0">
                 <h4 class="mt-5">Collect</h4>
                 <p class="white-text mb-5">We rely 100% on your clothing and financial donations to ensure we can provide for all of the kids who need our help.</p>
             </div>
-            <div class="col bg-purple">
+            <div class="col bg-purple mr-2 mr-sm-0">
                 <h4 class="mt-5">Sort</h4>
                 <p class="white-text mb-5">
                     We inspect all of the apparel that we collect for stains, holes, or excessive wear and keep only the items that a child can wear with confidence.
@@ -46,11 +60,11 @@
             </div>
         </div>
         <div class="row text-center">
-            <div class="col bg-green mr-2">
+            <div class="col bg-green mr-2 ml-2 ml-sm-0">
                 <h4 class="white-text mt-5">Pack</h4>
                 <p class="white-text mb-5">At the request of a school official or child advocate pack a bag of hand-picked clothing and necessary hygiene items.</p>
             </div>
-            <div class="col bg-yellow">
+            <div class="col bg-yellow mr-2 mr-sm-0">
                 <h4 class="white-text mt-5">Deliver</h4>
                 <p class="white-text mb-5">We deliver each bag to the school or organization to be given to the child in need.</p>
             </div>
@@ -79,19 +93,18 @@
         <div class="row justify-content-center">
 
             <!--First column-->
-            <div class="col-6 col-lg-3 col-sm-4 mb-r wow fadeInUp" data-wow-delay="0.2s">
+            <div class="col-6 col-lg-3 col-sm-4 mb-3 wow fadeInUp" data-wow-delay="0.2s">
 
                 <!--Collection card-->
                 <div class="card collection-card z-depth-1-half">
                     <!--Card image-->
-                    <div class="view hm-white-light hm-zoom">
+                    <div class="view zoom">
                         <img src="~/Content/img/shirt.jpg" class="img-fluid" alt="" />
-                        <div class="mask">
-                            <div class="stripe dark">
-                                <a>
-                                    <p>5+ Shirts</p>
-                                </a>
-                            </div>
+                        
+                        <div class="stripe dark">
+                            <a>
+                                <p>5+ Tops</p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -99,21 +112,19 @@
             </div>
             <!--/First column-->
             <!--Second column-->
-            <div class="col-6 col-lg-3 col-sm-4 mb-r wow fadeInUp" data-wow-delay="0.2s">
+            <div class="col-6 col-lg-3 col-sm-4 mb-3 wow fadeInUp" data-wow-delay="0.2s">
 
                 <!--Collection card-->
                 <div class="card collection-card z-depth-1-half">
                     <!--Card image-->
-                    <div class="view hm-black-strong hm-zoom">
+                    <div class="view zoom">
                         <img src="~/Content/img/jeans.jpeg" class="img-fluid" alt="" />
-                        <div class="mask">
-                            <div class="stripe light">
-                                <a>
-                                    <p>5+ Pants/Shorts</p>
-                                </a>
-                            </div>
+                        
+                        <div class="stripe light">
+                            <a>
+                                <p>5+ Bottoms</p>
+                            </a>
                         </div>
-
                     </div>
                     <!--/Card image-->
                 </div>
@@ -121,20 +132,19 @@
             </div>
             <!--/Second column-->
             <!--Third column-->
-            <div class="col-6 col-lg-3 col-sm-4 mb-r wow fadeInUp" data-wow-delay="0.2s">
+            <div class="col-6 col-lg-3 col-sm-4 mb-3 wow fadeInUp" data-wow-delay="0.2s">
 
                 <!--Collection card-->
                 <div class="card collection-card z-depth-1-half">
                     <!--Card image-->
-                    <div class="view hm-white-light hm-zoom">
+                    <div class="view zoom">
                         <img src="~/Content/img/underwear.jpeg" class="img-fluid" alt="" />
-                        <div class="mask">
-                            <div class="stripe dark">
-                                <a>
-                                    <p>6+ Undies</p>
-                                </a>
-                            </div>
-                        </div>
+                        
+                        <div class="stripe dark">
+                            <a>
+                                <p>6+ Undies</p>
+                            </a>
+                        </div>   
                     </div>
                     <!--/Card image-->
                 </div>
@@ -142,20 +152,19 @@
             </div>
             <!--/Third column-->
             <!--Fourth column-->
-            <div class="col-6 col-lg-3 col-sm-4 mb-r wow fadeInUp" data-wow-delay="0.2s">
+            <div class="col-6 col-lg-3 col-sm-4 mb-3 wow fadeInUp" data-wow-delay="0.2s">
 
                 <!--Collection card-->
                 <div class="card collection-card z-depth-1-half">
                     <!--Card image-->
-                    <div class="view hm-black-light hm-zoom">
+                    <div class="view zoom">
                         <img src="~/Content/img/socks.jpeg" class="img-fluid" alt="" />
-                        <div class="mask">
-                            <div class="stripe light">
-                                <a>
-                                    <p>6+ Socks</p>
-                                </a>
-                            </div>
-                        </div>
+                        
+                        <div class="stripe light">
+                            <a>
+                                <p>6+ Socks</p>
+                            </a>
+                        </div>  
                     </div>
                     <!--/Card image-->
                 </div>
@@ -163,20 +172,19 @@
             </div>
             <!--/Fourth column-->
             <!--Fifth column-->
-            <div class="col-6 col-lg-3 col-sm-4 mb-r wow fadeInUp" data-wow-delay="0.2s">
+            <div class="col-6 col-lg-3 col-sm-4 mb-3 wow fadeInUp" data-wow-delay="0.2s">
 
                 <!--Collection card-->
                 <div class="card collection-card z-depth-1-half">
                     <!--Card image-->
-                    <div class="view hm-white-light hm-zoom">
+                    <div class="view zoom">
                         <img src="~/Content/img/shoes.jpg" class="img-fluid" alt="" />
-                        <div class="mask">
-                            <div class="stripe dark">
-                                <a>
-                                    <p>1-2 Shoes</p>
-                                </a>
-                            </div>
-                        </div>
+                        
+                        <div class="stripe dark">
+                            <a>
+                                <p>1-2 Shoes</p>
+                            </a>
+                        </div> 
                     </div>
                     <!--/Card image-->
                 </div>
@@ -184,20 +192,19 @@
             </div>
             <!--/Fifth column-->
             <!--Sixth column-->
-            <div class="col-6 col-lg-3 col-sm-4 mb-r wow fadeInUp" data-wow-delay="0.2s">
+            <div class="col-6 col-lg-3 col-sm-4 mb-3 wow fadeInUp" data-wow-delay="0.2s">
 
                 <!--Collection card-->
                 <div class="card collection-card z-depth-1-half">
                     <!--Card image-->
-                    <div class="view hm-black-light hm-zoom">
+                    <div class="view zoom">
                         <img src="~/Content/img/coat.jpg" class="img-fluid" alt="" />
-                        <div class="mask">
-                            <div class="stripe light">
-                                <a>
-                                    <p>Coat</p>
-                                </a>
-                            </div>
-                        </div>
+                        
+                        <div class="stripe light">
+                            <a>
+                                <p>Coat</p>
+                            </a>
+                        </div>                       
                     </div>
                     <!--/Card image-->
                 </div>
@@ -205,20 +212,19 @@
             </div>
             <!--/Sixth column-->
             <!--Seventh column-->
-            <div class="col-6 col-lg-3 col-sm-4 mb-r wow fadeInUp" data-wow-delay="0.2s">
+            <div class="col-6 col-lg-3 col-sm-4 mb-3 wow fadeInUp" data-wow-delay="0.2s">
 
                 <!--Collection card-->
                 <div class="card collection-card z-depth-1-half">
                     <!--Card image-->
-                    <div class="view hm-black-light hm-zoom">
+                    <div class="view zoom">
                         <img src="~/Content/img/toothbrush_blue.jpeg" class="img-fluid" alt="" />
-                        <div class="mask">
-                            <div class="stripe light">
-                                <a>
-                                    <p>Hygiene Kit</p>
-                                </a>
-                            </div>
-                        </div>
+                        
+                        <div class="stripe dark">
+                            <a>
+                                <p>Hygiene Kit</p>
+                            </a>
+                        </div>    
                     </div>
                     <!--/Card image-->
                 </div>
