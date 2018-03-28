@@ -14,66 +14,73 @@ $(document).ready(function () {
         });
     });
 
+    $(".button-collapse").sideNav({
+        edge: 'right'
+    });
+
+    var sideNavScrollbar = document.querySelector('.custom-scrollbar');
+    Ps.initialize(sideNavScrollbar);
+
     //$("#mobileMenu").append($("#mainSiteMenu").clone().attr("id", "mobileMenu").attr("class", ""));
-    var $menu = $('#mobileMenu').mmenu({
-        //options
-        offCanvas: {
-            "zposition": "front",
-            "position": "right"
-        },
-        navbar: {
-            "title": "",
-            "titleLink": "parent"
-        },
-        navbars: [
-            {
-                "position": "top",
-                "content": [
-                    "prev",
-                    '<a id="mobile-navBack" href="#mm-0" aria-owns="mm-0"><span>Back</span></a>'
-                ]
-            }
-        ],
-        extensions: [
-            "fullscreen",
-            "border-full"
-        ]
-    }, {
-            //configuration
-            offCanvas: {
-                pageSelector: '#page-wrapper'
-            }
-        });
+    //var $menu = $('#mobileMenu').mmenu({
+    //    //options
+    //    offCanvas: {
+    //        "zposition": "front",
+    //        "position": "right"
+    //    },
+    //    navbar: {
+    //        "title": "",
+    //        "titleLink": "parent"
+    //    },
+    //    navbars: [
+    //        {
+    //            "position": "top",
+    //            "content": [
+    //                "prev",
+    //                '<a id="mobile-navBack" href="#mm-0" aria-owns="mm-0"><span>Back</span></a>'
+    //            ]
+    //        }
+    //    ],
+    //    extensions: [
+    //        "fullscreen",
+    //        "border-full"
+    //    ]
+    //}, {
+    //        //configuration
+    //        offCanvas: {
+    //            pageSelector: '#page-wrapper'
+    //        }
+    //    });
 
-    var $icon = $('#mMenuToggle');
+    //var $icon = $('#mMenuToggle');
 
-    var API = $menu.data("mmenu");
+    //var API = $menu.data("mmenu");
 
-    $icon.on('click', function () {
-        API.open();
-    });
+    //$icon.on('click', function () {
+    //    API.open();
+    //});
 
-    API.bind("openPanel:start", function ($panel) {
-        var id = $panel.attr("id");
+    //API.bind("openPanel:start", function ($panel) {
+    //    var id = $panel.attr("id");
 
-        toggleMobileInnerNavbar(id);
+    //    toggleMobileInnerNavbar(id);
 
-    });
+    //});
 
-    API.bind("open:start", function () {
-        toggleMobileInnerNavbar();
-    });
+    //API.bind("open:start", function () {
+    //    toggleMobileInnerNavbar();
+    //});
 
-    API.bind("open:finish", function () {
-        setTimeout(function () {
-            $icon.addClass("is-active");
-        }, 0);
-    });
-    API.bind("close:finish", function () {
-        setTimeout(function () {
-            $icon.removeClass("is-active");
-        }, 0);
-    });
+    //API.bind("open:finish", function () {
+    //    setTimeout(function () {
+    //        $icon.addClass("is-active");
+    //    }, 0);
+    //});
+    //API.bind("close:finish", function () {
+    //    setTimeout(function () {
+    //        $icon.removeClass("is-active");
+    //    }, 0);
+    //});
 
     $('#loginError').hide();
 
