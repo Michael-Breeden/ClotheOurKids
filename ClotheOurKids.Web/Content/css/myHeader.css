@@ -17,11 +17,6 @@ header {
     box-shadow: 0 4px 4px -4px #898989;
 }
 
-.headerSpace {
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
 .nav .nav-item {
     margin-left: 20px;
 }
@@ -32,45 +27,6 @@ ul.default {
     padding: 0;
 }
 
-header .column-one {
-    position: relative;
-    min-height: 1px;
-    display: block;
-}
-
-header .column-two {
-    position: relative;
-    min-height: 1px;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-.header-cta-buttons {
-    float: left;
-    width: 100%;
-    position: relative;
-    list-style: none;
-}
-
-.header-cta-buttons a.btn-rounded {
-    display: block;
-    font-size: 16px;
-    padding: 0;
-    text-align: center;
-    width:100%;
-    margin-bottom: 0;
-}
-
-.header-cta-buttons > li {
-    float: left;
-    text-align: center;
-    margin: 0;
-    width: 33.333333%
-}
-
-.full-width-buttons .btn {
-    margin:0;
-}
 
 #largeScreenIndicator {
     display: none;
@@ -80,6 +36,7 @@ header .column-two {
     display: none;
 }
 
+/*Set Text size and ling height of MMenu menu items*/
 .mm-listview {
     font-size: 24px;
     line-height: 36px;
@@ -112,18 +69,8 @@ header .column-two {
     overflow: hidden !important;
 }
 
-@media (max-width: 992px) and (min-width: 768px) {
-    .header-cta-buttons a.btn-rounded {
-        font-size: 24px;
-    }
-}
 
 @media(max-width:992px) and (min-width: 0) {
-    .header-cta-buttons a.btn-rounded {
-        border-radius: 0;
-        height: 70px;
-        line-height: 70px;
-    }
 
     header .logo {
         position: absolute;
@@ -136,25 +83,8 @@ header .column-two {
         margin-right: -35px;
     }*/
 
-
-    .headerPad {
-        padding-left: 0px;
-        padding-right: 0px;
-        height: 85px;
-        width: 100%;
-    }
-
     header {
         box-shadow: none;
-    }
-
-    header .column-one {
-        float: left;
-        width: 100%;
-    }
-
-    header .column-two {
-        display: none;
     }
 
     .navbar-collapse {
@@ -172,78 +102,8 @@ header .column-two {
     }
 }
 
-@media (max-width: 1199px) and (min-width: 992px) {
-    
-    
-    header .column-two {
-        float: right;
-    }
-
-    .header-cta-buttons a.btn-rounded {
-        border-radius: 0;
-        height: 35px;
-        line-height: 35px;
-    }
-
-    .headerPad {
-        padding-top: 0px;
-        padding-bottom: 0px;
-        width: 100%;
-    }
-
-    .nav-item.btn-group:hover .dropdown-menu {
-        display: block;
-        margin-top: 0;
-    }
-
-}
 
 @media (min-width: 1200px) {
-
-    header .column-one {
-        float: left;
-        /*width: 71%;*/
-    }
-
-    header .column-two {
-        padding-left: 0;
-        float: left;
-        min-width: 330px;
-        /*width: 29%;*/
-    }
-
-    #desktopCta.header-cta-buttons {
-        float: right;
-        width: 95%;
-        margin: 0;
-    }
-
-    #desktopCta.header-cta-buttons > li {
-        margin-left: 3px;
-        width: 32%;
-    }
-
-    #desktopCta.header-cta-buttons > li:nth-child(1) {
-        margin-left: 0;
-    }
-
-    #desktopCta.header-cta-buttons a.btn-rounded {
-        height: 32px;
-        line-height: 32px;
-        font-size: 13px;
-        border-radius: 3px;
-    }
-
-    .headerPad {
-        padding-top: 10px;
-        padding-bottom: 10px;
-        width: 100%;
-    }
-
-    .nav-item.btn-group:hover .dropdown-menu {
-        display: block;
-        margin-top: 0;
-    }
 
     #largeScreenIndicator {
         display: block;
@@ -252,17 +112,20 @@ header .column-two {
 
 
 /*mMenu Styles*/
-#mobileMenu {
-    top:155px;
-    background-color: #ffffff;
+.mmenu-top {
+    top:5rem;
 }
 
-@media(min-width:993px) {
+.mmenu-top-collapse {
+    top:4.4rem;
+}
+
+/*@media(min-width:993px) {
     #mm-mainSiteMenu {
         display: none !important;
     }
 
-}
+}*/
 
 
 

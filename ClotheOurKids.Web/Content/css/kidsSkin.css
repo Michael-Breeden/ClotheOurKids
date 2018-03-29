@@ -190,7 +190,13 @@ h1, h2, h3, h4, h5, h6 {
     border-color: #4285F4; }
   .kids-skin .pagination-primary-color .page-link {
     color: #4285F4; }
-
+  .kids-skin .side-nav .collapsible a {
+      color: #24335a;
+      font-weight: 400;
+      font-size: 1rem;
+      height: 48px;
+      line-height: 48px;
+  }
 
     /*Header dropdown hover color*/
   .kids-skin .dropdown .dropdown-menu.dropdown-primary .dropdown-item:hover {
@@ -200,6 +206,11 @@ h1, h2, h3, h4, h5, h6 {
 
   .kids-skin .text-logo {
       color: #41BEB3;
+  }
+
+  .kids-skin .bg-logo {
+      background-color: #41BEB3;
+      color: #24335a;
   }
 
   /*main green color*/

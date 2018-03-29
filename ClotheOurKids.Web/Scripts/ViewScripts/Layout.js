@@ -14,73 +14,82 @@ $(document).ready(function () {
         });
     });
 
-    $(".button-collapse").sideNav({
-        edge: 'right'
+
+    $("#mobileMenu").append($("#mainSiteMenu").clone().attr("id", "mobileMenu").attr("class", ""));
+    var $menu = $('#mobileMenu').mmenu({
+        //options
+        wrappers: ["bootstrap4"],
+        offCanvas: {
+            "zposition": "front",
+            "position": "right"
+        },
+        navbar: {
+            "title": "",
+            "titleLink": "parent"
+        },
+        navbars: [
+            {
+                "position": "top",
+                "content": [
+                    "prev",
+                    '<a id="mobile-navBack" href="#mm-0" aria-owns="mm-0"><span>Back</span></a>'
+                ]
+            }
+        ],
+        extensions: {
+            "all": ["border-none"],
+            "(max-width: 768px)": ["fullscreen"]
+        }
+            
+    }, {
+            //configuration
+            offCanvas: {
+                pageSelector: '#page-wrapper',
+                blockUI: 'false'
+            },
+            scrollBugFix: "false"
+        });
+
+    var $icon = $('#mMenuToggle');
+
+    var API = $menu.data("mmenu");
+
+    $icon.on('click', function () {  
+        API.open();
+
+        //ttps://www.codingforums.com/javascript-programming/220170-setting-documentelement-style-overflow-=-hidden-jolts-top-page-undesirably.html
+        //var x = document.body.scrollLeft + document.documentElement.scrollLeft,
+        //    y = document.body.scrollTop + document.documentElement.scrollTop;
+
+        //document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+
+        //window.scrollTo(x, y);
+
+        //return false;
+
     });
 
-    var sideNavScrollbar = document.querySelector('.custom-scrollbar');
-    Ps.initialize(sideNavScrollbar);
+    API.bind("openPanel:start", function ($panel) {
+        var id = $panel.attr("id");
 
-    //$("#mobileMenu").append($("#mainSiteMenu").clone().attr("id", "mobileMenu").attr("class", ""));
-    //var $menu = $('#mobileMenu').mmenu({
-    //    //options
-    //    offCanvas: {
-    //        "zposition": "front",
-    //        "position": "right"
-    //    },
-    //    navbar: {
-    //        "title": "",
-    //        "titleLink": "parent"
-    //    },
-    //    navbars: [
-    //        {
-    //            "position": "top",
-    //            "content": [
-    //                "prev",
-    //                '<a id="mobile-navBack" href="#mm-0" aria-owns="mm-0"><span>Back</span></a>'
-    //            ]
-    //        }
-    //    ],
-    //    extensions: [
-    //        "fullscreen",
-    //        "border-full"
-    //    ]
-    //}, {
-    //        //configuration
-    //        offCanvas: {
-    //            pageSelector: '#page-wrapper'
-    //        }
-    //    });
+        toggleMobileInnerNavbar(id);
 
-    //var $icon = $('#mMenuToggle');
+    });
 
-    //var API = $menu.data("mmenu");
+    API.bind("open:start", function () {
+        toggleMobileInnerNavbar();
+    });
 
-    //$icon.on('click', function () {
-    //    API.open();
-    //});
-
-    //API.bind("openPanel:start", function ($panel) {
-    //    var id = $panel.attr("id");
-
-    //    toggleMobileInnerNavbar(id);
-
-    //});
-
-    //API.bind("open:start", function () {
-    //    toggleMobileInnerNavbar();
-    //});
-
-    //API.bind("open:finish", function () {
-    //    setTimeout(function () {
-    //        $icon.addClass("is-active");
-    //    }, 0);
-    //});
-    //API.bind("close:finish", function () {
-    //    setTimeout(function () {
-    //        $icon.removeClass("is-active");
-    //    }, 0);
-    //});
+    API.bind("open:finish", function () {
+        setTimeout(function () {
+            $icon.addClass("is-active");
+        }, 0);
+    });
+    API.bind("close:finish", function () {
+        setTimeout(function () {
+            $icon.removeClass("is-active");
+        }, 0);
+    });
 
     $('#loginError').hide();
 
@@ -140,6 +149,23 @@ $(document).ready(function () {
     var year = new Date().getFullYear();
     $('.thisYear').html(year);
 
+});
+
+
+
+/*Code pulled from the mdb.js file for scrolling navbars. Add class to MMenu to ensure it has the right top style*/
+var OFFSET_TOP = 50;
+
+$(window).scroll(function () {
+    if ($('.navbar').length) {
+        if ($('.navbar').offset().top > OFFSET_TOP) {
+            $('#mobileMenu').addClass("mmenu-top-collapse");
+            $('#mobileMenu').removeClass("mmenu-top");
+        } else {
+            $('#mobileMenu').addClass("mmenu-top");
+            $('#mobileMenu').removeClass("mmenu-top-collapse");
+        }
+    }
 });
 
 function toggleMobileInnerNavbar(panelId) {

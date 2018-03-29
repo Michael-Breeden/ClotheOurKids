@@ -51,148 +51,115 @@
 <body id="bodyDiv" class="hidden-sn kids-skin">
     @Html.Partial("_LoginForm", new ClotheOurKids.Web.Models.LoginViewModel())
 
-    <!--Double navigation-->
-    <header>
-        <!-- Sidebar navigation -->
-        <div id="slide-out" class="side-nav bg-blue">
-            <ul class="custom-scrollbar">
-                <!-- Logo -->
-                <li>
-                    <div class="logo-wrapper waves-light">
-                        <a href="#"><img src="~/Content/img/logo/MainLogo_color_scaled_noTagLine.png" class="img-fluid flex-center"></a>
-                    </div>
-                </li>
-                <!--/. Logo -->
-                <!--Social-->
-                <li>
-                    <ul class="social">
-                        <li><a href="#" class="icons-sm fb-ic"><i class="fa fa-facebook"> </i></a></li>
-                        <li><a href="#" class="icons-sm tw-ic"><i class="fa fa-twitter"> </i></a></li>
-                    </ul>
-                </li>
-                <!--/Social-->
-                <!-- Side navigation links -->
-                <li>
-                    <ul class="collapsible collapsible-accordion">
-                        <li>
-                            <a class="collapsible-header waves-effect arrow-r">About Us <i class="fa fa-angle-down rotate-icon"></i></a>
-                            <div class="collapsible-body">
-                                <ul>
-                                    <li>
-                                        <a href="@Url.RouteUrl("OurHistory")" class="waves-effect">Our History</a>
-                                    </li>
-                                    <li>
-                                        <a href="@Url.RouteUrl("LeadershipPage")" class="waves-effect">Leadership</a>
-                                    </li>
-                                    <li>
-                                        <a href="@Url.RouteUrl("WhoWeServe")" class="waves-effect">Who We Serve</a>
-                                    </li>
-                                    <li>
-                                        <a href="@Url.RouteUrl("FAQ")" class="waves-effect">Frequently Asked Questions</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li>
-                            <a class="waves-effect" href="@Url.RouteUrl("OurWork")">Our Work</a>
-                        </li>
-                        <li>
-                            <a class="waves-effect"  href="@Url.RouteUrl("Stories")">Stories</a>
-                        </li>
-                        <li>
-                            @if (Request.IsAuthenticated)
-                            {
-                                <a class="waves-effect" href="@Url.Action("RequestClothesForm", "RequestClothes")">Request Clothes</a>
-                            }
-                            else
-                            {
-                                <a class="waves-effect" href="@Url.RouteUrl("RequestClothes")">Request Clothes</a>
-                            }
-                        </li>
+    <div id="page-wrapper">
+
+        <!--Double navigation-->
+        <header>
+            <!-- Navbar -->
+            <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav bg-blue">
+                <!-- Breadcrumb-->
+                <div class="breadcrumb-dn">
+                    <p>Clothe Our Kids</p>
+                </div>
+                <ul class="nav navbar-nav nav-flex-icons ml-auto mr-auto" id="mainSiteMenu">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            About Us
+                        </a>
+                        <div class="dropdown-menu dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("OurHistory")">Our History</a>
+                            <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("LeadershipPage")">Leadership</a>
+                            <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("WhoWeServe")">Who We Serve</a>
+                            <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("FAQ")">Frequently Asked Questions</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("OurWork")"><span class="clearfix d-none d-sm-inline-block">Our Work</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Stories")"><span class="clearfix d-none d-sm-inline-block">Stories</span></a>
+                    </li>
+                    <li class="nav-item">
                         @if (Request.IsAuthenticated)
                         {
-                            <li>
-                                <a class="waves-effect" href="@Url.RouteUrl("ManageAccount")">Account</a>
-                            </li>
+                            <a class="nav-link waves-effect waves-light" href="@Url.Action("RequestClothesForm", "RequestClothes")"><span class="clearfix d-none d-sm-inline-block">Request Clothes</span></a>
+                        }
+                        else
+                        {
+                            <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("RequestClothes")"><span class="clearfix d-none d-sm-inline-block">Request Clothes</span></a>
+                        }
+                    </li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("ManageAccount")"><span class="clearfix d-none d-sm-inline-block">Account</span></a>
+                        </li>
 
-                            @*<li class="nav-item dropdown">
+                        @*<li class="nav-item dropdown">
                                 <span class="nav-link waves-effect waves-light" id="AccountMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</span>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="AccountMenu">
                                     <a class="dropdown-item waves-effect waves-light" href="#">Logout</a>
                                     <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("ManageAccount")">Manage Account</a>
                                 </div>
                             </li>*@
-                        }
-                    </ul>
-                </li>
-                <!--/. Side navigation links -->
-            </ul>
-            <div class="sidenav-bg mask-strong"></div>
-        </div>
-        <!--/. Sidebar navigation -->
-        <!-- Navbar -->
-        <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav bg-blue">
-            <!-- Breadcrumb-->
-            <div class="breadcrumb-dn">
-                <p>Clothe Our Kids</p>
-            </div>
-            <ul class="nav navbar-nav nav-flex-icons ml-auto mr-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        About Us
-                    </a>
-                    <div class="dropdown-menu dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("OurHistory")">Our History</a>
-                        <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("LeadershipPage")">Leadership</a>
-                        <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("WhoWeServe")">Who We Serve</a>
-                        <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("FAQ")">Frequently Asked Questions</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("OurWork")"><span class="clearfix d-none d-sm-inline-block">Our Work</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("Stories")"><span class="clearfix d-none d-sm-inline-block">Stories</span></a>
-                </li>
-                <li class="nav-item">
-                    @if (Request.IsAuthenticated)
-                    {
-                        <a class="nav-link waves-effect waves-light" href="@Url.Action("RequestClothesForm", "RequestClothes")"><span class="clearfix d-none d-sm-inline-block">Request Clothes</span></a>
                     }
-                    else
-                    {
-                        <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("RequestClothes")"><span class="clearfix d-none d-sm-inline-block">Request Clothes</span></a>
-                    }
-                </li>
-                @if (Request.IsAuthenticated)
-                {
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("ManageAccount")"><span class="clearfix d-none d-sm-inline-block">Account</span></a>
+
+                </ul>
+
+                <!-- SideNav slide-out button -->
+                <div class="float-right d-lg-none">
+                    <button id="mMenuToggle" class="hamburger hamburger--collapse align-self-end" type="button">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                    @*<a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>*@
+                </div>
+            </nav>
+            <!-- /.Navbar -->
+            <nav id="mobileMenu" class="d-lg-none mmenu-top bg-logo">
+                <ul>
+                    <li>
+                        <a href="@Url.RouteUrl("Home")">Home</a>
                     </li>
+                    <li>
+                        <span>About Us</span>
+                        <ul>
+                            <li class="top-level"><a>About Us</a></li>
+                            <li><a href="@Url.RouteUrl("OurHistory")">Our History</a></li>
+                            <li><a href="@Url.RouteUrl("LeadershipPage")">Leadership</a></li>
+                            <li><a href="@Url.RouteUrl("WhoWeServe")">Who We Serve</a></li>
+                            <li><a href="@Url.RouteUrl("FAQ")">Frequently Asked Questions</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="@Url.RouteUrl("OurWork")">Our Work</a></li>
+                    <li><a href="@Url.RouteUrl("Stories")">Stories</a></li>
+                    <li>
+                        @if (Request.IsAuthenticated)
+                        {
+                            <a class="nav-link waves-effect waves-light" href="@Url.Action("RequestClothesForm", "RequestClothes")">Request Clothes</a>
+                        }
+                        else
+                        {
+                            <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("RequestClothes")">Request Clothes</a>
+                        }
+                    </li>
+                    <li>
+                        @if (Request.IsAuthenticated)
+                        {
+                            <a href="@Url.RouteUrl("ManageAccount")">Account</a>
+                        }
+                    </li>
+                </ul>
+            </nav>
 
-                                            @*<li class="nav-item dropdown">
-                                        <span class="nav-link waves-effect waves-light" id="AccountMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</span>
-                                        <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="AccountMenu">
-                                            <a class="dropdown-item waves-effect waves-light" href="#">Logout</a>
-                                            <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("ManageAccount")">Manage Account</a>
-                                        </div>
-                                    </li>*@
-                }
-                
-            </ul>
 
-            <!-- SideNav slide-out button -->
-            <div class="float-right d-lg-none">
-                <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
-            </div>
-        </nav>
-        <!-- /.Navbar -->
 
-        @RenderSection("headerMask", required: false)
+            @RenderSection("headerMask", required: false)
 
-    </header>
-    <!--/.Double navigation-->
-     
+        </header>
+        <!--/.Double navigation-->
+
         <main>
             @RenderBody()
         </main>
@@ -211,7 +178,6 @@
                         </p>
                     </div>
                     <!--/.First column-->
-
                     <!--Second column-->
                     <div class="d-none d-md-block col-md-2 ml-auto">
                         <h5 class="title">About Us</h5>
@@ -224,8 +190,6 @@
                     </div>
 
                     <!--/.Second column-->
-
-
                     <!--Third column-->
                     <div class="d-none d-md-block col-md-2 col-lg-2">
                         <h5 class="title">What We Do</h5>
@@ -235,7 +199,6 @@
                         </ul>
                     </div>
                     <!--/.Third column-->
-
                     <!--Fourth column-->
                     <div class="d-none d-md-block col-md-2 col-lg-2">
                         <h5 class="title">Take Action</h5>
@@ -278,13 +241,12 @@
 
             <!--Social buttons-->
             @*<div class="social-section">
-                <ul>
-                    <li><a href="https://www.facebook.com/clotheourkidsofnorthalabama" class="btn-floating btn-sm btn-fb"><i class="fa fa-facebook"> </i></a></li>
-                    <li><a href="https://www.instagram.com/clotheourkids/" class="btn-floating btn-sm btn-ins"><i class="fa fa-instagram"> </i></a></li>
-                </ul>
-            </div>*@
+                    <ul>
+                        <li><a href="https://www.facebook.com/clotheourkidsofnorthalabama" class="btn-floating btn-sm btn-fb"><i class="fa fa-facebook"> </i></a></li>
+                        <li><a href="https://www.instagram.com/clotheourkids/" class="btn-floating btn-sm btn-ins"><i class="fa fa-instagram"> </i></a></li>
+                    </ul>
+                </div>*@
             <!--/.Social buttons-->
-
             <!--Copyright-->
             <div class="footer-copyright py-3 text-center">
                 <div class="container-fluid">
@@ -297,20 +259,21 @@
 
             <div id="largeScreenIndicator"></div>
         </footer>
+    </div>
 
 
-    @Scripts.Render("~/bundles/requiredJs")
-    @RenderSection("scripts", required: false)
+        @Scripts.Render("~/bundles/requiredJs")
+        @RenderSection("scripts", required: false)
 
 
-    <script type="text/javascript" src="~/Scripts/ViewScripts/Layout.js"></script>
+        <script type="text/javascript" src="~/Scripts/ViewScripts/Layout.js"></script>
 
 
-    @RenderSection("customScript", required: false)
+        @RenderSection("customScript", required: false)
 
-    <!--[if lt IE 9]-->
-    @Scripts.Render("~/bundles/ie9")
-    <!--[endif]-->
+        <!--[if lt IE 9]-->
+        @Scripts.Render("~/bundles/ie9")
+        <!--[endif]-->
 
 
 </body>
