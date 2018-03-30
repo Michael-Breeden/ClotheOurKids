@@ -3,6 +3,8 @@
 
 $(document).ready(function () {
 
+    var yCoordinate;
+
     new WOW().init();
 
     //Load Facebook JavaScript SDK
@@ -20,8 +22,7 @@ $(document).ready(function () {
         //options
         wrappers: ["bootstrap4"],
         offCanvas: {
-            "zposition": "front",
-            "position": "right"
+            "moveBackground": "false"
         },
         navbar: {
             "title": "",
@@ -37,7 +38,7 @@ $(document).ready(function () {
             }
         ],
         extensions: {
-            "all": ["border-none"],
+            "all": ["border-none", "position-right"],
             "(max-width: 768px)": ["fullscreen"]
         }
             
@@ -54,18 +55,14 @@ $(document).ready(function () {
 
     var API = $menu.data("mmenu");
 
-    $icon.on('click', function () {  
+    $icon.on('click', function () {          
+
+        yCoordinate = document.body.scrollTop + document.documentElement.scrollTop;
+
         API.open();
 
         //ttps://www.codingforums.com/javascript-programming/220170-setting-documentelement-style-overflow-=-hidden-jolts-top-page-undesirably.html
-        //var x = document.body.scrollLeft + document.documentElement.scrollLeft,
-        //    y = document.body.scrollTop + document.documentElement.scrollTop;
 
-        //document.getElementsByTagName('body')[0].style.overflow = 'hidden';
-
-        //window.scrollTo(x, y);
-
-        //return false;
 
     });
 
@@ -80,16 +77,31 @@ $(document).ready(function () {
         toggleMobileInnerNavbar();
     });
 
-    API.bind("open:finish", function () {
+    API.bind("open:finish", function () {       
+
         setTimeout(function () {
             $icon.addClass("is-active");
         }, 0);
     });
+
+    API.bind("open:after", function () {
+        $('body').animate({ scrollTop: yCoordinate }, 0);
+    });
+
     API.bind("close:finish", function () {
         setTimeout(function () {
             $icon.removeClass("is-active");
         }, 0);
     });
+
+    //API.bind("closePanel:after", function () {
+    //    setTimeout(function () {
+    //        $('body').animate({ scrollTop: yCoordinate }, 0);
+    //        //window.scrollTo(0, yCoordinate);
+    //    }, 2);
+    //    //window.scrollTo(0, yCoordinate);
+    //    //$('body').animate({ scrollTop: yCoordinate }, 0);
+    //});
 
     $('#loginError').hide();
 
