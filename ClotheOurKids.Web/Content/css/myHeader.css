@@ -18,11 +18,51 @@ header {
 }
 
 .nav .nav-item {
-    margin-left: 20px;
+    margin-left: 15px;
     text-transform: uppercase;
-    font-weight: 400;
+    font-weight: 700;
 }
 
+.navbar-logo {
+    height: 60px;
+}
+
+.navbar-logo-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.navbar-right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.navbar .btn {
+    font-weight: 700;
+}
+
+.navbar-right .btn.bg-red:hover {
+    background-color: transparent !important;
+    border: 3px solid #ee4266 !important;
+}
+
+.navbar.scrolling-navbar {
+    padding-top: 18px;
+    padding-bottom: 18px;
+    min-height: 74.5px;
+}
+
+.navbar.scrolling-navbar.top-nav-collapse {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    min-height: 62.5px;
+}
 
 
 ul.default {
@@ -111,10 +151,6 @@ ul.default {
         padding-top: 20px;
     }*/
 
-    .double-nav .breadcrumb-dn {
-        display: block;
-    }
-
     #small-indicator {
         display: block;
     }
@@ -125,6 +161,10 @@ ul.default {
         padding-top: 70px;
     }
 }
+
+@media (max-width: 993px) {
+    .double-nav .breadcrumb-dn {
+      display: block; } }
 
 /*@media (min-width:992px) {
     .hidden-sn main {
@@ -152,6 +192,11 @@ ul.default {
 
 .mmenu-top-collapse {
     top:4.4rem;
+}
+
+/*Allow scrolling of main page with Mmenu open*/
+.mm-wrapper_blocking {
+    overflow: auto;
 }
 
 /*@media(min-width:993px) {

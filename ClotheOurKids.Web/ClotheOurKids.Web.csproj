@@ -300,6 +300,7 @@
     <Content Include="Content\js\jquery.waypoints.min.js" />
     <Content Include="Content\js\popper.min.js" />
     <Content Include="Content\js\vfs_fonts.js" />
+    <Content Include="Content\plugins\font-awesome\fontawesome-all.min.js" />
     <Content Include="Content\plugins\mmenu\dist\addons\autoheight\jquery.mmenu.autoheight.css" />
     <Content Include="Content\plugins\mmenu\dist\addons\autoheight\jquery.mmenu.autoheight.js" />
     <Content Include="Content\plugins\mmenu\dist\addons\backbutton\jquery.mmenu.backbutton.js" />
@@ -460,7 +461,6 @@
     <Content Include="Content\plugins\font-awesome\css\font-awesome.css" />
     <Content Include="Content\plugins\font-awesome\css\font-awesome.min.css" />
     <Content Include="Content\plugins\font-awesome\fonts\fontawesome-webfont.svg" />
-    <Content Include="Content\plugins\font-awesome\HELP-US-OUT.txt" />
     <Content Include="Content\plugins\select2-4.0.3\css\select2.css" />
     <Content Include="Content\plugins\select2-4.0.3\css\select2.min.css" />
     <Content Include="Content\plugins\select2-4.0.3\js\i18n\ar.js" />
