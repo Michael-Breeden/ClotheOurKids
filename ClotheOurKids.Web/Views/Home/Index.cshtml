@@ -9,34 +9,6 @@
       @section pageCSS
 {
     <style>
-        html,
-        body,
-        #page-wrapper,
-        header,
-        .view {
-            height: 100vh;
-        }
-
-        /* Navigation*/
-        .navContainer {
-            width: 100%;
-            position: absolute;
-            z-index: 1000;
-            background-color: #fff;
-        }
-
-        @@media(max-width: 1199px) {
-            .navContainer {
-                position: static;
-                border: 0;
-                /*margin-bottom: 5px;*/
-            }
-        }
-
-        /*.full-bg-img {
-            color: #fff;
-        }*/
-
         footer.page-footer {
             background-color: #7E929C;
         }
@@ -68,60 +40,37 @@
         }
 
         #map-canvas {
-            height: 100%;
-            position: absolute;
-            top: 106px;
+            height: 100vh;
+            width:100%;
+            /*position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            z-index: 0;
+            z-index: 0;*/
         }
 
         #mainLogo {
             z-index: 100;
-            position: relative;
+            position: absolute;
+            left: 20px;
+            right: 20px;
         }
 
         @@media (min-width: 1199px){
-            #map-canvas {
-                top: 106px;
-                height: calc(100vh - 106px);
-            }
-
             #mainLogo {
-                /*top: 106px;*/
-                top: calc(((100vh - 106px) / 3))
+                top: calc(((100vh - 106px) / 3));
             }
         }
 
         @@media (max-width: 1199px) and (min-width: 992px) {
-            .view {
-                height: calc(100vh - 122px);
-            }
-
-            #map-canvas {
-                top: 122px;
-                height: calc(100vh - 122px);
-            }
-
             #mainLogo {
-                /*top: 125px;*/
                 top: calc(((100vh - 122px) / 3))
             }
         }
 
         @@media (max-width: 992px) {
-            .view {                
-                height: calc(100vh - 156px);
-            }
-
-            #map-canvas {
-                top: 156px;
-                height: calc(100vh - 156px);
-            }
 
             #mainLogo {
-                /*top: 162px;*/
                 top: calc(((100vh - 156px) / 3))
             }
         }
@@ -141,11 +90,11 @@
     <div id="map-canvas" class="full-bg-img">
     </div>   
 
-    <div  class="container">
-        <ul id="mainLogo" class="list-unstyled text-center ml-5 mr-5">
+    <div class="container-fluid ">
+        <ul id="mainLogo" class="list-unstyled text-center">
             <li>
                 @*<h1 class="h1-responsive wow fadeInUp">Clothe Our Kids of North Alabama</h1>*@
-                <img class="img-fluid" src="~/Content/img/logo/logo3 - black.png" />
+                <img class="img-fluid" src="~/Content/img/logo/foundation_logo_black_scaled.png" />
             </li>
             @*<li>
                     <p class="wow fadeInUp" data-wow-delay="0.2s">Giving Clothes. Showing Love. Building Confidence.</p>
@@ -189,7 +138,7 @@
     <!--/Section: About Us-->
 </div>
 
-<div id="RequestStreak" class="streak bg-green white-text" style="width: 100%;">
+<div id="RequestStreak" class="streak bg-logo white-text" style="width: 100%;">
     <div class="flex-center">
         @*<h1 class="wow fadeIn"><span id="RequestCount">0</span> Kids Clothed</h1>*@            
         <h1 class="wow fadeIn"><span id="RequestCount" class="count">@Model.RequestCount</span> Kids Clothed</h1> 

@@ -285,6 +285,7 @@
     <Content Include="Content\img\logo\ClotheOurKidsLogo_withNA.png" />
     <Content Include="Content\img\logo\ClotheOurKidsLogo_withNAwhite_Scaled.png" />
     <Content Include="Content\img\logo\ClotheOurKidsLogo_withNA_Scaled.png" />
+    <Content Include="Content\img\logo\foundation_logo_black_scaled.png" />
     <Content Include="Content\img\logo\logo3 - black.png" />
     <Content Include="Content\img\logo\main logo - black.png" />
     <Content Include="Content\img\logo\MainLogo_color_scaled.png" />
@@ -383,7 +384,6 @@
     <Content Include="Content\css\mdb.css" />
     <Content Include="Content\css\mdb.min.css" />
     <Content Include="Content\css\myHeader.css" />
-    <Content Include="Content\css\mySkin.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\ViewCSS\index.css" />
     <Content Include="Content\img\bg\child-girl-happy.jpg" />

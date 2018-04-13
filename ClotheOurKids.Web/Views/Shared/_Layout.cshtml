@@ -61,7 +61,7 @@
                 <div class="breadcrumb-dn">
                     <p>Clothe Our Kids</p>
                 </div>
-                <ul class="nav navbar-nav nav-flex-icons ml-auto mr-auto" id="mainSiteMenu">
+                <ul class="nav navbar-nav nav-flex-icons d-none d-lg-flex ml-3 mr-auto" id="mainSiteMenu">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             About Us
@@ -89,11 +89,8 @@
                             <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("RequestClothes")"><span class="clearfix d-none d-sm-inline-block">Request Clothes</span></a>
                         }
                     </li>
-                    @if (Request.IsAuthenticated)
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light" href="@Url.RouteUrl("ManageAccount")"><span class="clearfix d-none d-sm-inline-block">Account</span></a>
-                        </li>
+
+    
 
                         @*<li class="nav-item dropdown">
                                 <span class="nav-link waves-effect waves-light" id="AccountMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</span>
@@ -102,13 +99,33 @@
                                     <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("ManageAccount")">Manage Account</a>
                                 </div>
                             </li>*@
-                    }
+                    
 
                 </ul>
 
                 <!-- SideNav slide-out button -->
-                <div class="float-right d-lg-none">
-                    <button id="mMenuToggle" class="hamburger hamburger--collapse align-self-end" type="button">
+                @*<div class="float-right d-lg-none">*@
+                <div class=" d-flex flex-row flex-nowrap justify-content-end align-middle align-items-center">
+                    <button class="btn btn-sm btn-outline-amber" type="button">Get Involved</button>
+                    <button class="btn btn-sm bg-red" type="button">Donate</button>
+                    
+                    <ul class="navbar-nav ml-auto nav-flex-icons">  
+                        <li class="nav-item dropdown d-lg-flex d-none" style="padding-top:15px; padding-bottom: 15px;">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light" id="accountMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i></a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountMenu">
+                                @if (Request.IsAuthenticated)
+                                {
+                                    <a class="dropdown-item waves-effect waves-light" href="@Url.RouteUrl("ManageAccount")">My Account</a>
+                                }
+                                else
+                                {
+                                    <a class="dropdown-item waves-effect waves-light" data-toggle="modal" data-target="#modal-login">Login</a>
+                                }
+                            </div> 
+                        </li>            
+                    </ul>
+                    
+                    <button id="mMenuToggle" class="hamburger hamburger--collapse align-self-end d-lg-none" type="button">
                         <span class="hamburger-box">
                             <span class="hamburger-inner"></span>
                         </span>
@@ -125,7 +142,6 @@
                     <li>
                         <span>About Us</span>
                         <ul>
-                            <li class="top-level"><a>About Us</a></li>
                             <li><a href="@Url.RouteUrl("OurHistory")">Our History</a></li>
                             <li><a href="@Url.RouteUrl("LeadershipPage")">Leadership</a></li>
                             <li><a href="@Url.RouteUrl("WhoWeServe")">Who We Serve</a></li>

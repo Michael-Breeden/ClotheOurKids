@@ -21,34 +21,20 @@ $(document).ready(function () {
     var $menu = $('#mobileMenu').mmenu({
         //options
         wrappers: ["bootstrap4"],
-        offCanvas: {
-            "moveBackground": "false"
-        },
         navbar: {
             "title": "",
             "titleLink": "parent"
         },
-        navbars: [
-            {
-                "position": "top",
-                "content": [
-                    "prev",
-                    '<a id="mobile-navBack" href="#mm-0" aria-owns="mm-0"><span>Back</span></a>'
-                ]
-            }
-        ],
         extensions: {
-            "all": ["border-none", "position-right"],
+            "all": ["border-none", "position-right", "position-front"],
             "(max-width: 768px)": ["fullscreen"]
         }
             
     }, {
             //configuration
             offCanvas: {
-                pageSelector: '#page-wrapper',
-                blockUI: 'false'
-            },
-            scrollBugFix: "false"
+                pageSelector: '#page-wrapper'
+            }
         });
 
     var $icon = $('#mMenuToggle');

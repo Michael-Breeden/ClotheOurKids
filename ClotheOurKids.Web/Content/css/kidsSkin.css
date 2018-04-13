@@ -31,14 +31,11 @@ body {
     color: #24335a;
 }
 
-h1, h2, h3, h4, h5, h6 {
+.h1, .h2, .h3, .h4, .h5, .h6, .h1-responsive, .h2-responsive, .h3-responsive, .h4-responsive, .h5-responsive, .h6-responsive, h1, h2, h3, h4, h5, h6 {
     font-family: 'Mukta';
     font-weight: 700;
+    text-transform: uppercase;
 }
-
-/*.h1, .h2, .h3, .h4, .h5, .h6, .p, .a, .h1-responsive, .h2-responsive, .h3-responsive, .h4-responsive, .h5-responsive, .h6-responsive, h1, h2, h3, h4, h5, h6, li, p, .section-description {
-    color: #24335a;
-}*/
 
 .show > .kids-skin .btn-primary:focus, .kids-skin .btn-primary.focus, .kids-skin .btn-primary:not([disabled]):not(.disabled):active, .kids-skin .btn-primary.active:not([disabled]):not(.disabled),
 .show > .kids-skin .btn-primary.dropdown-toggle, .kids-skin .btn-primary:not([disabled]):not(.disabled):active:focus, .kids-skin .btn-primary.active:not([disabled]):not(.disabled):focus,
@@ -199,19 +196,22 @@ h1, h2, h3, h4, h5, h6 {
   }
 
     /*Header dropdown hover color*/
-  .kids-skin .dropdown .dropdown-menu.dropdown-primary .dropdown-item:hover {
-      background-color: #41BEB3 !important;
-      color: #fff;
-  }
+    .kids-skin .dropdown .dropdown-menu.dropdown-primary .dropdown-item:hover {
+        /*background-color: #41BEB3 !important;*/
+        background-color: #84cfcd !important;
+        color: #fff;
+    }
 
-  .kids-skin .text-logo {
-      color: #41BEB3;
-  }
+    .kids-skin .text-logo {
+        /*color: #41BEB3;*/
+        color: #84cfcd;
+    }
 
-  .kids-skin .bg-logo {
-      background-color: #41BEB3;
-      color: #24335a;
-  }
+    .kids-skin .bg-logo {
+        /*background-color: #41BEB3;*/
+        background-color: #84cfcd;
+        color: #24335a;
+    }
 
   /*main green color*/
     .kids-skin .bg-green {

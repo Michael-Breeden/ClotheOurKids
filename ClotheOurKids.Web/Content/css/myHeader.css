@@ -19,12 +19,21 @@ header {
 
 .nav .nav-item {
     margin-left: 20px;
+    text-transform: uppercase;
+    font-weight: 400;
 }
+
 
 
 ul.default {
     margin: 0;
     padding: 0;
+}
+
+.header-right {
+    position: absolute;
+    top: 0;
+    right:0;
 }
 
 
@@ -69,21 +78,26 @@ ul.default {
     overflow: hidden !important;
 }
 
+/*Ensure no space between header and top of first section*/
+.hidden-sn main {
+    padding-top: 48px;
+}
 
 @media(max-width:992px) and (min-width: 0) {
 
-    header .logo {
+
+    /*header .logo {
         position: absolute;
         margin-top: -15px;
         margin-left: 5px;
-    }
+    }*/
 
     /*#mMenuToggle {
         margin-top: -11px;
         margin-right: -35px;
     }*/
 
-    header {
+    /*header {
         box-shadow: none;
     }
 
@@ -95,12 +109,30 @@ ul.default {
         margin-left: -30px;
         margin-right: -60px;
         padding-top: 20px;
+    }*/
+
+    .double-nav .breadcrumb-dn {
+        display: block;
     }
 
     #small-indicator {
         display: block;
     }
 }
+
+@media(max-width:992px) and (min-width:600px) {
+    .hidden-sn main {
+        padding-top: 70px;
+    }
+}
+
+/*@media (min-width:992px) {
+    .hidden-sn main {
+        padding-top: 48px;
+    }
+}*/
+
+
 
 
 @media (min-width: 1200px) {
@@ -109,6 +141,8 @@ ul.default {
         display: block;
     }
 }
+
+
 
 
 /*mMenu Styles*/
