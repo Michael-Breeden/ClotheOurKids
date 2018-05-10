@@ -1,6 +1,6 @@
 /*!
  * Material Design for Bootstrap 4
- * Version: MDB PRO 4.5.0
+ * Version: MDB PRO 4.5.2
  *
  *
  * Copyright: Material Design for Bootstrap
@@ -28,39 +28,39 @@
 
 /*
 
-jquery-easing.js
-global.js
-velocity.min.js
-chart.js
-wow.js
-scrolling-nav.js
-waves.js
-
-preloading.js
-card-reveal.js
-character-counter.js
-toasts.js
-smooth-scroll.js
-dropdown.js
-rotating-cards.js
-buttons.js
-hammer.js
-jquery.hammer.js
-sidenav.js
-collapsible.js
-jquery.easypiechart.js
-panel-popuot.js
-forms.js
-picker.js
-picker-date.js
-picker-time.js
-lightbox.js
-jquery.jsticky.js
-scrollbar.js
-animations.js
-chips.js
-autocomplete.js
-enhanced-modals.js
+  jquery.easing.js
+  velocity.min.js
+  chart.js
+  wow.js
+  scrolling-navbar.js
+  waves.js
+  forms-free.js
+  preloading.js
+  cards.js
+  character-counter.js
+  toastr.js
+  smooth-scroll.js
+  dropdown.js
+  buttons.js
+  hammer.js
+  jquery.hammer.js
+  sidenav.js
+  collapsible.js
+  jquery.easypiechart.js
+  range-input.js
+  file-input.js
+  material-select.js
+  picker.js
+  picker-date.js
+  picker-time.js
+  lightbox.js
+  jquery.sticky.js
+  scrollbar.js
+  chips.js
+  jarallax.js
+  jarallax-video.js
+  mdb-autocomplete.js
+  enhanced-modals.js
 
 */
 
@@ -15209,7 +15209,7 @@ Waves.attach('.btn:not(.btn-flat), .btn-floating', ['waves-light']);
 Waves.attach('.btn-flat', ['waves-effect']);
 Waves.attach('.view a .mask', ['waves-light']);
 Waves.attach('.waves-light', ['waves-light']);
-Waves.attach('.navbar-nav a:not(.navbar-brand), .nav-icons li a, .navbar input', ['waves-light']);
+Waves.attach('.navbar-nav a:not(.navbar-brand), .nav-icons li a, .navbar input, .nav-tabs .nav-item:not(.dropdown)', ['waves-light']);
 Waves.attach('.pager li a', ['waves-light']);
 Waves.attach('.pagination .page-item .page-link', ['waves-effect']);
 Waves.init();
@@ -20295,7 +20295,7 @@ $.fn.easyPieChart = function(options) {
       // Added to search
       var setSearchableOption = function setSearchableOption() {
         var placeholder = $select.attr('searchable');
-        var element = $('<span class="search-wrap ml-2"><div class="md-form mt-0"><input type="text" class="search form-control" placeholder="' + placeholder + '"></div></span>');
+        var element = $('<span class="search-wrap"><div class="md-form"><input type="text" class="search form-control" placeholder="' + placeholder + '"></div></span>');
         options.append(element);
         element.find('.search').keyup(applySeachInList);
       };
