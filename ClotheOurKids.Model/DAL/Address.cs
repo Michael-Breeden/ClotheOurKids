@@ -14,11 +14,23 @@ namespace ClotheOurKids.Model
     
     public partial class Address
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Address()
+        {
+            this.Offices = new HashSet<Office>();
+        }
+    
         public int AddressId { get; set; }
         public string StreetAddress { get; set; }
         public string City { get; set; }
         public Nullable<short> StateId { get; set; }
         public string PostalCode { get; set; }
         public string PostalCodeExt { get; set; }
+        public Nullable<short> CountyId { get; set; }
+    
+        public virtual County County { get; set; }
+        public virtual State State { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Office> Offices { get; set; }
     }
 }

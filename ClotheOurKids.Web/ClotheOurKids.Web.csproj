@@ -376,6 +376,11 @@
     <Content Include="Content\plugins\mmenu\dist\wrappers\olark\jquery.mmenu.olark.js" />
     <Content Include="Content\plugins\mmenu\dist\wrappers\turbolinks\jquery.mmenu.turbolinks.js" />
     <Content Include="Content\plugins\mmenu\dist\wrappers\wordpress\jquery.mmenu.wordpress.js" />
+    <Content Include="Content\plugins\smartWizard\css\smart_wizard.css" />
+    <Content Include="Content\plugins\smartWizard\css\smart_wizard_theme_arrows.css" />
+    <Content Include="Content\plugins\smartWizard\css\smart_wizard_theme_circles.css" />
+    <Content Include="Content\plugins\smartWizard\css\smart_wizard_theme_dots.css" />
+    <Content Include="Content\plugins\smartWizard\js\jquery.smartWizard.js" />
     <Content Include="CustomErrors\404.html" />
     <Content Include="CustomErrors\503.html" />
     <Content Include="Changes.txt" />

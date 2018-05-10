@@ -12,6 +12,7 @@ namespace ClotheOurKids.Model.Repository
         IList<Position> GetAllPositions();
         IList<Office> GetAllOffices();
         IList<Office> GetOfficesByOfficeType(int officeTypeId);
+        IList<Office> GetOfficesByZipCode(string zipcode);
         IList<Position> GetPositionsByOffice(int officeId);
         IList<Position> GetPositionsByOfficeType(int officeTypeId);
         IList<ContactMethod> GetAllContactMethods();

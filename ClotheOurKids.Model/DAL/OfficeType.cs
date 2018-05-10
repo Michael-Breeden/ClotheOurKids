@@ -17,8 +17,8 @@ namespace ClotheOurKids.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public OfficeType()
         {
-            this.Offices = new HashSet<Office>();
             this.PositionOfficeTypes = new HashSet<PositionOfficeType>();
+            this.Offices = new HashSet<Office>();
         }
     
         public byte OfficeTypeId { get; set; }
@@ -26,8 +26,8 @@ namespace ClotheOurKids.Model
         public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Office> Offices { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PositionOfficeType> PositionOfficeTypes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Office> Offices { get; set; }
     }
 }

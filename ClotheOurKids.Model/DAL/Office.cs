@@ -17,33 +17,27 @@ namespace ClotheOurKids.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Office()
         {
-            this.Schools = new HashSet<School>();
             this.AspNetUsers = new HashSet<AspNetUser>();
             this.Chapters = new HashSet<Chapter>();
             this.ChapterOffices = new HashSet<ChapterOffice>();
+            this.Schools = new HashSet<School>();
         }
     
         public short OfficeId { get; set; }
         public string Name { get; set; }
         public byte OfficeTypeId { get; set; }
-        public string StreetAddress { get; set; }
-        public string City { get; set; }
-        public Nullable<short> StateId { get; set; }
-        public string PostalCode { get; set; }
-        public string PostalCodeExt { get; set; }
         public string Phone { get; set; }
-        public short CountyId { get; set; }
+        public Nullable<int> PhysicalAddressId { get; set; }
     
-        public virtual OfficeType OfficeType { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<School> Schools { get; set; }
-        public virtual State State { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
-        public virtual County County { get; set; }
+        public virtual Address Address { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Chapter> Chapters { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChapterOffice> ChapterOffices { get; set; }
+        public virtual OfficeType OfficeType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<School> Schools { get; set; }
     }
 }

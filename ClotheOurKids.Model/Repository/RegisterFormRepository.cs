@@ -39,12 +39,23 @@ namespace ClotheOurKids.Model.Repository
             return content;
         }
 
+        
         public IList<Position> GetPositionsByOfficeType(int officeTypeId)
         {
             var query = from positions in context.Positions
                         where positions.PositionOfficeTypes.Any(p => p.OfficeTypeId == officeTypeId)
                         select positions;
             var content = query.ToList<Position>();
+            return content;
+        }
+
+        public IList<Office> GetOfficesByZipCode(string zipcode)
+        {
+            var query = from offices in context.Offices
+                        where offices.Address.PostalCode == zipcode
+                        select offices;
+
+            var content = query.OrderBy(office => office.Name).ToList<Office>();
             return content;
         }
 

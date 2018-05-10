@@ -86,11 +86,24 @@ BEGIN TRY
 		City					varchar(100) NULL,
 		StateId					smallint NULL,
 		PostalCode				char(6) NULL,
-		PostalCodeExt			char(4) NULL
+		PostalCodeExt			char(4) NULL,
+		CountyId				smallint NULL
 	)
 
 	ALTER TABLE Reference.Address
 	ADD CONSTRAINT AK_Reference_Address_StreetAddress_City_StateId UNIQUE (StreetAddress, City, StateId);
+	
+	ALTER TABLE Reference.Address
+		ADD CONSTRAINT FK_Reference_States$DefinesStateOf$Reference_Address
+		FOREIGN KEY (StateId) REFERENCES Reference.States (StateId)
+	ON UPDATE NO ACTION
+	ON DELETE NO ACTION;
+
+	ALTER TABLE Reference.Address
+		ADD CONSTRAINT FK_Reference_County$DefinesCountyOf$Reference_Address
+		FOREIGN KEY (CountyId) REFERENCES Reference.County (CountyId)
+	ON UPDATE NO ACTION
+	ON DELETE NO ACTION; 
 
 
 	CREATE TABLE Reference.Chapter
@@ -181,8 +194,8 @@ BEGIN TRY
 			'256-887-5437' as Phone,
 			1 as CountyId
 
-	INSERT INTO Reference.Address (StreetAddress, City, StateId, PostalCode)
-	VALUES ('PO Box 565', 'Somerville', 1, '35670');
+	INSERT INTO Reference.Address (StreetAddress, City, StateId, PostalCode, CountyId)
+	VALUES ('PO Box 565', 'Somerville', 1, '35670', 1);
 
 	INSERT INTO Reference.Chapter (OfficeId, MailingAddressId, IncorporatedDate, IncorporatedStateId, Email)
 	SELECT	(

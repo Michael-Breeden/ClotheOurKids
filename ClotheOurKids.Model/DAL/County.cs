@@ -18,8 +18,8 @@ namespace ClotheOurKids.Model
         public County()
         {
             this.SchoolDistricts = new HashSet<SchoolDistrict>();
-            this.Offices = new HashSet<Office>();
             this.ChapterCounties = new HashSet<ChapterCounty>();
+            this.Addresses = new HashSet<Address>();
         }
     
         public short CountyId { get; set; }
@@ -32,8 +32,8 @@ namespace ClotheOurKids.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SchoolDistrict> SchoolDistricts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Office> Offices { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChapterCounty> ChapterCounties { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Address> Addresses { get; set; }
     }
 }

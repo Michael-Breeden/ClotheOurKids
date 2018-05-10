@@ -31,7 +31,6 @@ namespace ClotheOurKids.Model
         public virtual DbSet<AgeGroup> AgeGroups { get; set; }
         public virtual DbSet<County> Counties { get; set; }
         public virtual DbSet<Grade> Grades { get; set; }
-        public virtual DbSet<Office> Offices { get; set; }
         public virtual DbSet<OfficeType> OfficeTypes { get; set; }
         public virtual DbSet<Position> Positions { get; set; }
         public virtual DbSet<PositionOfficeType> PositionOfficeTypes { get; set; }
@@ -53,5 +52,6 @@ namespace ClotheOurKids.Model
         public virtual DbSet<Chapter> Chapters { get; set; }
         public virtual DbSet<ChapterCounty> ChapterCounties { get; set; }
         public virtual DbSet<ChapterOffice> ChapterOffices { get; set; }
+        public virtual DbSet<Office> Offices { get; set; }
     }
 }

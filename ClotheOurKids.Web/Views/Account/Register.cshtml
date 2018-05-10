@@ -20,21 +20,95 @@
         </div>
     </div>
 
+    <div class="card mx-xl-5">
+
+        <div class="card-body">
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id="RegisterForm", @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <p class="h2 text-center py-4 mb-4">Register</p>
+
+                <ul>
+                    <li><a href="#step-1">Step 1 <br /> <small>Where You Work</small></a></li>
+                    <li><a href="#step-2">Step 2 <br /> <small>Account</small></a></li>
+                    <li><a href="#step-3">Step 3 <br /> <small>Profile</small></a></li>
+                </ul>
+
+                <div>
+
+                    <div id="step-1" class="mt-5">
+                        @Html.LabelFor(m => m.OfficeId, new { @class = "select2-label" })
+                        @Html.DropDownListFor(m => m.OfficeId, Model.AvailableOffices, new { @class = "mdb-select md-select2" })
+                        @Html.ValidationMessageFor(m => m.OfficeId)
+                    </div>
+                    <div id="step-2">
+                        @Html.LabelFor(m => m.Email, new { @class = "font-weight-light" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate" })
+                        @Html.ValidationMessageFor(m => m.Email)
+
+                        <br />
+
+                        @Html.LabelFor(m => m.Password, new { @class = "font-weight-light" })
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control validate" })
+                        @Html.ValidationMessageFor(m => m.Password)
+                    </div>
+                    <div id="step-3">
+                        @Html.LabelFor(m => m.FirstName, new { @class = "font-weight-light" })
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control validate" })
+                        @Html.ValidationMessageFor(m => m.FirstName)
+
+                        <br />
+
+                        @Html.LabelFor(m => m.LastName, new { @class = "font-weight-light" })
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control validate" })
+                        @Html.ValidationMessageFor(m => m.LastName)
+
+                        <br />
+
+                        @Html.LabelFor(m => m.PhoneNumber, new { @class = "font-weight-light" })
+                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control validate" })
+                        @Html.ValidationMessageFor(m => m.PhoneNumber)
+
+                        <br />
+
+                        <label for="contactMethod" class="grey-text font-weight-light">Contact method</label>
+                        <div class="d-flex flex-row justify-content-md-center">
+                            @{
+                                foreach (var contactMethod in Model.AvailableContactMethods)
+                                {
+                                    <div class="form-group mr-4">
+                                        @Html.RadioButtonFor(m => m.ContactMethodId, contactMethod.Value, new { id = "contactMethod" + contactMethod.Value, @class = "with-gap" })
+                                        @Html.Label("contactMethod" + contactMethod.Value, contactMethod.Text)
+                                    </div>
+                                }
+
+                            }
+                        </div>
+                        <div class="text-center">
+                            @Html.ValidationMessageFor(m => m.ContactMethodId)
+                        </div>
+                    </div>
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+
     <hr class="between-sections" />
 
     <div class="section wow fadeIn ">   
-        <div class="card z-depth-3">
+        <div class="card mx-xl-5">
             <div class="card-body">
-                <!--Form Header-->
-                <div class="form-header blue darken-4">
-                    <h3 class="h1-responsive"><i class="fa fa-lock"></i> Register:</h3>
-                </div>
-                <!--/Form Header-->
-
                 <!--Form Body-->
                 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
+
+                    <p class="h4 text-center py-4">Register</p>
 
                     <div class="row">
                         <div class="col-12">
@@ -49,7 +123,7 @@
                             <div class="md-form">
                                 <i class="fa fa-user prefix"></i>
                                 @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control validate"})
-                                @Html.LabelFor(m => m.FirstName)
+                                @Html.LabelFor(m => m.FirstName, new { @class = "font-weight-light" })
                                 @Html.ValidationMessageFor(m => m.FirstName)
                             </div>
                         </div>
@@ -59,7 +133,7 @@
                             <div class="md-form">
                                 <i class="fa fa-user prefix"></i>
                                 @Html.TextBoxFor(m => m.LastName, new { @class = "form-control validate" })
-                                @Html.LabelFor(m => m.LastName)
+                                @Html.LabelFor(m => m.LastName, new { @class = "font-weight-light" })
                                 @Html.ValidationMessageFor(m => m.LastName)
                             </div>
                         </div>
@@ -75,7 +149,7 @@
                             <div class="md-form">
                                 <i class="fa fa-envelope prefix"></i>
                                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate" })
-                                @Html.LabelFor(m => m.Email)
+                                @Html.LabelFor(m => m.Email, new { @class = "font-weight-light" })
                                 @Html.ValidationMessageFor(m => m.Email)
                             </div>
                         </div>
@@ -85,7 +159,7 @@
                             <div class="md-form">
                                 <i class="fa fa-phone prefix"></i>                                
                                 @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control validate" })
-                                @Html.LabelFor(m => m.PhoneNumber)
+                                @Html.LabelFor(m => m.PhoneNumber, new { @class = "font-weight-light" })
                                 @Html.ValidationMessageFor(m => m.PhoneNumber)
                             </div>
                         </div>
@@ -94,16 +168,16 @@
                     <!--/Second row-->
 
                     <!--Third row-->
-                    <div class="mt-2 hidden-sm-down"></div>
+                    <div class="mt-4 hidden-sm-down"></div>
                     <div class="row">
                         <div class="col-md">
                             <div class="clearfix mt-1 hidden-md-up"></div>
                             <div class="row">
-                                <div class="col d-flex justify-content-sm-start justify-content-md-center">
+                                <div class="col d-flex justify-content-sm-start justify-content-md-center mt-4 mb-0">
                                     <h5 class="h5-responsive">Best Way to Contact You</h5>
                                 </div>
-                                <div class="col-12">
-                                    <div class="md-form ">
+                                <div class="col-12 mt-0">
+                                    <div class="md-form mt-0">
                                         <div class="d-flex flex-row justify-content-md-center">
                                             @{
                                                 foreach (var contactMethod in Model.AvailableContactMethods)
@@ -140,7 +214,7 @@
                             <div class="md-form">
                                 <i class="fa fa-lock prefix"></i>
                                 @Html.PasswordFor(m => m.Password, new { @class = "form-control validate" })
-                                @Html.LabelFor(m => m.Password)
+                                @Html.LabelFor(m => m.Password, new { @class = "font-weight-light" })
                                 @Html.ValidationMessageFor(m => m.Password)
                             </div>
                         </div>
@@ -150,7 +224,7 @@
                             <div class="md-form">
                                 <i class="fa fa-lock prefix"></i>
                                 @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control validate" })
-                                @Html.LabelFor(m => m.ConfirmPassword)
+                                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "font-weight-light" })
                                 @Html.ValidationMessageFor(m => m.ConfirmPassword)
                             </div>
                         </div>
@@ -227,6 +301,10 @@
         $(document).ready(function () {
 
             //var positions = { "1": "Principal", "2": "Teacher", "3": "Counselor", "4": "FACT Coordinator" };
+
+            var form = $('#RegisterForm').smartWizard({
+                theme : 'circles'
+            });
 
             $('.md-select2 option[value = "0"]').attr('disabled', true);
 

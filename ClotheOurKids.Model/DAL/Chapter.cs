@@ -32,7 +32,7 @@ namespace ClotheOurKids.Model
         public virtual ICollection<ChapterCounty> ChapterCounties { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChapterOffice> ChapterOffices { get; set; }
-        public virtual Office Office { get; set; }
         public virtual State State { get; set; }
+        public virtual Office Office { get; set; }
     }
 }

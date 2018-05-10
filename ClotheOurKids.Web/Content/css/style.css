@@ -187,7 +187,16 @@
 }
 
 
+/*smart wizard styling customized for MDB*/
+.sw-theme-circles > ul.step-anchor {
+    box-shadow: none;
+    padding: 0;
+}
 
+.sw-theme-circles .nav-tabs .nav-item {
+    margin-left: 40px;
+    text-transform: none;
+}
 
 /*select 2 styling*/
 

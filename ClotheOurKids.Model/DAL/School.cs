@@ -25,10 +25,10 @@ namespace ClotheOurKids.Model
         public short SchoolDistrictId { get; set; }
         public byte SchoolTypeId { get; set; }
     
-        public virtual Office Office { get; set; }
         public virtual SchoolDistrict SchoolDistrict { get; set; }
         public virtual SchoolType SchoolType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Request> Requests { get; set; }
+        public virtual Office Office { get; set; }
     }
 }

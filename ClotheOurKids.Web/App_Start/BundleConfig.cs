@@ -19,6 +19,7 @@ namespace ClotheOurKids.Web
                         "~/Content/plugins/mmenu/dist/jquery.mmenu.all.js",
                         "~/Content/plugins/mmenu/dist/wrappers/bootstrap/jquery.mmenu.bootstrap4.js",
                         "~/Content/js/jquery.animateNumber.min.js",
+                        "~/Content/plugins/smartWizard/js/jquery.smartWizard.js",
                         "~/Content/js/vfs_fonts.js"
                         ));
 
@@ -36,7 +37,9 @@ namespace ClotheOurKids.Web
                 .Include(
                 "~/Content/css/bootstrap.min.css",
                 "~/Content/css/mdb.min.css",
-                "~/Content/css/hamburgers-min.css"
+                "~/Content/css/hamburgers-min.css",
+                "~/Content/plugins/smartWizard/css/smart_wizard.css",
+                "~/Content/plugins/smartWizard/css/smart_wizard_theme_circles.css"
                 ));
 
             bundles.Add(new StyleBundle("~/Content/plugins/mMenu/dist/bundles")
