@@ -77,9 +77,7 @@ ul.default {
 }
 
 
-#largeScreenIndicator {
-    display: none;
-}
+
 
 #mobileMenu:not(.mm-menu){
     display: none;

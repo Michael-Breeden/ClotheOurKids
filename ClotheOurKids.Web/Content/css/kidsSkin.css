@@ -34,7 +34,6 @@ body {
 .h1, .h2, .h3, .h4, .h5, .h6, .h1-responsive, .h2-responsive, .h3-responsive, .h4-responsive, .h5-responsive, .h6-responsive, .navbar, h1, h2, h3, h4, h5, h6 {
     font-family: 'Mukta';
     font-weight: 700;
-    text-transform: uppercase;
 }
 
 .show > .kids-skin .btn-primary:focus, .kids-skin .btn-primary.focus, .kids-skin .btn-primary:not([disabled]):not(.disabled):active, .kids-skin .btn-primary.active:not([disabled]):not(.disabled),
@@ -49,7 +48,7 @@ body {
 
 .kids-skin {
   /* Select colors */ 
-    background-color: #fffbdc;
+    background-color: #eee;
                                     }
 
     

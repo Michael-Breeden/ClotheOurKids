@@ -16,6 +16,7 @@ using ClotheOurKids.Model;
 using ClotheOurKids.Model.Repository;
 using System.Configuration;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Newtonsoft.Json;
 
 namespace ClotheOurKids.Web.Controllers
 {
@@ -254,30 +255,41 @@ namespace ClotheOurKids.Web.Controllers
             return View(model);
         }
 
+
         [AllowAnonymous]
         [AcceptVerbs(HttpVerbs.Get)]
-        [Route("Get-Offices", Name = "GetOffices")]
-        public ActionResult GetOfficesByOfficeTypeId (string officeTypeId)
+        [Route("Get-All-Offices", Name = "GetAllOffices")]
+        public ActionResult GetOffices()
         {
-            if (String.IsNullOrEmpty(officeTypeId))
-            {
-                throw new ArgumentNullException("officeTypeId");
-            }
 
-            int id = 0;
             var repository = new RegisterFormRepository();
-            bool isValid = Int32.TryParse(officeTypeId, out id);
-            var offices = repository.GetOfficesByOfficeType(id);
+            var offices = repository.GetAllOfficesForRegister();        
 
-            var result = (from o in offices
-                          select new
-                          {
-                              id = o.OfficeId,
-                              name = o.Name
-                          }).ToList();
-
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return Json(new { data = offices }, JsonRequestBehavior.AllowGet);
         }
+
+        //[AllowAnonymous]
+        //[AcceptVerbs(HttpVerbs.Get)]
+        //[Route("Get-Offices", Name = "GetOffices")]
+        //public ActionResult GetOfficesByPostalCode (string postalCode)
+        //{
+        //    if (String.IsNullOrEmpty(postalCode))
+        //    {
+        //        throw new ArgumentNullException("postalCode");
+        //    }
+
+        //    var repository = new RegisterFormRepository();
+        //    var offices = repository.GetOfficesByPostalCode(postalCode);
+
+        //    var result = (from o in offices
+        //                  select new
+        //                  {
+        //                      id = o.OfficeId,
+        //                      name = o.Name
+        //                  }).ToList();
+
+        //    return Json(result, JsonRequestBehavior.AllowGet);
+        //}
 
         [AllowAnonymous]
         [AcceptVerbs(HttpVerbs.Get)]

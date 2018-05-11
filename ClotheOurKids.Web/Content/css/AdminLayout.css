@@ -1,0 +1,181 @@
+﻿@font-face {
+  font-family: "Mukta";
+  src: url("https://fonts.googleapis.com/css?family=Mukta:400");
+  font-weight: 400; }
+
+@font-face {
+  font-family: "Mukta";
+  src: url("https://fonts.googleapis.com/css?family=Mukta:700");
+  font-weight: 700; }
+
+
+@font-face {
+  font-family: "Open Sans";
+  src: local(Open Sans), url("https://fonts.googleapis.com/css?family=Open+Sans:300");
+ font-weight: 300; }
+
+
+@font-face {
+  font-family: "Open Sans";
+  src: local(Open Sans), url("https://fonts.googleapis.com/css?family=Open+Sans:400");
+ font-weight: 400; }
+
+@font-face {
+  font-family: "Open Sans";
+  src: local(Open Sans), url("https://fonts.googleapis.com/css?family=Open+Sans:700");
+ font-weight: 700; }
+
+body {
+    font-family: 'Open Sans';
+    font-weight: 400;
+    color: #24335a;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, .h1-responsive, .h2-responsive, .h3-responsive, .h4-responsive, .h5-responsive, .h6-responsive, .navbar, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Mukta';
+    font-weight: 700;
+}
+
+
+/*/Main Side Navigation Setup*/
+.side-nav {
+  height: 100vh;
+  width: 270px;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  z-index: 1050;
+  background-color: #fff;
+  padding: 1.5rem;
+  padding-top: 0; }
+  .side-nav .list-group .active {
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    -webkit-border-radius: 5px;
+    border-radius: 5px; }
+  .side-nav .logo-wrapper {
+    padding: 2.5rem; }
+    .side-nav .logo-wrapper img {
+      max-height: 50px; }
+.side-nav a {
+    display: inline-block;
+    height: auto;
+    line-height: inherit;
+    padding-left: 0;
+}
+.side-nav .logo-wrapper {
+        height: inherit;
+    }
+.side-nav .logo-wrapper img {
+    padding: 0 !important;
+}
+
+.fixed-sn .double-nav, .fixed-sn footer, .fixed-sn main {
+    padding-left: 270px; } 
+
+/*/Main Side Navigation Setup*/
+
+/*smart wizard styling customized for MDB*/
+.sw-theme-default {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.sw-theme-default .btn-secondary {
+    background-color: #24335a !important;
+    color: #fff !important;
+}
+
+.btn-secondary:hover {
+    background-color: #b579d2; }
+  .sw-theme-default .btn-secondary:focus, .sw-theme-default .btn-secondary:active, .sw-theme-default .btn-secondary.active {
+    background-color: #7885a5; }
+  .sw-theme-default .btn-secondary:not([disabled]):not(.disabled):active, .sw-theme-default .btn-secondary:not([disabled]):not(.disabled).active,
+  .show > .sw-theme-default .btn-secondary.dropdown-toggle {
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    background-color: #7885a5 !important; }
+
+/*.sw-theme-circles > ul.step-anchor {
+    box-shadow: none;
+    padding: 0;
+}
+
+.sw-theme-circles .nav-tabs .nav-item {
+    margin-left: 40px;
+    text-transform: none;
+}*/
+
+
+/*/smart wizard styling customized for MDB*/
+
+
+/*DataTables Customization*/
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child::before, 
+    table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child::before {
+    top: inherit !important;
+    line-height: 16px !important;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+    white-space: normal !important;
+}
+/*/DataTables Customization*/
+
+
+
+.field-validation-error {
+    color: red !important;
+}
+
+
+@media (max-width: 1440px){
+    .fixed-sn .double-nav, .fixed-sn footer, .fixed-sn main {
+        padding-left: 0;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    #largeScreenIndicator {
+        display: block;
+    }
+}
+
+@media(max-width:992px) {
+    #small-indicator {
+        display: block;
+    }    
+}
+
+@media(max-width:576px) {
+    /*DataTables Customization*/
+    li.paginate_button.previous {
+        display: inline;
+    }
+ 
+    li.paginate_button.next {
+        display: inline;
+    }
+ 
+    li.paginate_button {
+        display: none;
+    }
+    /*/DataTables Customization*/
+}
+
+@media (max-height: 992px) {
+    .side-nav .logo-wrapper {
+        height: inherit;
+    }
+    .side-nav .logo-wrapper img {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
+
+
+
+#largeScreenIndicator {
+    display: none;
+}

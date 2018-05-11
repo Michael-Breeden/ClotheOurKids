@@ -1,4 +1,94 @@
-﻿@section customScript
+﻿@using ClotheOurKids.Web.Models
+@model LoginViewModel
+
+@section pageCSS
+{
+    <style type="text/css">
+        #slide-out {
+            display:none;
+        }
+
+        .navbar {
+            display:none;
+        }
+
+        footer {
+            display:none;
+        }
+
+        .fixed-sn main {
+            padding-left: 0;
+        }
+    </style>
+}
+
+<!--Body-->
+<div class="container my-auto mx-auto">
+    <div class="row">
+        <div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 mx-auto mt-lg-5">
+            <form class="card wow fadeIn">
+                @Html.AntiForgeryToken()
+
+                <div class="card-body">
+
+                    <!--Header-->
+                    <img src="~/Content/img/logo/MainLogo_color_scaled.png" class="mx-auto d-block" alt="Clothe Our Kids" />
+                    <div class="modal-header mt-3">
+                        <h3 class="modal-title w-100 dark-grey-text font-weight-bold mr-auto text-center">Log in</h3>
+                    </div>
+
+                    <!--Body-->
+                    <div class="md-form mb-4">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate" })
+                        @Html.LabelFor(m => m.Email)
+                    </div>
+                    <div class="md-form mb-4">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control validate" })
+                        @Html.LabelFor(m => m.Password)
+                    </div>
+                    <div id="loginError" class="red-text hidden"></div>
+
+                    <div class="text-center d-flex align-items-center justify-content-center">
+                        <button id="btnLogIn" class="btn bg-success">Log In</button>
+                        <div class="preloader-wrapper small active">
+                            <div class="spinner-layer spinner-blue-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Footer-->
+                <div class="modal-footer mx-5 pt-3 mb-1">
+                    <div class="options text-right">
+                        <p>Don't have an account? <a href="@Url.Action("Register", "Account")">Sign up</a></p>
+                        <p>Forgot <a href="@Url.Action("ForgotPassword", "Account")">Password?</a></p>
+                    </div>
+                </div>
+
+
+                @*<div class="form-group mt-5 mb-3">
+                <input type="checkbox" class="filled-in" id="RememberMe" name="RememberMe" />
+                <label for="RememberMe">Remember Me?</label>
+                <input name="RememberMe" type="hidden" value="false" />
+            </div>*@
+
+
+
+            </form>
+        </div>
+    </div>    
+</div>
+
+
+
+@*@section customScript
 {
     <script type="text/javascript">
         $(document).ready(function () {
@@ -6,4 +96,18 @@
         });
     </script>
 
+}*@
+
+@section customScript
+{
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            $('#loginError').hide();
+
+            $('.preloader-wrapper').hide();
+        });
+
+    </script>
 }

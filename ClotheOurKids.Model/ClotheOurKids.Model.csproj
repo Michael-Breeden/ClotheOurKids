@@ -166,6 +166,7 @@
     <Compile Include="Repository\RegisterFormRepository.cs" />
     <Compile Include="Repository\RequestFormRepository.cs" />
     <Compile Include="Repository\WhoWeServeRepository.cs" />
+    <Compile Include="ViewModel\RegisterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

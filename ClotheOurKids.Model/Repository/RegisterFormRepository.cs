@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ClotheOurKids.Model.ViewModel;
 
 namespace ClotheOurKids.Model.Repository
 {
@@ -49,10 +50,27 @@ namespace ClotheOurKids.Model.Repository
             return content;
         }
 
-        public IList<Office> GetOfficesByZipCode(string zipcode)
+        public IList<RegisterViewModel> GetAllOfficesForRegister()
         {
             var query = from offices in context.Offices
-                        where offices.Address.PostalCode == zipcode
+                        select new RegisterViewModel
+                        {
+                            OfficeId = offices.OfficeId,
+                            //OfficeName = offices.Name.Length >= 25 ? offices.Name.Substring(0, 24) + "..." : offices.Name,
+                            OfficeName = offices.Name,
+                            PostalCode = offices.Address.PostalCode,
+                            Location = offices.Address.City + ", " + offices.Address.State.Name
+                        };
+
+
+            var content = query.OrderBy(o => o.OfficeName).ToList<RegisterViewModel>();
+            return content;
+        }
+
+        public IList<Office> GetOfficesByPostalCode(string postalCode)
+        {
+            var query = from offices in context.Offices
+                        where offices.Address.PostalCode == postalCode
                         select offices;
 
             var content = query.OrderBy(office => office.Name).ToList<Office>();

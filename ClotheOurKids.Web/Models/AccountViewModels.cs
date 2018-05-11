@@ -110,11 +110,6 @@ namespace ClotheOurKids.Web.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
-
         [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
@@ -122,6 +117,10 @@ namespace ClotheOurKids.Web.Models
         [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Zip Code")]
+        public string PostalCode { get; set; }
 
         [Required]
         [Display(Name = "Your Office Type")]

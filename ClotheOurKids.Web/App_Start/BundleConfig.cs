@@ -49,9 +49,8 @@ namespace ClotheOurKids.Web
 
             bundles.Add(new StyleBundle("~/Content/css/myBundles")
                 .Include(
-                "~/Content/css/kidsSkin.css",
-                "~/Content/css/myHeader.css",
-                "~/Content/css/style.css"
+                "~/Content/css/select2Custom.css",
+                "~/Content/css/AdminLayout.css"
                 ));
         }
     }

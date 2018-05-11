@@ -1,700 +1,99 @@
 ﻿@model ClotheOurKids.Web.Models.ViewModel.HomeViewModel
 
-@section openGraph {
-    <meta property="og:url" content="https://www.givekidsclothes.com" />
-    <meta property="og:image" content="https://www.givekidsclothes.com/Content/img/logo/ClotheOurKidsLogo_withNA.png" />
-    <meta property="og:title" content="Clothe Our Kids of North Alabama" />
-    <meta property="og:type" content="website" />
-}
-      @section pageCSS
-{
-    <style>
-        footer.page-footer {
-            background-color: #7E929C;
-        }
 
-        .card.card-cascade {
-            height: 100%;
-            display: flex;
-        }
+<div class="container-fluid mt-5">
 
-        .card.card-cascade .card-body {
-            display: flex;
-            justify-content: space-between;
-            flex-direction: column;
-        }
-
-        #OurWork {
-            cursor: pointer;
-            cursor: hand;
-        }
-
-        #GetInvolved {
-            cursor: pointer;
-            cursor: hand;
-        }
-
-        #Donate {
-            cursor: pointer;
-            cursor: hand;
-        }
-
-        #map-canvas {
-            height: 100vh;
-            width:100%;
-            /*position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 0;*/
-        }
-
-        #mainLogo {
-            z-index: 100;
-            position: absolute;
-            left: 20px;
-            right: 20px;
-        }
-
-        @@media (min-width: 1199px){
-            #mainLogo {
-                top: calc(((100vh - 106px) / 3));
-            }
-        }
-
-        @@media (max-width: 1199px) and (min-width: 992px) {
-            #mainLogo {
-                top: calc(((100vh - 122px) / 3))
-            }
-        }
-
-        @@media (max-width: 992px) {
-
-            #mainLogo {
-                top: calc(((100vh - 156px) / 3))
-            }
-        }
-
-        @@media (min-width: 1200px) {
-            .logo-container {
-                background: url("../../Content/img/logo/MainLogo_color_scaled_noTagLine.png") left top no-repeat !important;
-            }
-        }
-
-</style>
-}
-
-
-@section headerMask
-{
-    <div id="map-canvas" class="full-bg-img">
-    </div>   
-
-    <div class="container-fluid ">
-        <ul id="mainLogo" class="list-unstyled text-center">
-            <li>
-                @*<h1 class="h1-responsive wow fadeInUp">Clothe Our Kids of North Alabama</h1>*@
-                <img class="img-fluid" src="~/Content/img/logo/foundation_logo_black_scaled.png" />
-            </li>
-            @*<li>
-                    <p class="wow fadeInUp" data-wow-delay="0.2s">Giving Clothes. Showing Love. Building Confidence.</p>
-                </li>*@
-            @*<li>
-                    <a href="@Url.RouteUrl("GetInvolved")" class="btn btn-black btn-rounded btn-lg wow fadeInLeft" data-wow-delay="0.2s"><i class="fa fa-user left"></i> Get involved!</a>
-                    <a href="@Url.RouteUrl("OurWork")" class="btn btn-black btn-rounded btn-lg wow fadeInRight" data-wow-delay="0.2s"><i class="fa fa-book left"></i>Learn more</a>
-                </li>*@
-        </ul>
-    </div>
-
-}
-
-   
-
-<!-- Main container-->
-<div class="container" style="z-index: 2000;">
-
-
-
-    <!--Section: About Us-->
-    <section class="section extra-margins" id="about">
-        <!--Section heading-->
-        <h1 class="section-heading wow fadeIn" data-wow-delay="0.2s">Our Mission</h1>
-
-        <!--Section description-->
-        <p class="section-description wow fadeIn" data-wow-delay="0.4s">
-            Clothe Our Kids of North Alabama is a 501(c)(3) non-profit organization with a mission to provide clothing and hygiene items to children and teens in need in Morgan and Lawrence County Alabama. 
-            <br />
-            <br />
-            We believe that every child deserves clothing that gives them confidence in who they are and who they can become. We also believe that giving clothing to kids not only meets one of their most basic needs but also gives them a glimpse of the love and compassion of Jesus.
-            
-            <br />
-            <br />
-            It is our hope that every child who receives a bag from us will understand one message:
-            <br />
-            <span style="font-size: 1.5rem;">You Are Loved</span>
-            
-        </p>
-    </section>
-    <!--/Section: About Us-->
-</div>
-
-<div id="RequestStreak" class="streak bg-logo white-text" style="width: 100%;">
-    <div class="flex-center">
-        @*<h1 class="wow fadeIn"><span id="RequestCount">0</span> Kids Clothed</h1>*@            
-        <h1 class="wow fadeIn"><span id="RequestCount" class="count">@Model.RequestCount</span> Kids Clothed</h1> 
-    </div>
-</div>
-
-<div class="container" style="z-index: 2000;">
-    <!--Section: Find Out More-->
-    <section class="section mt-5" id="findOutMore">
-        <!--Section heading-->
-        <h1 class="section-heading wow fadeIn" data-wow-delay="0.2s">Find Out More</h1>
-        <!--Section description-->
-        <p class="section-description wow fadeIn" data-wow-delay="0.4s">Learn more about us!</p>
-
-
-        <div class="row mb-1 text-center">
-            <div id="OurWork" class="col white-text mr-2 wow fadeIn" data-wow-delay="0.2s">
-                <div class="card card-cascade bg-red">
-                    <div class="card-body text-center">
-                        <div class="mb-1">
-                            <h4 class="card-title">Our Work</h4>
-                            <p class="card-text white-text">Learn how we operate and who we help</p>
-                        </div>
-                        
-                        <div class="card-footer">
-                            <p>Learn More <i class="fa fa-angle-right"></i></p>
-                        </div>                        
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 mt-2 d-sm-none"></div>
-
-            <div id="GetInvolved" class="col mr-2 wow fadeIn" data-wow-delay="0.2s">
-                <div class="card card-cascade bg-purple" style="height: 100%;">
-                    <div class="card-body text-center">
-                        <div class="mb-1">
-                            <h4 class="card-title">Get Involved</h4>
-                            <p class="card-text white-text">Find ways to help the children in your county</p>
-                        </div>
-                        
-                        <div class="card-footer">
-                            <p>Join Us <i class="fa fa-angle-right"></i></p>
-                        </div>                        
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 mt-2 d-sm-none"></div>
-
-            <div id="Donate" class="col wow fadeIn" data-wow-delay="0.2s">
-                <div class="card card-cascade bg-yellow" style="height: 100%;">
-                    <div class="card-body text-center">
-                        <div class="mb-1">
-                            <h4 class="card-title">Give</h4>
-                            <p class="card-text white-text">Help us make sure we never have to turn a child away</p>
-                        </div>
-                        
-                        <div class="card-footer">
-                            <p>Donate Today <i class="fa fa-angle-right"></i></p>
-                        </div>                        
-                    </div>
-                </div>
-            </div>
+    <!-- Heading -->
+    <div class="card mb-4 wow fadeIn">
+        <!--Card content-->
+        <div class="card-body d-sm-flex justify-content-between">
+            <h4 class="mb-2 mb-sm-0 pt-1">
+                <a href="@Url.RouteUrl("Home")" target="_blank">Home Page</a>
+                <span>/</span>
+                <span>Dashboard</span>
+            </h4>
         </div>
-    </section>
-    <!--/Section: Find Out More-->
-
-    <hr class="between-sections">
-
-    <!--Section: Contact-->
-    <section class="section" id="contact">
-        <!--Section heading-->
-        <h1 class="section-heading wow fadeIn" data-wow-delay="0.2s">Contact Us</h1>
-
-        <div class="row wow zoomIn" data-wow-delay="0.4s">
-
-            <!--First column-->
-            <div class="col-sm-8">
-                <div id="map" class="z-depth-1 wow fadeInUp" style="height: 300px"></div>
+    </div>
+    <!-- Heading -->
+    <!--Grid row-->
+    <div class="row wow fadeIn">
+        <!--Grid column-->
+        <div class="col-md-9 mb-4">
+            <!--Card-->
+            <div class="card">
+                <!--Card content-->
+                <div class="card-body">
+                    <canvas id="myChart"></canvas>
+                </div>
             </div>
-
-            <div class="col-12 d-sm-none">
-                <p></p>
-            </div>
-
-            <!--Second column-->
-            <div class="col-sm-4 align-self-center">
-                <ul class="contact-icons">
-                    <li>
-                        <i class="fa fa-map-marker fa-2x"></i>
-                        <p>Decatur, AL 35603, USA</p>
-                    </li>
-
-                    <li>
-                        <i class="fa fa-phone fa-2x"></i>
-                        <p>256 887 5437</p>
-                    </li>
-
-                    <li>
-                        <i class="fa fa-envelope fa-2x"></i>
-                        <p>info@givekidsclothes.com</p>
-                    </li>
-                </ul>
-            </div>
-            <!--.Second column-->
-
+            <!--/.Card-->
         </div>
+        <!--Grid column-->
+        <!--Grid column-->
+        <div class="col-md-3 mb-4">
+            <!--Card-->
+            <div class="card mb-4">
+                <!-- Card header -->
+                <div class="card-header text-center">
+                    Pie chart
+                </div>
+                <!--Card content-->
+                <div class="card-body">
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </div>
+            <!--/.Card-->
+            <!--Card-->
+            <div class="card mb-4">
+                <!--Card content-->
+                <div class="card-body">
+                    <!-- List group links -->
+                    <div class="list-group list-group-flush">
+                        <a class="list-group-item list-group-item-action waves-effect">
+                            Sales
+                            <span class="badge badge-success badge-pill pull-right">
+                                22%
+                                <i class="fa fa-arrow-up ml-1"></i>
+                            </span>
+                        </a>
+                        <a class="list-group-item list-group-item-action waves-effect">
+                            Traffic
+                            <span class="badge badge-danger badge-pill pull-right">
+                                5%
+                                <i class="fa fa-arrow-down ml-1"></i>
+                            </span>
+                        </a>
+                        <a class="list-group-item list-group-item-action waves-effect">
+                            Orders
+                            <span class="badge badge-primary badge-pill pull-right">14</span>
+                        </a>
+                        <a class="list-group-item list-group-item-action waves-effect">
+                            Issues
+                            <span class="badge badge-primary badge-pill pull-right">123</span>
+                        </a>
+                        <a class="list-group-item list-group-item-action waves-effect">
+                            Messages
+                            <span class="badge badge-primary badge-pill pull-right">8</span>
+                        </a>
+                    </div>
+                    <!-- List group links -->
+                </div>
+            </div>
+            <!--/.Card-->
+        </div>
+        <!--Grid column-->
+    </div>
+    <!--Grid row-->
 
-    </section>
 </div>
-<!--/ Main container-->
-
-@section scripts
-{
-    <script type="text/javascript">
-        function initMap() {
-
-            buildBackgroundMap();
-
-            //CONTACT US MAP
-            var var_location = new google.maps.LatLng(34.528204, -86.898599);
-
-            var locations = [
-                ['Clothe Our Kids of North Alabama', 34.528204, -86.898599, '317 AL-67, Decatur, AL 35603', '256-887-5437']
-            ];
-
-            var map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 14,
-                center: new google.maps.LatLng(locations[0][1], locations[0][2])
-            });
-
-            var infowindow = new google.maps.InfoWindow();
-
-
-            var marker, i;
-
-            for (i = 0; i < locations.length; i++) {
-                marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                    map: map,
-                    title: locations[i][0]
-                });
-
-                google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                    return function () {
-                        var contentString = '<div id="content">' +
-                            '<h3 class="h3-responsive">' + locations[i][0] + '</h3>' +
-                            '<p>' + locations[i][3] +
-                            '<br>Trailer behind Priceville Junior High School, beside the Baseball fields'
-                        '<br>' + locations[i][4] +
-                            '</div>';
-                        infowindow.setContent(contentString);
-                        infowindow.open(map, marker);
-                    }
-                })(marker, i));
-            }
-        }
-
-        function buildBackgroundMap() {
-
-            var map;
-            var polygonField;
-            var centerpoint;
-            var pointMarker;
-
-            var styledMapType = new google.maps.StyledMapType(
-                [
-                    {
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#f5f5f5"
-                            }
-                        ]
-                    },
-                    {
-                        "elementType": "labels",
-                        "stylers": [
-                            {
-                                "visibility": "off"
-                            }
-                        ]
-                    },
-                    {
-                        "elementType": "labels.icon",
-                        "stylers": [
-                            {
-                                "visibility": "off"
-                            }
-                        ]
-                    },
-                    {
-                        "elementType": "labels.text.fill",
-                        "stylers": [
-                            {
-                                "color": "#616161"
-                            }
-                        ]
-                    },
-                    {
-                        "elementType": "labels.text.stroke",
-                        "stylers": [
-                            {
-                                "color": "#f5f5f5"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "administrative",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "visibility": "off"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "administrative.land_parcel",
-                        "stylers": [
-                            {
-                                "visibility": "off"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "administrative.land_parcel",
-                        "elementType": "labels.text.fill",
-                        "stylers": [
-                            {
-                                "color": "#bdbdbd"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "administrative.neighborhood",
-                        "stylers": [
-                            {
-                                "visibility": "off"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "poi",
-                        "stylers": [
-                            {
-                                "visibility": "off"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "poi",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#eeeeee"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "poi",
-                        "elementType": "labels.text.fill",
-                        "stylers": [
-                            {
-                                "color": "#757575"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "poi.park",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#e5e5e5"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "poi.park",
-                        "elementType": "labels.text.fill",
-                        "stylers": [
-                            {
-                                "color": "#9e9e9e"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road",
-                        "stylers": [
-                            {
-                                "visibility": "off"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#ffffff"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road",
-                        "elementType": "labels.icon",
-                        "stylers": [
-                            {
-                                "visibility": "off"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road.arterial",
-                        "elementType": "labels.text.fill",
-                        "stylers": [
-                            {
-                                "color": "#757575"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road.highway",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#dadada"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road.highway",
-                        "elementType": "labels.text.fill",
-                        "stylers": [
-                            {
-                                "color": "#616161"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road.local",
-                        "elementType": "labels.text.fill",
-                        "stylers": [
-                            {
-                                "color": "#9e9e9e"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "transit",
-                        "stylers": [
-                            {
-                                "visibility": "off"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "transit.line",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#e5e5e5"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "transit.station",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#eeeeee"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "water",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#c9c9c9"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "water",
-                        "elementType": "labels.text.fill",
-                        "stylers": [
-                            {
-                                "color": "#9e9e9e"
-                            }
-                        ]
-                    }
-                ], { name: "Background Map" });
-
-            centerpoint = new google.maps.LatLng(35.517491, -86.580447);
-
-            var mapOptions = {
-                zoom: 6,
-                center: centerpoint,
-                disableDefaultUI: true,
-                mapTypeControlOptions: {
-                    mapTypeIds: ['background_map']
-                }
-            };
-
-            map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-
-            map.mapTypes.set('background_map', styledMapType);
-            map.setMapTypeId('background_map');
-
-            ShowFusionTables(map);
-
-        }
-
-
-        function ShowFusionTables(map) {
-            
-
-            var countyLayer;
-            var whereClause = "'State-County' IN ('AL-Morgan', 'AL-Lawrence', 'TN-Lincoln', 'TN-Bedford', 'TN-Giles', 'TN-Marshall', 'TN-Lawrence')";
-            //var whereClause = 'GEO_ID = 05000US01083'
-            //var whereClause = '';
-            countyLayer = new google.maps.FusionTablesLayer({
-                map: map,
-                heatmap: { enabled:false },
-                query: {
-                    select: 'geometry',
-                    from: '1xdysxZ94uUFIit9eXmnw1fYc6VcQiXhceFd_CVKa',
-                    where: whereClause
-                },
-                options: {
-                    styleId: 1028,
-                    templateId: 1095                    
-                }
-            });
-            //countyLayer = new google.maps.FusionTablesLayer({
-            //    query: {
-            //        select: 'geometry',
-            //        from: '1xdysxZ94uUFIit9eXmnw1fYc6VcQiXhceFd_CVKa',
-            //        where: whereClause
-            //    },
-            //    styles: [{
-            //        polygonOptions: {
-            //            //fillColor: '#F1081D',
-            //            fillColor: '#82DE21',
-            //            fillOpacity: 0.4,
-            //            visible: true,
-            //            zIndex: 3000
-            //        }
-            //    }]
-            //});     
-
-
-            var stateLayer;
-            stateLayer = new google.maps.FusionTablesLayer({
-                query: {
-                    select: 'geometry',
-                    from: '17aT9Ud-YnGiXdXEJUyycH2ocUqreOeKGbzCkUw'
-                },
-                options: {
-                    styleId: 442,
-                    templateId: 470
-                }
-            });
-            //stateLayer = new google.maps.FusionTablesLayer({
-            //    query: {
-            //        select: 'geometry',
-            //        from: '17aT9Ud-YnGiXdXEJUyycH2ocUqreOeKGbzCkUw'
-            //    },
-            //    styles: [{
-            //        polygonOptions: {
-            //            fillColor: '#FFFFFF',
-            //            strokeColor: '#F2F2F2',
-            //            fillOpacity: 0.1,
-            //            visible: false,
-            //            zIndex: 5
-            //        }
-            //    }]
-            //});
-
-            stateLayer.setMap(map);
-
-        }
-
-
-    </script>
-
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2xc4rPas-4JZpu2txBdfWUtKXASh2O1k&callback=initMap">
-    </script>
-}
 
 @section customScript
 {
     <script type="text/javascript">  
 
         $(document).ready(function () {
-
-            //$('#navbar').addClass('navbar-dark').removeClass('navbar-light');
-
-            //setNavbar();
-
-            //$(window).on('resize', function () {
-            //    setNavbar();
-            //});
-
-            
-
-            $('#OurWork').click(function () {
-                var url = '@Url.RouteUrl("OurWork")';
-                window.location = url
-            });
-
-            $('#GetInvolved').click(function () {
-                var url = '@Url.RouteUrl("GetInvolved")';
-                window.location = url
-            });
-
-            $('#Donate').click(function () {
-                var url = '@Url.RouteUrl("Give")';
-                window.location = url
-            });
-
-            var requestCount = @Model.RequestCount;
-            var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',');
-            var direction = 'down';
-
-            var test = $('#RequestCount').prop('Counter');
-
-            var waypoint = $('#RequestStreak').waypoint(function (direction) {
-                $('.count').each(function () {
-                    $(this).prop('Counter', 0).animate({
-                        Counter: @Model.RequestCount
-                    }, {
-                            duration: 1500,
-                            easing: 'swing',
-                            step: function (now) {
-                                $(this).text(Math.ceil(now));
-                            }
-                        });
-                });
-            },
-            {
-                offset: 'bottom-in-view'
-            });
+           
         });
-
-
-        function setNavbar() {
-            if ($('#largeScreenIndicator').is(':visible')) {
-                $('#navbar').removeClass('navbar-light').addClass('navbar-dark');
-            }
-            else {            
-                $('#navbar').removeClass('navbar-dark').addClass('navbar-light');
-            }
-        }       
 
     </script>   
 }
