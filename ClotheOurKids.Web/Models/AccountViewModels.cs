@@ -92,8 +92,6 @@ namespace ClotheOurKids.Web.Models
     {
         public RegisterViewModel()
         {
-            AvailableOfficeTypes = new List<SelectListItem>();
-            AvailableOffices = new List<SelectListItem>();
             AvailablePositions = new List<SelectListItem>();
             AvailableContactMethods = new List<SelectListItem>();
         }
@@ -119,30 +117,24 @@ namespace ClotheOurKids.Web.Models
         public string LastName { get; set; }
 
         [Required]
-        [Display(Name = "Zip Code")]
-        public string PostalCode { get; set; }
-
-        [Required]
-        [Display(Name = "Your Office Type")]
-        public int? OfficeTypeId { get; set; }
-        public IList<SelectListItem> AvailableOfficeTypes { get; set; }
+        [Display(Name = "zip code")]
+        public string postalcode { get; set; }
 
         [Required]
         [Display(Name = "Your Position")]
         public short? PositionId { get; set; }
         public IList<SelectListItem> AvailablePositions { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please select an office")]
         [Display(Name = "Your Office")]
         public short? OfficeId { get; set; }
-        public IList<SelectListItem> AvailableOffices { get; set; }
 
         [Required]
         [Display(Name = "Preferred Phone")]
         public string PhoneNumber { get; set; }
 
         [Required]
-        [Display(Name = "Best Way to Contact You")]
+        [Display(Name = "Contact Method")]
         public short? ContactMethodId { get; set; }
         public IList<SelectListItem> AvailableContactMethods { get; set; }
 

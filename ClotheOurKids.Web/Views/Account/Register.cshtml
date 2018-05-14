@@ -68,7 +68,11 @@
                                             </tr>
                                         </thead>
                                     </table>
-                                </div>                                
+                                </div>   
+                                
+                                @Html.TextBoxFor(m => m.OfficeId, new { @class = "form-control d-none validate" })
+                                @Html.ValidationMessageFor(m => m.OfficeId)
+                                                             
                             </div>
                             <div id="step-2">
                                 @Html.LabelFor(m => m.Email, new { @class = "font-weight-light" })
@@ -100,24 +104,24 @@
 
                                 <br />
 
-                                <label for="contactMethod" class="grey-text font-weight-light">Contact method</label>
-                                <div class="d-flex flex-row justify-content-md-center">
-                                    @{
-                                        foreach (var contactMethod in Model.AvailableContactMethods)
-                                        {
-                                            <div class="form-group mr-4">
-                                                @Html.RadioButtonFor(m => m.ContactMethodId, contactMethod.Value, new { id = "contactMethod" + contactMethod.Value, @class = "with-gap" })
-                                                @Html.Label("contactMethod" + contactMethod.Value, contactMethod.Text)
-                                            </div>
-                                        }
+                                <label for="contactMethod" class="font-weight-light">Contact method</label>
 
+                                @{
+                                    foreach (var contactMethod in Model.AvailableContactMethods)
+                                    {
+                                        <div class="form-check mr-4">
+                                            @Html.RadioButtonFor(m => m.ContactMethodId, contactMethod.Value, new { id = "contactMethod" + contactMethod.Value, @class = "form-check-input with-gap" })
+                                            @Html.Label("contactMethod" + contactMethod.Value, contactMethod.Text, new { @class = "form-check-label" })
+                                        </div>
                                     }
-                                </div>
-                                <div class="text-center">
+
+                                }
+
+                                <div>
                                     @Html.ValidationMessageFor(m => m.ContactMethodId)
                                 </div>
 
-                                <div class="row">
+                                <div class="row mt-3">
                                     <div class="col-md">
                                         <div class="md-form">
                                             @Html.LabelFor(m => m.PositionId, new { @class = "select2-label" })
@@ -359,9 +363,57 @@
 
             //var positions = { "1": "Principal", "2": "Teacher", "3": "Counselor", "4": "FACT Coordinator" };
 
+            $('#RegisterForm').data("validator").settings.ignore = ""
+
             var form = $('#RegisterForm').smartWizard({
                 transitionEffect: 'slide',
-                transitionSpeed: '600'
+                transitionSpeed: '600',
+                toolbarSettings: {
+                    toolbarExtraButtons: [
+                        $('<button></button>').text('Finish')
+                            .addClass('btn btn-info sw-btn-finish d-none')
+                            .prop('type', 'submit')
+                    ]
+                }
+            });
+
+            form.on("leaveStep", function (e, anchorObject, stepNumber, stepDirection) {
+                var valid = true;
+
+                if (stepDirection === "forward") {
+                    switch (stepNumber) {
+                        case 0:
+                            if (!$('#OfficeId').valid()) {
+                                valid = false
+                            }
+                            break;
+                        case 1:
+                            if (!$('#Email').valid() || !$('#Password').valid()) {
+                                valid = false
+                            }
+                            break;
+                        case 2:
+                            if (!$('#FirstName').valid() || !$('#LastName').valid() || !$('#PhoneNumber').valid() || !$('#ContactMethodId').valid() || !$('#PositionId').valid()) {
+                                valid = false
+                            }
+                            break;
+                        default:
+                    }
+                }                
+
+                return valid;
+                    
+            });
+
+            form.on('showStep', function (e, anchorObject, stepNumber, stepDirection) {
+                if (stepNumber < 2) {
+                    $('.sw-btn-next').removeClass('d-none');
+                    $('.sw-btn-finish').addClass('d-none');
+                }
+                else {
+                    $('.sw-btn-next').addClass('d-none');
+                    $('.sw-btn-finish').removeClass('d-none');
+                }
             });
 
 
@@ -377,7 +429,7 @@
                 responsive: true,
                 scrollY: 200,
                 scrollCollapse: true,
-                select: true,
+                select: 'single',
                 pagingType: 'simple_numbers',
                 dom: "<'row'<'col'p>>t<'row'<'col'i>>",
                 ajax: "@(Url.RouteUrl("GetAllOffices"))",
@@ -392,14 +444,78 @@
                         "visible": false,
                         "targets": 0
                     }
-                ]
+                ],
+                rowId: 'OfficeId',
+                initComplete: function (settings, json) {
+                    if ($('#OfficeId').val() != '') {
+                        officeTable.row('#' + $('#OfficeId').val()).select();
+                    }
+                }
             });
+
+            officeTable.on('select', function (e, dt, type, indexes) {
+                var ddlPositions = $('#PositionId');
+
+                if (type === 'row') {
+                    var rowData = officeTable.rows(indexes).data();
+                    var data = officeTable.rows(indexes).data().pluck('OfficeId');
+
+                    $('#OfficeId').val(data[0]);
+                    $('#OfficeId').valid();
+
+
+                    $.ajax({
+                        cache: false,
+                        type: "GET",
+                        url: "@(Url.RouteUrl("GetPositions"))",
+                        data: { "officeId": data[0] },
+                        success: function (data) {
+                            ddlPositions.html('');
+                            ddlPositions.prepend('<option value="0" disabled selected>Choose Your Position</option>');
+                            $.each(data, function (id, option) {
+                                ddlPositions.append($('<option></option>').val(option.id).html(option.name));
+                            });
+
+                            ddlPositions.prop("disabled", false);
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            alert('Failed to retrieve positions.');
+                        }
+                    });
+
+                }
+            });
+
+            officeTable.on('deselect', function (e, dt, type, indexes) {
+                var ddlPositions = $('#PositionId');
+
+                $('#OfficeId').val('');
+                $('#OfficeId').valid();
+
+                ddlPositions.html('');
+                ddlPositions.prepend('<option value="0" disabled selected>Choose Your Position</option>');
+
+            });
+
+            if ($("#officeSearch").val() != '') {
+                officeTable.search(this.value).draw();
+            }
+
+            
+
 
             $('#officeSearch').tooltip({
                 trigger: 'hover focus'
-            }).on('keyup', function () {
+            }).on('keyup change paste', function () {
                 officeTable.search(this.value).draw();
             });
+
+
+            $('.md-select2')
+                .select2()
+                .on('change', function () {
+                    $(this).trigger('blur');
+                });
 
 
             @*if (!$('input[type=radio][name=OfficeTypeId]').is(':checked')) {

@@ -294,17 +294,17 @@ namespace ClotheOurKids.Web.Controllers
         [AllowAnonymous]
         [AcceptVerbs(HttpVerbs.Get)]
         [Route("Get-Positions", Name = "GetPositions")]
-        public ActionResult GetPositionsByOfficeId (string officeTypeId)
+        public ActionResult GetPositionsByOfficeId (string officeId)
         {
-            if (String.IsNullOrEmpty(officeTypeId))
+            if (String.IsNullOrEmpty(officeId))
             {
-                throw new ArgumentNullException("officeTypeId");
+                throw new ArgumentNullException("officeId");
             }
 
             int id = 0;
             var repository = new RegisterFormRepository();
-            bool isValid = Int32.TryParse(officeTypeId, out id);
-            var positions = repository.GetPositionsByOfficeType(id);
+            bool isValid = Int32.TryParse(officeId, out id);
+            var positions = repository.GetPositionsByOffice(id);
 
             var result = (from p in positions
                           select new
@@ -321,23 +321,23 @@ namespace ClotheOurKids.Web.Controllers
             var repository = new RegisterFormRepository();
             
             //Populate Office Types
-            var officeTypes = repository.GetAllOfficeTypes();
-            var officeTypeList = (from ot in officeTypes
-                                  select new
-                                  {
-                                      id = ot.OfficeTypeId,
-                                      name = ot.Name
-                                  }).ToList();
+            //var officeTypes = repository.GetAllOfficeTypes();
+            //var officeTypeList = (from ot in officeTypes
+            //                      select new
+            //                      {
+            //                          id = ot.OfficeTypeId,
+            //                          name = ot.Name
+            //                      }).ToList();
 
-            foreach (var officeType in officeTypeList)
-            {
-                model.AvailableOfficeTypes.Add(new SelectListItem()
-                {
-                    Text = officeType.name,
-                    Value = officeType.id.ToString()
-                });
+            //foreach (var officeType in officeTypeList)
+            //{
+            //    model.AvailableOfficeTypes.Add(new SelectListItem()
+            //    {
+            //        Text = officeType.name,
+            //        Value = officeType.id.ToString()
+            //    });
 
-            }
+            //}
 
 
             //Populate Contact Methods
@@ -366,52 +366,46 @@ namespace ClotheOurKids.Web.Controllers
                 Value = "0"
             });
 
-            model.AvailableOffices.Add(new SelectListItem()
-            {
-                Text = "Choose Your Office",
-                Value = "0"
-            });
-
 
             //Populate Office and Position dropdowns based on OfficeTypeId
-            if (model.OfficeTypeId.HasValue)
-            {
-                var offices = repository.GetOfficesByOfficeType((int)model.OfficeTypeId);
-                var officeList = (from o in offices
-                                  select new
-                                  {
-                                      id = o.OfficeId,
-                                      name = o.Name
-                                  }).ToList();
+            //if (model.OfficeTypeId.HasValue)
+            //{
+            //    var offices = repository.GetOfficesByOfficeType((int)model.OfficeTypeId);
+            //    var officeList = (from o in offices
+            //                      select new
+            //                      {
+            //                          id = o.OfficeId,
+            //                          name = o.Name
+            //                      }).ToList();
 
-                foreach (var office in officeList)
-                {
-                    model.AvailableOffices.Add(new SelectListItem()
-                    {
-                        Text = office.name,
-                        Value = office.id.ToString()
-                    });
-                }
+            //    foreach (var office in officeList)
+            //    {
+            //        model.AvailableOffices.Add(new SelectListItem()
+            //        {
+            //            Text = office.name,
+            //            Value = office.id.ToString()
+            //        });
+            //    }
 
 
-                var positions = repository.GetPositionsByOfficeType((int)model.OfficeTypeId);
-                var positionList = (from p in positions
-                                    select new
-                                    {
-                                        id = p.PositionId,
-                                        name = p.Name
-                                    }).ToList();
+            //    var positions = repository.GetPositionsByOfficeType((int)model.OfficeTypeId);
+            //    var positionList = (from p in positions
+            //                        select new
+            //                        {
+            //                            id = p.PositionId,
+            //                            name = p.Name
+            //                        }).ToList();
 
-                foreach (var position in positionList)
-                {
-                    model.AvailablePositions.Add(new SelectListItem()
-                    {
-                        Text = position.name,
-                        Value = position.id.ToString()
-                    });
-                }
+            //    foreach (var position in positionList)
+            //    {
+            //        model.AvailablePositions.Add(new SelectListItem()
+            //        {
+            //            Text = position.name,
+            //            Value = position.id.ToString()
+            //        });
+            //    }
 
-            }
+            //}
             
             return model;
         }
