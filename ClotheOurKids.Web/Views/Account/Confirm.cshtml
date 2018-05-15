@@ -1,17 +1,40 @@
 ﻿@{
-    ViewBag.Title = "Confirm Email Address Sent";
+    ViewBag.Title = "Confirmation email sent";
 }
-<h2>@ViewBag.Title.</h2>
 
-<div class="row">
-    <div class="col-12">
-        Please check your Email Inbox. We sent a confirmation Email to @ViewBag.Email. <br/> You must confirm your email before you can log in.
-    </div>
-    <div class="col-12">
-        @using (Html.BeginForm("Confirm", "Account", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
-            <button type="submit" class="btn btn-primary btn-rounded btn-lg waves-effect waves-light">Resend Confirmation Email</button>
+@section pageCSS
+{
+    <style type="text/css">
+        #slide-out {
+            display: none;
         }
+
+        .navbar {
+            display: none;
+        }
+
+        footer {
+            display: none;
+        }
+
+        .fixed-sn main {
+            padding-left: 0;
+        }
+    </style>
+}
+
+<div class="container my-auto mx-auto">
+    <h2>@ViewBag.Title.</h2>
+    <div class="row">
+        <div class="col-12">
+            Please check your email inbox. We sent a confirmation email to @ViewBag.Email. <br /> You must confirm your email before you can log in.
+        </div>
+        <div class="col-12">
+            @using (Html.BeginForm("Confirm", "Account", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-primary btn-rounded btn-lg waves-effect waves-light">Resend Confirmation Email</button>
+            }
+        </div>
     </div>
 </div>

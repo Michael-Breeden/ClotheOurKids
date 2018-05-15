@@ -362,10 +362,29 @@ namespace ClotheOurKids.Web.Controllers
             //Seed Position and Office Dropdowns with placeholder
             model.AvailablePositions.Add(new SelectListItem()
             {
-                Text = "Choose Your Position",
+                Text = "Select...",
                 Value = "0"
             });
 
+            if (model.OfficeId.GetValueOrDefault(0) != 0)
+            {
+                var positions = repository.GetPositionsByOffice((int)model.OfficeId);
+                var positionList = (from p in positions
+                                    select new
+                                    {
+                                        id = p.PositionId,
+                                        name = p.Name
+                                    }).OrderBy(p => p.name).ToList();
+
+                foreach (var position in positionList)
+                {
+                    model.AvailablePositions.Add(new SelectListItem()
+                    {
+                        Text = position.name,
+                        Value = position.id.ToString()
+                    });
+                }
+            }
 
             //Populate Office and Position dropdowns based on OfficeTypeId
             //if (model.OfficeTypeId.HasValue)
@@ -406,7 +425,7 @@ namespace ClotheOurKids.Web.Controllers
             //    }
 
             //}
-            
+
             return model;
         }
 
@@ -441,6 +460,8 @@ namespace ClotheOurKids.Web.Controllers
             }
 
             PopulateRegisterModel(model);
+
+            TempData["SubmitError"] = "Error Submitting!";
 
             // If we got this far, something failed, redisplay form
             return View(model);

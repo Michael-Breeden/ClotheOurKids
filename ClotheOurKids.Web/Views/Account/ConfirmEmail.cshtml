@@ -1,10 +1,32 @@
 ﻿@{
-    ViewBag.Title = "Confirm Email";
+    ViewBag.Title = "Email confirmed!";
 }
 
-<h2>@ViewBag.Title.</h2>
-<div>
+
+@section pageCSS
+{
+    <style type="text/css">
+        #slide-out {
+            display: none;
+        }
+
+        .navbar {
+            display: none;
+        }
+
+        footer {
+            display: none;
+        }
+
+        .fixed-sn main {
+            padding-left: 0;
+        }
+    </style>
+}
+
+<div class="container my-auto mx-auto">
+    <h2>@ViewBag.Title.</h2>
     <p>
-        Thank you for confirming your email. Please <a data-toggle="modal" data-target="#modal-login">Click Here to Log In</a>
+        Thank you for confirming your email. Please <a href="@Url.Action("Login", "Account")">Click Here to Log In</a>
     </p>
 </div>

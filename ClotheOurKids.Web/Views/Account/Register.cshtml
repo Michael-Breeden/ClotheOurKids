@@ -33,6 +33,12 @@
 }
 
 <div class="container">
+    
+    @if (TempData["SubmitError"] != null)
+    {
+        <label id="SubmitError" class="hidden-xs-up"></label>
+    }
+
     <div class="row">        
         <div class="col-xl-7 col-lg-8 col-md-10 col-sm-12 mx-auto mt-3">
             <div class="card">
@@ -516,6 +522,21 @@
                 .on('change', function () {
                     $(this).trigger('blur');
                 });
+
+
+            if ($('#SubmitError').length) {
+
+                //toastr.options = {
+                //    positionClass: "toast-bottom-right"
+                //}
+
+                toastr["error"]("Unable to submit. Please ensure you completed all necessary fields.");
+            }
+
+
+            //if ($('#PositionId').val() != '') {
+            //    $('#PositionId').trigger('change');
+            //}
 
 
             @*if (!$('input[type=radio][name=OfficeTypeId]').is(':checked')) {

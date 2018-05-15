@@ -195,6 +195,10 @@
     <Content Include="SQL_Scripts\001_Create_AspNetIdentity_Tables.sql" />
     <Content Include="SQL_Scripts\002_CustomizeUser.sql" />
     <Content Include="SQL_Scripts\003_ClotheOurKids_Tables.sql" />
+    <Content Include="SQL_Scripts\004_AddExcelCenter.sql" />
+    <Content Include="SQL_Scripts\005_Expansion_Updates.sql" />
+    <Content Include="SQL_Scripts\006_PantSize_Update.sql" />
+    <Content Include="SQL_Scripts\007_Address_Updates.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

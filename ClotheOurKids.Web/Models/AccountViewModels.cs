@@ -117,10 +117,6 @@ namespace ClotheOurKids.Web.Models
         public string LastName { get; set; }
 
         [Required]
-        [Display(Name = "zip code")]
-        public string postalcode { get; set; }
-
-        [Required]
         [Display(Name = "Your Position")]
         public short? PositionId { get; set; }
         public IList<SelectListItem> AvailablePositions { get; set; }
