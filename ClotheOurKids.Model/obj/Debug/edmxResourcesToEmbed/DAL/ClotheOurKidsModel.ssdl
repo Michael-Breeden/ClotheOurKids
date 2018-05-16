@@ -81,6 +81,7 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <Property Name="StateId" Type="smallint" />
     <Property Name="PostalCode" Type="char" MaxLength="6" />
     <Property Name="PostalCodeExt" Type="char" MaxLength="4" />
+    <Property Name="CountyId" Type="smallint" />
   </EntityType>
   <EntityType Name="AgeGroup">
     <Key>
@@ -157,13 +158,8 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <Property Name="OfficeId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="OfficeTypeId" Type="tinyint" Nullable="false" />
-    <Property Name="StreetAddress" Type="varchar" MaxLength="250" />
-    <Property Name="City" Type="varchar" MaxLength="50" />
-    <Property Name="StateId" Type="smallint" />
-    <Property Name="PostalCode" Type="char" MaxLength="6" />
-    <Property Name="PostalCodeExt" Type="char" MaxLength="4" />
     <Property Name="Phone" Type="varchar" MaxLength="50" />
-    <Property Name="CountyId" Type="smallint" Nullable="false" />
+    <Property Name="PhysicalAddressId" Type="int" />
   </EntityType>
   <EntityType Name="OfficeType">
     <Key>
@@ -350,6 +346,18 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Reference_Address$DefinesPhysicalAddressOf$Reference_Office">
+    <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+    <End Role="Office" Type="Self.Office" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="AddressId" />
+      </Principal>
+      <Dependent Role="Office">
+        <PropertyRef Name="PhysicalAddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Reference_AgeGroup$DescribesAgeGroupAssociatedWith$Reference_PantSize">
     <End Role="AgeGroup" Type="Self.AgeGroup" Multiplicity="1" />
     <End Role="PantSize" Type="Self.PantSize" Multiplicity="*" />
@@ -422,14 +430,14 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Reference_County$DefinesCountyOfResidenceFor$Reference_Office">
-    <End Role="County" Type="Self.County" Multiplicity="1" />
-    <End Role="Office" Type="Self.Office" Multiplicity="*" />
+  <Association Name="FK_Reference_County$DefinesCountyOf$Reference_Address">
+    <End Role="County" Type="Self.County" Multiplicity="0..1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="County">
         <PropertyRef Name="CountyId" />
       </Principal>
-      <Dependent Role="Office">
+      <Dependent Role="Address">
         <PropertyRef Name="CountyId" />
       </Dependent>
     </ReferentialConstraint>
@@ -575,18 +583,6 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
       </Principal>
       <Dependent Role="School">
         <PropertyRef Name="SchoolTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Reference_State$DefinesStateOfResidenceFor$Reference_Office">
-    <End Role="States" Type="Self.States" Multiplicity="0..1" />
-    <End Role="Office" Type="Self.Office" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="States">
-        <PropertyRef Name="StateId" />
-      </Principal>
-      <Dependent Role="Office">
-        <PropertyRef Name="StateId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -763,6 +759,10 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
     </AssociationSet>
+    <AssociationSet Name="FK_Reference_Address$DefinesPhysicalAddressOf$Reference_Office" Association="Self.FK_Reference_Address$DefinesPhysicalAddressOf$Reference_Office">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="Office" EntitySet="Office" />
+    </AssociationSet>
     <AssociationSet Name="FK_Reference_AgeGroup$DescribesAgeGroupAssociatedWith$Reference_PantSize" Association="Self.FK_Reference_AgeGroup$DescribesAgeGroupAssociatedWith$Reference_PantSize">
       <End Role="AgeGroup" EntitySet="AgeGroup" />
       <End Role="PantSize" EntitySet="PantSize" />
@@ -787,9 +787,9 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
       <End Role="County" EntitySet="County" />
       <End Role="ChapterCounty" EntitySet="ChapterCounty" />
     </AssociationSet>
-    <AssociationSet Name="FK_Reference_County$DefinesCountyOfResidenceFor$Reference_Office" Association="Self.FK_Reference_County$DefinesCountyOfResidenceFor$Reference_Office">
+    <AssociationSet Name="FK_Reference_County$DefinesCountyOf$Reference_Address" Association="Self.FK_Reference_County$DefinesCountyOf$Reference_Address">
       <End Role="County" EntitySet="County" />
-      <End Role="Office" EntitySet="Office" />
+      <End Role="Address" EntitySet="Address" />
     </AssociationSet>
     <AssociationSet Name="FK_Reference_Gender$DescribesGenderOfChildFor$Requests_Request" Association="Self.FK_Reference_Gender$DescribesGenderOfChildFor$Requests_Request">
       <End Role="Gender" EntitySet="Gender" />
@@ -838,10 +838,6 @@ warning 6002: The table/view 'ClotheOurKids.dbo.__MigrationHistory' does not hav
     <AssociationSet Name="FK_Reference_SchoolType$IdentifiesTypeOf$Reference_School" Association="Self.FK_Reference_SchoolType$IdentifiesTypeOf$Reference_School">
       <End Role="SchoolType" EntitySet="SchoolType" />
       <End Role="School" EntitySet="School" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Reference_State$DefinesStateOfResidenceFor$Reference_Office" Association="Self.FK_Reference_State$DefinesStateOfResidenceFor$Reference_Office">
-      <End Role="States" EntitySet="States" />
-      <End Role="Office" EntitySet="Office" />
     </AssociationSet>
     <AssociationSet Name="FK_Reference_States$DefinesStateWhereChapterIsIncorporatedIn$Reference_Chapter" Association="Self.FK_Reference_States$DefinesStateWhereChapterIsIncorporatedIn$Reference_Chapter">
       <End Role="States" EntitySet="States" />

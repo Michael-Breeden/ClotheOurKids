@@ -58,22 +58,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Offices">
-      <EntityTypeMapping TypeName="ClotheOurKidsModel.Office">
-        <MappingFragment StoreEntitySet="Office">
-          <ScalarProperty Name="CountyId" ColumnName="CountyId" />
-          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="OfficeTypeId" ColumnName="OfficeTypeId" />
-          <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
-          <ScalarProperty Name="City" ColumnName="City" />
-          <ScalarProperty Name="StateId" ColumnName="StateId" />
-          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
-          <ScalarProperty Name="PostalCodeExt" ColumnName="PostalCodeExt" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="OfficeTypes">
       <EntityTypeMapping TypeName="ClotheOurKidsModel.OfficeType">
         <MappingFragment StoreEntitySet="OfficeType">
@@ -277,6 +261,7 @@
     <EntitySetMapping Name="Addresses">
       <EntityTypeMapping TypeName="ClotheOurKidsModel.Address">
         <MappingFragment StoreEntitySet="Address">
+          <ScalarProperty Name="CountyId" ColumnName="CountyId" />
           <ScalarProperty Name="PostalCodeExt" ColumnName="PostalCodeExt" />
           <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
           <ScalarProperty Name="StateId" ColumnName="StateId" />
@@ -313,6 +298,17 @@
           <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
           <ScalarProperty Name="ChapterId" ColumnName="ChapterId" />
           <ScalarProperty Name="ChapterOfficeId" ColumnName="ChapterOfficeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Offices">
+      <EntityTypeMapping TypeName="ClotheOurKidsModel.Office">
+        <MappingFragment StoreEntitySet="Office">
+          <ScalarProperty Name="PhysicalAddressId" ColumnName="PhysicalAddressId" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="OfficeTypeId" ColumnName="OfficeTypeId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

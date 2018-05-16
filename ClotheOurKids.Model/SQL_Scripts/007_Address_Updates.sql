@@ -31,7 +31,7 @@ GO
 
 
 UPDATE a
-SET CountyId = o.CountyId
+SET a.CountyId = o.CountyId
 FROM Reference.Address a
 	INNER JOIN Reference.Office o ON a.AddressId = o.PhysicalAddressId;
 

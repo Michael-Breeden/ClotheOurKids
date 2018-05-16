@@ -50,8 +50,8 @@
     <Property Name="ServiceEndDate" Type="DateTime" Precision="0" />
     <Property Name="StateId" Type="Int16" />
     <NavigationProperty Name="SchoolDistricts" Relationship="Self.FK_Reference_SchoolDistrict_IsPartOfTheCounty_Reference_County" FromRole="County" ToRole="SchoolDistrict" />
-    <NavigationProperty Name="Offices" Relationship="ClotheOurKidsModel.FK_Reference_County_DefinesCountyOfResidenceFor_Reference_Office" FromRole="County" ToRole="Office" />
     <NavigationProperty Name="ChapterCounties" Relationship="ClotheOurKidsModel.FK_Reference_County_DefinesCountyFor_Reference_ChapterCounty" FromRole="County" ToRole="ChapterCounty" />
+    <NavigationProperty Name="Addresses" Relationship="ClotheOurKidsModel.FK_Reference_County_DefinesCountyOf_Reference_Address" FromRole="County" ToRole="Address" />
   </EntityType>
   <EntityType Name="Grade">
     <Key>
@@ -62,28 +62,6 @@
     <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Requests" Relationship="ClotheOurKidsModel.FK_Requests_Request_IsForChildInGrade_Reference_Grade" FromRole="Grade" ToRole="Request" />
   </EntityType>
-  <EntityType Name="Office">
-    <Key>
-      <PropertyRef Name="OfficeId" />
-    </Key>
-    <Property Name="OfficeId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="OfficeTypeId" Type="Byte" Nullable="false" />
-    <Property Name="StreetAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="StateId" Type="Int16" />
-    <Property Name="PostalCode" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-    <Property Name="PostalCodeExt" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
-    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="OfficeType" Relationship="Self.FK_Reference_OfficeType_DescribesOrganizationalTypeOf_Reference_Office" FromRole="Office" ToRole="OfficeType" />
-    <NavigationProperty Name="Schools" Relationship="Self.FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office" FromRole="Office" ToRole="School" />
-    <NavigationProperty Name="State" Relationship="Self.FK_Reference_State_DefinesStateOfResidenceFor_Reference_Office" FromRole="Office" ToRole="States" />
-    <NavigationProperty Name="AspNetUsers" Relationship="ClotheOurKidsModel.FK_Reference_Office_IsOfficeOf_dbo_AspNetUsers" FromRole="Office" ToRole="AspNetUser" />
-    <Property Name="CountyId" Type="Int16" Nullable="false" />
-    <NavigationProperty Name="County" Relationship="ClotheOurKidsModel.FK_Reference_County_DefinesCountyOfResidenceFor_Reference_Office" FromRole="Office" ToRole="County" />
-    <NavigationProperty Name="Chapters" Relationship="ClotheOurKidsModel.FK_Reference_Office_DefinesOfficeOfThis_Reference_Chapter" FromRole="Office" ToRole="Chapter" />
-    <NavigationProperty Name="ChapterOffices" Relationship="ClotheOurKidsModel.FK_Reference_Office_DefinesServedByChapterIn_Reference_ChapterOffice" FromRole="Office" ToRole="ChapterOffice" />
-  </EntityType>
   <EntityType Name="OfficeType">
     <Key>
       <PropertyRef Name="OfficeTypeId" />
@@ -91,8 +69,8 @@
     <Property Name="OfficeTypeId" Type="Byte" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Offices" Relationship="Self.FK_Reference_OfficeType_DescribesOrganizationalTypeOf_Reference_Office" FromRole="OfficeType" ToRole="Office" />
     <NavigationProperty Name="PositionOfficeTypes" Relationship="Self.FK_Reference_OfficeType_DescribesTypeOfOfficeAssociatedWith_Reference_PositionOfficeType" FromRole="OfficeType" ToRole="PositionOfficeType" />
+    <NavigationProperty Name="Offices" Relationship="ClotheOurKidsModel.FK_Reference_OfficeType_DescribesOrganizationalTypeOf_Reference_Office" FromRole="OfficeType" ToRole="Office" />
   </EntityType>
   <EntityType Name="Position">
     <Key>
@@ -122,10 +100,10 @@
     <Property Name="OfficeId" Type="Int16" Nullable="false" />
     <Property Name="SchoolDistrictId" Type="Int16" Nullable="false" />
     <Property Name="SchoolTypeId" Type="Byte" Nullable="false" />
-    <NavigationProperty Name="Office" Relationship="Self.FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office" FromRole="School" ToRole="Office" />
     <NavigationProperty Name="SchoolDistrict" Relationship="Self.FK_Reference_SchoolDistrict_IdentifiesSchoolDistrictOf_Reference_School" FromRole="School" ToRole="SchoolDistrict" />
     <NavigationProperty Name="SchoolType" Relationship="Self.FK_Reference_SchoolType_IdentifiesTypeOf_Reference_School" FromRole="School" ToRole="SchoolType" />
     <NavigationProperty Name="Requests" Relationship="ClotheOurKidsModel.FK_Requests_Request_IsForChildAttending_Reference_School" FromRole="School" ToRole="Request" />
+    <NavigationProperty Name="Office" Relationship="ClotheOurKidsModel.FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office" FromRole="School" ToRole="Office" />
   </EntityType>
   <EntityType Name="SchoolDistrict">
     <Key>
@@ -154,8 +132,8 @@
     <Property Name="StateId" Type="Int16" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Code" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Offices" Relationship="Self.FK_Reference_State_DefinesStateOfResidenceFor_Reference_Office" FromRole="States" ToRole="Office" />
     <NavigationProperty Name="Chapters" Relationship="ClotheOurKidsModel.FK_Reference_States_DefinesStateWhereChapterIsIncorporatedIn_Reference_Chapter" FromRole="State" ToRole="Chapter" />
+    <NavigationProperty Name="Addresses" Relationship="ClotheOurKidsModel.FK_Reference_States_DefinesStateOf_Reference_Address" FromRole="State" ToRole="Address" />
   </EntityType>
   <EntityType Name="RequestStatus">
     <Key>
@@ -196,42 +174,6 @@
       </Principal>
       <Dependent Role="SchoolDistrict">
         <PropertyRef Name="CountyId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Reference_OfficeType_DescribesOrganizationalTypeOf_Reference_Office">
-    <End Role="OfficeType" Type="Self.OfficeType" Multiplicity="1" />
-    <End Role="Office" Type="Self.Office" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="OfficeType">
-        <PropertyRef Name="OfficeTypeId" />
-      </Principal>
-      <Dependent Role="Office">
-        <PropertyRef Name="OfficeTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office">
-    <End Role="Office" Type="Self.Office" Multiplicity="1" />
-    <End Role="School" Type="Self.School" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Office">
-        <PropertyRef Name="OfficeId" />
-      </Principal>
-      <Dependent Role="School">
-        <PropertyRef Name="OfficeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Reference_State_DefinesStateOfResidenceFor_Reference_Office">
-    <End Role="States" Type="Self.State" Multiplicity="0..1" />
-    <End Role="Office" Type="Self.Office" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="States">
-        <PropertyRef Name="StateId" />
-      </Principal>
-      <Dependent Role="Office">
-        <PropertyRef Name="StateId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -290,7 +232,6 @@
     <EntitySet Name="AgeGroups" EntityType="Self.AgeGroup" />
     <EntitySet Name="Counties" EntityType="Self.County" />
     <EntitySet Name="Grades" EntityType="Self.Grade" />
-    <EntitySet Name="Offices" EntityType="Self.Office" />
     <EntitySet Name="OfficeTypes" EntityType="Self.OfficeType" />
     <EntitySet Name="Positions" EntityType="Self.Position" />
     <EntitySet Name="PositionOfficeTypes" EntityType="Self.PositionOfficeType" />
@@ -304,18 +245,6 @@
     <AssociationSet Name="FK_Reference_SchoolDistrict_IsPartOfTheCounty_Reference_County" Association="Self.FK_Reference_SchoolDistrict_IsPartOfTheCounty_Reference_County">
       <End Role="County" EntitySet="Counties" />
       <End Role="SchoolDistrict" EntitySet="SchoolDistricts" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Reference_OfficeType_DescribesOrganizationalTypeOf_Reference_Office" Association="Self.FK_Reference_OfficeType_DescribesOrganizationalTypeOf_Reference_Office">
-      <End Role="OfficeType" EntitySet="OfficeTypes" />
-      <End Role="Office" EntitySet="Offices" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office" Association="Self.FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office">
-      <End Role="Office" EntitySet="Offices" />
-      <End Role="School" EntitySet="Schools" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Reference_State_DefinesStateOfResidenceFor_Reference_Office" Association="Self.FK_Reference_State_DefinesStateOfResidenceFor_Reference_Office">
-      <End Role="States" EntitySet="States" />
-      <End Role="Office" EntitySet="Offices" />
     </AssociationSet>
     <AssociationSet Name="FK_Reference_OfficeType_DescribesTypeOfOfficeAssociatedWith_Reference_PositionOfficeType" Association="Self.FK_Reference_OfficeType_DescribesTypeOfOfficeAssociatedWith_Reference_PositionOfficeType">
       <End Role="OfficeType" EntitySet="OfficeTypes" />
@@ -396,10 +325,6 @@
       <End Role="ContactMethod" EntitySet="ContactMethods" />
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
     </AssociationSet>
-    <AssociationSet Name="FK_Reference_Office_IsOfficeOf_dbo_AspNetUsers" Association="ClotheOurKidsModel.FK_Reference_Office_IsOfficeOf_dbo_AspNetUsers">
-      <End Role="Office" EntitySet="Offices" />
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
-    </AssociationSet>
     <AssociationSet Name="FK_Reference_Position_IsPositionOf_dbo_AspNetUsers" Association="ClotheOurKidsModel.FK_Reference_Position_IsPositionOf_dbo_AspNetUsers">
       <End Role="Position" EntitySet="Positions" />
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
@@ -411,10 +336,6 @@
     <AssociationSet Name="AspNetUserRoles" Association="ClotheOurKidsModel.AspNetUserRoles">
       <End Role="AspNetRole" EntitySet="AspNetRoles" />
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Reference_County_DefinesCountyOfResidenceFor_Reference_Office" Association="ClotheOurKidsModel.FK_Reference_County_DefinesCountyOfResidenceFor_Reference_Office">
-      <End Role="County" EntitySet="Counties" />
-      <End Role="Office" EntitySet="Offices" />
     </AssociationSet>
     <EntitySet Name="Addresses" EntityType="ClotheOurKidsModel.Address" />
     <EntitySet Name="Chapters" EntityType="ClotheOurKidsModel.Chapter" />
@@ -428,10 +349,6 @@
       <End Role="Chapter" EntitySet="Chapters" />
       <End Role="ChapterOffice" EntitySet="ChapterOffices" />
     </AssociationSet>
-    <AssociationSet Name="FK_Reference_Office_DefinesOfficeOfThis_Reference_Chapter" Association="ClotheOurKidsModel.FK_Reference_Office_DefinesOfficeOfThis_Reference_Chapter">
-      <End Role="Office" EntitySet="Offices" />
-      <End Role="Chapter" EntitySet="Chapters" />
-    </AssociationSet>
     <AssociationSet Name="FK_Reference_States_DefinesStateWhereChapterIsIncorporatedIn_Reference_Chapter" Association="ClotheOurKidsModel.FK_Reference_States_DefinesStateWhereChapterIsIncorporatedIn_Reference_Chapter">
       <End Role="State" EntitySet="States" />
       <End Role="Chapter" EntitySet="Chapters" />
@@ -440,9 +357,38 @@
       <End Role="County" EntitySet="Counties" />
       <End Role="ChapterCounty" EntitySet="ChapterCounties" />
     </AssociationSet>
+    <AssociationSet Name="FK_Reference_County_DefinesCountyOf_Reference_Address" Association="ClotheOurKidsModel.FK_Reference_County_DefinesCountyOf_Reference_Address">
+      <End Role="County" EntitySet="Counties" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_States_DefinesStateOf_Reference_Address" Association="ClotheOurKidsModel.FK_Reference_States_DefinesStateOf_Reference_Address">
+      <End Role="State" EntitySet="States" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <EntitySet Name="Offices" EntityType="ClotheOurKidsModel.Office" />
+    <AssociationSet Name="FK_Reference_Office_IsOfficeOf_dbo_AspNetUsers" Association="ClotheOurKidsModel.FK_Reference_Office_IsOfficeOf_dbo_AspNetUsers">
+      <End Role="Office" EntitySet="Offices" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_Address_DefinesPhysicalAddressOf_Reference_Office" Association="ClotheOurKidsModel.FK_Reference_Address_DefinesPhysicalAddressOf_Reference_Office">
+      <End Role="Address" EntitySet="Addresses" />
+      <End Role="Office" EntitySet="Offices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_Office_DefinesOfficeOfThis_Reference_Chapter" Association="ClotheOurKidsModel.FK_Reference_Office_DefinesOfficeOfThis_Reference_Chapter">
+      <End Role="Office" EntitySet="Offices" />
+      <End Role="Chapter" EntitySet="Chapters" />
+    </AssociationSet>
     <AssociationSet Name="FK_Reference_Office_DefinesServedByChapterIn_Reference_ChapterOffice" Association="ClotheOurKidsModel.FK_Reference_Office_DefinesServedByChapterIn_Reference_ChapterOffice">
       <End Role="Office" EntitySet="Offices" />
       <End Role="ChapterOffice" EntitySet="ChapterOffices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_OfficeType_DescribesOrganizationalTypeOf_Reference_Office" Association="ClotheOurKidsModel.FK_Reference_OfficeType_DescribesOrganizationalTypeOf_Reference_Office">
+      <End Role="OfficeType" EntitySet="OfficeTypes" />
+      <End Role="Office" EntitySet="Offices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office" Association="ClotheOurKidsModel.FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office">
+      <End Role="Office" EntitySet="Offices" />
+      <End Role="School" EntitySet="Schools" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="ContactMethod">
@@ -689,10 +635,10 @@
     <NavigationProperty Name="AspNetUserClaims" Relationship="ClotheOurKidsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
     <NavigationProperty Name="AspNetUserLogins" Relationship="ClotheOurKidsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
     <NavigationProperty Name="ContactMethod" Relationship="ClotheOurKidsModel.FK_Reference_ContactMethod_IsPreferredMethodOfContactFor_dbo_AspNetUsers" FromRole="AspNetUser" ToRole="ContactMethod" />
-    <NavigationProperty Name="Office" Relationship="ClotheOurKidsModel.FK_Reference_Office_IsOfficeOf_dbo_AspNetUsers" FromRole="AspNetUser" ToRole="Office" />
     <NavigationProperty Name="Position" Relationship="ClotheOurKidsModel.FK_Reference_Position_IsPositionOf_dbo_AspNetUsers" FromRole="AspNetUser" ToRole="Position" />
     <NavigationProperty Name="Requests" Relationship="ClotheOurKidsModel.FK_Requests_Request_WasSubmittedBy_dbo_AspNetUsers" FromRole="AspNetUser" ToRole="Request" />
     <NavigationProperty Name="AspNetRoles" Relationship="ClotheOurKidsModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+    <NavigationProperty Name="Office" Relationship="ClotheOurKidsModel.FK_Reference_Office_IsOfficeOf_dbo_AspNetUsers" FromRole="AspNetUser" ToRole="Office" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Type="ClotheOurKidsModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -734,18 +680,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Reference_Office_IsOfficeOf_dbo_AspNetUsers">
-    <End Type="ClotheOurKidsModel.Office" Role="Office" Multiplicity="1" />
-    <End Type="ClotheOurKidsModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Office">
-        <PropertyRef Name="OfficeId" />
-      </Principal>
-      <Dependent Role="AspNetUser">
-        <PropertyRef Name="OfficeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Reference_Position_IsPositionOf_dbo_AspNetUsers">
     <End Type="ClotheOurKidsModel.Position" Role="Position" Multiplicity="1" />
     <End Type="ClotheOurKidsModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
@@ -774,18 +708,6 @@
     <End Type="ClotheOurKidsModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
     <End Type="ClotheOurKidsModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
   </Association>
-  <Association Name="FK_Reference_County_DefinesCountyOfResidenceFor_Reference_Office">
-    <End Type="ClotheOurKidsModel.County" Role="County" Multiplicity="1" />
-    <End Type="ClotheOurKidsModel.Office" Role="Office" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="County">
-        <PropertyRef Name="CountyId" />
-      </Principal>
-      <Dependent Role="Office">
-        <PropertyRef Name="CountyId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="Address">
     <Key>
       <PropertyRef Name="AddressId" />
@@ -796,6 +718,10 @@
     <Property Name="StateId" Type="Int16" />
     <Property Name="PostalCode" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
     <Property Name="PostalCodeExt" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="CountyId" Type="Int16" />
+    <NavigationProperty Name="County" Relationship="ClotheOurKidsModel.FK_Reference_County_DefinesCountyOf_Reference_Address" FromRole="Address" ToRole="County" />
+    <NavigationProperty Name="State" Relationship="ClotheOurKidsModel.FK_Reference_States_DefinesStateOf_Reference_Address" FromRole="Address" ToRole="State" />
+    <NavigationProperty Name="Offices" Relationship="ClotheOurKidsModel.FK_Reference_Address_DefinesPhysicalAddressOf_Reference_Office" FromRole="Address" ToRole="Office" />
   </EntityType>
   <EntityType Name="Chapter">
     <Key>
@@ -809,8 +735,8 @@
     <Property Name="Email" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="ChapterCounties" Relationship="ClotheOurKidsModel.FK_Reference_Chapter_DefinesChapterFor_Reference_ChapterCounty" FromRole="Chapter" ToRole="ChapterCounty" />
     <NavigationProperty Name="ChapterOffices" Relationship="ClotheOurKidsModel.FK_Reference_Chapter_DefinesChapterFor_Reference_ChapterOffice" FromRole="Chapter" ToRole="ChapterOffice" />
-    <NavigationProperty Name="Office" Relationship="ClotheOurKidsModel.FK_Reference_Office_DefinesOfficeOfThis_Reference_Chapter" FromRole="Chapter" ToRole="Office" />
     <NavigationProperty Name="State" Relationship="ClotheOurKidsModel.FK_Reference_States_DefinesStateWhereChapterIsIncorporatedIn_Reference_Chapter" FromRole="Chapter" ToRole="State" />
+    <NavigationProperty Name="Office" Relationship="ClotheOurKidsModel.FK_Reference_Office_DefinesOfficeOfThis_Reference_Chapter" FromRole="Chapter" ToRole="Office" />
   </EntityType>
   <EntityType Name="ChapterCounty">
     <Key>
@@ -856,18 +782,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Reference_Office_DefinesOfficeOfThis_Reference_Chapter">
-    <End Type="ClotheOurKidsModel.Office" Role="Office" Multiplicity="1" />
-    <End Type="ClotheOurKidsModel.Chapter" Role="Chapter" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Office">
-        <PropertyRef Name="OfficeId" />
-      </Principal>
-      <Dependent Role="Chapter">
-        <PropertyRef Name="OfficeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Reference_States_DefinesStateWhereChapterIsIncorporatedIn_Reference_Chapter">
     <End Type="ClotheOurKidsModel.State" Role="State" Multiplicity="1" />
     <End Type="ClotheOurKidsModel.Chapter" Role="Chapter" Multiplicity="*" />
@@ -892,6 +806,82 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Reference_County_DefinesCountyOf_Reference_Address">
+    <End Type="ClotheOurKidsModel.County" Role="County" Multiplicity="0..1" />
+    <End Type="ClotheOurKidsModel.Address" Role="Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="County">
+        <PropertyRef Name="CountyId" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="CountyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_States_DefinesStateOf_Reference_Address">
+    <End Type="ClotheOurKidsModel.State" Role="State" Multiplicity="0..1" />
+    <End Type="ClotheOurKidsModel.Address" Role="Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Office">
+    <Key>
+      <PropertyRef Name="OfficeId" />
+    </Key>
+    <Property Name="OfficeId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="OfficeTypeId" Type="Byte" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PhysicalAddressId" Type="Int32" />
+    <NavigationProperty Name="AspNetUsers" Relationship="ClotheOurKidsModel.FK_Reference_Office_IsOfficeOf_dbo_AspNetUsers" FromRole="Office" ToRole="AspNetUser" />
+    <NavigationProperty Name="Address" Relationship="ClotheOurKidsModel.FK_Reference_Address_DefinesPhysicalAddressOf_Reference_Office" FromRole="Office" ToRole="Address" />
+    <NavigationProperty Name="Chapters" Relationship="ClotheOurKidsModel.FK_Reference_Office_DefinesOfficeOfThis_Reference_Chapter" FromRole="Office" ToRole="Chapter" />
+    <NavigationProperty Name="ChapterOffices" Relationship="ClotheOurKidsModel.FK_Reference_Office_DefinesServedByChapterIn_Reference_ChapterOffice" FromRole="Office" ToRole="ChapterOffice" />
+    <NavigationProperty Name="OfficeType" Relationship="ClotheOurKidsModel.FK_Reference_OfficeType_DescribesOrganizationalTypeOf_Reference_Office" FromRole="Office" ToRole="OfficeType" />
+    <NavigationProperty Name="Schools" Relationship="ClotheOurKidsModel.FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office" FromRole="Office" ToRole="School" />
+  </EntityType>
+  <Association Name="FK_Reference_Office_IsOfficeOf_dbo_AspNetUsers">
+    <End Type="ClotheOurKidsModel.Office" Role="Office" Multiplicity="1" />
+    <End Type="ClotheOurKidsModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Office">
+        <PropertyRef Name="OfficeId" />
+      </Principal>
+      <Dependent Role="AspNetUser">
+        <PropertyRef Name="OfficeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_Address_DefinesPhysicalAddressOf_Reference_Office">
+    <End Type="ClotheOurKidsModel.Address" Role="Address" Multiplicity="0..1" />
+    <End Type="ClotheOurKidsModel.Office" Role="Office" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="AddressId" />
+      </Principal>
+      <Dependent Role="Office">
+        <PropertyRef Name="PhysicalAddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_Office_DefinesOfficeOfThis_Reference_Chapter">
+    <End Type="ClotheOurKidsModel.Office" Role="Office" Multiplicity="1" />
+    <End Type="ClotheOurKidsModel.Chapter" Role="Chapter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Office">
+        <PropertyRef Name="OfficeId" />
+      </Principal>
+      <Dependent Role="Chapter">
+        <PropertyRef Name="OfficeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Reference_Office_DefinesServedByChapterIn_Reference_ChapterOffice">
     <End Type="ClotheOurKidsModel.Office" Role="Office" Multiplicity="1" />
     <End Type="ClotheOurKidsModel.ChapterOffice" Role="ChapterOffice" Multiplicity="*" />
@@ -900,6 +890,30 @@
         <PropertyRef Name="OfficeId" />
       </Principal>
       <Dependent Role="ChapterOffice">
+        <PropertyRef Name="OfficeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_OfficeType_DescribesOrganizationalTypeOf_Reference_Office">
+    <End Type="ClotheOurKidsModel.OfficeType" Role="OfficeType" Multiplicity="1" />
+    <End Type="ClotheOurKidsModel.Office" Role="Office" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OfficeType">
+        <PropertyRef Name="OfficeTypeId" />
+      </Principal>
+      <Dependent Role="Office">
+        <PropertyRef Name="OfficeTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_School_DescribesSchoolDetailsFor_Reference_Office">
+    <End Type="ClotheOurKidsModel.Office" Role="Office" Multiplicity="1" />
+    <End Type="ClotheOurKidsModel.School" Role="School" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Office">
+        <PropertyRef Name="OfficeId" />
+      </Principal>
+      <Dependent Role="School">
         <PropertyRef Name="OfficeId" />
       </Dependent>
     </ReferentialConstraint>
